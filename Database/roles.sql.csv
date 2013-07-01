@@ -1,0 +1,8 @@
+id,name,description
+1,'login',"'Login privileges, granted after account confirmation'"
+2,'admin',"'Administrative user, has access to everything.'"
+3,'player',"'Player privileges, access to player options'"
+4,'staff',"'Staff privileges, access to staff options'"
+5,'accountant',"'Accountant privileges, access to accountant options'"
+6,'manager',"'Manager privileges, manage the club options'"
+7,'capitan',"'Capitan privileges, manage players'"

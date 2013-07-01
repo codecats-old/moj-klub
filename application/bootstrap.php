@@ -22,15 +22,16 @@ else
  * @link http://kohanaframework.org/guide/using.configuration
  * @link http://www.php.net/manual/timezones
  */
-date_default_timezone_set('America/Chicago');
-
+//date_default_timezone_set('America/Chicago');
+date_default_timezone_set('Europe/Warsaw');
 /**
  * Set the default locale.
  *
  * @link http://kohanaframework.org/guide/using.configuration
  * @link http://www.php.net/manual/function.setlocale
  */
-setlocale(LC_ALL, 'en_US.utf-8');
+//setlocale(LC_ALL, 'en_US.utf-8');
+setlocale(LC_ALL, 'pl_PL.utf-8');
 
 /**
  * Enable the Kohana auto-loader.
@@ -62,6 +63,7 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
  * Set the default language
  */
 I18n::lang('en-us');
+I18n::lang('pl-pl');
 
 /**
  * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
@@ -90,7 +92,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/kohana/',
+	'base_url'   => '/moj-klub/',
 ));
 
 /**
@@ -103,17 +105,19 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
  */
 Kohana::$config->attach(new Config_File);
 
+
+Cookie::$salt='a~d@d!s*o$m%e^7salt';
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	// 'auth'       => MODPATH.'auth',       // Basic authentication
-	// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
+	 'auth'       => MODPATH.'auth',       // Basic authentication
+	 'cache'      => MODPATH.'cache',      // Caching with multiple backends
 	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	// 'database'   => MODPATH.'database',   // Database access
-	// 'image'      => MODPATH.'image',      // Image manipulation
+	 'database'   => MODPATH.'database',   // Database access
+	 'image'      => MODPATH.'image',      // Image manipulation
 	// 'minion'     => MODPATH.'minion',     // CLI Tasks
-	// 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
+	 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 	));

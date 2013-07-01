@@ -1,0 +1,34 @@
+.carousel{
+    background: gray;
+}
+.carousel-inner>.item>img {
+margin: 0 auto;
+width:600px;
+height:400px;
+}
+.carousel>img{
+    width:100px;
+    height:100px;
+    position: absolute;
+    left:50px;
+    z-index: 1;
+}
+.carousel-control, .carousel-control:hover{
+    color:#0088CC;
+}
+header+div{
+    margin-top:50px;
+}
+.panel .btn{
+    padding:40px;
+}
+.bg-img{
+    position:relative;
+    left:-10px;
+    top:-40px;
+    z-index:0;
+}
+.top-text{
+    position:relative;
+    z-index:1;
+}
