@@ -5,4 +5,9 @@ class Model_User extends Model_Auth_User{
 			'through'=>'role_users'
 		)
 	);
+	public function validate_register($post)
+	{
+		$validation=new Validation_User($post);
+		return $validation->register();
+	}
 }

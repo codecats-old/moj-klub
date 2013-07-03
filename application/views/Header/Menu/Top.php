@@ -7,7 +7,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-<?php echo HTML::anchor(Route::get('default')->uri(),'Mój klub', array('class'=>'brand'));?>
+<?php echo HTML::anchor(Route::get('default')->uri(),'Mój klub', array('class'=>'brand', 'rel'=>'index'));?>
                         <!--Collapse less than 940px -->
                         <div class="nav-collapse">
 <?php echo View::factory('Header/Menu/Main')?>

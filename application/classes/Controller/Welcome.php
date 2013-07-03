@@ -4,12 +4,15 @@ class Controller_Welcome extends Controller_Automatic {
 
 	public function action_index()
 	{
-		$this->view_container=View::factory('Container/Main');
+		$view=View::factory('Container/Welcome/Main');
+		$this->view_container=View::factory('Container/Main')
+			->set('view', $view);
 
 	}
 	public function action_registrate()
 	{
-		$this->view_container=View::factory('Component/Access/Registrate');
+		$this->view_container=View::factory('Container/Main')
+			->set('view', View::factory('Component/Access/Registrate'));
 	}
 	public function action_test()
 	{

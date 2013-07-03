@@ -11,8 +11,8 @@
 <!-- AJAX -->
 <?php echo HTML::script('assets/script/Js/Ajax/Core.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/NodeBasicAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.new.class.js');?>
-<?php //echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Class/NodePermissionAction.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/GetAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/PostAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/ViewGetAction.class.js');?>
@@ -21,6 +21,7 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Class/JSONPostAction.class.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Content.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
 <!-- >AJAX -->
 <script>

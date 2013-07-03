@@ -4,7 +4,7 @@
 .carousel-inner>.item>img {
 margin: 0 auto;
 width:600px;
-height:400px;
+height:500px;
 }
 .carousel>img{
     width:100px;
@@ -31,4 +31,8 @@ header+div{
 .top-text{
     position:relative;
     z-index:1;
+}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a.brand{
+	font-weight:bold;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 white, 0 -1px white;
 }

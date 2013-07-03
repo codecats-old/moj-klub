@@ -5,11 +5,14 @@
 	 * extendable container
 	 */
 	strz_Ajax.NodeAction.prototype={
+			init:function(){
+				this.initClick();
+			},
 			/**
 			 * public function: jQuery on click ajax request will be send, 
 			 * on recive display status
 			 */
-			initClick:function(){
+			initClick:function(){console.log(this);
 			//	this.setAllowedPages([this.getRelLink()]);
 				var allowInit=this.isAllowedPage(document.location.pathname);
 				if(allowInit){
@@ -22,12 +25,10 @@
 				var callbackRun=this.runCallback;
 				var setBeforeSend=this.setBeforeSendAjax;
 				var that=this;
-				var selector=$("a[rel='"+this.getLink()+"']");
+				var selector=this.getTrigger();
 				selector.unbind('click');//prevent double ajax send e.g. in ajax request
 				selector.click(function(event){
 					event.preventDefault();
-					var elementClicked=$(this);
-					that.setSendInformator(elementClicked.parent());
 					$.ajax({
 						type:methodType(),
 						data:dataField,
@@ -59,46 +60,14 @@
 			 */
 			setBeforeSendAjax:function(that){
 				var here=that.getSendInformator();
-				var pathServer='http://localhost/zakladnik2';
-				here.prepend('<img src="'+pathServer+'/assets/img/Ajax/ajax-loader.gif" />');
+				here.fadeOut('fast');
 			},
 			getMethodType:function(){
 				return null;
 			},
-			onDone:function(self, data, that){},
-			getLink:function(){/*abstract*/
-				return this.getRelLink();
-			},
-			callbackObj:null,
-			callbackFunc:null,
-			callbackArray:[],
-			setCallback:function(array){//obj, callback){
-				for(arr in array){
-					this.callbackArray.push(array[arr]);
-				}
-//				this.callbackObj=obj;
-//				this.callbackFunc=callback;
-			},
-			runCallback:function(that){
-				for(arr in that.callbackArray){
-					var obj=that.callbackArray[arr][0];
-					var func=that.callbackArray[arr][1];
-					if(obj)obj[func]();
-				}
-				if(that.callbackObj)that.callbackObj[that.callbackFunc]();
-			},
-			allowedPages:[],
-			setAllowedPages:function(pages){
-				this.allowedPages=pages;
-			},
-			isAllowedPage:function(action){
-				var allowed=false;
-				var pages=this.allowedPages;
-				for(var page in pages){
-					if(action.search(pages[page])>-1)allowed=true;
-				}
-				return allowed;
+			onDone:function(self, data, that){
 			}
+			
 	};
-	strz_Ajax.Extend(strz_Ajax.NodeAction, strz_Ajax.NodeBasicAction);
+	strz_Ajax.Extend(strz_Ajax.NodeAction, strz_Ajax.NodePermissionAction);
 })();

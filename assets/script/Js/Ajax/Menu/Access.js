@@ -1,21 +1,16 @@
 (function(){
 	strz_Ajax.Access=function(rel){
-		rel= (typeof rel!=='undefined')? rel :'registrate';
-		var relLink=rel;
-		this.getRelLink=function(){
-			return relLink;
-		};
+		this.setTrigger($('a[rel='+rel+']'));
+		this.setSendInformator($('header+.container-fluid'));
+		this.setContentShow($('header+.container-fluid'));
+		this.setAllowedPages([rel]);
 	};
-	
 	/**
 	 * extendable container
 	 */
 	strz_Ajax.Access.prototype={
-		setBeforeSendAjax:function(that){
-				that.uber.setBeforeSendAjax(that, $('.content'));
-		},
-		isAllowedPage:function(){
-			return true;
+		init:function(){
+			this.initClick();
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.Access, strz_Ajax.ViewGetAction);

@@ -4,7 +4,7 @@
 	/**
 	 * extendable container
 	 */
-	strz_Ajax.GetAction.prototype={name:'GetAction',
+	strz_Ajax.GetAction.prototype={
 
 			getMethodType:function(){
 				return 'GET';
