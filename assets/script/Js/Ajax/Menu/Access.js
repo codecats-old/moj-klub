@@ -18,5 +18,5 @@
 			return true;
 		}
 	};
-	strz_Bookmark.Extend(strz_Ajax.Access, strz_Ajax.ViewGetAction);
+	strz_Ajax.Extend(strz_Ajax.Access, strz_Ajax.ViewGetAction);
 })();

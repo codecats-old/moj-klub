@@ -1,9 +1,9 @@
 /**
  * namespace and extending function
  */
-var strz_Bookmark={};
+var strz_Ajax={};
 (function(){
-	strz_Bookmark.Extend=function(child, parent){
+	strz_Ajax.Extend=function(child, parent){
 		for(var i in parent.prototype){
 			if(!(i in child.prototype)){
 				child.prototype[i]=parent.prototype[i];

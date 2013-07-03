@@ -11,7 +11,8 @@
 <!-- AJAX -->
 <?php echo HTML::script('assets/script/Js/Ajax/Core.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/NodeBasicAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.new.class.js');?>
+<?php //echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/GetAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/PostAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/ViewGetAction.class.js');?>
