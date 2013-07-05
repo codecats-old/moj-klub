@@ -1,8 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $style=(isset($style)?$style:null);?>
-<?php $error=(isset($error)?$error:null);?>
+<?php $user=isset($user)?$user:array();?>
+<?php $info=isset($info)?$info:array();?>
+<?php $info['show_email']=((empty($info['show_email'])===FALSE)?'checked':'');?>
+<?php $info['show_phone']=((empty($info['show_phone'])===FALSE)?'checked':'');?>
+<?php $captcha=(isset($captcha)?$captcha:Captcha::instance());?>
+<?php $error=isset($error)?$error:array();?>
 <?php echo Form::open(Route::get('default')
-		->uri(array('Controller'=>'welcome', 'action'=>'registrate')),array(HTML::attributes($style)));?>
+		->uri(array('controller'=>'user', 'action'=>'registrate')),$style);?>
 		<div>
 			<div class="well">
 				<h4><?php echo __('Needed data');?></h4>
@@ -11,12 +16,12 @@
 						<label for="email">
 							e-mail:
 							<label class="checkbox">zawsze widoczny
-<?php echo Form::input('show_email',null, array('checked', 'type'=>'checkbox'));?>
+<?php echo Form::input('show_email', Arr::get($info, 'show_email'), array(Arr::get($info, 'show_email'), 'type'=>'checkbox'));?>
 							</label>
 						</label>
-<?php echo Form::input('email', '', array('type'=>'email','class'=>'span8', 'placeholder'=>'email'));?>
-						<span class="label label-warning"><?php echo Arr::get($error, 'email');?></span>
-                        <hr>
+<?php echo Form::input('email', Arr::get($user, 'email'), 
+		array('type'=>'email','class'=>'span8', 'placeholder'=>'email'));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'email');?></span>              
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -24,9 +29,9 @@
 						<label for="username">
 							username:
 						</label>
-						<?php echo Form::input('username', '', array('class'=>'span8', 'placeholder'=>'username'));?>
+<?php echo Form::input('username', Arr::get($user, 'username'), 
+		array('class'=>'span8', 'placeholder'=>'username'));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'username');?></span>
-                        <hr>
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -34,9 +39,9 @@
 						<label for="pasword">
 							password:
 						</label>
-<?php echo Form::input('password', '', array('type'=>'password', 'class'=>'span8', 'placeholder'=>'password'));?>
+<?php echo Form::input('password', '', 
+		array('type'=>'password', 'class'=>'span8', 'placeholder'=>'password'));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'password');?></span>
-                        <hr>
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -44,43 +49,60 @@
 						<label for="pasword_confirm">
 							password_confirm:
 						</label>
-<?php echo Form::input('password_confirm', '', array('type'=>'password', 'class'=>'span8', 'placeholder'=>'_confirm'));?>
-						<span class="label label-warning"><?php echo Arr::get($error, 'password');?></span>
-                        <hr>
+<?php echo Form::input('password_confirm', '', 
+		array('type'=>'password', 'class'=>'span8', 'placeholder'=>'_confirm'));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'password_confirm');?></span>
 					</div>
 				</div>
 				<hr>
-               <hr>
-                <h5>Dane dodatkowe:</h5>
+                <h5><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#extra_info">Dane dodatkowe <b class="caret"></b></button></h5>
+                <div id="extra_info" class="collapse out">
+	                <div class="row-fluid">
+	                    <div class="span12">
+	                        <label for="name">imię:</label>
+<?php echo Form::input('name', Arr::get($info, 'name'), 
+		array('class'=>'span8', 'placeholder'=>'your name'));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'name');?></span>
+	                    </div>
+	                </div>
+	                <div class="row-fluid">
+	                    <div class="span12">
+	                        <label for="surname">nazwisko:</label>
+<?php echo Form::input('surname', Arr::get($info, 'surname'), 
+		array('class'=>'span8', 'placeholder'=>'your surname'));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'surname');?></span>             
+	                    </div>
+	                </div>
+	                <div class="row-fluid">
+	                    <div class="span12">
+	                        <label for="phone">
+	                            nr telefonu:
+	                            <label class="checkbox">zawsze widoczny
+<?php echo Form::input('show_phone', Arr::get($info, 'show_phone'), array(Arr::get($info, 'show_phone'), 'type'=>'checkbox'));?>
+	                            </label>
+	                        </label>
+<?php echo Form::input('phone', Arr::get($info, 'phone'), 
+		array('class'=>'span8', 'placeholder'=>'your phone number'));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'phone');?></span>                          
+	                    </div>
+	                </div>
+                </div><!-- collapse -->
                 <div class="row-fluid">
-                    <div class="span12">
-                        <label for="name">imię:</label>
-                        <input name="name" type="text" class="span8" placeholder="Twoje imie" />
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span12">
-                        <label for="surname">nazwisko:</label>
-                        <input name="surname" type="text" class="span8" placeholder="Twoje nazwisko" />
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span12">
-                        <label for="phone">
-                            nr telefonu:
-                            <label class="checkbox">
-                                <input type="checkbox" checked><small>widoczny publicznie</small>
-                            </label>
-                        </label>
-                        <input name="phone" type="text" class="span8" placeholder="Twoj nr telefonu" />
-                        
-                    </div>
+                	<div class="span12">
+                		<label for="captcha">Kod z obrazka</label>
+                		<div><?php echo $captcha;?></div>
+<?php echo Form::input('captcha', '', array('class'=>'span8', 'placeholder'=>'kod z obrazka'));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'captcha');?></span>  
+                	</div>
+                
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
-            <a  href="#" class="btn btn-primary">Zarejestruj się</a>
+<?php echo HTML::anchor(Route::get('default')->uri(), 
+		__('Close'), array('class'=>'btn', 'data-dismiss'=>'modal', 'aria-hidden'=>true));?>
+<?php echo Form::submit('submit', __('Join now').'!', 
+		array('class'=>'btn btn-primary', 'rel'=>'registrate_form', 'data-loading-text'=>'please wait...'));?>
         </div>
 <?php echo Form::close();?>
 

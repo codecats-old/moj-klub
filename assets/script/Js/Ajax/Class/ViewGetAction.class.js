@@ -10,7 +10,6 @@
 			content.hide();
 			content.html(dataView);
 			content.fadeIn('slow');
-
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.ViewGetAction, strz_Ajax.GetAction);

@@ -5,22 +5,19 @@
 	 * extendable container
 	 */
 	strz_Ajax.PostAction.prototype={
+			dataToSend:null,
+			getDataToSend:function(){
+				return this.dataToSend;
+			},
+			setDataToSend:function(data){
+				this.dataToSend=data;
+				return this;
+			},
 			addToUnserializedData:function(serialized, objectToAdd, objectName){
 				var data={};
 				if(serialized)data=JSON.parse(serialized);
 				data[objectName]=objectToAdd;
 				return JSON.stringify(data);
-			},
-			/**
-			 * public function: jQuery on click ajax request will be send, 
-			 * on recive display status
-			 */
-			initClick:function(serializedData){
-				var allowInit=this.isAllowedPage(document.location.pathname);
-				if(allowInit){
-					serializedData=this.getSerializedData(serializedData);
-					this.initAjaxjQuery(serializedData);
-				}
 			},
 			getMethodType:function(){
 				return 'POST';

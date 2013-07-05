@@ -5,6 +5,11 @@ class Model_User extends Model_Auth_User{
 			'through'=>'role_users'
 		)
 	);
+	protected $_has_one=array(
+		'info'=>array(
+			'foreign_key'=>'id'
+		)
+	);
 	public function validate_register($post)
 	{
 		$validation=new Validation_User($post);

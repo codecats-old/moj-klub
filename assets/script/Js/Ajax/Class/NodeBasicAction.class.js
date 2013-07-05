@@ -5,9 +5,14 @@
 	 * extendable container
 	 */
 	strz_Ajax.NodeBasicAction.prototype={
-		/**
-		 * for example rel="trigger"
-		 */
+		eventName:'click',
+		setEventName:function(event){
+			this.eventName=event;
+			return this;
+		},
+		getEventName:function(){
+			return this.eventName;
+		},
 		trigger:null,
 		setTrigger:function(relLink){
 			this.trigger=relLink;
@@ -37,6 +42,19 @@
 		},
 		getContentShow:function(){
 			return this.contentShow;
+		},
+		sendToURL:null,
+		setSendToURL:function(url){
+			if(this.sendToURL===null)this.sendToURL=url;
+			return this;
+		},
+		clearSendToURL:function(){
+			this.sendToURL=null;
+			return this;
+		},
+		getSendToURL:function(){
+			return this.sendToURL;
+			
 		}
 	};
 	

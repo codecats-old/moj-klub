@@ -8,10 +8,10 @@
 	/**
 	 * extendable container
 	 */
-	strz_Ajax.Access.prototype={
-		init:function(){
+	strz_Ajax.Access.prototype={name:'Access',
+		/*init:function(){
 			this.initClick();
-		}
+		}*/
 	};
 	strz_Ajax.Extend(strz_Ajax.Access, strz_Ajax.ViewGetAction);
 })();

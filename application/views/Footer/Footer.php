@@ -4,7 +4,7 @@
 		<div class="navbar-inner">2013 &COPY; by CodeCats</div>
 	</nav>
 </footer>
-<?php echo View::factory('Component/Window/Modal/Registrate');?>
+
 <?php echo HTML::script('assets/script/Js/jquery-2.0.2.min.js');?>
 <?php echo HTML::script('assets/script/Js/bootstrap.min.js');?>
 
@@ -23,6 +23,7 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Content.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.js');?>
 <!-- >AJAX -->
 <script>
 </script>

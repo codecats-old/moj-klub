@@ -12,7 +12,9 @@
     </head>
     <body>
 <?php echo View::factory('Header/Header');?>
+
 <?php echo $view_container;?>
+
 <?php echo View::factory('Footer/Footer');?>
 	</body>
 </html>

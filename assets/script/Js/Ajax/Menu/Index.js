@@ -9,7 +9,7 @@
 	/**
 	 * extendable container
 	 */
-	strz_Ajax.Index.prototype={
+	strz_Ajax.Index.prototype={name:'index',
 		isAllowedPage:function(action){
 			var allowed=false;
 			var pages=this.allowedPages;
