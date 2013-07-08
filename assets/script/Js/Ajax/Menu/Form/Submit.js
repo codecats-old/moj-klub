@@ -22,6 +22,18 @@
 				this.setEventName('click');
 				this.initClick();
 			}
+		},
+		onDone:function(self, dataView, that){
+			data=JSON.parse(dataView);
+			var content=that.getContentShow();
+			content.hide();
+			content.html(data.View);
+			content.fadeIn('slow');
+			if(data.status)$().toastmessage('show'+data.status['state']+'Toast', data.status['message']);
+			if(data.status['state']=='Success'){
+				this.submit_login=new strz_Ajax.GetForm('login_form');
+				this.submit_login.init();
+			}
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.Submit, strz_Ajax.ViewPostAction);

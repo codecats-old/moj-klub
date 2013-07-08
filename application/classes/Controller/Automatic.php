@@ -13,8 +13,12 @@ class Controller_Automatic extends Controller_Template{
 	public function after(){
 		if($this->auto_render===FALSE)
 		{
-			$output=$this->view_content->render();
-			echo $output;
+			echo json_encode(
+				array(
+					'View'=>$this->view_content->render(),
+					'status'=>$this->status
+				)
+			);
 		}
 		else
 		{
@@ -28,4 +32,5 @@ class Controller_Automatic extends Controller_Template{
 	public $page_title;
 	public $view_container;
 	public $view_content;
+	public $status;
 }

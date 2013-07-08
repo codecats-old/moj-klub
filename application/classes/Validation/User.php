@@ -7,8 +7,7 @@ class Validation_User extends Validation{
 		return $unique;
 	}
 	public function register()
-	{
-		
+	{	
 		$object=Validation::factory($this->_data);
 		$object->rules('email', $this->rules_register['email'])
 			->rules('username', $this->rules_register['username'])

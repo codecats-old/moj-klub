@@ -10,7 +10,7 @@
 			this.index=new strz_Ajax.Index();
 			this.index.init();
 			this.registrate=new strz_Ajax.Access('registrate');
-			this.registrate.init();
+			this.registrate.init();	
 			
 			this.submit_registrate=new strz_Ajax.Submit('registrate_form');
 			this.submit_registrate.init();

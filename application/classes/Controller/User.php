@@ -5,8 +5,18 @@ class Controller_User extends Controller_Automatic{
 	{
 		
 	}
+	public function action_login()
+	{
+		$post=$this->request->post();
+		$this->view_content=View::factory('Component/Form/Login');
+		$this->view_container=View::factory('Component/Access/Login')
+			->set('form_login', $this->view_content);
+		if(!$post)$this->view_content=$this->view_container;
+		
+	}
 	public function action_registrate()
 	{
+		$registrate_success=FALSE;
 		$post=$this->request->post();
 		
 		$user=ORM::factory('User');
@@ -29,9 +39,10 @@ class Controller_User extends Controller_Automatic{
 					$info->user=$user;
 					$info->save();
 					$this->add_role($user, 'login');
-					
-					//set SUccess view
+					$registrate_success=TRUE;
 				}catch(Exception $ex){
+					$this->status['state']='Error';
+					$this->status['message']='Probably database is busy. Try again in a while';
 					var_dump($ex);
 				}
 			}
@@ -45,13 +56,30 @@ class Controller_User extends Controller_Automatic{
 			$info->set('show_phone', TRUE);
 			$info->set('show_email', TRUE);
 		}
-		$captcha=Captcha::instance();//reload
-		$this->view_content=View::factory('Component/Form/Registrate')
-			->set('user', $user->as_array())->set('info',$info->as_array())->set('captcha',$captcha)
-			->set('error', $this->error);
-		$this->view_container=View::factory('Component/Access/Registrate')
-			->set('form_registrate', $this->view_content);
-		if(!$post)$this->view_content=$this->view_container;
+		if($registrate_success!==FALSE)
+		{
+			$captcha=Captcha::instance();//reload
+			$this->view_content=View::factory('Component/Form/Registrate')
+				->set('user', $user->as_array())->set('info',$info->as_array())->set('captcha',$captcha)
+				->set('error', $this->error);
+			$this->view_container=View::factory('Component/Access/Registrate')
+				->set('form_registrate', $this->view_content);
+			if(!$post)$this->view_content=$this->view_container;
+			else
+			{
+				$this->status['state']='Warning';
+				$this->status['message']='Correct your data';
+			}
+		}
+		else 
+		{
+			$this->view_content=View::factory('Component/Info/Registrate/Success')
+				->set('user', $user->as_array());
+			$this->view_container=View::factory('Component/Access/Registrate')
+				->set('form_registrate', $this->view_content);
+			$this->status['state']='Success';
+			$this->status['message']='Rejestracja zakończona powodzeniem';
+		}
 	}
 	protected function add_role($user, $role_name)
 	{

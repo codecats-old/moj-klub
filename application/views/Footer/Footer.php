@@ -24,7 +24,10 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Get.js');?>
 <!-- >AJAX -->
+
+<?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>
 <script>
 </script>
 <?php echo HTML::script('assets/script/Js/main.js');?>

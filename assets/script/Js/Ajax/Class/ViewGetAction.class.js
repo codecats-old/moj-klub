@@ -6,9 +6,10 @@
 	 */
 	strz_Ajax.ViewGetAction.prototype={
 		onDone:function(self, dataView, that){
+			data=JSON.parse(dataView);
 			var content=that.getContentShow();
 			content.hide();
-			content.html(dataView);
+			content.html(data.View);
 			content.fadeIn('slow');
 		}
 	};

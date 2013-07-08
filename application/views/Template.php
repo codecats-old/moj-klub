@@ -6,6 +6,7 @@
         <meta name="description" content="trening, klub, drużyna, zawodnicy">
        	<?php echo HTML::style('assets/style/Css/bootstrap.min.css');?>
        	<?php echo HTML::style('assets/style/Css/bootstrap.fix.css');?>
+       	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
         <meta name="viewport" content="initial-scale=1.0 , minimum-scale=1 , maximum-scale=1" />
         <title><?php echo $page_title;?></title>
         
