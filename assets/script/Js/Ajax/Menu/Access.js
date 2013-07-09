@@ -1,8 +1,8 @@
 (function(){
 	strz_Ajax.Access=function(rel){
 		this.setTrigger($('a[rel='+rel+']'));
-		this.setSendInformator($('header+.container-fluid'));
-		this.setContentShow($('header+.container-fluid'));
+		this.setSendInformator($('header+.container-fluid div.offset4'));
+		this.setContentShow($('header+.container-fluid div.offset4'));
 		this.setAllowedPages([rel]);
 	};
 	/**

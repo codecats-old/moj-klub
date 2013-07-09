@@ -11,4 +11,4 @@
 <?php echo View::factory('Component/Thumbnails/Team');?>
 	</div>
 
-<?php echo View::factory('Component/Window/Modal/Registrate');?>
+<?php echo View::factory('Component/Window/Modal/Main');?>

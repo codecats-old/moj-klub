@@ -15,4 +15,9 @@ class Model_User extends Model_Auth_User{
 		$validation=new Validation_User($post);
 		return $validation->register();
 	}
+	public function validate_login($post)
+	{
+		$validation=new Validation_User($post);
+		return $validation->login();
+	}
 }

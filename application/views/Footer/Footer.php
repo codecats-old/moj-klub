@@ -25,6 +25,7 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Get.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/SubmitOnId.js');?>
 <!-- >AJAX -->
 
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>

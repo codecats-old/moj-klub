@@ -1,9 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="well">
+<button class="btn btn-inverse span12 visible-desktop" type="button" data-toggle="collapse" data-target="#quick_access">
+<span class="icon-user icon-white"></span>
+</button>
+<div class="well collapse in visible-desktop" id="quick_access">
 	<h4><?php echo ucfirst(__('quick access'));?></h4>
-	<?php echo View::factory('Component/Form/Login');?>
+	<?php echo View::factory('Component/Form/Login')
+		->set('rel','quick_login_form');?>
 	<div class="pull-right">
-		<?php echo HTML::anchor('#registryModal',__('Registrate'), 
-				array('role'=>'button', 'data-toggle'=>'modal'));?>
+	<?php echo HTML::anchor(Route::get('default')
+		->uri(array('controller'=>'user', 'action'=>'registrate')),ucfirst(__('Registrate')),
+		array('rel'=>'registrate_form_get'));?>
 	</div>
 </div>

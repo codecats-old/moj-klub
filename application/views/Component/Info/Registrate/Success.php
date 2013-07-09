@@ -21,7 +21,7 @@
 <?php echo HTML::anchor(
 		Route::get('default')->uri(array('controller'=>'user', 'action'=>'login')),
 		__('Login'), 
-		array('class'=>'btn btn-primary', 'rel'=>'login_form')
+		array('class'=>'btn btn-primary', 'rel'=>'login_form_get')
 		);?>
         	</div>
 		</div>

@@ -9,23 +9,31 @@
 		init:function(){
 			var trigger=this.getTrigger();
 			if(trigger.length>0){
-				console.log(trigger);
 				this.setSendToURL(trigger[0].href);
 				this.setSendInformator(trigger);
-				this.setContentShow($('#registryModal'));
+				this.setContentShow($('#AccessModal>#ContentModal'));
 				this.setEventName('click');
 				this.initClick();
 			}
 		},
 		onDone:function(self, dataView, that){
-			data=JSON.parse(dataView);
+			that.init();
+			var here = that.getSendInformator();
+			here.fadeIn('slow');
 			data=JSON.parse(dataView);
 			var content=that.getContentShow();
-			//content.hide();
 			content.html(data.View);
-			content.modal('show');
-			//content.removeClass('hide');
-			//content.fadeIn('slow');
+			content.parent().modal('show');
+
+			var relOfSubmit=$(that.getContentShow().selector+' a[rel]').attr('rel');
+			if(!relOfSubmit)relOfSubmit=that.getTrigger().attr('rel');
+//that.getTrigger().attr('rel')
+			console.log(relOfSubmit);
+			this.submitForm=new strz_Ajax.Submit(relOfSubmit.replace(/_get/,''));
+			this.submitForm.init();
+			
+			this.getForm=new strz_Ajax.GetForm(relOfSubmit);
+			this.getForm.init();
 			
 		}
 	};

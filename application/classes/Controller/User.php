@@ -7,11 +7,44 @@ class Controller_User extends Controller_Automatic{
 	}
 	public function action_login()
 	{
+		$login_success=FALSE;
 		$post=$this->request->post();
-		$this->view_content=View::factory('Component/Form/Login');
-		$this->view_container=View::factory('Component/Access/Login')
+		
+		if($post)
+		{
+			//$login_success=TRUE;
+		}
+		if($login_success===FALSE)
+		{
+			$this->view_content=View::factory('Component/Form/Login')
+			->set('rel', $this->request->param('id'));
+			$this->view_container=View::factory('Component/Access/Login')
 			->set('form_login', $this->view_content);
-		if(!$post)$this->view_content=$this->view_container;
+		/*	if($this->request->param('id')==='login_form_get')
+			{
+				$accessModal=View::factory('Component/Window/Modal/Main')
+				->set('title','Login')
+				->set('component',$this->view_content);
+			}*/
+			
+		}
+		else
+		{
+			$this->view_content=View::factory('Component/Info/Registrate/Success')
+			;//->set('user', $user->as_array());
+			$this->view_container=View::factory('Component/Access/Registrate')
+			->set('form_registrate', $this->view_content);
+			$this->status['state']='Success';
+			$this->status['message']='Rejestracja zakończona powodzeniem';
+			
+		}
+	//	$this->view_container=View::factory('Component/Access/Login')
+		//	;
+		//->set('form_login', $this->view_content);
+		//if(!$post)$this->view_content=$this->view_container;
+	}
+	public function action_quick_login()
+	{
 		
 	}
 	public function action_registrate()
@@ -58,18 +91,20 @@ class Controller_User extends Controller_Automatic{
 		}
 		if($registrate_success!==FALSE)
 		{
+			
 			$captcha=Captcha::instance();//reload
-			$this->view_content=View::factory('Component/Form/Registrate')
+			$form=View::factory('Component/Form/Registrate')
 				->set('user', $user->as_array())->set('info',$info->as_array())->set('captcha',$captcha)
 				->set('error', $this->error);
+			/*$accessModal=View::factory('Component/Window/Modal/Main')
+				->set('title','registrate')
+				->set('component',$form);*/
+			$this->view_content=$form;
 			$this->view_container=View::factory('Component/Access/Registrate')
-				->set('form_registrate', $this->view_content);
-			if(!$post)$this->view_content=$this->view_container;
-			else
-			{
-				$this->status['state']='Warning';
-				$this->status['message']='Correct your data';
-			}
+				->set('form_registrate', $form);
+			
+			$this->status['state']='Warning';
+			$this->status['message']='Correct your data';
 		}
 		else 
 		{

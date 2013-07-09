@@ -8,9 +8,9 @@
 <?php $error=isset($error)?$error:array();?>
 <?php echo Form::open(Route::get('default')
 		->uri(array('controller'=>'user', 'action'=>'registrate')),$style);?>
-		<div>
+		<div class="modal-body">
 			<div class="well">
-				<h4><?php echo __('Needed data');?></h4>
+				<h5><?php echo __('Needed data');?></h5>
 				<div class="row-fluid">
 					<div class="span12">
 						<label for="email">

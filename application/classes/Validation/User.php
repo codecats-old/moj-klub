@@ -6,6 +6,25 @@ class Validation_User extends Validation{
 		$unique=!$obj->loaded();
 		return $unique;
 	}
+	public function login()
+	{
+		$object=Validation::factory($this->_data);
+		$object->rules('login_identificator', $this->rules_login['login_identificator'])
+			->rules('password', $this->rules_login['password']);
+		return $object;
+	}
+	protected $rules_login=array(
+		'login_identificator'=>array(
+			array('not_empty'),
+			array('min_length', array(':value', 3)),
+			array('max_length', array(':value', 15))
+		),
+		'password'=>array(
+			array('not_empty'),
+			array('min_length', array(':value', 5)),
+			array('max_length', array(':value', 25))
+		)
+	);
 	public function register()
 	{	
 		$object=Validation::factory($this->_data);
