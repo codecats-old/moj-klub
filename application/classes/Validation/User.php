@@ -23,6 +23,9 @@ class Validation_User extends Validation{
 			array('not_empty'),
 			array('min_length', array(':value', 5)),
 			array('max_length', array(':value', 25))
+		),
+		'stay_login'=>array(
+				array('regex', array(':value', '/^(checked)$/'))
 		)
 	);
 	public function register()

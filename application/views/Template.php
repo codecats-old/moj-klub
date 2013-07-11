@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<?php $user=(isset($user)?$user:array());?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,8 @@
         
     </head>
     <body>
-<?php echo View::factory('Header/Header');?>
+
+<?php echo View::factory('Header/Header')->set('header_menu_access',$header_menu_access);?>
 
 <?php echo $view_container;?>
 

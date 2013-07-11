@@ -24,7 +24,7 @@
                         <!-- >Search -->
                     </div>
                     <!-- Access -->
-<?php echo View::factory('Header/Access');?>
+                   <?php echo $header_menu_access;?>
                     <!-- >Access -->
                 </div>
             </nav>

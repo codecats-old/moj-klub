@@ -3,52 +3,96 @@
 class Controller_User extends Controller_Automatic{
 	public function action_index()
 	{
+		$this->redirect_user(FALSE);
+		$user=Auth::instance()->get_user();
+		$info=$user->info;
+		$info_popover['show_phone']=$this->set_view_popver($info->show_phone);
+		$info_popover['show_email']=$this->set_view_popver($info->show_email);
+
 		
+		$roles=$user->roles->find_all();
+		$roles_view=$this->get_team_roles($roles);
+		$roles_view=implode(', ', $roles_view);
+		$view_details=View::factory('Component/Menu/User/Details')
+			->set('info', $info->as_array())->set('roles',$roles_view)
+			->set('info_popover', $info_popover);
+		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+	}
+	public function action_change_password()
+	{
+		$view_details=View::factory('Component/Form/Change/Password');
+		$this->view_content=$view_details;
+		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+	}
+	public function action_change_data()
+	{
+		$view_details=View::factory('Component/Form/Change/User');
+		$this->view_content=$view_details;
+		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
 	}
 	public function action_login()
 	{
+		$this->redirect_user();
 		$login_success=FALSE;
 		$post=$this->request->post();
+		$user=ORM::factory('User');
 		
 		if($post)
 		{
-			//$login_success=TRUE;
+			$validator=$user->validate_login($post);
+			if($validator->check())
+			{
+				$post['stay_login']=((isset($post['stay_login'])===TRUE)?TRUE:FALSE);
+				if(Auth::instance()->login(
+						$post['login_identificator'], $post['password'],$post['stay_login'])===TRUE)
+				{
+					$login_success=TRUE;
+				}
+				else 
+				{
+					$this->error=array('login_identificator'=>__('forget login or password').'?');
+				}
+			}
+			else
+			{
+				$this->error=$validator->errors('User/Login');
+			}
 		}
 		if($login_success===FALSE)
 		{
 			$this->view_content=View::factory('Component/Form/Login')
-			->set('rel', $this->request->param('id'));
+				->set('rel', $this->request->param('id'))
+				->set('post', $post)
+				->set('error', $this->error);
 			$this->view_container=View::factory('Component/Access/Login')
-			->set('form_login', $this->view_content);
-		/*	if($this->request->param('id')==='login_form_get')
-			{
-				$accessModal=View::factory('Component/Window/Modal/Main')
-				->set('title','Login')
-				->set('component',$this->view_content);
-			}*/
-			
+				->set('form_login', $this->view_content);
+			$this->status['state']='Warning';
+			$this->status['message']='Correct your data';
 		}
 		else
 		{
-			$this->view_content=View::factory('Component/Info/Registrate/Success')
-			;//->set('user', $user->as_array());
-			$this->view_container=View::factory('Component/Access/Registrate')
-			->set('form_registrate', $this->view_content);
+			$this->view_content=View::factory('Component/Info/Login/Success')
+				->set('user', Auth::instance()->get_user()->as_array());
+			$this->view_container=View::factory('Component/Access/Login')
+				->set('form_login', $this->view_content);
 			$this->status['state']='Success';
-			$this->status['message']='Rejestracja zakończona powodzeniem';
+			$this->status['message']='Logowanie przebiegło pomyślnie';
+			$this->status['reload']='true';
 			
 		}
-	//	$this->view_container=View::factory('Component/Access/Login')
-		//	;
-		//->set('form_login', $this->view_content);
-		//if(!$post)$this->view_content=$this->view_container;
 	}
-	public function action_quick_login()
+	public function action_logout()
 	{
-		
+		$this->redirect_user(FALSE);
+		Auth::instance()->logout();
+		$this->view_content=View::factory('Component/Info/Logout/Success');
+		$this->status['state']='Success';
+		$this->status['message']='Wylogowano użytkownika';
+		$this->status['reload']='true';
 	}
 	public function action_registrate()
 	{
+		$this->redirect_user();
 		$registrate_success=FALSE;
 		$post=$this->request->post();
 		
@@ -89,7 +133,7 @@ class Controller_User extends Controller_Automatic{
 			$info->set('show_phone', TRUE);
 			$info->set('show_email', TRUE);
 		}
-		if($registrate_success!==FALSE)
+		if($registrate_success===FALSE)
 		{
 			
 			$captcha=Captcha::instance();//reload
@@ -120,6 +164,24 @@ class Controller_User extends Controller_Automatic{
 	{
 		$role=ORM::factory('Role', array('name'=>$role_name));
 		$user->add('roles', $role);
+	}
+	private function get_team_roles($roles)
+	{
+		$team_roles=array();
+		$item=0;
+		foreach($roles->as_array() as $role)
+		{
+			if($role->name!='login' AND $role->name!='admin')$team_roles[$item++]=$role->name;
+		}
+		return $team_roles;
+	}
+	private function set_view_popver($show)
+	{
+		$view_popover=null;
+		$component_path='Component/Info/Popover/Visable/';
+		if(isset($show) AND $show==='1')$view_popover=View::factory($component_path.'Public');
+		else $view_popover=View::factory($component_path.'Private');
+		return $view_popover;
 	}
 	protected $error;
 }

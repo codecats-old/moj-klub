@@ -34,8 +34,13 @@
 			content.hide();
 			content.html(data.View);
 			content.fadeIn('slow');
-			if(data.status)
+			if(data.status){
+				if(data.status['reload']=='true'){
+					$('header+*').fadeTo( 'slow', 0.5 );
+					setTimeout(function(){document.location.reload();},2000);
+				}
 				$().toastmessage('show'+data.status['state']+'Toast', data.status['message']);
+			}
 			try{
 				var relOfSubmit=$(that.getContentShow().selector+' input[rel]').attr('rel');
 				if(!relOfSubmit)relOfSubmit=that.getTrigger().attr('rel');
