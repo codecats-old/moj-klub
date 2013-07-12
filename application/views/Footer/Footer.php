@@ -30,9 +30,12 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/SubmitOnId.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Link.js');?>
 
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
 <!-- >AJAX -->
+
+<?php echo HTML::script('assets/script/Js/Components/Initializator/Component.js');?>
 
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>
 <script>

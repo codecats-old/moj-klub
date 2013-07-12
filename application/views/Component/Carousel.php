@@ -30,8 +30,3 @@
                             
                         </ul>
                     </div>
-<script>
-setTimeout(function(){
-	$('#overviewCarousel').carousel();
-},500);
-</script>

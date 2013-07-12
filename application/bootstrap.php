@@ -128,6 +128,13 @@ Kohana::modules(array(
  * defaults for the URI.
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
+	->filter(
+		function($route, $params, $request)
+		{
+			$params['action']=str_replace('-', '_', $params['action']);
+			return $params;
+		}
+	)
 	->defaults(array(
 		'controller' => 'welcome',
 		'action'     => 'index',

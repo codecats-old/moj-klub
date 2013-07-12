@@ -4,19 +4,9 @@ class Controller_User extends Controller_Automatic{
 	public function action_index()
 	{
 		$this->redirect_user(FALSE);
-		$user=Auth::instance()->get_user();
-		$info=$user->info;
-		$info_popover['show_phone']=$this->set_view_popver($info->show_phone);
-		$info_popover['show_email']=$this->set_view_popver($info->show_email);
-
-		
-		$roles=$user->roles->find_all();
-		$roles_view=$this->get_team_roles($roles);
-		$roles_view=implode(', ', $roles_view);
-		$view_details=View::factory('Component/Menu/User/Details')
-			->set('info', $info->as_array())->set('roles',$roles_view)
-			->set('info_popover', $info_popover);
+		$view_details=$this->get_view_details();
 		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+		$this->view_content=$this->view_container;
 	}
 	public function action_change_password()
 	{
@@ -26,9 +16,43 @@ class Controller_User extends Controller_Automatic{
 	}
 	public function action_change_data()
 	{
-		$view_details=View::factory('Component/Form/Change/User');
-		$this->view_content=$view_details;
-		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+		$this->redirect_user(FALSE);
+		$change_success=FALSE;
+		$post=$this->request->post();
+		$user=Auth::instance()->get_user();
+		if($post)
+		{
+			$validator=$user->validate_change_data($post);
+			if($validator->check())
+			{
+				echo 'good';
+			}
+			else
+			{
+				$this->error=$validator->errors('User/Change/Data');
+			}
+
+		}
+		if($change_success===FALSE)
+		{
+			$info=$user->info;
+			$user_form=View::factory('Component/Form/Change/User')
+				->set('info', $info->as_array())
+				->set('error', $this->error);
+			$view_details=$this->get_view_details($user);
+			$this->view_content=$user_form;
+			$this->view_container=View::factory('Container/User/Main')
+				->set('view_details', $view_details)
+				->set('user_form', $user_form);
+		}
+		else
+		{
+			$view_success=View::factory('Component/Info/Success');
+			$view_details=$this->get_view_details($user);
+			$this->view_container=View::factory('Container/User/Main')
+				->set('view_details', $view_details)
+				->set('user_form', $view_success);
+		}
 	}
 	public function action_login()
 	{
@@ -164,6 +188,21 @@ class Controller_User extends Controller_Automatic{
 	{
 		$role=ORM::factory('Role', array('name'=>$role_name));
 		$user->add('roles', $role);
+	}
+	protected function get_view_details($user=null)
+	{
+		if($user===null)$user=Auth::instance()->get_user();
+		$info=$user->info;
+		$info_popover['show_phone']=$this->set_view_popver($info->show_phone);
+		$info_popover['show_email']=$this->set_view_popver($info->show_email);
+		
+		$roles=$user->roles->find_all();
+		$roles_view=$this->get_team_roles($roles);
+		$roles_view=implode(', ', $roles_view);
+		$view_details=View::factory('Component/Menu/User/Details')
+			->set('info', $info->as_array())->set('roles',$roles_view)
+			->set('info_popover', $info_popover);
+		return $view_details;
 	}
 	private function get_team_roles($roles)
 	{

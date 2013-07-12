@@ -48,43 +48,19 @@
 		</li>
 	</ul>
 	<div class="row-fluid">
-		<a class="btn btn-link btn-mini" href="#">Edytuj dane</a>
-		<a class="btn btn-link btn-mini" href="#">Zmień hasło</a>
+<?php echo HTML::anchor(Route::get('default')->uri(
+		array('controller'=>'user', 'action'=>'change-data')),
+		ucfirst(__('Edit your data')),
+		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-data'));?>
+		
+<?php echo HTML::anchor(Route::get('default')->uri(
+		array('controller'=>'user', 'action'=>'change-password')),
+		ucfirst(__('change password')),
+		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-password'));?>
+		
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array('controller'=>'user', 'action'=>'logout')),
 		ucfirst(__('logout')),
 		array('class'=>'btn btn-link btn-mini pull-right', 'rel'=>'logout'));?>
 	</div>
 </div>
-
-
-<script>
-(function(){
-	var load=function(){
-		$('button.btn[data-toggle=popover]').popover({
-			trigger:'hover',
-			delay: { show: 500, hide: 100 }
-		});
-	};
-	if(typeof $==='undefined'){
-		var waitJQuery=setInterval(function(){
-			if($){
-				clearInterval(waitJQuery);
-				load();
-			}
-			guard();
-		},2000);
-	};
-	var timeouts=0;
-	var guard=function(){
-		if(timeouts===10){
-			clearInterval(waitJQuery);
-			throw 'too long to wait for jQuery';
-		}
-		timeouts++;
-	};
-})();
-
-	
-
-</script>

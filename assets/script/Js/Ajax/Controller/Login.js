@@ -9,6 +9,15 @@
 		init:function(){
 			this.index=new strz_Ajax.Index();
 			this.index.init();
+			this.carousel=new strz_Ajax.Component({
+				trigger:'#overviewCarousel',
+				component:'carousel',
+				init:true
+			});
+			this.index.setCallback([[this.carousel, 'init']]);
+			
+			this.userIndex=new strz_Ajax.UserIndex();
+			this.userIndex.init();
 			
 			this.linkLogout=new strz_Ajax.Link();
 			this.linkLogout.set({

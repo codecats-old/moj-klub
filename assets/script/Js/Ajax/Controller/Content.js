@@ -19,9 +19,16 @@
 			this.submitQuickLogin.init();
 		//	this.submit_login=new strz_Ajax.GetForm('login_form');
 		//	this.submit_login.init();
+			this.carousel=new strz_Ajax.Component({
+				trigger:'#overviewCarousel',
+				component:'carousel',
+				init:true
+			});
+
 			this.index.setCallback([
 			                        [this.getRegistrate, 'init'],
 			                        [this.submitQuickLogin, 'init'],
+			                        [this.carousel, 'init']
 			                        ]);
 			this.registrate.setCallback([
 			                             [this.getRegistrate, 'init']

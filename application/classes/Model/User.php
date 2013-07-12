@@ -20,4 +20,9 @@ class Model_User extends Model_Auth_User{
 		$validation=new Validation_User($post);
 		return $validation->login();
 	}
+	public function validate_change_data($post)
+	{
+		$validation=new Validation_User($post);
+		return $validation->change_data();
+	}
 }

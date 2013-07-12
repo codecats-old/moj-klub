@@ -1,11 +1,51 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 class Validation_User extends Validation{
+	public static function changable($col, $field)
+	{
+		if(self::is_unique($col, $field)===TRUE)return TRUE;
+		if(self::is_owner($col, $field)===TRUE)return TRUE;
+		return FALSE;
+	}
+	public static function is_owner($col, $field)
+	{
+		if(Auth::instance()->get_user()->$col===$field)return TRUE;
+		else return FALSE;
+	}
 	public static function is_unique($col, $field)
 	{
 		$obj=ORM::factory('User', array($col=>$field));
 		$unique=!$obj->loaded();
 		return $unique;
 	}
+	public static function is_correct_password($val)
+	{
+		return Auth::instance()->check_password($val);
+	}
+	public function change_data()
+	{
+		$object=Validation::factory($this->_data);
+		$object->rules('name', $this->rules_register['name'])
+			->rules('surname', $this->rules_register['surname'])
+			->rules('phone', $this->rules_register['phone'])
+			->rules('show_phone', $this->rules_register['show_phone'])
+			->rules('show_email', $this->rules_register['show_email'])
+			->rules('email', $this->rules_change_data['email'])
+			->rules('password', $this->rules_change_data['password']);
+		return $object;
+	}
+	protected $rules_change_data=array(
+		'password'=>array(
+			array('not_empty'),
+			array('Validation_User::is_correct_password', array(':value'))
+		),
+		'email'=>array(
+			array('not_empty'),
+			array('email'),
+			array('Validation_User::changable', array(':field', ':value'))
+		//	array('Validation_User::is_unique', array(':field', ':value')),
+		//	array('Validation_User::is_owner', array(':field', ':value'))
+		)
+	);
 	public function login()
 	{
 		$object=Validation::factory($this->_data);
@@ -25,7 +65,7 @@ class Validation_User extends Validation{
 			array('max_length', array(':value', 25))
 		),
 		'stay_login'=>array(
-				array('regex', array(':value', '/^(checked)$/'))
+			array('regex', array(':value', '/^(checked)$/'))
 		)
 	);
 	public function register()
@@ -75,7 +115,7 @@ class Validation_User extends Validation{
 			array('max_length', array(':value', 25))
 		),
 		'phone'=>array(
-			array('phone')
+			array('phone', array(':value',array(7,9,10)))
 		),
 		'show_phone'=>array(
 		/* checked or nothing*/
