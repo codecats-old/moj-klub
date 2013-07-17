@@ -30,6 +30,11 @@
 			</div>
 		</div>
 		<hr>
-<?php echo Form::submit('submit', 'zapisz', array('class'=>'btn btn-success'));?>
+<?php echo Form::submit('submit', 'zapisz', array('class'=>'btn btn-success', 'rel'=>'user_change-password'));?>
+
+<?php echo HTML::anchor(Route::get('default')
+		->uri(array('controller'=>'user')),
+		ucfirst(__('close')),
+		array('class'=>'btn btn-small', 'rel'=>'form_close'));?>
 	</div>
 </form>

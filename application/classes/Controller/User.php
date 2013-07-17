@@ -10,9 +10,24 @@ class Controller_User extends Controller_Automatic{
 	}
 	public function action_change_password()
 	{
-		$view_details=View::factory('Component/Form/Change/Password');
-		$this->view_content=$view_details;
-		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+		$this->redirect_user(FALSE);
+		$change_success=FALSE;
+		$post=$this->request->post();
+		$user=Auth::instance()->get_user();
+		if($post)
+		{
+			
+		}
+		if($change_success)
+		{
+			
+		}
+		else
+		{
+			$view_details=View::factory('Component/Form/Change/Password');
+			$this->view_content=$view_details;
+			$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+		}
 	}
 	public function action_change_data()
 	{
@@ -20,12 +35,23 @@ class Controller_User extends Controller_Automatic{
 		$change_success=FALSE;
 		$post=$this->request->post();
 		$user=Auth::instance()->get_user();
+		$info=$user->info;
 		if($post)
 		{
+			$this->set_post_user_data($user, $post);
+			$this->set_post_info_data($info, $post);
 			$validator=$user->validate_change_data($post);
 			if($validator->check())
 			{
-				echo 'good';
+				try{
+					$user->save();
+					$info->save();
+					$change_success=TRUE;
+				}catch(Exception $ex){
+					$this->status['state']='Error';
+					$this->status['message']='Probably database is busy. Try again in a while';
+					var_dump($ex);
+				}
 			}
 			else
 			{
@@ -35,23 +61,30 @@ class Controller_User extends Controller_Automatic{
 		}
 		if($change_success===FALSE)
 		{
-			$info=$user->info;
+			
 			$user_form=View::factory('Component/Form/Change/User')
 				->set('info', $info->as_array())
+				->set('user', $user->as_array())
 				->set('error', $this->error);
-			$view_details=$this->get_view_details($user);
 			$this->view_content=$user_form;
+			$view_details=$this->get_view_details($user);
 			$this->view_container=View::factory('Container/User/Main')
 				->set('view_details', $view_details)
 				->set('user_form', $user_form);
+			$this->status['state']='Warning';
+			$this->status['message']='Correct your data';
 		}
 		else
 		{
 			$view_success=View::factory('Component/Info/Success');
+			$this->view_content=$view_success;
 			$view_details=$this->get_view_details($user);
 			$this->view_container=View::factory('Container/User/Main')
 				->set('view_details', $view_details)
 				->set('user_form', $view_success);
+			$this->status['state']='Success';
+			$this->status['message']='Zmiana danych przebiegła pomyślnie';
+			$this->status['reload']=TRUE;
 		}
 	}
 	public function action_login()
@@ -101,7 +134,7 @@ class Controller_User extends Controller_Automatic{
 				->set('form_login', $this->view_content);
 			$this->status['state']='Success';
 			$this->status['message']='Logowanie przebiegło pomyślnie';
-			$this->status['reload']='true';
+			$this->status['reload']=TRUE;
 			
 		}
 	}
@@ -112,7 +145,7 @@ class Controller_User extends Controller_Automatic{
 		$this->view_content=View::factory('Component/Info/Logout/Success');
 		$this->status['state']='Success';
 		$this->status['message']='Wylogowano użytkownika';
-		$this->status['reload']='true';
+		$this->status['reload']=TRUE;
 	}
 	public function action_registrate()
 	{
@@ -124,14 +157,17 @@ class Controller_User extends Controller_Automatic{
 		$info=ORM::factory('Info');
 		if($post)
 		{
-			$user->set('email', $post['email']);
+		/*	not tested yet
+		 * $user->set('email', $post['email']);
 			$user->set('username', $post['username']);
 			$user->set('password', $post['password']);
 			$info->set('name', $post['name']);
 			$info->set('surname', $post['surname']);
 			$info->set('phone', $post['phone']);
 			$info->set('show_phone', ((isset($post['show_phone'])===TRUE)?TRUE:FALSE));
-			$info->set('show_email', ((isset($post['show_email'])===TRUE)?TRUE:FALSE));
+			$info->set('show_email', ((isset($post['show_email'])===TRUE)?TRUE:FALSE));*/
+			$this->set_post_user_data($user, $post);/*new code*/
+			$this->set_post_info_data($info, $post);/*new code*/
 			$validator=$user->validate_register($post);
 			if($validator->check())
 			{
@@ -140,6 +176,7 @@ class Controller_User extends Controller_Automatic{
 					$info->user=$user;
 					$info->save();
 					$this->add_role($user, 'login');
+					$this->add_role($user, 'player');
 					$registrate_success=TRUE;
 				}catch(Exception $ex){
 					$this->status['state']='Error';
@@ -200,7 +237,7 @@ class Controller_User extends Controller_Automatic{
 		$roles_view=$this->get_team_roles($roles);
 		$roles_view=implode(', ', $roles_view);
 		$view_details=View::factory('Component/Menu/User/Details')
-			->set('info', $info->as_array())->set('roles',$roles_view)
+			->set('info', $info->as_array())->set('roles_view',$roles_view)
 			->set('info_popover', $info_popover);
 		return $view_details;
 	}
@@ -221,6 +258,30 @@ class Controller_User extends Controller_Automatic{
 		if(isset($show) AND $show==='1')$view_popover=View::factory($component_path.'Public');
 		else $view_popover=View::factory($component_path.'Private');
 		return $view_popover;
+	}
+	private function set_post_user_data($user, $post)
+	{
+		//if(isset($post['email']))$user->set('email', $post['email']);
+		$this->set_if_isset($user, $post, 'email');
+		$this->set_if_isset($user, $post, 'username');
+		$this->set_if_isset($user, $post, 'password');
+		return $user;
+	}
+	private function set_post_info_data($info, $post)
+	{
+		$this->set_if_isset($info, $post, 'name');
+		$this->set_if_isset($info, $post, 'surname');
+		$this->set_if_isset($info, $post, 'phone');
+	/*	$info->set('name', $post['name']);
+		$info->set('surname', $post['surname']);
+		$info->set('phone', $post['phone']);*/
+		$info->set('show_phone', ((isset($post['show_phone'])===TRUE)?TRUE:FALSE));
+		$info->set('show_email', ((isset($post['show_email'])===TRUE)?TRUE:FALSE));
+		return $info;
+	}
+	private function set_if_isset($orm, $arr, $field)
+	{
+		if(isset($arr[$field]))$orm->set($field, $arr[$field]);
 	}
 	protected $error;
 }

@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<?php $info['phone']=empty($info['phone'])?null:$info['phone'];?>
 <?php $info['show_email']=((empty($info['show_email'])===FALSE)?'checked':'');?>
 <?php $info['show_phone']=((empty($info['show_phone'])===FALSE)?'checked':'');?>
 <?php echo Form::open(Route::get('default')->uri(array('controller'=>'user', 'action'=>'change-data')));?>
@@ -54,11 +55,11 @@
 			</div>
 		</div>
 		<hr>
-<?php echo Form::submit('submit', 'zapisz', array('class'=>'btn btn-success'));?>
+<?php echo Form::submit('submit', 'zapisz', array('class'=>'btn btn-success', 'rel'=>'user_change-data'));?>
 
 <?php echo HTML::anchor(Route::get('default')
 		->uri(array('controller'=>'user')),
 		ucfirst(__('close')),
-		array('class'=>'btn btn-small'));?>
+		array('class'=>'btn btn-small', 'rel'=>'form_close'));?>
 	</div>
 <?php echo Form::close();?>

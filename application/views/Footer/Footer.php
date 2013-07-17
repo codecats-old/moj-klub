@@ -11,28 +11,38 @@
 
 <!-- AJAX -->
 <?php echo HTML::script('assets/script/Js/Ajax/Core.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/NodeBasicAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/NodePermissionAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/NodeAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/GetAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/PostAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/ViewGetAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/ViewPostAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/JSONGetAction.class.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Class/JSONPostAction.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Class/Node/NodeBasicAction.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Class/Node/NodePermissionAction.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Class/Node/NodeAction.class.js');?>
 
-<?php echo HTML::script('assets/script/Js/Ajax/Controller/Content.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Get.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/SubmitOnId.js');?>
-<?php echo HTML::script('assets/script/Js/Ajax/Menu/Link.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Anchor/Anchor.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/GetForm.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Registrate/GetFormRegistrate.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Registrate/SubmitRegistrate.class.js');?>
 
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
 
-<?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
+<?php  echo HTML::script('assets/script/Js/Ajax/Controller/Guest.js');?>
+<?php  echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
+
+<?php  echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
+
+
+
+<?php // echo HTML::script('assets/script/Js/Ajax/Controller/Content.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Index.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Form/Get.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Form/SubmitOnId.js');?>
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Link.js');?>
+
+<?php // echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
+
+<?php // echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
 <!-- >AJAX -->
 
 <?php echo HTML::script('assets/script/Js/Components/Initializator/Component.js');?>

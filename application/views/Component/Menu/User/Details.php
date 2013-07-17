@@ -51,12 +51,12 @@
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array('controller'=>'user', 'action'=>'change-data')),
 		ucfirst(__('Edit your data')),
-		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-data'));?>
+		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-data_get'));?>
 		
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array('controller'=>'user', 'action'=>'change-password')),
 		ucfirst(__('change password')),
-		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-password'));?>
+		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-password_get'));?>
 		
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array('controller'=>'user', 'action'=>'logout')),

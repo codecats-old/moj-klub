@@ -21,6 +21,12 @@ class Validation_User extends Validation{
 	{
 		return Auth::instance()->check_password($val);
 	}
+	public function change_password()
+	{
+		$object=Validation::factory($this->_data);
+		$object->rules('password', $this->rules_register['password']);
+		return $object;
+	}
 	public function change_data()
 	{
 		$object=Validation::factory($this->_data);

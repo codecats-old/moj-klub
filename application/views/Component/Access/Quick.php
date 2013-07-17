@@ -4,8 +4,10 @@
 </button>
 <div class="well collapse in visible-desktop" id="quick_access">
 	<h4><?php echo ucfirst(__('quick access'));?></h4>
+	<div>
 	<?php echo View::factory('Component/Form/Login')
 		->set('rel','quick_login_form');?>
+	</div>
 	<div class="pull-right">
 	<?php echo HTML::anchor(Route::get('default')
 		->uri(array('controller'=>'user', 'action'=>'registrate')),ucfirst(__('Registrate')),
