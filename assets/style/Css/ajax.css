@@ -1,0 +1,34 @@
+.ajax-load{
+	text-decoration:none;
+	opacity:0.6;
+	border-left:2px solid #b00a0a;
+	border-top-radiu
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.ajax-load:after{			
+	content:'...';
+	color:inherit;
+	animation-name:anim-ajax-load;
+	animation-duration:2s;
+	animation-iteration-count: infinite;
+	-webkit-animation-name:anim-ajax-load;
+	-webkit-animation-duration:2s;
+	-webkit-animation-iteration-count: infinite;
+	position:absolute;
+}
+
+@keyframes anim-ajax-load{
+	0%{color:inherit;padding-left:0px;}
+	50%{color:black;padding-left:20px;}
+	100%{color:inherit;padding-left:0px;}
+}
+@-webkit-keyframes anim-ajax-load{
+	0%{color:inherit;padding-left:0px;}
+	50%{color:black;padding-left:20px;}
+	100%{color:inherit;padding-left:0px;}
+}

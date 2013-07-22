@@ -7,8 +7,33 @@
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
        	<li class="thumbnail span12">
-            <h4 class="top-text text-info btn active"><?php echo ucfirst(__('yours data'));?></h4>
-<?php echo HTML::image('./upload/Avatar/club-avatar.jpg',array('class'=>'bg-img'));?>              
+	       	<div class="well well-dark span12">
+	       		<div class="span6">
+            		<h4 class="label label-success top-text"><?php echo ucfirst(__('yours data'));?></h4>
+            	
+<?php echo HTML::anchor(
+	Route::get('default')->uri(array('controller'=>'user')),
+	HTML::image(Arr::get($avatar, 'path'), 
+		array('class'=>'bg-img', 'alt'=>'avatar', 'rel'=>'user_index')
+	)
+);?>
+				</div>
+				<div class="span6">
+					<button class="pull-right btn btn-mini" data-toggle="collapse" data-target=".collapse">
+						<?php echo ucfirst(__('edit'));?>
+					</button>
+					<div class="divider"></div>
+					<div class="pull-right collapse in">
+<?php echo HTML::anchor(
+	Route::get('default')->uri(array('controller'=>'user', 'action'=>'change-user-avatar')),
+	ucfirst(__('change avatar')),
+	array('rel'=>'user_change-avatar_get')
+);?>
+					</div>
+				<!-- 	<div class="divider"></div>
+					<div class="pull-right collapse in">more data here</div> -->
+				</div>
+			</div>
 			<div>
 				<label class="label">Imie:</label>
 				<span class="text-info pull-right">
@@ -47,7 +72,7 @@
 		    </div>
 		</li>
 	</ul>
-	<div class="row-fluid">
+	<div class="row-fluid collapse in">
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array('controller'=>'user', 'action'=>'change-data')),
 		ucfirst(__('Edit your data')),

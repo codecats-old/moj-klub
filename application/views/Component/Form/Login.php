@@ -5,7 +5,7 @@
 <?php echo Form::open(
 		Route::get('default')->uri(
 				array('controller'=>'user', 'action'=>'login', 'id'=>$rel)),	
-				array('class'=>'well'));?>
+				array('class'=>'well form-horizontal'));?>
 				<div class="row-fluid">
 				<div class="label label-warning"><?php echo Arr::get($error, 'login_identificator');?></div>
 				</div>

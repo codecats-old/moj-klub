@@ -10,6 +10,16 @@ class Model_User extends Model_Auth_User{
 			'foreign_key'=>'id'
 		)
 	);
+	protected $_belongs_to=array(
+		'avatar'=>array(
+			'model'=>'avatar',
+			'foreign_key'=>'avatar_id'
+		),
+		'teamr'=>array(
+				'model'=>'team',
+				'foreign_key'=>'team_id'
+		)
+	);
 	public function validate_register($post)
 	{
 		$validation=new Validation_User($post);

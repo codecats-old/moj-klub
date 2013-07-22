@@ -8,7 +8,8 @@ class Validation_User extends Validation{
 	}
 	public static function is_owner($col, $field)
 	{
-		if(Auth::instance()->get_user()->$col===$field)return TRUE;
+		$user=Auth::instance()->get_user();
+		if($user->reload()->$col===$field)return TRUE;
 		else return FALSE;
 	}
 	public static function is_unique($col, $field)
@@ -24,9 +25,16 @@ class Validation_User extends Validation{
 	public function change_password()
 	{
 		$object=Validation::factory($this->_data);
-		$object->rules('password', $this->rules_register['password']);
+		$object->rules('new_password', $this->rules_register['password'])
+			->rules('new_password_confirm', $this->rules_change_password['password_confirm'])
+			->rules('password', $this->rules_change_data['password']);
 		return $object;
 	}
+	protected $rules_change_password=array(
+		'password_confirm'=>array(
+			array('matches', array(':validation', ':field', 'new_password'))
+		)
+	);
 	public function change_data()
 	{
 		$object=Validation::factory($this->_data);

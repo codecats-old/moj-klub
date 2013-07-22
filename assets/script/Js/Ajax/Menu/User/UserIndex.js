@@ -9,8 +9,11 @@
 		run:function(){
 			this.setAllowedPages(['/moj-klub/user', '/moj-klub/index.php/user']);
 			if(this.isAllowedLocation(document.location.href)){
-				this.setCallbackMyself(false);
-				this.setTriggerSelector('a[rel=user_index]');
+			//	this.setCallbackMyself(false);
+			//	this.setTriggerSelector('a[rel=user_index]');
+				this.setCallbackMyself(true);
+				this.setTriggerSelector('[rel=user_index]');
+			
 				this.setSendInformator(this.getTriggerSelector());
 				this.setSendToURL($(this.getTriggerSelector())[0].href);//$(a.getTriggerSelector())[0].href
 				this.setContentShow('header+.container-fluid');
@@ -24,16 +27,9 @@
 				this.linkChangeData.run();
 				this.linkChangePass=new strz_Ajax.GetForm('user_change-password_get', 'div[rel=user_form]');
 				this.linkChangePass.run();
-				/*
-				this.linkChange.set({
-				'trigger':'a[rel=user_change-data]',
-				'info':'a[rel=user_change-data]',
-				'response':'a[rel=user_change-data]'
-				});
-			this.linkChange.init();*/
-			
-				 
-				
+				this.linkChangeAvatar=new strz_Ajax.GetForm('user_change-avatar_get', 'div[rel=user_form]');
+				this.linkChangeAvatar.run();
+
 				this.popover=new strz_Ajax.Component({
 					trigger:'button.btn[data-toggle=popover]',
 					component:'popover',
@@ -65,6 +61,12 @@
 					},
 					linkChangePass:{
 						reference:this.linkChangePass,
+						methods:{
+							'run':[]
+						}
+					},
+					linkChangeAvatar:{
+						reference:this.linkChangeAvatar,
 						methods:{
 							'run':[]
 						}

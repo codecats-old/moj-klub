@@ -2,7 +2,9 @@
 class Controller_Automatic extends Controller_Template{
 	public function before()
 	{
-		if($this->request->is_ajax()===TRUE)$this->auto_render=FALSE;
+		if($this->request->is_ajax()===TRUE OR $this->request->is_initial()===FALSE)
+			$this->auto_render=FALSE;
+
 		parent::before();
 		View::bind_global('page_title', $this->page_title);
 		$this->page_title=$this->request->controller();
@@ -10,16 +12,25 @@ class Controller_Automatic extends Controller_Template{
 		{
 			View::set_global('user', Auth::instance()->get_user()->as_array());
 		}
+		
 	}
 	public function after(){
 		if($this->auto_render===FALSE)
 		{
-			echo json_encode(
-				array(
-					'View'=>$this->view_content->render(),
-					'status'=>$this->status
-				)
+			$json_array=array(
+				'View'=>$this->view_content,
+				'status'=>$this->status
 			);
+			if($this->request->is_ajax())
+			{
+				$json_array['View']=$json_array['View']->render();
+				echo json_encode($json_array);
+			}
+			else if($this->request->is_initial()===FALSE)
+			{
+				$json_array['View']=serialize($json_array['View']);
+				$this->response->body(json_encode($json_array));
+			}
 		}
 		else
 		{
@@ -48,10 +59,37 @@ class Controller_Automatic extends Controller_Template{
 		{
 			HTTP::redirect(Route::get('default')->uri());			
 		}
+		return $this;
+	}
+	/**
+	 * if set status only if status is not set
+	 * @param string $state
+	 * @param string $msg
+	 * @param aray $properties
+	 * @return Controller_Automatic
+	 */
+	public function set_status_message($state, $msg, $properties=array())
+	{
+		if(!isset($this->status))
+		{
+			$this->status['state']=$state;
+			$this->status['message']=$msg;
+			foreach($properties as $prop=>$val)
+			{
+				$this->status[$prop]=$val;
+			}
+		}
+		return $this;
+	}
+	public function clear_status_message()
+	{
+		if(isset($this->status))unset($this->status);
+		return $this;
 	}
 	public $template='Template';
 	public $page_title;
 	public $view_container;
 	public $view_content;
 	public $status;
+	protected $error;
 }

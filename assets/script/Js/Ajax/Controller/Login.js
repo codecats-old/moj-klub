@@ -27,6 +27,9 @@
 			
 			this.userIndex=new strz_Ajax.UserIndex();
 			this.userIndex.run();
+			
+			this.teamIndex=new strz_Ajax.TeamIndex();
+			this.teamIndex.run();
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.Login, strz_Ajax.NodePermissionAction);

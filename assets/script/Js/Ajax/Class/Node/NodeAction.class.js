@@ -24,8 +24,7 @@
 		},
 		ajaxBeforeSend:function(action){
 			var info=action.getSendInformator();
-			$(info).append('...');
-			$(info).fadeTo('fast', .3);
+			$(info).addClass('ajax-load');
 		},
 		ajaxError:function(err, action) {
 			console.log(err);
@@ -41,11 +40,8 @@
 		ajaxAlways:function(action){
 			var info=action.getSendInformator();
 			if($(info).length>0){
-				var text=$(info).html();
+				$(info).removeClass('ajax-load');
 				
-				text=text.replace('...','');
-				$(info).text(text);
-				$(info).fadeTo('slow', 1);
 			}
 		},
 		ajaxRun:function(){

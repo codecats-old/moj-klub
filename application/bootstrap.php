@@ -127,6 +127,21 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set(
+		'image', 
+		'image/<action>/<id>/<width>/<height>/<ext>', 
+		array('id' => '[0-9]+', 'width' => '[0-9]+', 'height' => '[0-9]+', 'ext'=> '(jpg|jpeg|png|gif)'))
+	->filter(
+		function($route, $params, $request)
+		{
+			$params['action']=str_replace('-', '_', $params['action']);
+			return $params;
+		}
+	)
+	->defaults(array(
+	'controller' => 'image',
+	'action' => 'index'
+		));
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->filter(
 		function($route, $params, $request)

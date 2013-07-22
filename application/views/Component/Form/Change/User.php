@@ -2,7 +2,9 @@
 <?php $info['phone']=empty($info['phone'])?null:$info['phone'];?>
 <?php $info['show_email']=((empty($info['show_email'])===FALSE)?'checked':'');?>
 <?php $info['show_phone']=((empty($info['show_phone'])===FALSE)?'checked':'');?>
-<?php echo Form::open(Route::get('default')->uri(array('controller'=>'user', 'action'=>'change-data')));?>
+<?php echo Form::open(Route::get('default')
+		->uri(array('controller'=>'user', 'action'=>'change-data')),
+		array('class'=>'form-horizontal'));?>
 	<div class="well">
 		<h5><?php echo __('Change your data');?></h5>
 		<div class="row-fluid">
