@@ -8,7 +8,7 @@
              		<div rel="user_form">
 <?php echo $user_form;?>
 					</div>
-<?php echo View::factory('Component/About/User');?>
+<?php echo $view_component_about_user;?>
                 </section>
                 <section class="span4">
 <?php echo $view_details;?>

@@ -68,7 +68,7 @@ class Controller_Automatic extends Controller_Template{
 	 * @param aray $properties
 	 * @return Controller_Automatic
 	 */
-	public function set_status_message($state, $msg, $properties=array())
+	public function set_status_message($state, $msg=null, $properties=array())
 	{
 		if(!isset($this->status))
 		{
@@ -77,6 +77,18 @@ class Controller_Automatic extends Controller_Template{
 			foreach($properties as $prop=>$val)
 			{
 				$this->status[$prop]=$val;
+			}
+			if(!empty($this->status['state']) AND empty($this->status['message']))
+			{
+				switch($this->status['state'])
+				{
+					case 'Warning':
+						$this->status['message']='Correct your data';
+						break;
+					case 'Success':
+						$this->status['message']='operation completed successfully';
+						break;
+				}
 			}
 		}
 		return $this;

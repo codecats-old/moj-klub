@@ -1,15 +1,23 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <fieldset class="form-inline">
-	<legend><small>Address</small></legend>
+	<legend><small><?php echo ucfirst(__('address'));?></small></legend>
 	<div class="control-group">
 		<label class="control-label" for="address">Street:</label>
 		<div class="controls controls-row">
 			<div class="span9">
-				<input class="span12" type="text" name="street" placeholder="street name">
+<?php echo Form::input(
+		'street', 
+		Arr::get($address, 'street'),
+		array('class'=>'span12', 'placeholder'=>'street name'));
+?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'street');?></span>
 			</div>
 			<div class="span3">
-				<input class="span12" type="text" name="street_no" placeholder="no">
+<?php echo Form::input(
+		'street_no', 
+		Arr::get($address, 'street_no'),
+		array('class'=>'span12', 'placeholder'=>'no.', 'type'=>'text'));
+?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'street_no');?></span>
 			</div>
 		</div>
@@ -21,23 +29,39 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="row-fluid">
-							<input class="span5" name="zip_code" type="number" placeholder="">
-							<input class="span7" name="zip_code2" type="number" placeholder="">
+<?php echo Form::input(
+		'zip_code', 
+		Arr::get($address, 'zip_code'),
+		array('class'=>'span5', 'placeholder'=>'', 'type'=>'number'));
+?>
+<?php echo Form::input(
+		'zip_code2', 
+		Arr::get($address, 'zip_code2'),
+		array('class'=>'span7', 'placeholder'=>'', 'type'=>'number'));
+?>
 						</div>
 					</div>
 				</div>
 			<!-- 	<input class="span5" type="text" placeholder="Zip code"> -->
 				<span class="label label-warning"><?php echo Arr::get($error, 'zip_code');?></span>
-
-			</div>
-			
-			
+				<span class="label label-warning"><?php echo Arr::get($error, 'zip_code2');?></span>
+			</div>		
 			<div class="span8">
-				<input class="span12" type="text" name="city" placeholder="City">
+<?php echo Form::input(
+		'city', 
+		Arr::get($address, 'city'),
+		array('class'=>'span12', 'placeholder'=>'City', 'type'=>'text'));
+?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'city');?></span>
 			</div>
 		</div>
 	</div>
 	
-	
+	<div class="help-block btn-mini control-group">
+		<div class="offset5 span6">
+			<p><i>for example:</i></p>
+			<p><i>ul. Reymonta 22</i></p>
+			<p><i>30-059 Kraków</i></p>
+		</div>
+	</div>
 </fieldset>

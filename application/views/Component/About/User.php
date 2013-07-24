@@ -5,8 +5,14 @@
 			<h3>Dane użytkownika</h3>
 			 <div>
 			 	<label class="label">Klub</label>
-			 	<span class="text-info pull-right">Ogry opole</span>
+			 	<span class="text-info pull-right"><?php echo Arr::get($team, 'short_name');?></span>
 			 </div>
+<?php if(Arr::get($team, 'city')):?>
+			 <div>
+			 	<label class="label">Miejscowość</label>
+			 	<span class="text-info pull-right"><?php echo Arr::get($team, 'city');?></span>
+			 </div>
+<?php endif;?>
 			 <div>
 			 	<label class="label">Poziom ćwiczeń</label>
 			 	<span class="text-info pull-right">30 min/tyg</span>

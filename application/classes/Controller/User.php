@@ -1,29 +1,57 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_User extends Controller_Automatic{
+	public function after()
+	{
+		if($this->show_details===TRUE)
+		{
+			$user=Auth::instance()->get_user();
+			$team=$user->team;
+			$view_details=$this->get_view_details($user);
+			$view_component_about_user=View::factory('Component/About/User')
+				->set('team', $team->as_array());
+			$this->view_container
+				->set('view_component_about_user', $view_component_about_user)
+				->set('view_details', $view_details);
+			
+		}
+		parent::after();
+	}
 	public function action_index()
 	{
 		$this->redirect_user(FALSE);
-		$view_details=$this->get_view_details();
-		$this->view_container=View::factory('Container/User/Main')->set('view_details', $view_details);
+		
+		$this->view_container=View::factory('Container/User/Main');
 		$this->view_content=$this->view_container;
+		$this->show_details=TRUE;
+		/*
+		$view_details=$this->get_view_details();
+		$view_component_about_user=View::factory('Component/About/User');
+		$this->view_container=View::factory('Container/User/Main')
+			->set('view_component_about_user', $view_component_about_user)
+			->set('view_details', $view_details);
+		$this->view_content=$this->view_container;
+		*/
 	}
 	public function action_change_user_avatar()
 	{
 		$this->redirect_user(FALSE);
 		$change_success=FALSE;
-		$user=Auth::instance()->get_user();
+	//	$user=Auth::instance()->get_user();
 		$json_pack=Request::factory(
 				Route::get('default')->uri(array('controller'=>'image', 'action'=>'change-user-avatar')))
 			->post($this->request->post())
 			->execute();
-		$json_pack=json_decode($json_pack);		
+		$json_pack=json_decode($json_pack);
 		$this->view_content=unserialize($json_pack->View);
-		$view_details=$this->get_view_details($user);
+	//	$view_details=$this->get_view_details($user);
+	//	$view_component_about_user=View::factory('Component/About/User');
 		$this->view_container=View::factory('Container/User/Main')
-			->set('view_details', $view_details)
+		//	->set('view_component_about_user', $view_component_about_user)
+		//	->set('view_details', $view_details)
 			->set('user_form', $this->view_content);
 		$this->set_status_message($json_pack->status->state, $json_pack->status->message);
+		$this->show_details=TRUE;
 	}
 	public function action_change_password()
 	{
@@ -57,21 +85,23 @@ class Controller_User extends Controller_Automatic{
 			$user_form=View::factory('Component/Form/Change/Password')
 				->set('error', $this->error);
 			$this->view_content=$user_form;
-			$view_details=$this->get_view_details($user);
+			//$view_details=$this->get_view_details($user);
 			$this->view_container=View::factory('Container/User/Main')
-				->set('view_details', $view_details)
+			//	->set('view_details', $view_details)
 				->set('user_form', $user_form);
 			$this->set_status_message('Warning', 'Correct your data');
+			$this->show_details=TRUE;
 		}
 		else
 		{
 			$view_success=View::factory('Component/Info/Success');
 			$this->view_content=$view_success;
-			$view_details=$this->get_view_details($user);
+		//	$view_details=$this->get_view_details($user);
 			$this->view_container=View::factory('Container/User/Main')
-			->set('view_details', $view_details)
+		//	->set('view_details', $view_details)
 			->set('user_form', $view_success);
 			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie');
+			$this->show_details=TRUE;
 		}
 	}
 	public function action_change_data()
@@ -111,22 +141,24 @@ class Controller_User extends Controller_Automatic{
 				->set('user', $user->as_array())
 				->set('error', $this->error);
 			$this->view_content=$user_form;
-			$view_details=$this->get_view_details($user);
+		//	$view_details=$this->get_view_details($user);
 			$this->view_container=View::factory('Container/User/Main')
-				->set('view_details', $view_details)
+		//		->set('view_details', $view_details)
 				->set('user_form', $user_form);
 			$this->set_status_message('Warning', 'Correct your data');
+			$this->show_details=TRUE;
 		}
 		else
 		{
 			$view_success=View::factory('Component/Info/Success');
 			$this->view_content=$view_success;
-			$view_details=$this->get_view_details($user);
+		//	$view_details=$this->get_view_details($user);
 			$this->view_container=View::factory('Container/User/Main')
-				->set('view_details', $view_details)
+			//	->set('view_details', $view_details)
 				->set('user_form', $view_success);
 			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie', 
 					array('reload'=>TRUE));
+			$this->show_details=TRUE;
 		}
 	}
 	public function action_login()
@@ -178,6 +210,7 @@ class Controller_User extends Controller_Automatic{
 	}
 	public function action_logout()
 	{
+		//CSRF	echo '<img src="user/logout">pig</img>'; TODO: prevent it
 		$this->redirect_user(FALSE);
 		Auth::instance()->logout();
 		$this->view_content=View::factory('Component/Info/Logout/Success');
@@ -211,8 +244,8 @@ class Controller_User extends Controller_Automatic{
 					$user->save();
 					$info->user=$user;
 					$info->save();
-					$this->add_role($user, 'login');
-					$this->add_role($user, 'player');
+					self::add_role($user, 'login');
+					self::add_role($user, 'player');
 					$registrate_success=TRUE;
 				}catch(Database_Exception $dbex){
 					$this->set_status_message('Error', 'Probably database is busy. Try again in a while'); 
@@ -250,7 +283,7 @@ class Controller_User extends Controller_Automatic{
 			$this->set_status_message('Success', 'Rejestracja zakończona powodzeniem');
 		}
 	}
-	protected function add_role($user, $role_name)
+	public static function add_role($user, $role_name)
 	{
 		$role=ORM::factory('Role', array('name'=>$role_name));
 		$user->add('roles', $role);
@@ -264,15 +297,18 @@ class Controller_User extends Controller_Automatic{
 		
 		$roles=$user->roles->find_all();
 		$avatar=ORM::factory('Avatar', array('id'=>$user->avatar_id));
+		$team=$user->team;
 		$roles_view=$this->get_team_roles($roles);
 		$roles_view=implode(', ', $roles_view);
 		$view_details=View::factory('Component/Menu/User/Details')
 			->set('info', $info->as_array())
 			->set('avatar', $avatar->as_array())
+			->set('team', $team->as_array())
 			->set('roles_view',$roles_view)
 			->set('info_popover', $info_popover);
 		return $view_details;
 	}
+	protected $show_details=FALSE;
 	private function get_team_roles($roles)
 	{
 		$team_roles=array();

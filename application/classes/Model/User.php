@@ -15,8 +15,8 @@ class Model_User extends Model_Auth_User{
 			'model'=>'avatar',
 			'foreign_key'=>'avatar_id'
 		),
-		'teamr'=>array(
-				'model'=>'team',
+		'team'=>array(
+				'model'=>'Team',
 				'foreign_key'=>'team_id'
 		)
 	);

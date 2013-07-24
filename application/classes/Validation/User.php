@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-class Validation_User extends Validation{
+class Validation_User extends Validation_General{
 	public static function changable($col, $field)
 	{
 		if(self::is_unique($col, $field)===TRUE)return TRUE;
@@ -12,11 +12,12 @@ class Validation_User extends Validation{
 		if($user->reload()->$col===$field)return TRUE;
 		else return FALSE;
 	}
-	public static function is_unique($col, $field)
+	public static function is_unique($col, $field, $model='User')
 	{
-		$obj=ORM::factory('User', array($col=>$field));
+	/*	$obj=ORM::factory('User', array($col=>$field));
 		$unique=!$obj->loaded();
-		return $unique;
+		return $unique;*/
+		parent::is_unique($col, $field, $model);
 	}
 	public static function is_correct_password($val)
 	{

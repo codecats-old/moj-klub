@@ -3,6 +3,7 @@
 <?php $info['name']=empty($info['name'])?'(empty)':$info['name'];?>
 <?php $info['surname']=empty($info['surname'])?'(empty)':$info['surname'];?>
 <?php $info['phone']=empty($info['phone'])?'(empty)':$info['phone'];?>
+<?php $team=empty($team)?array():$team;?>
 
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
@@ -46,7 +47,11 @@
 <?php echo Arr::get($info, 'surname');?>
 				</span>
 			</div>
-		    <div><label class="label">Drużyna:</label><span class="text-info pull-right">IKS OGRY</span></div>
+		    <div><label class="label">Drużyna:</label>
+		    	<span class="text-info pull-right">
+<?php echo Arr::get($team, 'short_name');?>		    
+		    	</span>
+		    </div>
 		    <div><label class="label">Rola:</label>
 		    	<span class="text-info pull-right">
 <?php echo $roles_view;?>

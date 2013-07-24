@@ -8,11 +8,11 @@
 <?php echo HTML::anchor(
 		Route::get('default')->uri(array('controller'=>'team', 'action'=>'create')),
 		'Stwórz<label>zarządzaj nowym klubem i zaproś członków drużyny</label>',
-		array('class'=>'btn btn-large btn-info btn-block', 'rel'=>'create_form_get')
+		array('class'=>'btn btn-large btn-success btn-block', 'rel'=>'create_form_get')
 );?>
 		</div>
 		<div class="span6">
-			<a href="#" class="btn btn-large btn-info btn-block">
+			<a href="#" class="btn btn-large btn-success btn-block">
 				Odszukaj
 				<label>znajdź klub do którego należysz</label>
 			</a>

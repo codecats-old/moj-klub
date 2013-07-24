@@ -31,7 +31,11 @@
 					</div>
 				</div>
 				
-				<h5><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#extra_info">Dane dodatkowe <b class="caret"></b></button></h5>
+				<h5>
+					<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#extra_info">
+						Dane dodatkowe <b class="caret"></b>
+					</button>
+				</h5>
                 <div id="extra_info" class="collapse out">
 				
 					<div class="row-fluid">
@@ -47,7 +51,7 @@
 					<div class="row-fluid">
 						<div class="span12">
 <?php echo View::factory('Component/Form/Address')
-	->set('team', $team)
+	->set('address', $team)
 	->set('error', $error)->render();
 ?>
 						</div>
