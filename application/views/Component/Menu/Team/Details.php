@@ -53,13 +53,13 @@
 				</span>		    	
 		    </div>
 		    <div>
-		    	<label class="label">capitan:</label>
+		    	<label class="label">coach:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($coach, 'username');?>
 				</span>				    	
 		    </div>
 		    <div>
-		    	<label class="label">coach:</label>
+		    	<label class="label">capitan:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($capitan, 'username');?>
 				</span>				    	

@@ -4,41 +4,42 @@ class Model_Team extends ORM{
 		'user'=>array(
 			'model'=>'user',
 			'foreign_key'=>'team_id',
-		//	'far_key'=>'id'
 		)
 	);
-	public function get_manager_id()
+	public function get_manager()
 	{
-		$query=$this->get_users_ids('manager', 1);
-		$ids=$query->as_object()->execute();
-		if($ids->current()==null)return null;
-		else return $ids->current()->user_id;
+		$manager=$this->get_members('manager')->find();
+		return $manager;
 	}
-	public function get_capitan_id()
+	public function get_coach()
 	{
-		$query=$this->get_users_ids('capitan', 1);
-		$ids=$query->as_object()->execute();
-		if($ids->current()==null)return null;
-		else return $ids->current()->user_id;
+		$coach=$this->get_members('coach')->find();
+		return $coach;
 	}
-	public function get_coach_id()
+	public function get_capitan()
 	{
-		$query=$this->get_users_ids('coach', 1);
-		$ids=$query->as_object()->execute();
-		if($ids->current()==null)return null;
-		else return $ids->current()->user_id;
+		$capitan=$this->get_members('capitan')->find();
+		return $capitan;
 	}
-	private function get_users_ids($role, $limit=null)
+	public function get_staff($limit=10)
 	{
-		$teams_id=$this->__get('id');
-		$query=DB::select('user_id')
-			->from('role_users', 'roles', 'users')
-			->where('roles.name', '=', $role)
-			->where('role_users.role_id', '=', DB::expr('`roles`.`id`'))
-			->where('users.id', '=', DB::expr('`role_users`.`user_id`'))
-			->where('users.team_id', '=', $teams_id)
+		$players=$this->get_members('staff', $limit)->find_all();
+		return $players;
+	}
+	public function get_players($limit=30)
+	{
+		$players=$this->get_members('player', $limit)->find_all();
+		return $players;
+	}
+	protected function get_members($role_name, $limit=0)
+	{
+		$members=$this->get('user');
+		return $members
+			->from('role_users', 'roles')
+			->where('roles.name', '=', $role_name)
+			->where('role_users.user_id', '=',DB::expr('`user`.`id`'))
+			->where('role_users.role_id', '=',DB::expr('`roles`.`id`'))
 			->limit($limit);
-		return $query;
 	}
 	public function validate_create($post)
 	{
@@ -51,3 +52,13 @@ class Model_Team extends ORM{
 		return $f->get_team();
 	}
 }
+/*OBJECTS
+$members=$this->get('user')->find_all();
+	$manager=null;
+ $role=ORM::factory('Role', array('name'=>'manager'));
+foreach($members as $member)
+{
+if($member->has('roles', $role))
+	$manager=$member;
+}
+*/

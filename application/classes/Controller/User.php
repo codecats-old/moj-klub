@@ -211,10 +211,12 @@ class Controller_User extends Controller_Automatic{
 	public function action_logout()
 	{
 		//CSRF	echo '<img src="user/logout">pig</img>'; TODO: prevent it
-		$this->redirect_user(FALSE);
-		Auth::instance()->logout();
-		$this->view_content=View::factory('Component/Info/Logout/Success');
-		$this->set_status_message('Success', 'Wylogowano użytkownika', array('reload'=>TRUE));
+	//	if(Security::check($this->request->param('id'))){
+			$this->redirect_user(FALSE);
+			Auth::instance()->logout();
+			$this->view_content=View::factory('Component/Info/Logout/Success');
+			$this->set_status_message('Success', 'Wylogowano użytkownika', array('reload'=>TRUE));
+	//	}
 	}
 	public function action_registrate()
 	{

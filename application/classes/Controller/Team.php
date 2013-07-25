@@ -13,11 +13,14 @@ class Controller_Team extends Controller_Automatic{
 			$user=Auth::instance()->get_user();
 			$team=$user->team;
 			$view_details=$this->get_view_details($user, $team);
+			$view_about=$this->get_view_about($team);
 			$this->view_container
-				->set('view_details', $view_details);
-				//->set('view_component_about', null);
+				->set('view_details', $view_details)
+				->set('view_component_about', $view_about);
 		}
 		parent::after();
+
+	
 	}
 	public function action_index()
 	{
@@ -27,8 +30,8 @@ class Controller_Team extends Controller_Automatic{
 		if($team->loaded())
 		{
 			$this->view_container=View::factory('Container/Team/Main')
-				->set('modal_title', 'confirm')
-				->set('view_component_about', View::factory('Component/About/Team'));
+				->set('modal_title', 'confirm');
+			//	->set('view_component_about', View::factory('Component/About/Team'));
 			$this->show_details=TRUE;
 		}
 		else
@@ -41,6 +44,31 @@ class Controller_Team extends Controller_Automatic{
 				->set('view_component_about', null);
 		}
 	
+	}
+	public function action_change()
+	{
+		$this->redirect_user(FALSE);
+		if(Auth::instance()->logged_in('admin')===FALSE)$this->redirect_team_member(FALSE);
+		if(Auth::instance()->logged_in());
+		$change_success=FALSE;
+		$change_fields=$this->request->param('id');
+		$post=$this->request->post();
+		if($post)
+		{
+			
+		}
+		if($change_success===FALSE)
+		{
+			
+		}
+		else
+		{
+			
+		}
+		$this->view_container=View::factory('Container/Team/Main')
+			->set('modal_title', 'are you sure?');
+		$this->show_details=TRUE;
+		
 	}
 	public function action_create()
 	{
@@ -128,6 +156,22 @@ class Controller_Team extends Controller_Automatic{
 				HTTP::redirect(Route::get('default')->uri(array('controller'=>'team')));
 		}
 	}
+	private function get_view_about($team)
+	{
+		$view=View::factory('Component/About/Team');
+		$players=$team->get_players();//=$team->get_players_ids();
+		$capitan=$team->get_capitan();
+		$staff=$team->get_staff();
+		$manager=$team->get_manager();
+		$coach=$team->get_coach();
+		$view->set('team', $team->as_array())
+			->set('players', $players->as_array())
+			->set('capitan', $capitan->as_array())
+			->set('staff', $staff->as_array())
+			->set('manager', $manager->as_array())
+			->set('coach', $coach->as_array());
+		return $view;
+	}
 	private function get_view_details($user, $team)
 	{
 		$view=View::factory('Component/Menu/Team/Details');
@@ -176,9 +220,9 @@ class Controller_Team extends Controller_Automatic{
 				->set('view_team_change_details', $view_team_change_details)
 				->set('view_team_change_manage', $view_team_change_manage);
 		}
-		$manager=ORM::factory('User', array('id'=>$team->get_manager_id()));
-		$coach=ORM::factory('User', array('id'=>$team->get_coach_id()));
-		$capitan=ORM::factory('User', array('id'=>$team->get_capitan_id()));
+		$manager=$team->get_manager();//ORM::factory('User', array('id'=>$team->get_manager_id()));
+		$coach=$team->get_coach();//ORM::factory('User', array('id'=>$team->get_coach_id()));
+		$capitan=$team->get_capitan();//ORM::factory('User', array('id'=>$team->get_capitan_id()));
 		$view->set('user', $user->as_array())
 			->set('team',$team->as_array())
 			->set('manager', $manager->as_array())
@@ -187,4 +231,18 @@ class Controller_Team extends Controller_Automatic{
 		return $view;
 	}
 	protected $show_details=FALSE;
+	protected $permission=array(
+		'admin'=>array(
+		),
+		'manager'=>array(
+			'edit'=>array(
+				'description'=>TRUE
+			)
+		),
+		'capitan'=>array(
+			'edit'=>array(
+				'training'=>TRUE
+			)
+		)
+	);
 }

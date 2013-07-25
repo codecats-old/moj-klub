@@ -6,7 +6,14 @@
 		array('rel'=>'user_index'));?>
 <span class="divider-vertical"></span>
 <?php echo HTML::anchor(Route::get('default')
-		->uri(array('controller'=>'user', 'action'=>'logout')),ucfirst(__('logout')),
+		->uri(
+			array(
+				'controller'=>'user', 
+				'action'=>'logout'
+				//,'id'=>Security::token()
+			)
+			
+		),ucfirst(__('logout')),
 		array('rel'=>'logout'));?>
 <span class="divider-vertical"></span>
                     </div>

@@ -11,4 +11,4 @@
 <?php echo View::factory('Component/Thumbnails/Team');?>
 	</section>
 
-<?php echo View::factory('Component/Window/Modal/Main');?>
+<?php echo View::factory('Component/Window/Modal/Main')->set('title', 'registrate');?>
