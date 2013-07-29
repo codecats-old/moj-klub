@@ -120,9 +120,36 @@ Kohana::modules(array(
 	 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
-	'captcha'	=> MODPATH.'captcha',
+	'captcha'	=> MODPATH.'captcha'
 	));
-
+/**
+ * Composer
+ */
+//require Kohana::find_file('vendor', 'autoload');
+/**
+ * Symfony
+ */
+/*
+spl_autoload_register(function ($class) {
+	if (0 === strpos(ltrim($class, '/'), 'Symfony\Component\Yaml')) {
+		if (
+				file_exists(
+						$file = __DIR__.'/vendor/'.substr(str_replace('\\', '/', $class), 
+				strlen('Symfony\Component\Yaml')).'.php')) {
+			require_once $file;
+		}
+	}
+});
+*/
+/*
+spl_autoload_register(function ($class) {
+	if (0 === strpos(ltrim($class, '/'), 'Symfony\Component\Yaml')) {
+		if (file_exists($file = __DIR__.'/../'.substr(str_replace('\\', '/', $class), strlen('Symfony\Component\Yaml')).'.php')) {
+			require_once $file;
+		}
+	}
+});
+*/
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
@@ -154,3 +181,4 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'controller' => 'welcome',
 		'action'     => 'index',
 	));
+	

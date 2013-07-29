@@ -211,7 +211,12 @@ class Controller_User extends Controller_Automatic{
 	public function action_logout()
 	{
 		//CSRF	echo '<img src="user/logout">pig</img>'; TODO: prevent it
-	//	if(Security::check($this->request->param('id'))){
+	//	if(Security::check($this->request->param('id'))){ where id is access token
+	// OR
+	// $cry=mcrypt_encrypt(MCRYPT_DES, 'k', 'user_id', MCRYPT_MODE_ECB);
+	// echo base64_encode($cry);
+	//echo mcrypt_ecb (MCRYPT_3DES, 'k', $cry, MCRYPT_DECRYPT);
+	// where 'k' is session key with salt hashed by sha2
 			$this->redirect_user(FALSE);
 			Auth::instance()->logout();
 			$this->view_content=View::factory('Component/Info/Logout/Success');

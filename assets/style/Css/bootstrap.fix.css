@@ -51,9 +51,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 }
 /*debug*/
-/*
+
 .navbar-inverse>.navbar-inner{
 	margin-top:50px;
 	background:rgba(0,0,0,0.3);
 	opacity:0;
-}*/
+}

@@ -33,6 +33,11 @@ class Model_Team extends ORM{
 	}
 	protected function get_members($role_name, $limit=0)
 	{
+		return ORM::factory('Role', array('name' => $role_name))
+			->users
+			->where('team_id', '=', $this->id)
+			->limit($limit);
+		/*
 		$members=$this->get('user');
 		return $members
 			->from('role_users', 'roles')
@@ -40,6 +45,7 @@ class Model_Team extends ORM{
 			->where('role_users.user_id', '=',DB::expr('`user`.`id`'))
 			->where('role_users.role_id', '=',DB::expr('`roles`.`id`'))
 			->limit($limit);
+		*/
 	}
 	public function validate_create($post)
 	{
@@ -52,13 +58,3 @@ class Model_Team extends ORM{
 		return $f->get_team();
 	}
 }
-/*OBJECTS
-$members=$this->get('user')->find_all();
-	$manager=null;
- $role=ORM::factory('Role', array('name'=>'manager'));
-foreach($members as $member)
-{
-if($member->has('roles', $role))
-	$manager=$member;
-}
-*/
