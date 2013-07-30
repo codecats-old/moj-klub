@@ -11,12 +11,12 @@ class Controller_Team extends Controller_Automatic{
 	public function before()
 	{
 		parent::before();
+		$this->redirect_user(FALSE);
 		
 		$user=Auth::instance()->get_user();
-		$roles=$user->roles->find_all();
-		$this->acl=new Zend_Acl();
-		$this->acl->prepare_roles($user->username, array('roles'=>$roles, 'id'=>'name'));
-		$this->prepare_resources()->prepare_permissions();
+		$this->acl=new Zend_Acl;
+		$this->prepare_resources()->prepare_permissions($user);
+		
 	}
 	public function after()
 	{
@@ -36,12 +36,11 @@ class Controller_Team extends Controller_Automatic{
 	{
 		$this->redirect_user(FALSE);
 		$user=Auth::instance()->get_user();
-		$team=ORM::factory('Team', array('id'=>$user->team_id));
+		$team=$user->team;
 		if($team->loaded())
 		{
 			$this->view_container=View::factory('Container/Team/Main')
 				->set('modal_title', 'confirm');
-			//	->set('view_component_about', View::factory('Component/About/Team'));
 			$this->show_details=TRUE;
 		}
 		else
@@ -53,19 +52,18 @@ class Controller_Team extends Controller_Automatic{
 				->set('view_details', null)
 				->set('view_component_about', null);
 		}
-	
 	}
 	public function action_change()
 	{
-		$this->redirect_user(FALSE);
+		//$this->redirect_user(FALSE);
 		if(Auth::instance()->logged_in('admin')===FALSE)$this->redirect_team_member(FALSE);
 		if(Auth::instance()->logged_in());
 		$change_success=FALSE;
-		$change_fields=$this->request->param('id');
+		$change_field=$this->request->param('id');
 		$post=$this->request->post();
 		if($post)
 		{
-			
+			//change field on given id description training success
 		}
 		if($change_success===FALSE)
 		{
@@ -154,22 +152,16 @@ class Controller_Team extends Controller_Automatic{
 	private function redirect_team_member($is_member=TRUE)
 	{
 		$user=Auth::instance()->get_user();
-		$team=ORM::factory('Team', array('id'=>$user->team_id));
-		if($is_member===TRUE)
-		{
-			if($team->loaded()===TRUE)
-				HTTP::redirect(Route::get('default')->uri(array('controller'=>'team')));
-		}
-		else 
-		{
-			if($team->loaded()===TRUE)
-				HTTP::redirect(Route::get('default')->uri(array('controller'=>'team')));
-		}
+		$team=$user->team;
+
+		if($team->loaded()===$is_member)
+			HTTP::redirect(Route::get('default')->uri(array('controller'=>'team')));
+
 	}
 	private function get_view_about($team)
 	{
 		$view=View::factory('Component/About/Team');
-		$players=$team->get_players();//=$team->get_players_ids();
+		$players=$team->get_players();
 		$capitan=$team->get_capitan();
 		$staff=$team->get_staff();
 		$manager=$team->get_manager();
@@ -187,58 +179,19 @@ class Controller_Team extends Controller_Automatic{
 		$view=View::factory('Component/Menu/Team/Details');
 		$view_team_change_details=View::factory('Component/Menu/Team/Change/Details');
 		$view_team_change_manage=View::factory('Component/Menu/Team/Change/Manage');
-//		print_r($this->acl->getRole('tomek11')->getResources());
+		$view_team_change_avatar=View::factory('Component/Menu/Team/Change/Avatar');
 
+		$view_team_change_details->set('options',
+				$this->acl->get_resource_by_user($user->username, 'edit'));
+		$view_team_change_manage->set('options',
+				$this->acl->get_resource_by_user($user->username, 'manage'));
+		$view_team_change_avatar->set('options',
+				$this->acl->get_resource_by_user($user->username, 'avatar'));
 		
-		/*if($this->acl(Auth::instance()->get_user()->username)->isAllowed())
-		{
-			
-		}*/
-		if(Auth::instance()->logged_in('player'))
-		{
-			$view_team_change_manage->set('options', array(
-				'leave'=>TRUE
-			));
-			$view->set('view_team_change_manage', $view_team_change_manage);
-		}
-		if(Auth::instance()->logged_in('capitan'))
-		{
-			$view_team_change_details->set('options', array(
-				'trainings'=>TRUE
-			));
-			$view_team_change_manage->set('options', array(
-				'players'=>TRUE, 'leave'=>TRUE
-			));
-			$view->set('view_team_change_details', $view_team_change_details)
-				->set('view_team_change_manage', $view_team_change_manage);
-		}
-		if(Auth::instance()->logged_in('coach'))
-		{
-			$view_team_change_details->set('options', array(
-				'trainings'=>TRUE, 'success'=>TRUE,
-			));
-			$view_team_change_manage->set('options', array(
-				'players'=>TRUE, 'staff'=>TRUE,	'leave'=>TRUE
-			));
-			$view->set('view_team_change_details', $view_team_change_details)
-				->set('view_team_change_manage', $view_team_change_manage);
-		}
-		if(Auth::instance()->logged_in('manager'))
-		{			
-		/*	$view_team_change_details->set('options', array(
-				'description'=>TRUE, 'trainings'=>TRUE, 'success'=>TRUE, 
-				'contact'=>TRUE, 'address'=>TRUE, 'name'=>TRUE
-			));*/
-			$view_team_change_details->set('options', 
-					$this->acl->get_resource_by_user($user->username, 'edit'));
-			$view_team_change_manage->set('options', array(
-				'players'=>TRUE, 'staff'=>TRUE, 'management'=>TRUE,
-				'leave'=>TRUE
-			));
-			$view->set('view_team_change_avatar', View::factory('Component/Menu/Team/Change/Avatar'))
-				->set('view_team_change_details', $view_team_change_details)
-				->set('view_team_change_manage', $view_team_change_manage);
-		}
+		$view->set('view_team_change_avatar', $view_team_change_avatar)
+			->set('view_team_change_details', $view_team_change_details)
+			->set('view_team_change_manage', $view_team_change_manage);
+
 		$manager=$team->get_manager();
 		$coach=$team->get_coach();
 		$capitan=$team->get_capitan();
@@ -267,23 +220,36 @@ class Controller_Team extends Controller_Automatic{
 			->addResource(new GenericResource('staff'), $resource)
 			->addResource(new GenericResource('management'), $resource)
 			->addResource(new GenericResource('leave'), $resource);
+		
+		$resource=new GenericResource('avatar');
+		$this->acl->addResource($resource);
 		return $this;
 	}
-	private function prepare_permissions()
+	private function prepare_permissions($user)
 	{
-			$this->acl
-			//player
-				->allow_if_exist('player', 'leave')
-			//capitan
-				->add_role_if_exist('capitan', 'player')
-				->allow_if_exist('capitan', 'trainings')
-				->allow_if_exist('capitan', 'players')
-				->allow_if_exist('capitan', 'leave')
-			//coach
-			//
-			//admin
-				->allow_if_exist('admin');
-			$this->acl->remove_role_if_exist('1', '2');
+		$this->acl
+			->add_role('player')
+		//player
+			->allow('player', 'leave')
+		//capitan
+			->add_role('capitan', 'player')
+			->allow('capitan', 'trainings')
+			->allow('capitan', 'players')
+		//coach
+			->add_role('coach', 'capitan')
+			->allow('coach', 'success')
+			->allow('coach', 'staff')
+		//manager
+			->add_role('manager', 'coach')
+			->allow('manager', array('description', 'contact', 'address', 'name'))
+			->allow('manager', 'management')
+			->allow('manager', 'avatar')
+		//admin
+			->add_role('admin', 'manager');
+		
+		$urs_roles=$user->roles->find_all()->as_array();	
+		$this->acl->add_user_role($urs_roles, $user->username);
+	
 		return $this;
 	}
 	protected $acl;

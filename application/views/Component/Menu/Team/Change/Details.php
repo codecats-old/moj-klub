@@ -1,6 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <div class="btn-group">
-	<a href="#" class="btn btn-inverse btn-mini">edit club</a>
+<?php echo HTML::anchor(
+		Route::get('default')->uri(array('controller'=>'team', 'action'=>'change')),
+		'edit club',
+		array('class'=>'btn btn-inverse btn-mini')
+);?>
+<!-- 	<a href="#" class="btn btn-inverse btn-mini">edit club</a> -->
 	<a href="#" class="btn btn-inverse btn-mini dropdown-toggle" data-toggle="dropdown">
 		<span class="caret"></span>
 	</a>

@@ -12,7 +12,6 @@ class Controller_Automatic extends Controller_Template{
 		{
 			View::set_global('user', Auth::instance()->get_user()->as_array());
 		}
-		
 	}
 	public function after(){
 		if($this->auto_render===FALSE)
@@ -48,6 +47,7 @@ class Controller_Automatic extends Controller_Template{
 			}
 			else
 			{
+				//TODO: set cookie to difference action executed by AJAX call
 				Cookie::set('roles', '-1');
 			}
 		}

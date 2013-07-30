@@ -233,6 +233,7 @@ class Controller_User extends Controller_Automatic{
 		$info=ORM::factory('Info');
 		if($post)
 		{
+			
 		/*	not tested yet
 		 * $user->set('email', $post['email']);
 			$user->set('username', $post['username']);
@@ -247,6 +248,7 @@ class Controller_User extends Controller_Automatic{
 			$validator=$user->validate_register($post);
 			if($validator->check())
 			{
+				
 				try{
 					$user->save();
 					$info->user=$user;
@@ -271,7 +273,6 @@ class Controller_User extends Controller_Automatic{
 		}
 		if($registrate_success===FALSE)
 		{
-			
 			$captcha=Captcha::instance();
 			$form=View::factory('Component/Form/Registrate')
 				->set('user', $user->as_array())->set('info',$info->as_array())->set('captcha',$captcha)
