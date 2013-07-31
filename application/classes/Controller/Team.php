@@ -14,13 +14,13 @@ class Controller_Team extends Controller_Automatic{
 		$this->redirect_user(FALSE);
 		
 		$user=Auth::instance()->get_user();
-		$this->acl=new Zend_Acl;
+		$this->acl = new Zend_Acl;
 		$this->prepare_resources()->prepare_permissions($user);
 		
 	}
 	public function after()
 	{
-		if($this->show_details===TRUE)
+		if ($this->show_details === TRUE)
 		{
 			$user=Auth::instance()->get_user();
 			$team=$user->team;
@@ -37,11 +37,11 @@ class Controller_Team extends Controller_Automatic{
 		$this->redirect_user(FALSE);
 		$user=Auth::instance()->get_user();
 		$team=$user->team;
-		if($team->loaded())
+		if ($team->loaded())
 		{
 			$this->view_container=View::factory('Container/Team/Main')
 				->set('modal_title', 'confirm');
-			$this->show_details=TRUE;
+			$this->show_details = TRUE;
 		}
 		else
 		{
@@ -53,36 +53,48 @@ class Controller_Team extends Controller_Automatic{
 				->set('view_component_about', null);
 		}
 	}
+	/**
+	 * Change team details (possible to change specific field f.ex. teams.short_name)
+	 */
 	public function action_change()
 	{
-		//$this->redirect_user(FALSE);
-		if(Auth::instance()->logged_in('admin')===FALSE)$this->redirect_team_member(FALSE);
-		if(Auth::instance()->logged_in());
-		$change_success=FALSE;
-		$change_field=$this->request->param('id');
-		$post=$this->request->post();
-		if($post)
+
+		$this->redirect_user(FALSE);
+		if (Auth::instance()->logged_in('admin') === FALSE) $this->redirect_team_member(FALSE);
+		$change_success = FALSE;
+		$user = Auth::instance()->get_user();
+		$fields=$this->acl->get_resource_by_user($user->username, 'edit');
+		$field_to_change = $this->request->param('id');
+
+
+		$post = $this->request->post();
+		if ($post AND key_exists($field_to_change, $fields, TRUE))
 		{
 			//change field on given id description training success
 		}
-		if($change_success===FALSE)
+		if ($change_success === FALSE)
 		{
-			
+			$form_change=View::factory('Component/Form/Create/Team')
+				->set('team', $post)
+				->set('error', $this->error);
+			$this->view_content=$form_change;
+			$this->view_container=View::factory('Container/Team/Main');
+			$this->view_container->set('view_top', $form_change);
+			$this->set_status_message('Warning');
 		}
 		else
 		{
 			
 		}
-		$this->view_container=View::factory('Container/Team/Main')
-			->set('modal_title', 'are you sure?');
-		$this->show_details=TRUE;
+		$this->view_container->set('modal_title', 'are you sure?');
+		$this->show_details = TRUE;
 		
 	}
 	public function action_create()
 	{
 		$this->redirect_user(FALSE);
 		$this->redirect_team_member(FALSE);
-		$create_success=FALSE;
+		$create_success = FALSE;
 		$post=$this->request->post();
 		$team=ORM::factory('Team');
 		$user=Auth::instance()->get_user();
@@ -97,10 +109,10 @@ class Controller_Team extends Controller_Automatic{
 					$user->team=$team;
 					$user->save();
 					Controller_User::add_role($user, 'manager');
-					$create_success=TRUE;
+					$create_success = TRUE;
 				}catch(Database_Exception $dbex){
 					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
-					$this->content=print_r($dbex, true);
+					$this->content=print_r($dbex, TRUE);
 				}
 			}
 			else
@@ -108,7 +120,7 @@ class Controller_Team extends Controller_Automatic{
 				$this->error=$validator->errors('Team/Create');
 			}
 		}
-		if($create_success===FALSE)
+		if ($create_success === FALSE)
 		{
 			$form_create=View::factory('Component/Form/Create/Team')
 				->set('team', $post)
@@ -120,7 +132,7 @@ class Controller_Team extends Controller_Automatic{
 		{
 			$this->view_content=View::factory('Component/Info/Success')
 				->set('info', 'zarządzaj klubem');
-			$this->set_status_message('Success', null, array('reload'=>true));
+			$this->set_status_message('Success', NULL, array('reload'=>TRUE));
 		}		
 	}
 	private function set_post_team_data($team, $post)
