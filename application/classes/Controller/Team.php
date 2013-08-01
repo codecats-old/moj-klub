@@ -80,7 +80,7 @@ class Controller_Team extends Controller_Automatic{
 			$this->view_content=$form_change;
 			$this->view_container=View::factory('Container/Team/Main');
 			$this->view_container->set('view_top', $form_change);
-			$this->set_status_message('Warning');
+			Message::instance()->set(Message::WARNING);
 		}
 		else
 		{
@@ -112,7 +112,7 @@ class Controller_Team extends Controller_Automatic{
 					$create_success = TRUE;
 				}catch(Database_Exception $dbex){
 					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
-//M					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+
 					$this->content=print_r($dbex, TRUE);
 				}
 			}
@@ -129,13 +129,12 @@ class Controller_Team extends Controller_Automatic{
 			$this->view_content=$form_create;
 			
 			Message::instance()->set(Message::WARNING);
-//M	$this->set_status_message('Warning');
 		}
 		else 
 		{
 			$this->view_content=View::factory('Component/Info/Success')
 				->set('info', 'zarządzaj klubem');
-//M			$this->set_status_message('Success', NULL, array('reload'=>TRUE));
+			
 			Message::instance()->set(Message::SUCCESS, NULL, 
 				array(
 					'reload' => TRUE

@@ -84,7 +84,7 @@ class Controller_Image extends Controller_Automatic{
 			$this->view_content=$form_upload;
 			
 			Message::instance()->set(Message::WARNING);
-			//$this->set_status_message('Warning', 'Zmiana danych przebiegła pomyślnie');
+
 		}
 		else
 		{
@@ -92,7 +92,7 @@ class Controller_Image extends Controller_Automatic{
 				->set('info', 'zmiana będzie widoczna do 5 min');
 			$this->view_content=$view_success;
 			Message::instance()->set(Message::SUCCESS);
-	//		$this->set_status_message('Warning', 'Correct your data');
+
 		}
 
 	}

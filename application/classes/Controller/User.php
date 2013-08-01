@@ -58,7 +58,6 @@ class Controller_User extends Controller_Automatic{
 			->set('user_form', $this->view_content);
 
 		Message::instance()->set($json_pack->status->state, $json_pack->status->message);
-//M $this->set_status_message($json_pack->status->state, $json_pack->status->message);
 		$this->show_details = TRUE;
 	}
 	public function action_change_password()
@@ -79,7 +78,6 @@ class Controller_User extends Controller_Automatic{
 					$change_success=TRUE;
 				}catch(Database_Exception $dbex){
 					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
-//M			$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
 					$this->content=print_r($dbex, TRUE);
 					echo $this->content;
 				}
@@ -98,7 +96,7 @@ class Controller_User extends Controller_Automatic{
 			$this->view_container=View::factory('Container/User/Main')
 			//	->set('view_details', $view_details)
 				->set('user_form', $user_form);
-//M	$this->set_status_message('Warning', 'Correct your data');
+
 			Message::instance()->set(Message::WARNING);
 			$this->show_details = TRUE;
 		}
@@ -111,7 +109,7 @@ class Controller_User extends Controller_Automatic{
 		//	->set('view_details', $view_details)
 			->set('user_form', $view_success);
 			Message::instance()->set(Message::SUCCESS);
-//M			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie');
+
 			$this->show_details = TRUE;
 		}
 	}
@@ -136,7 +134,7 @@ class Controller_User extends Controller_Automatic{
 					$change_success = TRUE;
 				}catch(Database_Exception $dbex){
 					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
-			//M		$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+		
 					$this->content=print_r($dbex, TRUE);
 					echo $this->content;
 				}
@@ -158,7 +156,7 @@ class Controller_User extends Controller_Automatic{
 		//		->set('view_details', $view_details)
 				->set('user_form', $user_form);
 			Message::instance()->set(Message::WARNING);
-	//M		$this->set_status_message('Warning', 'Correct your data');
+
 			$this->show_details = TRUE;
 		}
 		else
@@ -175,8 +173,7 @@ class Controller_User extends Controller_Automatic{
 					'reload' => TRUE
 				)
 			);
-//M			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie', 
-//					array('reload' => TRUE));
+
 			$this->show_details = TRUE;
 		}
 	}
@@ -216,7 +213,7 @@ class Controller_User extends Controller_Automatic{
 				->set('error', $this->error);
 			$this->view_container = View::factory('Component/Access/Login')
 				->set('form_login', $this->view_content);
-//			$this->set_status_message('Warning', 'Correct your data');
+
 			Message::instance()->set(Message::WARNING);
 		}
 		else
@@ -225,7 +222,7 @@ class Controller_User extends Controller_Automatic{
 				->set('user', Auth::instance()->get_user()->as_array());
 			$this->view_container = View::factory('Component/Access/Login')
 				->set('form_login', $this->view_content);
-	//		$this->set_status_message('Success', 'Logowanie przebiegło pomyślnie', array('reload' => TRUE));
+
 			Message::instance()->set(Message::SUCCESS, NULL, 
 				array(
 					'reload' => TRUE
@@ -245,7 +242,7 @@ class Controller_User extends Controller_Automatic{
 			$this->redirect_user(FALSE);
 			Auth::instance()->logout();
 			$this->view_content=View::factory('Component/Info/Logout/Success');
-			$this->set_status_message('Success', 'Wylogowano użytkownika', array('reload'=>TRUE));
+
 			Message::instance()->set(Message::SUCCESS, NULL, 
 				array(
 					'reload' => TRUE
@@ -288,7 +285,7 @@ class Controller_User extends Controller_Automatic{
 					$registrate_success = TRUE;
 				}catch(Database_Exception $dbex){
 					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
-	//M				$this->set_status_message('Error', 'Probably database is busy. Try again in a while'); 
+
 					var_dump($dbex);
 				}
 			}
@@ -313,7 +310,7 @@ class Controller_User extends Controller_Automatic{
 				->set('form_registrate', $form);
 			
 			Message::instance()->set(Message::WARNING);
-//M			$this->set_status_message('Warning', 'Correct your data');
+
 		}
 		else 
 		{
@@ -323,7 +320,7 @@ class Controller_User extends Controller_Automatic{
 				->set('form_registrate', $this->view_content);
 			
 			Message::instance()->set(Message::SUCCESS);
-//M			$this->set_status_message('Success', 'Rejestracja zakończona powodzeniem');
+
 		}
 	}
 	public static function add_role($user, $role_name)
