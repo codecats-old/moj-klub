@@ -6,7 +6,8 @@
                 	<h4>
                 		<span class="badge badge-success">
                 			<strong class="lead">&#10162;</strong>
-                		</span>Operacja wykonana poprawnie!
+                		</span>
+<?php echo Arr::get($messages, 'message');?>
                 	</h4>
                 </div>
 <?php if($info):?>

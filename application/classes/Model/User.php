@@ -12,7 +12,7 @@ class Model_User extends Model_Auth_User{
 	);
 	protected $_belongs_to=array(
 		'avatar'=>array(
-			'model'=>'avatar',
+			'model'=>'Avatar',
 			'foreign_key'=>'avatar_id'
 		),
 		'team'=>array(

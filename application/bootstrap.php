@@ -122,7 +122,8 @@ Kohana::modules(array(
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 	'captcha'	=> MODPATH.'captcha',	//Captha module
-	'message'	=> MODPATH.'message'	//Flash messages
+	'message'	=> MODPATH.'message',	//Flash messages
+	'manager'	=> MODPATH.'manager'	//Manipulate model and post data
 	));
 /**
  * Composer

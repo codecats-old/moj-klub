@@ -35,7 +35,7 @@ class Kohana_Message {
 	 * Message instance
 	 * 
 	 * @param string config name
-	 * @return instance 
+	 * @return Kohana_Message 
 	 */
 	public static function instance($group='default')
 	{
@@ -145,30 +145,41 @@ class Kohana_Message {
 	 */
 	public function render($view = NULL, $clear = FALSE)
 	{
+		return $this->get_view($view, $clear)->render();
+	}
+	
+	/**
+	 * Get view for the message(s), and by default do not clears them.
+	 *
+	 * @param   mixed    string of the view to use, or a Kohana_View object
+	 * @param   boolean  set to FALSE to not clear messages
+	 * @return  View
+	 */
+	public function get_view($view = NULL, $clear = FALSE)
+	{
 		// Nothing to render
 		if (($messages = $this->get()) === NULL)
 			return '';
-
+		
 		// Clear all messages
 		if ($clear === TRUE)
 		{
 			$this->clear();
 		}
-
+		
 		if ($view === NULL)
 		{
 			// Use the config view
 			$view = $this->config['view']['path'];
 		}
-
+		
 		if ( ! $view instanceof Kohana_View)
 		{
 			// Load the view file
 			$view = View::factory($view);
 		}
-
+		
 		// Return the rendered view
-		return $view->set('messages', $messages)->render();
+		return $view->set('messages', $messages);
 	}
-
 }

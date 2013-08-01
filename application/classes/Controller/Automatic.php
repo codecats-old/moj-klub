@@ -70,7 +70,6 @@ class Controller_Automatic extends Controller_Template{
 			//Prepare JSON pack for ajax or result for HMVC request
 			$json_array=array(
 					'View'=>$this->view_content,
-		//			'status'=>$this->status
 					'status' => Message::instance()->get()
 			);
 				
@@ -106,7 +105,7 @@ class Controller_Automatic extends Controller_Template{
 				
 			if(Auth::instance()->logged_in() === TRUE)
 			{
-				View::set_global('user', Auth::instance()->get_user()->as_array());
+	//			View::set_global('user', Auth::instance()->get_user()->as_array());
 				$roles=Auth::instance()->get_user()->roles->find_all();
 				$cookie=implode(',', $roles->as_array());
 				Cookie::set('roles', $cookie);

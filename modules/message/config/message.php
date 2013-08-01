@@ -10,7 +10,7 @@
 return array(
 		'default' => array(
 			'messages' => array(
-				'Success'	=>	'Success',
+				'Success'	=>	'Success operation',
 				'Error'		=>	'System error',
 				'Warning'	=>	'Incorrect data',
 				'Info'		=>	'Updated',
