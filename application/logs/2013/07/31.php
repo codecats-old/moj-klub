@@ -103,3 +103,208 @@
 #22 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #23 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #24 {main} in /home/t/www/moj-klub/application/views/Header/Loged.php:5
+2013-07-31 20:19:28 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: user ~ APPPATH/views/Component/Menu/User/Details.php [ 72 ] in /home/t/www/moj-klub/application/views/Component/Menu/User/Details.php:72
+2013-07-31 20:19:28 --- DEBUG: #0 /home/t/www/moj-klub/application/views/Component/Menu/User/Details.php(72): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 72, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/system/classes/Kohana/View.php(228): Kohana_View->render()
+#4 /home/t/www/moj-klub/application/views/Container/User/Main.php(14): Kohana_View->__toString()
+#5 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#6 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#7 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(79): Kohana_View->render()
+#8 /home/t/www/moj-klub/application/classes/Controller/User.php(18): Controller_Automatic->after()
+#9 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_User->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#14 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#15 {main} in /home/t/www/moj-klub/application/views/Component/Menu/User/Details.php:72
+2013-07-31 20:21:10 --- EMERGENCY: ErrorException [ 2 ]: Missing argument 2 for Kohana_Message::set(), called in /home/t/www/moj-klub/application/classes/Controller/User.php on line 26 and defined ~ MODPATH/message/classes/Kohana/Message.php [ 31 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:31
+2013-07-31 20:21:10 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(31): Kohana_Core::error_handler(2, 'Missing argumen...', '/home/t/www/moj...', 31, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(26): Kohana_Message::set('success')
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:31
+2013-07-31 20:21:43 --- EMERGENCY: View_Exception [ 0 ]: The requested view message/basic could not be found ~ SYSPATH/classes/Kohana/View.php [ 257 ] in /home/t/www/moj-klub/system/classes/Kohana/View.php:137
+2013-07-31 20:21:43 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/View.php(137): Kohana_View->set_filename('message/basic')
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(30): Kohana_View->__construct('message/basic', NULL)
+#2 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(95): Kohana_View::factory('message/basic')
+#3 /home/t/www/moj-klub/application/classes/Controller/User.php(27): Kohana_Message::render()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#5 [internal function]: Kohana_Controller->execute()
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#9 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#10 {main} in /home/t/www/moj-klub/system/classes/Kohana/View.php:137
+2013-07-31 20:35:12 --- EMERGENCY: Exception [ 0 ]:  ~ MODPATH/message/init.php [ 3 ] in /home/t/www/moj-klub/system/classes/Kohana/Core.php:602
+2013-07-31 20:35:12 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Core.php(602): require_once()
+#1 /home/t/www/moj-klub/application/bootstrap.php(126): Kohana_Core::modules(Array)
+#2 /home/t/www/moj-klub/index.php(102): require('/home/t/www/moj...')
+#3 {main} in /home/t/www/moj-klub/system/classes/Kohana/Core.php:602
+2013-07-31 20:52:31 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: this ~ MODPATH/message/classes/Kohana/Message.php [ 28 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:28
+2013-07-31 20:52:31 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(28): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 28, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(27): Kohana_Message::instance()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:28
+2013-07-31 20:53:13 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: this ~ MODPATH/message/classes/Kohana/Message.php [ 28 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:28
+2013-07-31 20:53:13 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(28): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 28, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(27): Kohana_Message::instance()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:28
+2013-07-31 20:53:27 --- EMERGENCY: ErrorException [ 8 ]: Use of undefined constant self - assumed 'self' ~ MODPATH/message/classes/Kohana/Message.php [ 28 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:28
+2013-07-31 20:53:27 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(28): Kohana_Core::error_handler(8, 'Use of undefine...', '/home/t/www/moj...', 28, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(27): Kohana_Message::instance()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:28
+2013-07-31 21:24:24 --- EMERGENCY: ErrorException [ 8 ]: Use of undefined constant self - assumed 'self' ~ MODPATH/message/classes/Kohana/Message.php [ 50 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:50
+2013-07-31 21:24:24 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(50): Kohana_Core::error_handler(8, 'Use of undefine...', '/home/t/www/moj...', 50, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(27): Kohana_Message::instance()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:50
+2013-07-31 21:27:54 --- EMERGENCY: ErrorException [ 1 ]: Class name must be a valid object or a string ~ MODPATH/message/classes/Kohana/Message.php [ 40 ] in :
+2013-07-31 21:27:54 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-07-31 21:50:21 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Message::version() ~ APPPATH/classes/Controller/User.php [ 27 ] in :
+2013-07-31 21:50:21 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-07-31 21:52:12 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: state ~ MODPATH/message/classes/Kohana/Message.php [ 60 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:60
+2013-07-31 21:52:12 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(60): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 60, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(98): Kohana_Message->set_debug('Warning')
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_change_password()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:60
+2013-07-31 21:53:17 --- EMERGENCY: ErrorException [ 2 ]: Missing argument 2 for Kohana_Message::set_debug(), called in /home/t/www/moj-klub/application/classes/Controller/User.php on line 98 and defined ~ MODPATH/message/classes/Kohana/Message.php [ 56 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:56
+2013-07-31 21:53:17 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(56): Kohana_Core::error_handler(2, 'Missing argumen...', '/home/t/www/moj...', 56, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(98): Kohana_Message->set_debug('Warning')
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_change_password()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:56
+2013-07-31 21:56:47 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: msg ~ MODPATH/message/classes/Kohana/Message.php [ 61 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:61
+2013-07-31 21:56:47 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(61): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 61, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/User.php(98): Kohana_Message->set_debug('Warning')
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_change_password()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:61
+2013-07-31 21:57:31 --- EMERGENCY: ErrorException [ 2 ]: Missing argument 1 for Kohana_Message::get_debug(), called in /home/t/www/moj-klub/application/classes/Controller/Automatic.php on line 74 and defined ~ MODPATH/message/classes/Kohana/Message.php [ 84 ] in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:84
+2013-07-31 21:57:31 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(84): Kohana_Core::error_handler(2, 'Missing argumen...', '/home/t/www/moj...', 84, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(74): Kohana_Message->get_debug()
+#2 /home/t/www/moj-klub/application/classes/Controller/User.php(18): Controller_Automatic->after()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_User->after()
+#4 [internal function]: Kohana_Controller->execute()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#8 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#9 {main} in /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php:84
+2013-07-31 22:11:48 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function set() on a non-object ~ APPPATH/classes/Controller/User.php [ 14 ] in :
+2013-07-31 22:11:48 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-07-31 22:12:23 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function set() on a non-object ~ APPPATH/classes/Controller/User.php [ 14 ] in :
+2013-07-31 22:12:23 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-07-31 22:15:32 --- EMERGENCY: ErrorException [ 8 ]: Trying to get property of non-object ~ MODPATH/message/views/Message/Basic.php [ 3 ] in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:15:32 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/views/Message/Basic.php(3): Kohana_Core::error_handler(8, 'Trying to get p...', '/home/t/www/moj...', 3, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(177): Kohana_View->render()
+#4 /home/t/www/moj-klub/application/classes/Controller/User.php(28): Kohana_Message->render()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:16:41 --- EMERGENCY: ErrorException [ 8 ]: Trying to get property of non-object ~ MODPATH/message/views/Message/Basic.php [ 3 ] in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:16:41 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/views/Message/Basic.php(3): Kohana_Core::error_handler(8, 'Trying to get p...', '/home/t/www/moj...', 3, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(177): Kohana_View->render()
+#4 /home/t/www/moj-klub/application/classes/Controller/User.php(28): Kohana_Message->render()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:17:20 --- EMERGENCY: ErrorException [ 8 ]: Trying to get property of non-object ~ MODPATH/message/views/Message/Basic.php [ 3 ] in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:17:20 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/views/Message/Basic.php(3): Kohana_Core::error_handler(8, 'Trying to get p...', '/home/t/www/moj...', 3, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(177): Kohana_View->render()
+#4 /home/t/www/moj-klub/application/classes/Controller/User.php(28): Kohana_Message->render()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:20:12 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ''?>' (T_ENCAPSED_AND_WHITESPACE), expecting ',' or ';' ~ MODPATH/message/views/Message/Basic.php [ 4 ] in :
+2013-07-31 22:20:12 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-07-31 22:20:32 --- EMERGENCY: ErrorException [ 2 ]: Illegal string offset 'state' ~ MODPATH/message/views/Message/Basic.php [ 3 ] in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:20:32 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/views/Message/Basic.php(3): Kohana_Core::error_handler(2, 'Illegal string ...', '/home/t/www/moj...', 3, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(177): Kohana_View->render()
+#4 /home/t/www/moj-klub/application/classes/Controller/User.php(28): Kohana_Message->render()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:3
+2013-07-31 22:21:00 --- EMERGENCY: ErrorException [ 2 ]: Illegal string offset 'state' ~ MODPATH/message/views/Message/Basic.php [ 4 ] in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:4
+2013-07-31 22:21:00 --- DEBUG: #0 /home/t/www/moj-klub/modules/message/views/Message/Basic.php(4): Kohana_Core::error_handler(2, 'Illegal string ...', '/home/t/www/moj...', 4, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/modules/message/classes/Kohana/Message.php(177): Kohana_View->render()
+#4 /home/t/www/moj-klub/application/classes/Controller/User.php(28): Kohana_Message->render()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_User->action_index()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/modules/message/views/Message/Basic.php:4

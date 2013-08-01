@@ -107,6 +107,7 @@ Kohana::$config->attach(new Config_File);
 
 
 Cookie::$salt='a~d@d!s*o$m%e^7salt';
+
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
@@ -120,7 +121,8 @@ Kohana::modules(array(
 	 'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	// 'unittest'   => MODPATH.'unittest',   // Unit testing
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
-	'captcha'	=> MODPATH.'captcha'
+	'captcha'	=> MODPATH.'captcha',	//Captha module
+	'message'	=> MODPATH.'message'	//Flash messages
 	));
 /**
  * Composer

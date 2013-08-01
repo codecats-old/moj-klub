@@ -23,6 +23,13 @@ class Controller_User extends Controller_Automatic{
 		$this->view_container=View::factory('Container/User/Main');
 		$this->view_content=$this->view_container;
 		$this->show_details = TRUE;
+
+		
+		//Message::instance()->version();
+	/*	Message::set(Message::SUCCESS, 'Sukces');
+		Message::set(Message::SUCCESS, 'Warn');
+		echo Message::render();
+		*/
 		/*
 		$view_details=$this->get_view_details();
 		$view_component_about_user=View::factory('Component/About/User');
@@ -49,7 +56,9 @@ class Controller_User extends Controller_Automatic{
 		//	->set('view_component_about_user', $view_component_about_user)
 		//	->set('view_details', $view_details)
 			->set('user_form', $this->view_content);
-		$this->set_status_message($json_pack->status->state, $json_pack->status->message);
+
+		Message::instance()->set($json_pack->status->state, $json_pack->status->message);
+//M $this->set_status_message($json_pack->status->state, $json_pack->status->message);
 		$this->show_details = TRUE;
 	}
 	public function action_change_password()
@@ -69,7 +78,8 @@ class Controller_User extends Controller_Automatic{
 					Auth::instance()->get_user()->reload();
 					$change_success=TRUE;
 				}catch(Database_Exception $dbex){
-					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
+//M			$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
 					$this->content=print_r($dbex, TRUE);
 					echo $this->content;
 				}
@@ -88,7 +98,8 @@ class Controller_User extends Controller_Automatic{
 			$this->view_container=View::factory('Container/User/Main')
 			//	->set('view_details', $view_details)
 				->set('user_form', $user_form);
-			$this->set_status_message('Warning', 'Correct your data');
+//M	$this->set_status_message('Warning', 'Correct your data');
+			Message::instance()->set(Message::WARNING);
 			$this->show_details = TRUE;
 		}
 		else
@@ -99,7 +110,8 @@ class Controller_User extends Controller_Automatic{
 			$this->view_container=View::factory('Container/User/Main')
 		//	->set('view_details', $view_details)
 			->set('user_form', $view_success);
-			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie');
+			Message::instance()->set(Message::SUCCESS);
+//M			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie');
 			$this->show_details = TRUE;
 		}
 	}
@@ -109,7 +121,7 @@ class Controller_User extends Controller_Automatic{
 		$change_success = FALSE;
 		$post = $this->request->post();
 		$user = clone Auth::instance()->get_user();
-		$info=$user->info;
+		$info = $user->info;
 		if ($post)
 		{
 			$this->set_post_user_data($user, $post);
@@ -123,7 +135,8 @@ class Controller_User extends Controller_Automatic{
 					Auth::instance()->get_user()->reload();
 					$change_success = TRUE;
 				}catch(Database_Exception $dbex){
-					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
+			//M		$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
 					$this->content=print_r($dbex, TRUE);
 					echo $this->content;
 				}
@@ -144,7 +157,8 @@ class Controller_User extends Controller_Automatic{
 			$this->view_container=View::factory('Container/User/Main')
 		//		->set('view_details', $view_details)
 				->set('user_form', $user_form);
-			$this->set_status_message('Warning', 'Correct your data');
+			Message::instance()->set(Message::WARNING);
+	//M		$this->set_status_message('Warning', 'Correct your data');
 			$this->show_details = TRUE;
 		}
 		else
@@ -155,8 +169,14 @@ class Controller_User extends Controller_Automatic{
 			$this->view_container=View::factory('Container/User/Main')
 			//	->set('view_details', $view_details)
 				->set('user_form', $view_success);
-			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie', 
-					array('reload' => TRUE));
+			
+			Message::instance()->set(Message::SUCCESS, NULL, 
+				array(
+					'reload' => TRUE
+				)
+			);
+//M			$this->set_status_message('Success', 'Zmiana danych przebiegła pomyślnie', 
+//					array('reload' => TRUE));
 			$this->show_details = TRUE;
 		}
 	}
@@ -196,7 +216,8 @@ class Controller_User extends Controller_Automatic{
 				->set('error', $this->error);
 			$this->view_container = View::factory('Component/Access/Login')
 				->set('form_login', $this->view_content);
-			$this->set_status_message('Warning', 'Correct your data');
+//			$this->set_status_message('Warning', 'Correct your data');
+			Message::instance()->set(Message::WARNING);
 		}
 		else
 		{
@@ -204,7 +225,12 @@ class Controller_User extends Controller_Automatic{
 				->set('user', Auth::instance()->get_user()->as_array());
 			$this->view_container = View::factory('Component/Access/Login')
 				->set('form_login', $this->view_content);
-			$this->set_status_message('Success', 'Logowanie przebiegło pomyślnie', array('reload' => TRUE));			
+	//		$this->set_status_message('Success', 'Logowanie przebiegło pomyślnie', array('reload' => TRUE));
+			Message::instance()->set(Message::SUCCESS, NULL, 
+				array(
+					'reload' => TRUE
+				)
+			);			
 		}
 	}
 	public function action_logout()
@@ -220,6 +246,11 @@ class Controller_User extends Controller_Automatic{
 			Auth::instance()->logout();
 			$this->view_content=View::factory('Component/Info/Logout/Success');
 			$this->set_status_message('Success', 'Wylogowano użytkownika', array('reload'=>TRUE));
+			Message::instance()->set(Message::SUCCESS, NULL, 
+				array(
+					'reload' => TRUE
+				)
+			);
 	//	}
 	}
 	public function action_registrate()
@@ -256,7 +287,8 @@ class Controller_User extends Controller_Automatic{
 					self::add_role($user, 'player');
 					$registrate_success = TRUE;
 				}catch(Database_Exception $dbex){
-					$this->set_status_message('Error', 'Probably database is busy. Try again in a while'); 
+					Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
+	//M				$this->set_status_message('Error', 'Probably database is busy. Try again in a while'); 
 					var_dump($dbex);
 				}
 			}
@@ -279,7 +311,9 @@ class Controller_User extends Controller_Automatic{
 			$this->view_content=$form;
 			$this->view_container=View::factory('Component/Access/Registrate')
 				->set('form_registrate', $form);
-			$this->set_status_message('Warning', 'Correct your data');
+			
+			Message::instance()->set(Message::WARNING);
+//M			$this->set_status_message('Warning', 'Correct your data');
 		}
 		else 
 		{
@@ -287,7 +321,9 @@ class Controller_User extends Controller_Automatic{
 				->set('user', $user->as_array());
 			$this->view_container=View::factory('Component/Access/Registrate')
 				->set('form_registrate', $this->view_content);
-			$this->set_status_message('Success', 'Rejestracja zakończona powodzeniem');
+			
+			Message::instance()->set(Message::SUCCESS);
+//M			$this->set_status_message('Success', 'Rejestracja zakończona powodzeniem');
 		}
 	}
 	public static function add_role($user, $role_name)

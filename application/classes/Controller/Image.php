@@ -82,14 +82,17 @@ class Controller_Image extends Controller_Automatic{
 		{
 			$form_upload=$this->get_view_upload('Avatar')->set('error', $this->error);
 			$this->view_content=$form_upload;
-			$this->set_status_message('Warning', 'Zmiana danych przebiegła pomyślnie');
+			
+			Message::instance()->set(Message::WARNING);
+			//$this->set_status_message('Warning', 'Zmiana danych przebiegła pomyślnie');
 		}
 		else
 		{
 			$view_success=View::factory('Component/Info/Success')
 				->set('info', 'zmiana będzie widoczna do 5 min');
 			$this->view_content=$view_success;
-			$this->set_status_message('Warning', 'Correct your data');
+			Message::instance()->set(Message::SUCCESS);
+	//		$this->set_status_message('Warning', 'Correct your data');
 		}
 
 	}
