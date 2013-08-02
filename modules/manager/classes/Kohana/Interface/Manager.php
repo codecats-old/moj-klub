@@ -10,7 +10,14 @@
 interface Kohana_Interface_Manager{
 	
 	/**
-	 * Set data to view
+	 * Results view from last executed action
+	 * 
+	 * @param string $name
+	 */
+	public function get_views_result($name);
+	
+	/**
+	 * Set data object to view
 	 * 
 	 * @param View $view
 	 */

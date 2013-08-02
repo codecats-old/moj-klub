@@ -12,27 +12,27 @@
 		getAccessTable : function() {
 			return this.accessTable;
 		},
-		/**
-		 * TODO: ask serwer for cookie method
-		 */
 		askForAccessCookie : function() {
 			var action = new strz_Ajax.NodeAction();
-			
+
 			var protocol = window.document.location.protocol;
 			var host = window.document.location.host;
 			var secoundLevel = window.location.pathname.split('/')[1];
-			
-			var destination = protocol+'//'+host+'/'+secoundLevel+'/index.php/ajax/roles';
-			
+
+			var destination = protocol + '//' + host + '/' + secoundLevel
+					+ '/index.php/ajax/roles';
+
 			action.setSendToURL(destination)
-			action.ajaxDone=function(){};
+			action.ajaxDone = function() {
+			};
 			action.ajaxInitialize();
 		},
 		readAccessTableCookie : function() {
 			var roles = $.cookie('roles');
-			
-			if( typeof roles == 'undefined') this.askForAccessCookie();
-			
+
+			if (typeof roles == 'undefined')
+				this.askForAccessCookie();
+
 			roles = roles.split('~')[1];
 			var rolesTable = roles.split(',');
 			this.setAccessTable(rolesTable);

@@ -69,7 +69,7 @@ class Controller_Automatic extends Controller_Template{
 		{
 			//Prepare JSON pack for ajax or result for HMVC request
 			$json_array=array(
-					'View'=>$this->view_content,
+					'View' => $this->view_content,
 					'status' => Message::instance()->get()
 			);
 				
