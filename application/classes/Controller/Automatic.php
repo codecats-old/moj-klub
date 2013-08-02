@@ -102,19 +102,6 @@ class Controller_Automatic extends Controller_Template{
 			*/
 			$header_menu_access=new Controller_Header_Menu_Access;
 			$this->template->set('header_menu_access',$header_menu_access->get_menu());
-				
-			if(Auth::instance()->logged_in() === TRUE)
-			{
-	//			View::set_global('user', Auth::instance()->get_user()->as_array());
-				$roles=Auth::instance()->get_user()->roles->find_all();
-				$cookie=implode(',', $roles->as_array());
-				Cookie::set('roles', $cookie);
-			}
-			else
-			{
-				//TODO: set cookie to difference action executed by AJAX call
-				Cookie::set('roles', '-1');
-			}
 		}
 		parent::after();
 	}

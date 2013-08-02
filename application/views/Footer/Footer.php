@@ -25,10 +25,10 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Team/TeamIndex.js');?>
 
-<?php  echo HTML::script('assets/script/Js/Ajax/Controller/Guest.js');?>
-<?php  echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Guest.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
 
-<?php  echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
 
 
 

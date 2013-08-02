@@ -9,12 +9,12 @@
                             <div class="item">
 <?php echo HTML::image('./upload/Club/12345/Img/club-photo2.JPG');?>
                             </div>
-                            <div class="active item">
+                       <!--      <div class="active item">
 <video id="welcomeVideo" loop="loop" autoplay="autoplay">
 <source type="video/mp4" src="https://x.myspacecdn.com/new/common/videos/bg/splash_bg1.mp4.mp4"></source>
 <source type="video/webm" src="https://x.myspacecdn.com/new/common/videos/bg/splash_bg1.webm"></source>
 </video>
-                            </div>
+                            </div> -->
                         </div>
                         <ul class="pager">
                             <li>

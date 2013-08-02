@@ -27,9 +27,8 @@ class Manager_User extends Manager{
 		return $this->set_post_user_data($this->object, $data);
 	}
 
-	public function set_data_info($data)
+	public function set_data_info($info, $data)
 	{
-		$info = $this->object->info;
 		return $this->set_post_info_data($info, $data);
 	}
 	/**
@@ -40,10 +39,10 @@ class Manager_User extends Manager{
 	 */
 	private function set_post_user_data($user, $post)
 	{
-		//if(isset($post['email']))$user->set('email', $post['email']);
 		$this->set_if_isset($user, $post, 'email');
 		$this->set_if_isset($user, $post, 'username');
 		$this->set_if_isset($user, $post, 'password');
+
 		return $user;
 	}
 	private function set_post_info_data($info, $post)
@@ -86,9 +85,11 @@ class Manager_User extends Manager{
 	{
 		$team_roles=array();
 		$item=0;
+		$roles = $this->object->get_teams_roles();
+
 		foreach ($roles->as_array() as $role)
 		{
-			if ($role->name!='login' AND $role->name!='admin')$team_roles[$item++]=$role->name;
+			array_push($team_roles, $role->name);
 		}
 		return $team_roles;
 	}

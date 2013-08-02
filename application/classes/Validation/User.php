@@ -14,10 +14,7 @@ class Validation_User extends Validation_General{
 	}
 	public static function is_unique($col, $field, $model='User')
 	{
-	/*	$obj=ORM::factory('User', array($col=>$field));
-		$unique=!$obj->loaded();
-		return $unique;*/
-		parent::is_unique($col, $field, $model);
+		return parent::is_unique($col, $field, $model);
 	}
 	public static function is_correct_password($val)
 	{

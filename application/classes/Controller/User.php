@@ -11,7 +11,7 @@ class Controller_User extends Controller_Automatic{
 	/**
 	 * Main data about logged in user, main view is called view_container, it's site wrapper,
 	 * most important information from each action is in view_content, when request is from
-	 * XHR or not initial the view_content is alway responded
+	 * XHR or not initial the view_content is alway responded.
 	 * 
 	 */
 	public function action_index()
@@ -49,7 +49,7 @@ class Controller_User extends Controller_Automatic{
 		$this->view_content=unserialize($json_pack->View);
 
 		$this->view_container=View::factory('Container/User/Main')
-		->set('user_form', $this->view_content);
+			->set('user_form', $this->view_content);
 
 		Message::instance()->set($json_pack->status->state, $json_pack->status->message);
 
@@ -60,7 +60,7 @@ class Controller_User extends Controller_Automatic{
 	/**
 	 * Change password, the user data is stored in Session so the best way to manipulate is make
 	 * clone. Manager use that clone to prepare data from post and associate it to user. After
-	 * validation object is ready to save, to update data in session. Good thing is do reaload user,
+	 * validation object is ready to save and update data in session. Good thing is do reaload user,
 	 * because we don't need old data in session.
 	 * After all manager sets user data to suitable views.
 	 * 
@@ -72,7 +72,7 @@ class Controller_User extends Controller_Automatic{
 		//redirect not logged in users to default controller
 		$this->redirect_user(FALSE);
 		
-		//flag if operation is success
+		//flag if operation is success or not
 		$change_success = FALSE;
 
 		//main data/objects section
@@ -203,15 +203,13 @@ class Controller_User extends Controller_Automatic{
 			Message::instance()->set(Message::WARNING);
 				
 			$user_form=View::factory('Component/Form/Change/User')
-			->set('info', $info->as_array())
-			->set('user', $user->as_array())
-			->set('error', $this->error);
+				->set('info', $info->as_array())
+				->set('user', $user->as_array())
+				->set('error', $this->error);
 			$this->view_content=$user_form;
 
 			$this->view_container=View::factory('Container/User/Main')
-			->set('user_form', $user_form);
-				
-
+				->set('user_form', $user_form);
 		}
 		else
 		{
@@ -276,16 +274,16 @@ class Controller_User extends Controller_Automatic{
 		}
 		else
 		{
-			$this->view_content = View::factory('Component/Info/Login/Success')
-				->set('user', Auth::instance()->get_user()->as_array());
-			$this->view_container = View::factory('Component/Access/Login')
-				->set('form_login', $this->view_content);
-
 			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
+				array(
 					'reload' => TRUE
 				)
 			);
+			
+			$this->view_content = Message::instance()->get_view('Component/Info/Login/Success')
+				->set('user', Auth::instance()->get_user()->as_array());
+			$this->view_container = View::factory('Component/Access/Login')
+				->set('form_login', $this->view_content);
 		}
 	}
 	
@@ -306,13 +304,13 @@ class Controller_User extends Controller_Automatic{
 		// where 'k' is session key with salt hashed by sha2
 		$this->redirect_user(FALSE);
 		Auth::instance()->logout();
-		$this->view_content=View::factory('Component/Info/Logout/Success');
-
+		
 		Message::instance()->set(Message::SUCCESS, NULL,
-		array(
+			array(
 				'reload' => TRUE
 			)
 		);
+		$this->view_content = Message::instance()->get_view('Component/Info/Logout/Success');
 	}
 		
 	/**
@@ -324,19 +322,19 @@ class Controller_User extends Controller_Automatic{
 		$this->redirect_user();
 		
 		$registrate_success=FALSE;
-		$post=$this->request->post();
+		$post = $this->request->post();
 
-		$user=ORM::factory('User');
-		$info=ORM::factory('Info');
+		$user = ORM::factory('User');
+		$info = ORM::factory('Info');
 
 		$manager = Manager::factory('User', $user);
 
 		if ($post)
 		{
 			$manager->set_data($post);
-			$manager->set_data_info($post);
-				
-			$validator=$user->validate_register($post);
+			$manager->set_data_info($info, $post);
+
+			$validator = $user->validate_register($post);
 			if ($validator->check())
 			{
 				try
@@ -365,14 +363,15 @@ class Controller_User extends Controller_Automatic{
 			$info->set('show_phone', TRUE);
 			$info->set('show_email', TRUE);
 		}
+		
 		if ($registrate_success === FALSE)
 		{
 			Message::instance()->set(Message::WARNING);
 			
-			$captcha=Captcha::instance();
-			$form=View::factory('Component/Form/Registrate')
+			$captcha = Captcha::instance();
+			$form = View::factory('Component/Form/Registrate')
 				->set('user', $user->as_array())
-				->set('info',$info->as_array())
+				->set('info', $info->as_array())
 				->set('captcha',$captcha)
 				->set('error', $this->error);
 			$this->view_content=$form;
@@ -383,17 +382,18 @@ class Controller_User extends Controller_Automatic{
 		{
 			Message::instance()->set(Message::SUCCESS);
 			
-			$this->view_content=View::factory('Component/Info/Registrate/Success')
+			$this->view_content = Message::instance()->get_view('Component/Info/Registrate/Success')
 				->set('user', $user->as_array());
-			$this->view_container=View::factory('Component/Access/Registrate')
+			$this->view_container = View::factory('Component/Access/Registrate')
 				->set('form_registrate', $this->view_content);
 		}
 	}
+	
 	/**
 	 * DRY so better call function with adding role sequention
 	 * 
-	 * @param unknown $user
-	 * @param unknown $role_name
+	 * @param ORM $user
+	 * @param ORM $role_name
 	 */
 	public static function add_role($user, $role_name)
 	{

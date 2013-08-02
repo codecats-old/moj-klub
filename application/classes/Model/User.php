@@ -1,5 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 class Model_User extends Model_Auth_User{
+	
 	protected $_has_many=array(
 		'roles'=>array(
 			'through'=>'role_users'
@@ -20,6 +21,14 @@ class Model_User extends Model_Auth_User{
 				'foreign_key'=>'team_id'
 		)
 	);
+	
+	public function get_teams_roles()
+	{
+		return $this->roles
+			->where('name', '<>', 'login')
+			->where('name', '<>', 'admin')
+			->find_all(); 
+	}
 	public function validate_register($post)
 	{
 		$validation=new Validation_User($post);
