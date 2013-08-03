@@ -26,7 +26,7 @@ interface Kohana_Interface_Manager{
 	/**
 	 * Set data to object
 	 * 
-	 * @ param array
+	 * @param array
 	 */
 	public function set_data($data);
 }

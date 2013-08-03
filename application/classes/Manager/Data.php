@@ -76,7 +76,7 @@ abstract class Manager_Data extends Manager{
 	}
 	
 	/**
-	 * Set value from array to object
+	 * Set value from array to object if is set
 	 * 
 	 * @param ORM $orm
 	 * @param array $arr
@@ -85,5 +85,17 @@ abstract class Manager_Data extends Manager{
 	protected final function set_if_isset($orm, $arr, $field)
 	{
 		if (isset($arr[$field]))$orm->set($field, $arr[$field]);
+	}
+	
+	/**
+	 * Set value from array to object if is not empty
+	 * 
+	 * @param ORM $orm
+	 * @param array $arr
+	 * @param string $field
+	 */
+	protected final function set_if_not_empty($orm, $arr, $field)
+	{
+		if(empty($arr[$field])===FALSE)$orm->set($field, $arr[$field]);
 	}
 }

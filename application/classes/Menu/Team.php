@@ -4,7 +4,6 @@ class Menu_Team extends Menu{
 
 	public function prepare_resources()
 	{
-		
 		$resource = Zend_Acl::get_generic_resource('edit');
 		$this->add_resource($resource)
 		->add_resource(Menu::get_generic_resource('description'), $resource)

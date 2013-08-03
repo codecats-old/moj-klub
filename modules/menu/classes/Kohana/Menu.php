@@ -6,14 +6,14 @@
  *
  * Extending Zend_Acl Resources creator on given roles.
  */
-abstract class Kohana_Menu extends Zend_Acl{
+abstract class Kohana_Menu extends Zend_Acl implements Kohana_Interface_Menu{
 	
 	/**
 	 * 
 	 * 
 	 * @param string $name
 	 * @param ORM $user
-	 * @return $this
+	 * @return Menu instance
 	 */
 	public static function factory($name, $user)
 	{

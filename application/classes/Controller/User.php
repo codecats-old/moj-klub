@@ -25,6 +25,7 @@ class Controller_User extends Controller_Automatic{
 		$this->view_content=$this->view_container;
 
 		$user=Auth::instance()->get_user();
+		
 		// set details views for main site
 		Manager::factory('User', $user)->set_view_details($this->view_container);
 	}
@@ -36,10 +37,10 @@ class Controller_User extends Controller_Automatic{
 	public function action_change_user_avatar()
 	{
 		$this->redirect_user(FALSE);
-		$change_success = FALSE;
 
 		$user = Auth::instance()->get_user();
 		$manager = Manager::factory('User', $user);
+		
 		$manager->change_user_avatar($this->request->post());
 		
 		$this->view_container = $manager->get_views_result('container');
@@ -59,7 +60,9 @@ class Controller_User extends Controller_Automatic{
 		$post = $this->request->post();
 		$user = clone Auth::instance()->get_user();
 		$manager = Manager::factory('User', $user);
+		
 		$manager->change_password($post);
+		
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
 	}
@@ -74,7 +77,9 @@ class Controller_User extends Controller_Automatic{
 		$post = $this->request->post();
 		$user = clone Auth::instance()->get_user();
 		$manager = Manager::factory('User', $user);
+		
 		$manager->change_data($post);
+		
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
 	}
@@ -85,11 +90,12 @@ class Controller_User extends Controller_Automatic{
 	public function action_login()
 	{
 		$this->redirect_user();
+		
 		$post = $this->request->post();
 		$param_id = $this->request->param('id');
 		$user = ORM::factory('User');
-
 		$manager = Manager::factory('User', $user);
+		
 		$manager->login($post, $param_id);
 		
 		$this->view_container = $manager->get_views_result('container');
@@ -112,6 +118,7 @@ class Controller_User extends Controller_Automatic{
 		//echo mcrypt_ecb (MCRYPT_3DES, 'k', $cry, MCRYPT_DECRYPT);
 		// where 'k' is session key with salt hashed by sha2
 		$this->redirect_user(FALSE);
+		
 		Auth::instance()->logout();
 		
 		Message::instance()->set(Message::SUCCESS, NULL,
@@ -130,12 +137,10 @@ class Controller_User extends Controller_Automatic{
 		//redirect if user is logged in
 		$this->redirect_user();
 		
-		$registrate_success=FALSE;
 		$post = $this->request->post();
-
 		$user = ORM::factory('User');
-		
 		$manager = Manager::factory('User', $user);
+		
 		$manager->registrate($post);
 		
 		$this->view_container = $manager->get_views_result('container');

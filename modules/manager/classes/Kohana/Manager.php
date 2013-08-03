@@ -11,7 +11,7 @@ abstract class Kohana_Manager implements Kohana_Interface_Manager {
 	/**
 	 * Object to manage
 	 * 
-	 * @var unknown
+	 * @var ORM element on Manager's manipulations
 	 */
 	protected $object;
 	
