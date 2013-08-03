@@ -367,16 +367,6 @@ class Manager_User extends Manager_Data{
 
 	/**
 	 * (non-PHPdoc)
-	 * @see Kohana_Interface_Manager::get_views_result()
-	 */
-	public function get_views_result($name)
-	{
-		$view='view_'.$name;
-		return $this->$view;
-	}
-
-	/**
-	 * (non-PHPdoc)
 	 * @see Kohana_Interface_Manager::set_view_details()
 	 */
 	public function set_view_details($view)

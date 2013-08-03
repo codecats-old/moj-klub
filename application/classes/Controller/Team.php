@@ -12,11 +12,6 @@ class Controller_Team extends Controller_Automatic{
 	{
 		parent::before();
 		$this->redirect_user(FALSE);
-		
-		$user=Auth::instance()->get_user();
-		$this->acl = new Zend_Acl;
-		$this->prepare_resources()->prepare_permissions($user);
-		
 	}
 	public function after()
 	{
@@ -30,6 +25,9 @@ class Controller_Team extends Controller_Automatic{
 				->set('view_details', $view_details)
 				->set('view_component_about', $view_about);
 		}
+		
+
+		
 		parent::after();
 	}
 	public function action_index()
@@ -200,13 +198,22 @@ class Controller_Team extends Controller_Automatic{
 		$view_team_change_manage=View::factory('Component/Menu/Team/Change/Manage');
 		$view_team_change_avatar=View::factory('Component/Menu/Team/Change/Avatar');
 
+		$menu = Menu::factory('Team', $user);
+		
 		$view_team_change_details->set('options',
+				$menu->get_resource_by_user($user->username, 'edit'));
+		$view_team_change_manage->set('options',
+				$menu->get_resource_by_user($user->username, 'manage'));
+		$view_team_change_avatar->set('options',
+				$menu->get_resource_by_user($user->username, 'avatar'));
+		
+	/*	$view_team_change_details->set('options',
 				$this->acl->get_resource_by_user($user->username, 'edit'));
 		$view_team_change_manage->set('options',
 				$this->acl->get_resource_by_user($user->username, 'manage'));
 		$view_team_change_avatar->set('options',
 				$this->acl->get_resource_by_user($user->username, 'avatar'));
-		
+		*/
 		$view->set('view_team_change_avatar', $view_team_change_avatar)
 			->set('view_team_change_details', $view_team_change_details)
 			->set('view_team_change_manage', $view_team_change_manage);
@@ -221,56 +228,5 @@ class Controller_Team extends Controller_Automatic{
 			->set('coach', $coach->as_array());
 		return $view;
 	}
-
-	private function prepare_resources()
-	{
-		$resource=new GenericResource('edit');
-		$this->acl->addResource($resource)
-			->addResource(new GenericResource('description'), $resource)
-			->addResource(new GenericResource('trainings'), $resource)
-			->addResource(new GenericResource('success'), $resource)
-			->addResource(new GenericResource('contact'), $resource)
-			->addResource(new GenericResource('address'), $resource)
-			->addResource(new GenericResource('name'), $resource);
-
-		$resource=new GenericResource('manage');
-		$this->acl->addResource($resource)
-			->addResource(new GenericResource('players'), $resource)
-			->addResource(new GenericResource('staff'), $resource)
-			->addResource(new GenericResource('management'), $resource)
-			->addResource(new GenericResource('leave'), $resource);
-		
-		$resource=new GenericResource('avatar');
-		$this->acl->addResource($resource);
-		return $this;
-	}
-	private function prepare_permissions($user)
-	{
-		$this->acl
-			->add_role('player')
-		//player
-			->allow('player', 'leave')
-		//capitan
-			->add_role('capitan', 'player')
-			->allow('capitan', 'trainings')
-			->allow('capitan', 'players')
-		//coach
-			->add_role('coach', 'capitan')
-			->allow('coach', 'success')
-			->allow('coach', 'staff')
-		//manager
-			->add_role('manager', 'coach')
-			->allow('manager', array('description', 'contact', 'address', 'name'))
-			->allow('manager', 'management')
-			->allow('manager', 'avatar')
-		//admin
-			->add_role('admin', 'manager');
-		
-		$urs_roles=$user->roles->find_all()->as_array();	
-		$this->acl->add_user_role($urs_roles, $user->username);
-	
-		return $this;
-	}
-	protected $acl;
 	protected $show_details=FALSE;
 }

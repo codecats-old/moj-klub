@@ -32,6 +32,22 @@ abstract class Manager_Data extends Manager{
 	 */
 	protected $approve = FALSE;
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see Kohana_Interface_Manager::get_views_result()
+	 */
+	public function get_views_result($name)
+	{
+		$view='view_'.$name;
+		return $this->$view;
+	}
+	
+	/**
+	 * Create popover view
+	 * 
+	 * @param boolean $show
+	 * @return Ambigous <NULL, View>
+	 */
 	protected final function set_view_popver($show)
 	{
 		$view_popover=null;
@@ -40,10 +56,17 @@ abstract class Manager_Data extends Manager{
 		else $view_popover = View::factory($component_path.'Private');
 		return $view_popover;
 	}
+	
+	/**
+	 * Specific object field put to array
+	 * 
+	 * @param ORM $object
+	 * @param string $field
+	 * @return string
+	 */
 	protected function to_array($object, $field)
 	{
 		$arr=array();
-	//	$roles = $this->object->get_teams_roles();
 		
 		foreach ($object->as_array() as $obj)
 		{
@@ -51,6 +74,14 @@ abstract class Manager_Data extends Manager{
 		}
 		return $arr;
 	}
+	
+	/**
+	 * Set value from array to object
+	 * 
+	 * @param ORM $orm
+	 * @param array $arr
+	 * @param string $field
+	 */
 	protected final function set_if_isset($orm, $arr, $field)
 	{
 		if (isset($arr[$field]))$orm->set($field, $arr[$field]);

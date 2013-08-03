@@ -123,7 +123,8 @@ Kohana::modules(array(
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 	'captcha'	=> MODPATH.'captcha',	//Captha module
 	'message'	=> MODPATH.'message',	//Flash messages
-	'manager'	=> MODPATH.'manager'	//Manipulate model and post data
+	'manager'	=> MODPATH.'manager',	//Manipulate model and post data
+	'menu'		=> MODPATH.'menu'	//Menu creator by roles based on Zend Acl module
 	));
 /**
  * Composer
