@@ -9,7 +9,7 @@
                         </a>
 <?php echo HTML::anchor(Route::get('default')->uri(),'Mój klub', array('class'=>'brand', 'rel'=>'index'));?>
                         <!--Collapse less than 940px -->
-                        <div class="nav-collapse">
+                        <div  class="nav-collapse">
 <?php echo View::factory('Header/Menu/Main')?>
                         </div>
                         <!-- Collapse -->
@@ -24,7 +24,10 @@
                         <!-- >Search -->
                     </div>
                     <!-- Access -->
-                   <?php echo $header_menu_access;?>
+                    <?php echo print_r($header_menu_access);?>
+<?php if (Arr::get($header_menu_access, 'access') === TRUE) echo View::factory('Header/Access');?>
+<?php if (Arr::get($header_menu_access, 'loged') === TRUE) echo View::factory('Header/Loged');?>
+
                     <!-- >Access -->
                 </div>
             </nav>

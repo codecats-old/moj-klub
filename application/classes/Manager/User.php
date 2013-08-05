@@ -106,7 +106,7 @@ class Manager_User extends Manager_Data{
 				if (Auth::instance()->login(
 						$post['login_identificator'], $post['password'], $post['stay_login']) === TRUE)
 				{
-					$login_success = TRUE;
+					$this->success = TRUE;
 				}
 				else
 				{
@@ -147,9 +147,12 @@ class Manager_User extends Manager_Data{
 			'reload' => TRUE
 			)
 			);
-
+			$user = Auth::instance()->get_user()->as_array();
+			//View for header
+			View::set_global('user', $user);
+			
 			$this->view_content = Message::instance()->get_view('Component/Info/Login/Success')
-			->set('user', Auth::instance()->get_user()->as_array());
+			->set('user', $user);
 			$this->view_container = View::factory('Component/Access/Login')
 			->set('form_login', $this->view_content);
 		}

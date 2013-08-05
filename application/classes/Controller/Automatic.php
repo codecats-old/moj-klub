@@ -42,10 +42,10 @@ class Controller_Automatic extends Controller_Template{
 	 */
 	public function before()
 	{
+		parent::before();
+		
 		if (($this->request->is_ajax() === TRUE) OR ($this->request->is_initial()===FALSE))
 			$this->auto_render=FALSE;
-
-		parent::before();
 
 		View::bind_global('page_title', $this->page_title);
 
@@ -57,6 +57,8 @@ class Controller_Automatic extends Controller_Template{
 		{
 			View::set_global('user', Auth::instance()->get_user()->as_array());
 		}
+		
+		
 	}
 
 	/**
@@ -65,6 +67,9 @@ class Controller_Automatic extends Controller_Template{
 	 */
 	public function after()
 	{
+		/*
+		 * Decision if show to all container site or just a content
+		 */
 		if ($this->auto_render === FALSE)
 		{
 			//Prepare JSON pack for ajax or result for HMVC request
@@ -100,8 +105,9 @@ class Controller_Automatic extends Controller_Template{
 			/**
 			 * create header menu TODO: Zend_ACL menu method
 			*/
-			$header_menu_access=new Controller_Header_Menu_Access;
-			$this->template->set('header_menu_access',$header_menu_access->get_menu());
+			$user = Auth::instance()->get_user();
+			$menu = Menu::factory('Header', $user);
+			$this->template->set('header_menu_access',$menu->get_resource_by_user($user, NULL));
 		}
 		parent::after();
 	}

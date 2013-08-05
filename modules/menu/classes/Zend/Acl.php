@@ -21,6 +21,8 @@ class Zend_Acl extends Acl{
 	 */
 	public function get_resource_by_user($user_role, $parent_resource)
 	{
+		if($parent_resource === NULL) return $this->get_resource_table($user_role);
+		
 		$res = $this->resources[$parent_resource]['children'];
 		if(empty($res) === FALSE)
 		{
@@ -39,6 +41,16 @@ class Zend_Acl extends Acl{
 					$res->getResourceId() => $this->isAllowed($user_role, $res)
 			);
 		}
+	}
+	
+	public function get_resource_table($user_role)
+	{
+		$arr;
+		foreach ($this->resources as $res => $val)
+		{
+			$arr[$res] = $this->isAllowed($user_role, $res);
+		}
+		return $arr;	
 	}
 	/**
 	 * Magic method to call Zend CammelCase method to Kohana snake_case method

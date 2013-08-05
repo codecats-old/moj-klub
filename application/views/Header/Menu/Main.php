@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="nav-collapse">
-<ul class="nav container-fluid">
+<div class="nav">
+<ul class="nav nav-collapse">
                                 <!-- Popular -->
                                 <li><a href="#">Najciekawsze</a></li>
                                 <li class="dropdown">

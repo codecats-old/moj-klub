@@ -10,6 +10,7 @@ class Manager_Team extends Manager_Data{
 	protected $user;
 	
 	/**
+	 * Helps manipulate teams action on logged in user
 	 * 
 	 * @param ORM $user
 	 */

@@ -15,7 +15,7 @@
     </head>
     <body>
 
-<?php echo View::factory('Header/Header')->set('header_menu_access',$header_menu_access);?>
+<?php  echo View::factory('Header/Header')->set('header_menu_access',$header_menu_access);?>
 
 <?php echo $view_container;?>
 
