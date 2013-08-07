@@ -105,19 +105,26 @@ class Controller_User extends Controller_Automatic{
 	/**
 	 * Logout
 	 * 
-	 * TODO: when in this application parser BB will be added it's needed to protect CSRF. 
-	 * 			Now it's not required
+	 * Action is CSRF attack protected:
+	 * Link is encrypted (SYSPATH/config/encrypt) so user see only hash, 
+	 * so put pig is almost impossible to put:
+	 * echo '<img src="user/logout/1">pig</img>'
+	 * 
+	 * If user breaks the Security it means he can decode hash he konw session id 
+	 * and the salt
 	 */
 	public function action_logout()
 	{
-		//CSRF	echo '<img src="user/logout">pig</img>'; TODO: prevent it
-		//	if(Security::check($this->request->param('id'))){ where id is access token
-		// OR
-		// $cry=mcrypt_encrypt(MCRYPT_DES, 'k', 'user_id', MCRYPT_MODE_ECB);
-		// echo base64_encode($cry);
-		//echo mcrypt_ecb (MCRYPT_3DES, 'k', $cry, MCRYPT_DECRYPT);
-		// where 'k' is session key with salt hashed by sha2
 		$this->redirect_user(FALSE);
+		$id = Encrypt::instance()->decode($this->request->param('id'));
+		
+		/**
+		 * if CSFR attack redirect from this action
+		 */
+		if ($id != Auth::instance()->get_user('id'))
+		{
+			$this->redirect_user(TRUE);
+		}
 		
 		Auth::instance()->logout();
 		

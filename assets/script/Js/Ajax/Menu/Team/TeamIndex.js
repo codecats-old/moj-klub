@@ -23,7 +23,30 @@
 	
 				this.formGetter=new strz_Ajax.GetFormRegistrate('create_form_get');
 				this.formGetter.run();
-
+				
+				/*Move it to suitable roles*/
+				/*Callbacks it */
+				/*Submenu change*/
+				this.formGetterChangeDescription=new strz_Ajax.GetFormChange('change_description_form_get');
+				this.formGetterChangeDescription.run();
+				
+				this.formGetterChangeTraining=new strz_Ajax.GetFormChange('change_training_form_get');
+				this.formGetterChangeTraining.run();
+				
+				this.formGetterChangeSuccess=new strz_Ajax.GetFormChange('change_success_form_get');
+				this.formGetterChangeSuccess.run();
+				
+				this.formGetterChangeContact=new strz_Ajax.GetFormChange('change_contact_form_get');
+				this.formGetterChangeContact.run();
+				
+				this.formGetterChangeAddress=new strz_Ajax.GetFormChange('change_address_form_get');
+				this.formGetterChangeAddress.run();
+				
+				this.formGetterChangeName=new strz_Ajax.GetFormChange('change_name_form_get');
+				this.formGetterChangeName.run();
+				
+				this.formGetterChange=new strz_Ajax.GetFormChange('change_form_get');
+				this.formGetterChange.run();
 
 				
 				this.addCallback({

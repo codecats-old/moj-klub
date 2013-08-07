@@ -12,6 +12,19 @@ class Menu_Team extends Menu{
 		->addResource(Menu::get_generic_resource('contact'), $resource)
 		->addResource(Menu::get_generic_resource('address'), $resource)
 		->addResource(Menu::get_generic_resource('name'), $resource);
+
+		/*CONTACT*/
+		$this->add_resource('phone', 'contact')
+		->add_resource('email', 'contact');
+		/*ADDRESS*/
+		$this->add_resource('city', 'address')
+		->add_resource('street', 'address')
+		->add_resource('street_no', 'address')
+		->add_resource('zip_code', 'address')
+		->add_resource('zip_code2', 'address');
+		/*NAME*/
+		$this->add_resource('full_name', 'name')
+		->add_resource('short_name', 'name');
 		
 		$resource = Menu::get_generic_resource('manage');
 		$this->add_resource($resource)
@@ -22,6 +35,16 @@ class Menu_Team extends Menu{
 		
 		$resource = Menu::get_generic_resource('avatar');
 		$this->add_resource($resource);
+		
+		//gallery has the same roles as avatar
+		$resource = Menu::get_generic_resource('gallery');
+		$this->add_resource($resource, 'avatar');
+		
+		//manipulate gallery
+		$this->add_resource('new_photo', 'gallery')
+			->add_resource('delete_photo', 'gallery');
+		
+		
 		return $this;
 	}
 	
@@ -47,7 +70,7 @@ class Menu_Team extends Menu{
 		//admin
 		->add_role('admin', 'manager');
 		
-		$urs_roles=$user->roles->find_all()->as_array();
+		$urs_roles = $user->roles->find_all()->as_array();
 		$this->add_user_role($urs_roles, $user->username);
 		
 		return $this;

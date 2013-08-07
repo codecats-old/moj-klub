@@ -2,7 +2,7 @@
 <?php $view_top=(isset($view_top)?$view_top:null);?>
 <div class="row-fluid">
 	<section class="span3">
-<?php echo View::factory('Component/Menu/User/Visit');?>
+<?php echo View::factory('Component/Menu/User/Visit')->set('team', $team);?>
 	</section>
     <section class="span6">             
 <?php if(isset($view_top)):?>

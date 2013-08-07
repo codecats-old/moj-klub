@@ -20,6 +20,8 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Registrate/GetFormRegistrate.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Registrate/SubmitRegistrate.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Change/GetFormChange.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Change/SubmitChange.class.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>

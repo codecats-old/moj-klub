@@ -1,11 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 class Model_Team extends ORM{
-	protected $_has_many=array(
-		'user'=>array(
-			'model'=>'user',
-			'foreign_key'=>'team_id',
-		)
+	protected $_has_many = array(
+			'user' => array(
+					'model' => 'user',
+					'foreign_key' => 'team_id',
+			)
 	);
+	protected $_belongs_to=array(
+			'avatar'=>array(
+					'model'=>'Avatar',
+					'foreign_key'=>'avatar_id'
+			),
+	);
+	
 	public function get_manager()
 	{
 		$manager=$this->get_members('manager')->find();
@@ -37,20 +44,25 @@ class Model_Team extends ORM{
 			->users
 			->where('team_id', '=', $this->id)
 			->limit($limit);
-		/*
-		$members=$this->get('user');
+		/* NOT ORM METHOD
+		 $members=$this->get('user');
 		return $members
-			->from('role_users', 'roles')
-			->where('roles.name', '=', $role_name)
-			->where('role_users.user_id', '=',DB::expr('`user`.`id`'))
-			->where('role_users.role_id', '=',DB::expr('`roles`.`id`'))
-			->limit($limit);
+		->from('role_users', 'roles')
+		->where('roles.name', '=', $role_name)
+		->where('role_users.user_id', '=',DB::expr('`user`.`id`'))
+		->where('role_users.role_id', '=',DB::expr('`roles`.`id`'))
+		->limit($limit);
 		*/
 	}
 	public function validate_create($post)
 	{
-		$validation=new Validation_Team($post);
+		$validation = new Validation_Team($post);
 		return $validation->create();
+	}
+	public function validate_change($post)
+	{
+		$validation = new Validation_Team($post);
+		return $validation->change();
 	}
 	public function filters()
 	{

@@ -9,8 +9,8 @@
 		->uri(
 			array(
 				'controller'=>'user', 
-				'action'=>'logout'
-				//,'id'=>Security::token()
+				'action'=>'logout',
+				'id' => Encrypt::instance()->encode(Auth::instance()->get_user('id'))
 			)
 			
 		),ucfirst(__('logout')),

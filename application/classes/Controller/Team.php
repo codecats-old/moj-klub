@@ -25,6 +25,27 @@ class Controller_Team extends Controller_Automatic{
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
 	}
+	public function action_add_photo()
+	{
+		
+	}
+	public function action_delete_photo()
+	{
+		
+	}
+	/**
+	 * Show all photos by team id
+	 * 
+	 * CSFR protected.
+	 */
+	public function action_gallery()
+	{
+		echo Encrypt::instance()->decode($this->request->param('id'));
+		$user = Auth::instance()->get_user();
+		$menu = Menu::factory('Team', $user);
+		
+		print_r($menu->get_resource_by_user($user->username, 'gallery'));
+	}
 	/**
 	 * Change team details (possible to change specific field f.ex. teams.short_name)
 	 */
@@ -32,34 +53,31 @@ class Controller_Team extends Controller_Automatic{
 	{
 		if (Auth::instance()->logged_in('admin') === FALSE) $this->redirect_team_member(FALSE);
 		
-		$change_success = FALSE;
-		$user = Auth::instance()->get_user();
-		$fields=$this->acl->get_resource_by_user($user->username, 'edit');
-		$field_to_change = $this->request->param('id');
-
-
 		$post = $this->request->post();
-		if ($post AND key_exists($field_to_change, $fields, TRUE))
-		{
-			//change field on given id description training success
-		}
-		if ($change_success === FALSE)
-		{
-			$form_change=View::factory('Component/Form/Create/Team')
-				->set('team', $post)
-				->set('error', $this->error);
-			$this->view_content=$form_change;
-			$this->view_container=View::factory('Container/Team/Main');
-			$this->view_container->set('view_top', $form_change);
-			Message::instance()->set(Message::WARNING);
-		}
-		else
-		{
-			
-		}
-		$this->view_container->set('modal_title', 'are you sure?');
-		$this->show_details = TRUE;
+		$id = $this->request->param('id');
+		$user = Auth::instance()->get_user();
+		$team = $user->team;
+		$manager = Manager::factory('Team', $team);
+		$manager->set_user($user);
 		
+		$manager->change($post, $id);
+		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
+	}
+	public function action_change_team_avatar()
+	{
+		$this->redirect_user(FALSE);
+		
+		$user = Auth::instance()->get_user();
+		$team = $user->team;
+		$manager = Manager::factory('Team', $team);
+		$manager->set_user($user);
+		
+		$manager->change_team_avatar($this->request->post());
+		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
 	}
 	public function action_create()
 	{

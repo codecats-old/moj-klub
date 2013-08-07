@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<hr>
-<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success', 'rel'=>'user_change-avatar_unavalible'));?>
+<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success'));?>
 
 <?php echo HTML::anchor(
 		Route::get('default')->uri(

@@ -10,8 +10,10 @@ return array(
 		 * integer  mode    encryption mode, one of MCRYPT_MODE_*
 		 * integer  cipher  encryption cipher, one of the Mcrpyt cipher constants
 		 */
-		'cipher' => MCRYPT_RIJNDAEL_128,
-		'mode'   => MCRYPT_MODE_NOFB,
+			
+		'cipher' => MCRYPT_DES,
+		'mode'   => MCRYPT_MODE_ECB,
+		'key'	 => hash('sha256', Session::instance()->id().Cookie::$salt )
 	),
 
 );

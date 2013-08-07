@@ -14,6 +14,8 @@ defined('SYSPATH') OR die('No direct script access.');
 class Zend_Acl extends Acl{
 	
 	/**
+	 * Return resorurce table on given user role, table.
+	 * example resoruce_id => true/false - user has or has not access to resource_id
 	 *
 	 * @param mixed $user_role
 	 * @param GenericResource $parent_resource

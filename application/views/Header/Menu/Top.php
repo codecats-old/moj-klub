@@ -24,7 +24,6 @@
                         <!-- >Search -->
                     </div>
                     <!-- Access -->
-                    <?php echo print_r($header_menu_access);?>
 <?php if (Arr::get($header_menu_access, 'access') === TRUE) echo View::factory('Header/Access');?>
 <?php if (Arr::get($header_menu_access, 'loged') === TRUE) echo View::factory('Header/Loged');?>
 

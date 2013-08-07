@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<?php $avatar = isset($avatar) ? $avatar : array();?>
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
        	<li class="thumbnail span12">
@@ -6,7 +7,14 @@
 	       		<div class="span6">
             		<h4 class="label label-success top-text"><?php echo Arr::get($team, 'short_name');?></h4>
             	
-<a href="/moj-klub/index.php/user"><img src="/moj-klub/upload/avatars/users/1.jpeg" rel="user_index" alt="avatar" class="bg-img" /></a>				</div>
+<?php echo HTML::anchor(
+	Route::get('default')->uri(array('controller'=>'team')),
+	HTML::image(Arr::get($avatar, 'path'), 
+		array('class'=>'bg-img', 'alt'=>'avatar', 'rel'=>'team_index')
+	)
+);?>
+            		
+            	</div>
 <?php if(isset($view_team_change_avatar)) echo $view_team_change_avatar;?>
 			</div>
 			<div>

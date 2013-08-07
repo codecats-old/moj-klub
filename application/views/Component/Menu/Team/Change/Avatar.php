@@ -2,10 +2,11 @@
 <?php if(Arr::get($options, 'avatar')):?>
 <div class="span6">
 					<button class="pull-right btn btn-mini" data-toggle="collapse" data-target=".collapse">
-						Edit					</button>
+						Edit					
+					</button>
 					<div class="divider"></div>
 					<div class="pull-right collapse in">
-<a href="/moj-klub/index.php/user/change-user-avatar" rel="user_change-avatar_get">Change avatar</a>					</div>
+<a href="/moj-klub/index.php/team/change-team-avatar" rel="user_change-avatar_get">Change avatar</a>					</div>
 				<!-- 	<div class="divider"></div>
 					<div class="pull-right collapse in">more data here</div> -->
 				</div>

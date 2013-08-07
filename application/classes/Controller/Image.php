@@ -6,92 +6,174 @@ class Controller_Image extends Controller_Automatic{
 
 		echo '<hr><hr><hr>';
 		echo 'test';
-
+		$team = Auth::instance()->get_user()->team;
+		$avatar = $team->avatar;
 	}
 	public function action_show_user_avatar()
 	{
-		$id=$this->request->param('id');
-		$width=(int) $this->request->param('width');
-		$height=(int) $this->request->param('height');
-		$ext=$this->request->param('ext');
-		$render_success=FALSE;
-		if($id AND $width AND $height)
+		$id = $this->request->param('id');
+		$width = (int) $this->request->param('width');
+		$height = (int) $this->request->param('height');
+		$ext = $this->request->param('ext');
+		$render_success = FALSE;
+		if ($id AND $width AND $height)
 		{
-			$this->auto_render=FALSE;
-			$filename=DOCROOT.'upload/avatars/users/'.$id.'.'.$ext;
-			if(is_file($filename))
+			$this->auto_render = FALSE;
+			$filename = DOCROOT.'upload/avatars/users/'.$id.'.'.$ext;
+			if (is_file($filename))
 			{
 				$this->render_image($filename, $width, $height);
-				$render_success=TRUE;
+				$render_success = TRUE;
 				
 			}
 		}
-		if($render_success===FALSE)
+		if($render_success === FALSE)
 		{
 			$this->response->status(404);
 		}
 		else
 		{
-			$this->page_title='( '.$width.' ) x ( '.$height.' )';
+			$this->page_title = '( '.$width.' ) x ( '.$height.' )';
+		}
+	}
+	public function action_add_team_photo()
+	{
+		
+	}
+	public function action_change_team_avatar()
+	{
+		$upload_success = FALSE;
+		$post = $this->request->post();
+		$files = $_FILES;
+		
+		
+		$team = Auth::instance()->get_user()->team;
+		$avatar = $team->avatar;//ORM::factory('Avatar');
+		
+		if ($post)
+		{
+			$validator = $avatar->validate_team_avatar($files);
+			if ($validator->check())
+			{
+				$file_path = $this->save_image($files['avatar'], 'avatars/teams', 
+					array(
+						'name' => $team->id,
+						'width' => 80,
+						'height' => 80
+					)
+				);
+				try
+				{
+					
+					//Save new avatar if not exists
+					if ($avatar->loaded() === FALSE)
+					{	
+						$avatar->path = $file_path;
+						$avatar->save();
+					}
+					//Update avatar - in real nothing was changed (path for the club still the same
+					$team->avatar = $avatar;
+					$team->save();
+					$upload_success = TRUE;
+				}
+				catch (Database_Exception $dbex)
+				{
+					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+					$this->content = print_r($dbex, TRUE);
+				}
+			}
+			else
+			{
+				$this->error = $validator->errors('Image/Avatar');
+			}
+		}
+		
+		if ($upload_success === FALSE)
+		{
+			Message::instance()->set(Message::WARNING);
+			
+			$form_upload = $this->get_view_upload('Avatar')->set('error', $this->error);
+			$this->view_content = $form_upload;
+				
+			
+		
+		}
+		else
+		{
+			Message::instance()->set(Message::SUCCESS);
+			
+			$view_success = Message::instance()->get_view('Component/Info/Success')
+			->set('info', 'zmiana będzie widoczna do 5 min');
+			$this->view_content = $view_success;
+			
+		
 		}
 	}
 	public function action_change_user_avatar()
 	{
-		if($this->request->is_initial())HTTP::redirect(Route::get('default')->uri());
+		if ($this->request->is_initial())HTTP::redirect(Route::get('default')->uri());
 		$this->redirect_user(FALSE);
-		$upload_success=FALSE;
-		$post=$this->request->post();
-		$files=$_FILES;
+		$upload_success = FALSE;
+		$post = $this->request->post();
+		$files = $_FILES;
 		
-		$avatar=ORM::factory('Avatar');
-		$user=Auth::instance()->get_user();
+		$avatar = ORM::factory('Avatar');
+		$user = Auth::instance()->get_user();
 		
-		if($post)
+		if ($post)
 		{
-			$validator=$avatar->validate_user_avatar($files);
-			if($validator->check())
+			$validator = $avatar->validate_user_avatar($files);
+			if ($validator->check())
 			{
-				$file_path=$this->save_image($files['avatar'], 'avatars/users',
+				$file_path = $this->save_image($files['avatar'], 'avatars/users',
 					array(
-						'name'=>Auth::instance()->get_user()->id,
-						'width'=>80,
-						'height'=>80
+						'name' => Auth::instance()->get_user()->id,
+						'width' => 80,
+						'height' => 80
 					)
 				);
 				$avatar->find();
-				try{
-					if($avatar->loaded()===FALSE)
+				try
+				{
+					//Save new avatar if not exists
+					if ($avatar->loaded() === FALSE)
 					{
-						$avatar->path=$file_path;
+						$avatar->path = $file_path;
 						$avatar->save();
 					}
-					$user->avatar=$avatar;
+					//Update avatar
+					$user->avatar = $avatar;
 					$user->save();
-					$upload_success=TRUE;
-				}catch(Database_Exception $dbex){
+					$upload_success = TRUE;
+				}
+				catch (Database_Exception $dbex)
+				{
 					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
-					$this->content=print_r($dbex, TRUE);
+					$this->content = print_r($dbex, TRUE);
 				}		
 			}
 			else
 			{
-				$this->error=$validator->errors('Image/Avatar');
+				$this->error = $validator->errors('Image/Avatar');
 			}
 		}
-		if($upload_success===FALSE)
+		if ($upload_success === FALSE)
 		{
-			$form_upload=$this->get_view_upload('Avatar')->set('error', $this->error);
-			$this->view_content=$form_upload;
-			
 			Message::instance()->set(Message::WARNING);
+			$form_upload = $this->get_view_upload('Avatar')->set('error', $this->error);
+			$this->view_content = $form_upload;
+			
+		
 
 		}
 		else
-		{
-			$view_success=View::factory('Component/Info/Success')
-				->set('info', 'zmiana będzie widoczna do 5 min');
-			$this->view_content=$view_success;
+		{			
 			Message::instance()->set(Message::SUCCESS);
+			$view_success = Message::instance()->get_view('Component/Info/Success');
+			$view_success
+				->set('info', 'zmiana będzie widoczna do 5 min');
+			$this->view_content = $view_success;
+		
 
 		}
 
@@ -102,8 +184,8 @@ class Controller_Image extends Controller_Automatic{
 	}
 	protected function save_image($image, $dir, $properties)
 	{
-		$directory=DOCROOT.'upload/'.$dir.'/';
-		if($file=Upload::save($image, null, $directory))
+		$directory = DOCROOT.'upload/'.$dir.'/';
+		if ($file = Upload::save($image, null, $directory))
 		{
 			$filename=$properties['name'].'.'.substr(strstr($image['type'], '/'),1);
 			Image::factory($file)
