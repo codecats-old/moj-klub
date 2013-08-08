@@ -41,10 +41,66 @@ class Manager_Team extends Manager_Data{
 			->set('view_details', null)
 			->set('view_component_about', null);
 		}
+		$this->view_container->set('active', array('team'=>'active'));
 	}
-	public function gallery()
+	public function add_photo($post)
+	{
+		$json_pack=Request::factory(
+				Route::get('default')->uri(
+						array('controller'=>'image', 'action'=>'add-team-photo')
+				)
+		)
+		->post($post)
+		->execute();
+		$json_pack=json_decode($json_pack);
+		
+		$this->set_add_photo_result($json_pack);
+	}
+	
+	public function set_add_photo_result($pack)
 	{
 		
+	}
+	public function delete_photo($id)
+	{
+		$json_pack=Request::factory(
+				Route::get('default')->uri(
+						array(
+							'controller'=>'image', 
+							'action'=>'delete_team_photo',
+							'id' => $id
+						)
+				)
+		)
+
+		->execute();
+		$json_pack=json_decode($json_pack);
+		
+		$this->set_delete_photo_result($json_pack);
+	}
+	public function set_delete_photo_result($pack)
+	{
+		
+	}
+	public function gallery($id)
+	{
+		$user = $this->user;
+
+		$menu = Menu::factory('Team', $user);
+		$submenu = $menu->get_resource_by_user($user->username, 'gallery');
+		
+		$this->view_container = View::factory('Container/Team/Main')
+		->set('modal_title', 'confirm');
+		$component_gallery = View::factory('Component/Gallery')
+		->set('menu', $submenu)
+		->set('photos', $this->object->photo->order_by('uploaded')->find_all()->as_array());
+		
+		//		
+		$this->set_view_details($this->view_container);
+		$this->view_container
+			->set('active', array('gallery' => 'active'))
+			->set('view_component_about', $component_gallery)
+			->set('view_details', NULL);
 	}
 	/**
 	 *

@@ -6,8 +6,12 @@ class Controller_Image extends Controller_Automatic{
 
 		echo '<hr><hr><hr>';
 		echo 'test';
-		$team = Auth::instance()->get_user()->team;
-		$avatar = $team->avatar;
+	/*	$team = Auth::instance()->get_user()->team;
+		$photo = ORM::factory('Photo');
+		$photo->address = 'www2';
+		$photo->team = $team;
+		$photo->save();*/
+		
 	}
 	public function action_show_user_avatar()
 	{
@@ -36,9 +40,142 @@ class Controller_Image extends Controller_Automatic{
 			$this->page_title = '( '.$width.' ) x ( '.$height.' )';
 		}
 	}
+	public function action_delete_team_photo()
+	{
+		$delete_success = FALSE;
+		$team = Auth::instance()->get_user()->team;
+		$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
+		
+		$photo = $team->photo;
+		$users = $team->user;
+		
+		$ids_photo = array_map(function ($p){return $p->id;}, $photo->find_all()->as_array());
+		
+		$validator = $photo->validate_delete(
+				array('delete_photo' => $id, 'photos' => $ids_photo, 'team_id' => $team->id)
+		);
+		
+		if ($validator->check())
+		{
+			$photo = ORM::factory('Photo', array('id' => $id));
+			$p = $photo->where('id', '=', $id);
+			$delete_success = unlink(DOCROOT.'/'.$p->address);
+			
+			try
+			{
+				if ($delete_success === TRUE)
+				{
+					$p->delete();
+				}	
+				else
+				{
+					throw new ErrorException('Can\'t unlink file path: '.$p->address);
+				}			
+			}
+			catch (ErrorException $ex)
+			{
+				$this->set_status_message('Error', $ex->getMessage());
+				$this->content = print_r($dbex, TRUE);
+			}
+			catch (Database_Exception $db_ex)
+			{
+				$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+				$this->content = print_r($dbex, TRUE);
+			}
+			$delete_success = TRUE;
+		}
+		else 
+		{
+			$this->error = $validator->errors('Image/Photo');
+		}
+		
+		if ($delete_success === FALSE)
+		{
+			Message::instance()->set(Message::WARNING);
+		
+			$form_upload = Message::instance()->get_view('Component/Info/Warning')
+			->set('info', 'No permission')
+			->set('errors', $this->error);
+			$this->view_content = $form_upload;
+		
+		
+		
+		}
+		else
+		{
+			Message::instance()->set(Message::SUCCESS);
+		
+			$view_success = Message::instance()->get_view('Component/Info/Success')
+			->set('info', 'zmiana będzie widoczna do 5 min');
+			$this->view_content = $view_success;
+		
+		
+		}
+	}
 	public function action_add_team_photo()
 	{
+		$upload_success = FALSE;
+		$post = $this->request->post();
+		$files = $_FILES;
 		
+		$team = Auth::instance()->get_user()->team;
+		
+		if ($post)
+		{
+			$photo = ORM::factory('Photo');
+			
+			$validator = $photo->validate_add($files);
+			if ($validator->check())
+			{
+				$save_dir = 'gallery/teams/'.$team->id;
+				$this->make_dir_if_not_exists($save_dir);
+				
+				$file_path = $this->save_image($files['add_photo'], $save_dir,
+					array(
+						'name' => (new DateTime)->getTimestamp(),
+						'width' => 1024,
+						'height' => 1024
+					)
+				);
+				try
+				{
+					$photo->address = $file_path;
+					$photo->team = $team;
+					$photo->save();
+					$upload_success = TRUE;
+				}
+				catch (Database_Exception $dbex)
+				{
+					$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
+					$this->content = print_r($dbex, TRUE);
+				}
+			}
+			else
+			{
+				$this->error = $validator->errors('Image/Photo');
+			}
+		}
+		
+		if ($upload_success === FALSE)
+		{
+			Message::instance()->set(Message::WARNING);
+				
+			$form_upload = $this->get_view_upload('Photo')->set('error', $this->error);
+			$this->view_content = $form_upload;
+		
+				
+		
+		}
+		else
+		{
+			Message::instance()->set(Message::SUCCESS);
+				
+			$view_success = Message::instance()->get_view('Component/Info/Success')
+			->set('info', 'zmiana będzie widoczna do 5 min');
+			$this->view_content = $view_success;
+				
+		
+		}
 	}
 	public function action_change_team_avatar()
 	{
@@ -220,6 +357,19 @@ class Controller_Image extends Controller_Automatic{
 				->resize($width, $height, IMAGE::NONE)->render('jpg');
 		
 		$this->response->body($result);
+		}
+	}
+	protected function make_dir_if_not_exists($dir)
+	{
+		$dir = DOCROOT.'upload/'.$dir.'/';
+		echo $dir;
+		if ( ! is_dir($dir))
+		{
+			// Create the directory
+			mkdir($dir, 0777, TRUE);
+		
+			// Set permissions (must be manually set to fix umask issues)
+		//	chmod($dir, 0777);
 		}
 	}
 }

@@ -146,18 +146,14 @@ class Validation_Team extends Validation_General{
 		if( (empty($validation[$field1])===empty($validation[$field2])) )return TRUE;//xor
 		else return FALSE;
 	}
-	public static function is_unique($col, $field, $model='Team')
+	public static function is_unique($col, $field, $model = 'Team')
 	{
 		return parent::is_unique($col, $field, $model);
 	}
-	public static function is_permitted($field)
+
+	public static function is_permitted($field, $model = 'Team')
 	{
-		$user = Auth::instance()->get_user();
-		$menu = Menu::factory('Team', $user);	
-		
-		if($menu->is_allowed($user->username, $field)) return TRUE;
-		else return FALSE;
-	
+		return parent::is_permitted($field, $model);
 	}
 	public function change()
 	{

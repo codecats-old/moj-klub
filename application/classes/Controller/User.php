@@ -116,7 +116,7 @@ class Controller_User extends Controller_Automatic{
 	public function action_logout()
 	{
 		$this->redirect_user(FALSE);
-		$id = Encrypt::instance()->decode($this->request->param('id'));
+		$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
 		
 		/**
 		 * if CSFR attack redirect from this action

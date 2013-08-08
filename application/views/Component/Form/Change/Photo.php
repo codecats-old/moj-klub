@@ -8,11 +8,11 @@
 <div class="well">
 	<div class="row-fluid">
 		<div class="span12">
-			<label for="avatar">
-				avatar:
+			<label for="photo">
+				photo:
 			</label>
-			<input type="file" name="avatar" value="" />
-			<span class="label label-warning"><?php  echo Arr::get($error, 'avatar');?></span>              
+			<input type="file" name="add_photo" value="" />
+			<span class="label label-warning"><?php  echo Arr::get($error, 'photo');?></span>              
 		</div>
 	</div>
 	<hr>

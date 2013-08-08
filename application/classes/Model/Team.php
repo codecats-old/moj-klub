@@ -2,8 +2,13 @@
 class Model_Team extends ORM{
 	protected $_has_many = array(
 			'user' => array(
-					'model' => 'user',
+					//UPDATED 'model' => 'user',
+					'model' => 'User',
 					'foreign_key' => 'team_id',
+			),
+			'photo' => array(
+					'model' => 'Photo',
+					'foreign_key' => 'team_id'
 			)
 	);
 	protected $_belongs_to=array(

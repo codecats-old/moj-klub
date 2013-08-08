@@ -38,7 +38,7 @@ class Menu_Team extends Menu{
 		
 		//gallery has the same roles as avatar
 		$resource = Menu::get_generic_resource('gallery');
-		$this->add_resource($resource, 'avatar');
+		$this->add_resource($resource);
 		
 		//manipulate gallery
 		$this->add_resource('new_photo', 'gallery')
@@ -66,7 +66,7 @@ class Menu_Team extends Menu{
 		->add_role('manager', 'coach')
 		->allow('manager', array('description', 'contact', 'address', 'name'))
 		->allow('manager', 'management')
-		->allow('manager', 'avatar')
+		->allow('manager', array('avatar', 'gallery'))
 		//admin
 		->add_role('admin', 'manager');
 		

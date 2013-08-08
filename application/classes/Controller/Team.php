@@ -27,11 +27,30 @@ class Controller_Team extends Controller_Automatic{
 	}
 	public function action_add_photo()
 	{
+		$user = Auth::instance()->get_user();
+		$team = $user->team;
+		$post = $this->request->post();
 		
+		$manager = Manager::factory('Team', $team);
+		$manager->set_user($user);
+		
+		$manager->add_photo($post);
+		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
 	}
 	public function action_delete_photo()
 	{
+		$user = Auth::instance()->get_user();
+		$team = $user->team;
+		$id = $this->request->param('id') ;
+		$manager = Manager::factory('Team', $team);
+		$manager->set_user($user);
 		
+		$manager->delete_photo($id);
+		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
 	}
 	/**
 	 * Show all photos by team id
@@ -40,11 +59,18 @@ class Controller_Team extends Controller_Automatic{
 	 */
 	public function action_gallery()
 	{
-		echo Encrypt::instance()->decode($this->request->param('id'));
+		$id = Encrypt::instance()->decode( hex2bin($this->request->param('id')) );
 		$user = Auth::instance()->get_user();
-		$menu = Menu::factory('Team', $user);
+		$team = $user->team;
 		
-		print_r($menu->get_resource_by_user($user->username, 'gallery'));
+		$manager = Manager::factory('Team', $team);
+		$manager->set_user($user);
+		
+		$manager->gallery($id);
+		
+		echo (new DateTime)->getTimestamp();
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
 	}
 	/**
 	 * Change team details (possible to change specific field f.ex. teams.short_name)

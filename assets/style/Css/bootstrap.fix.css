@@ -1,3 +1,11 @@
+
+/*debug*/
+/*
+.navbar-inverse>.navbar-inner{
+	margin-top:50px;
+	background:rgba(0,0,0,0.3);
+	opacity:0;
+}*/
 .carousel{
     background: gray;
 }
@@ -50,10 +58,12 @@ background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 4
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 );
 
 }
-/*debug*/
-/*
-.navbar-inverse>.navbar-inner{
-	margin-top:50px;
-	background:rgba(0,0,0,0.3);
-	opacity:0;
-}*/
+
+
+.icon-large {
+    transform:scale(1.5, 1.5);
+    -ms-transform:scale(1.5, 1.5); /* IE 9 */
+    -moz-transform:scale(1.5, 1.5); /* Firefox */
+    -webkit-transform:scale(1.5, 1.5); /* Safari and Chrome */
+    -o-transform:scale(1.5, 1.5); /* Opera */
+}

@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<?php $active = isset($active) ? $active :array();?>
 <h3>Przeglądaj</h3>
-<p>
 
+<p>
 <?php echo HTML::anchor(
 	Route::get('default')->uri(
 		array(
@@ -9,7 +10,7 @@
 		)
 	), 
 	'Twój klub<label>informacje, ważniejse wydarzenia<label>',
-	array('class'=>'btn btn-large btn-info btn-block')
+	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'team'))
 );?>
 </p>
 
@@ -20,11 +21,11 @@
 			array(
 				'controller' => 'team',
 				'action' => 'gallery',
-				'id' => Encrypt::instance()->encode($team['id'])
+				'id' => bin2hex(Encrypt::instance()->encode($team['id']))
 			)
 		), 
 		'Gallery',
-		array('class'=>'btn btn-block btn-inverse')
+		array('class'=>'btn btn-block btn-info '.Arr::get($active, 'gallery'))
 	);?>
 </p>
 <?php endif;?>
