@@ -44,8 +44,17 @@ class Controller_Image extends Controller_Automatic{
 	{
 		$delete_success = FALSE;
 		$team = Auth::instance()->get_user()->team;
+		//decode photo id
 		$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
 		
+		/**
+		 * Every team photo is needed to find out photo id belongs to right team
+		 * 
+		 * TODO: better make sql select and check if count is bigger than one it's better 
+		 * for optimalization but makes little bit complicated to show client what's
+		 * happed if $id is null or photo is not belongs to the user's team communicate
+		 * will be the same
+		 */
 		$photo = $team->photo;
 		$users = $team->user;
 		
@@ -57,32 +66,42 @@ class Controller_Image extends Controller_Automatic{
 		
 		if ($validator->check())
 		{
-			$photo = ORM::factory('Photo', array('id' => $id));
-			$p = $photo->where('id', '=', $id);
-			$delete_success = unlink(DOCROOT.'/'.$p->address);
+			$p = $photo->where('id', '=', $id)->find();
 			
+			//CAN'T USE ORM - KOHANA 3.3 ORM NOT SUPPORT TRANSACTIONs
+			$db = Database::instance();
+			$db->begin();
 			try
 			{
-				if ($delete_success === TRUE)
+				//save path to variable before delete from DB
+				$file_path = $p->address;
+				
+				DB::delete('photos')->where('id', '=', $id)->execute();
+				
+				//chceck if path is file and can be unlink if not database get wrong data 
+				if (is_file(DOCROOT.$file_path) === TRUE AND unlink(DOCROOT.$file_path) === TRUE)
 				{
-					$p->delete();
+					$db->commit();
+					$delete_success = TRUE;
 				}	
 				else
 				{
-					throw new ErrorException('Can\'t unlink file path: '.$p->address);
+					$db->rollback();
+					throw new ErrorException('Can\'t unlink file path: '.DOCROOT.$file_path);
 				}			
 			}
 			catch (ErrorException $ex)
 			{
-				$this->set_status_message('Error', $ex->getMessage());
-				$this->content = print_r($dbex, TRUE);
+				Message::instance()->set(Message::ERROR, $ex->getMessage());
+				$this->content = print_r($ex->getMessage(), TRUE);
+				echo $this->content;
 			}
 			catch (Database_Exception $db_ex)
 			{
-				$this->set_status_message('Error', 'Probably database is busy. Try again in a while');
-				$this->content = print_r($dbex, TRUE);
+				Message::instance()->set(Message::ERROR, $db_ex->getMessage());
+				$this->content = print_r($db_ex->getMessage(), TRUE);
+				echo $this->content;
 			}
-			$delete_success = TRUE;
 		}
 		else 
 		{

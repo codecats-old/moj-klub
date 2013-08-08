@@ -971,3 +971,225 @@
 #5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #6 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #7 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:61
+2013-08-08 20:25:15 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Controller_Image::set_status_message() ~ APPPATH/classes/Controller/Image.php [ 82 ] in :
+2013-08-08 20:25:15 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 20:28:14 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Controller_Image::set_status_message() ~ APPPATH/classes/Controller/Image.php [ 82 ] in :
+2013-08-08 20:28:14 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 20:31:09 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: dbex ~ APPPATH/classes/Controller/Image.php [ 88 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:31:09 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(88): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 88, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#7 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:32:00 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: dbex ~ APPPATH/classes/Controller/Image.php [ 88 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:32:00 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(88): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 88, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#7 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:33:12 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: dbex ~ APPPATH/classes/Controller/Image.php [ 88 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:33:12 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(88): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 88, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#7 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:37:18 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: dbex ~ APPPATH/classes/Controller/Image.php [ 83 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:83
+2013-08-08 20:37:18 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(83): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 83, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/application/classes/Manager/Team.php(76): Kohana_Request->execute()
+#7 /home/t/www/moj-klub/application/classes/Controller/Team.php(50): Manager_Team->delete_photo('4d48782f2b77767...')
+#8 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Team->action_delete_photo()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Team))
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#13 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#14 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:83
+2013-08-08 20:38:56 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: dbex ~ APPPATH/classes/Controller/Image.php [ 88 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:38:56 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(88): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 88, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#7 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:88
+2013-08-08 20:52:03 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: dbex ~ APPPATH/classes/Controller/Image.php [ 89 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:89
+2013-08-08 20:52:03 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(89): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 89, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/application/classes/Manager/Team.php(76): Kohana_Request->execute()
+#7 /home/t/www/moj-klub/application/classes/Controller/Team.php(50): Manager_Team->delete_photo('4d48782f2b77767...')
+#8 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Team->action_delete_photo()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Team))
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#13 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#14 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:89
+2013-08-08 20:59:50 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 89 ] in :
+2013-08-08 20:59:50 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:00:41 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:00:41 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:01:32 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:01:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:02:23 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:02:23 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:03:08 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:03:08 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:03:59 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:03:59 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:04:43 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:04:43 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:04:50 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:04:50 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:05:43 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 91 ] in :
+2013-08-08 21:05:43 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:06:34 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function getMessage() on a non-object ~ APPPATH/classes/Controller/Image.php [ 89 ] in :
+2013-08-08 21:06:34 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:09:57 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-08 21:09:57 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(56): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-08 21:12:03 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 63 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:12:03 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:12:59 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 63 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:12:59 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:13:16 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 63 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:13:16 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:13:36 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 63 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:13:36 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:15:06 --- EMERGENCY: Kohana_Exception [ 0 ]: Cannot delete photo model because it is not loaded. ~ MODPATH/orm/classes/Kohana/ORM.php [ 1431 ] in /home/t/www/moj-klub/application/classes/Controller/Image.php:69
+2013-08-08 21:15:06 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Controller/Image.php(69): Kohana_ORM->delete()
+#1 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#7 {main} in /home/t/www/moj-klub/application/classes/Controller/Image.php:69
+2013-08-08 21:16:34 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 62 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:16:34 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:17:28 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 62 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:17:28 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:17:40 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 62 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:17:40 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:18:30 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 62 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:18:30 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:18:47 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 62 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:18:47 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:19:44 --- EMERGENCY: ErrorException [ 0 ]:  ~ APPPATH/classes/Controller/Image.php [ 62 ] in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:19:44 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Image->action_delete_team_photo()
+#1 [internal function]: Kohana_Controller->execute()
+#2 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#3 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#5 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#6 {main} in /home/t/www/moj-klub/system/classes/Kohana/Controller.php:84
+2013-08-08 21:21:36 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')', expecting ',' or ';' ~ APPPATH/classes/Controller/Image.php [ 85 ] in :
+2013-08-08 21:21:36 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-08 21:47:05 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-08 21:47:05 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(56): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Image))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
