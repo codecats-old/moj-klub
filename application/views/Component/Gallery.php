@@ -25,8 +25,8 @@
 	<?php if(Arr::get($menu, 'delete_photo')):?>
 		<?php echo HTML::anchor(Route::get('default')->uri(
 				array(
-					'controller' => 'team', 
-					'action' => 'delete-photo',
+					'controller' => 'gallery', 
+					'action' => 'delete',
 					'id' => Coder::instance()->to_url($photo->id)
 				)
 			),

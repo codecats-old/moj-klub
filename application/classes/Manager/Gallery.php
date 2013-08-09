@@ -81,7 +81,7 @@ class Manager_Gallery extends Manager_Data{
 		{
 			$this->set_gallery_result(Auth::instance()->get_user()->team->id);
 			
-			$confirm_view = View::factory('Component/Info/Team/Gallery/Confirm')->set('error', array('e'=>$id));
+			$confirm_view = View::factory('Component/Info/Gallery/Confirm')->set('error', array('e'=>$id));
 			//content of modal window
 			$this->view_container->set('info_content', $confirm_view);
 			$this->view_content = $confirm_view;

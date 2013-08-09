@@ -652,3 +652,28 @@
 #10 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #11 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #12 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-09 20:59:06 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: confirm_view ~ APPPATH/classes/Manager/Gallery.php [ 86 ] in /home/t/www/moj-klub/application/classes/Manager/Gallery.php:86
+2013-08-09 20:59:06 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Manager/Gallery.php(86): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 86, Array)
+#1 /home/t/www/moj-klub/application/classes/Controller/Gallery.php(43): Manager_Gallery->delete_photo('2f7879665330417...', NULL)
+#2 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Gallery->action_delete()
+#3 [internal function]: Kohana_Controller->execute()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Gallery))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#7 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#8 {main} in /home/t/www/moj-klub/application/classes/Manager/Gallery.php:86
+2013-08-09 20:59:55 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected 'of' (T_STRING) ~ APPPATH/classes/Manager/Gallery.php [ 85 ] in :
+2013-08-09 20:59:55 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-09 21:00:47 --- EMERGENCY: View_Exception [ 0 ]: The requested view Component/Gallery/Confirm could not be found ~ SYSPATH/classes/Kohana/View.php [ 257 ] in /home/t/www/moj-klub/system/classes/Kohana/View.php:137
+2013-08-09 21:00:47 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/View.php(137): Kohana_View->set_filename('Component/Galle...')
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(30): Kohana_View->__construct('Component/Galle...', NULL)
+#2 /home/t/www/moj-klub/application/classes/Manager/Gallery.php(84): Kohana_View::factory('Component/Galle...')
+#3 /home/t/www/moj-klub/application/classes/Controller/Gallery.php(43): Manager_Gallery->delete_photo('794b6d78702b794...', NULL)
+#4 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Gallery->action_delete()
+#5 [internal function]: Kohana_Controller->execute()
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Gallery))
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#9 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#10 {main} in /home/t/www/moj-klub/system/classes/Kohana/View.php:137
