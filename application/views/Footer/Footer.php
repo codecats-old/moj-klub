@@ -22,10 +22,12 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Registrate/SubmitRegistrate.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Change/GetFormChange.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Change/SubmitChange.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Confirm/GetConfirm.class.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Team/TeamIndex.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Gallery/GalleryIndex.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Guest.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>

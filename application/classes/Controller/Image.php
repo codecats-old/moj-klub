@@ -44,30 +44,27 @@ class Controller_Image extends Controller_Automatic{
 	{
 		$delete_success = FALSE;
 		$team = Auth::instance()->get_user()->team;
+		$photo = $team->photo;
 		//decode photo id
 		$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
-		
+	
 		/**
 		 * Every team photo is needed to find out photo id belongs to right team
-		 * 
-		 * TODO: better make sql select and check if count is bigger than one it's better 
-		 * for optimalization but makes little bit complicated to show client what's
-		 * happed if $id is null or photo is not belongs to the user's team communicate
-		 * will be the same
-		 */
-		$photo = $team->photo;
-		$users = $team->user;
-		
-		$ids_photo = array_map(function ($p){return $p->id;}, $photo->find_all()->as_array());
-		
+		 *
+		*/
+
+	
+		//$ids_photo = array_map(function ($p){return $p->id;}, $photo->find_all()->as_array());
+	
+		//photos is cloned because validation chceck if id exists in photos
 		$validator = $photo->validate_delete(
-				array('delete_photo' => $id, 'photos' => $ids_photo, 'team_id' => $team->id)
+				array('delete_photo' => $id, 'photos' => clone $photo)
 		);
-		
+	
 		if ($validator->check())
 		{
 			$p = $photo->where('id', '=', $id)->find();
-			
+				
 			//CAN'T USE ORM - KOHANA 3.3 ORM NOT SUPPORT TRANSACTIONs
 			$db = Database::instance();
 			$db->begin();
@@ -75,26 +72,27 @@ class Controller_Image extends Controller_Automatic{
 			{
 				//save path to variable before delete from DB
 				$file_path = $p->address;
-				
+	
 				DB::delete('photos')->where('id', '=', $id)->execute();
-				
-				//chceck if path is file and can be unlink if not database get wrong data 
+	
+				//chceck if path is file and can be unlink if not database get wrong data
 				if (is_file(DOCROOT.$file_path) === TRUE AND unlink(DOCROOT.$file_path) === TRUE)
 				{
 					$db->commit();
 					$delete_success = TRUE;
-				}	
+				}
 				else
 				{
 					$db->rollback();
 					throw new ErrorException('Can\'t unlink file path: '.DOCROOT.$file_path);
-				}			
+				}
 			}
 			catch (ErrorException $ex)
 			{
 				Message::instance()->set(Message::ERROR, $ex->getMessage());
 				$this->content = print_r($ex->getMessage(), TRUE);
 				echo $this->content;
+				$this->error = array('Exception' => $ex->getMessage());
 			}
 			catch (Database_Exception $db_ex)
 			{
@@ -103,34 +101,35 @@ class Controller_Image extends Controller_Automatic{
 				echo $this->content;
 			}
 		}
-		else 
+		else
 		{
 			$this->error = $validator->errors('Image/Photo');
 		}
-		
+	
 		if ($delete_success === FALSE)
 		{
 			Message::instance()->set(Message::WARNING);
-		
+	
 			$form_upload = Message::instance()->get_view('Component/Info/Warning')
-			->set('info', 'No permission')
+			->set('info', 'The operation failed')
 			->set('errors', $this->error);
 			$this->view_content = $form_upload;
-		
-		
-		
+	
+	
+	
 		}
 		else
 		{
 			Message::instance()->set(Message::SUCCESS);
-		
+	
 			$view_success = Message::instance()->get_view('Component/Info/Success')
 			->set('info', 'zmiana będzie widoczna do 5 min');
 			$this->view_content = $view_success;
-		
-		
+	
+	
 		}
 	}
+
 	public function action_add_team_photo()
 	{
 		$upload_success = FALSE;
@@ -179,7 +178,10 @@ class Controller_Image extends Controller_Automatic{
 		{
 			Message::instance()->set(Message::WARNING);
 				
-			$form_upload = $this->get_view_upload('Photo')->set('error', $this->error);
+//			$form_upload = $this->get_view_upload('Photo')->set('error', $this->error);
+			$form_upload = Message::instance()
+				->get_view('Component/Form/Change/Photo')
+				->set('error', $this->error);
 			$this->view_content = $form_upload;
 		
 				
@@ -190,7 +192,7 @@ class Controller_Image extends Controller_Automatic{
 			Message::instance()->set(Message::SUCCESS);
 				
 			$view_success = Message::instance()->get_view('Component/Info/Success')
-			->set('info', 'zmiana będzie widoczna do 5 min');
+			->set('info', 'new photo has been added');
 			$this->view_content = $view_success;
 				
 		
@@ -249,6 +251,7 @@ class Controller_Image extends Controller_Automatic{
 			Message::instance()->set(Message::WARNING);
 			
 			$form_upload = $this->get_view_upload('Avatar')->set('error', $this->error);
+			
 			$this->view_content = $form_upload;
 				
 			

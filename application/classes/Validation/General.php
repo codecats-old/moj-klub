@@ -5,7 +5,7 @@ class Validation_General extends Validation{
 		$user = Auth::instance()->get_user();
 		$menu = Menu::factory($model, $user);
 	
-		if($menu->is_allowed($user->username, $field)) return TRUE;
+		if ($menu->is_allowed($user->username, $field)) return TRUE;
 		else return FALSE;
 	
 	}

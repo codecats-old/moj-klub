@@ -18,17 +18,16 @@ class Validation_Image extends Validation_General{
 			array('Upload::size', array(':value' ,'1M'))
 		),
 			/**
-			 * check if not empty, user is permitted to delete photos, photo belongs to specific team and 
-			 * user belongs to the same team which photo came from.
+			 * check if id is not empty, user is permitted to delete photos, photo belongs to specific team.
 			 */
 		'delete_photo' => array(
-			array('not_empty'),
-			//deleting Team photo so we need resource name :field and model name Team which has the resource
-			array('Validation_Image::is_permitted', array(':field', 'Team')),
-			array('in_array', array(':value', ':photos'))
+				array('not_empty'),
+				array('digit'),
+				//deleting Team photo so we need resource name :field and model name Team which has the resource
+				array('Validation_Image::is_permitted', array(':field', 'Team'))//,
 		),
-		'team_id' => array(
-			array('Validation_Image::is_member', array(':value'))
+		'exist' => array(
+			array('Validation_Image::is_exists', array(':id', ':value'))
 		)
 	);
 	/**
@@ -41,7 +40,13 @@ class Validation_Image extends Validation_General{
 		$team_id = Auth::instance()->get_user()->team->id;
 		return ($team_id === $val);
 	}
-	
+	public static function is_exists($id, $model)
+	{
+		
+		if( ! $model->loaded())$model->where('id', '=', $id)->limit(1)->find();
+
+		return $model->loaded();
+	}
 	public function avatar()
 	{
 		$object=Validation::factory($this->_data);
@@ -59,10 +64,10 @@ class Validation_Image extends Validation_General{
 	{
 		$object = Validation::factory($this->_data);
 
-		$object->bind(':photos', $this->_data['photos']);
+		$object->bind(':id', $this->_data['delete_photo']);
 
 		$object->rules('delete_photo', $this->rules_photo['delete_photo'])
-			->rules('team_id', $this->rules_photo['team_id']);
+			->rules('photos', $this->rules_photo['exist']);
 		return $object;
 	}
 

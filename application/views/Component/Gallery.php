@@ -6,8 +6,8 @@
 	  <li class="offset4 span4">
 	<?php echo HTML::anchor(Route::get('default')->uri(
 			array(
-				'controller' => 'team', 
-				'action' => 'add-photo'
+				'controller' => 'gallery', 
+				'action' => 'add'
 			)
 		),
 		'<span class="icon-upload icon-large"></span>',
@@ -18,7 +18,7 @@
 </div>
 <?php endif;?>
 <div>
-
+<?php $id=0;?>
 <?php foreach($photos as $photo):?>
 <?php // print_r($photo->address);?>
 	<?php echo $photo->address;?>
@@ -27,11 +27,15 @@
 				array(
 					'controller' => 'team', 
 					'action' => 'delete-photo',
-					'id' => bin2hex(Encrypt::instance()->encode($photo->id))
+					'id' => Coder::instance()->to_url($photo->id)
 				)
 			),
 			'<span class="icon-remove icon-white"></span>',
-			array('class' => 'btn btn-danger')
+			array(
+				'class' => 'btn btn-danger',
+				'rel'	=> 'confirm_get',
+				'sender'=> $id++
+			)
 		);?>
 	<?php endif;?>
 	<hr>

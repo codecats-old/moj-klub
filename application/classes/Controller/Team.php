@@ -44,10 +44,11 @@ class Controller_Team extends Controller_Automatic{
 		$user = Auth::instance()->get_user();
 		$team = $user->team;
 		$id = $this->request->param('id') ;
+		$confirm = $this->request->param('confirm');
 		$manager = Manager::factory('Team', $team);
 		$manager->set_user($user);
 		
-		$manager->delete_photo($id);
+		$manager->delete_photo($id, $confirm);
 		
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
@@ -59,7 +60,7 @@ class Controller_Team extends Controller_Automatic{
 	 */
 	public function action_gallery()
 	{
-		$id = Encrypt::instance()->decode( hex2bin($this->request->param('id')) );
+		$id = $this->request->param('id') ;
 		$user = Auth::instance()->get_user();
 		$team = $user->team;
 		
@@ -68,7 +69,6 @@ class Controller_Team extends Controller_Automatic{
 		
 		$manager->gallery($id);
 		
-		echo (new DateTime)->getTimestamp();
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
 	}

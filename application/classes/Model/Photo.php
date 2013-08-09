@@ -9,6 +9,11 @@ class Model_Photo extends ORM{
 		)
 	);
 	
+	public function get_team_photos($id)
+	{
+		return $this->where('team_id', '=', (int)$id)->order_by('uploaded', 'DESC');
+	}
+	
 	public function validate_add($files)
 	{
 		$validator = new Validation_Image($files);

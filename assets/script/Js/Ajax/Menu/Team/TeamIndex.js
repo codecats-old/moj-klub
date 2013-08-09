@@ -48,6 +48,20 @@
 				this.formGetterChange=new strz_Ajax.GetFormChange('change_form_get');
 				this.formGetterChange.run();
 
+				/*Move it to suitable roles*/
+				/*Callbacks it */
+				/*Gallery delete photo confirm*/
+				this.photos = [];
+				//multiple photos so id is rel=confim_get and in this table every sender has unique id 
+				for(var i=0; i<$('a[rel=confirm_get]').length; i++){
+					var conf = new strz_Ajax.GetConfirm(i);
+					conf.run();
+					this.photos.push(conf);
+				}
+				
+			//	this.actionConfirm = new strz_Ajax.GetConfirm('confirm_get');
+			//	this.actionConfirm.run();
+				
 				
 				this.addCallback({
 					logout:{

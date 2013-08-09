@@ -1,3 +1,6 @@
+/**
+ * Can read roles written in suitable format and initialize needed controllers
+ */
 (function() {
 	strz_Ajax.Control = function() {
 

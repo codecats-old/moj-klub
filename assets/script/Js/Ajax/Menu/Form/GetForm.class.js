@@ -6,7 +6,7 @@
 	};
 	strz_Ajax.GetForm.prototype = {
 		run:function(){
-			console.log(this);
+
 			this.setTriggerSelector('a[rel='+this.rel+']');
 			if($(this.getTriggerSelector()).length>0){
 				this.setCallbackMyself(false);

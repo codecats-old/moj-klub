@@ -13,6 +13,7 @@
 			</label>
 			<input type="file" name="add_photo" value="" />
 			<span class="label label-warning"><?php  echo Arr::get($error, 'photo');?></span>              
+			<span class="label label-warning"><?php  echo Arr::get($error, 'add_photo');?></span>
 		</div>
 	</div>
 	<hr>

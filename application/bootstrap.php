@@ -124,7 +124,8 @@ Kohana::modules(array(
 	'captcha'	=> MODPATH.'captcha',	//Captha module
 	'message'	=> MODPATH.'message',	//Flash messages
 	'manager'	=> MODPATH.'manager',	//Manipulate model and post data
-	'menu'		=> MODPATH.'menu'	//Menu creator by roles based on Zend Acl module
+	'menu'		=> MODPATH.'menu',	//Menu creator by roles based on Zend Acl module
+	'coder'		=> MODPATH.'coder'	//Module helps protect urls from CSRF attack
 	));
 /**
  * Composer
@@ -173,6 +174,9 @@ Route::set(
 	'controller' => 'image',
 	'action' => 'index'
 		));
+	
+
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->filter(
 		function($route, $params, $request)
@@ -186,3 +190,18 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'action'     => 'index',
 	));
 	
+Route::set(
+		'delete',
+		'(<controller>(/<action>(/<id>/<confirm>)))',
+	array('confirm' => '(true)'))
+	->filter(
+		function($route, $params, $request)
+		{
+			$params['action']=str_replace('-', '_', $params['action']);
+			return $params;
+		}
+	)
+	->defaults(array(
+			'controller' => 'team',
+			'action'     => 'gallery',
+	));

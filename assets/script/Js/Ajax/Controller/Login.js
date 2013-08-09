@@ -30,6 +30,9 @@
 			
 			this.teamIndex=new strz_Ajax.TeamIndex();
 			this.teamIndex.run();
+			
+			this.galleryIndex=new strz_Ajax.GalleryIndex();
+			this.galleryIndex.run();
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.Login, strz_Ajax.NodePermissionAction);

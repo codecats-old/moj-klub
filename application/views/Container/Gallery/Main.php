@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $view_top=(isset($view_top)?$view_top:null);?>
 <?php $active = isset($active) ? $active :array();?>
+
 <?php $info_content = isset($info_content) ? $info_content : NULL?>
 
 <div class="row-fluid">
@@ -13,22 +14,17 @@
 ?>
 	</section>
 	
-    <section class="span6">             
-
+    <section class="span9">             
+<?php if(isset($view_top)):?>
 		<section class="row-fluid">
 			<div class="span12">
 	<?php echo $view_top;?>
 			</div>
 		</section>
-
+<?php endif;?>
 <?php echo $view_component_about;?>
     </section>
-    
-<?php if (isset($view_details)):?>
-    <section class="span3">
-	<?php  echo $view_details;?>
-    </section>
-<?php endif;?>
+
 
 </div>
 <?php echo View::factory('Component/Window/Modal/Main')

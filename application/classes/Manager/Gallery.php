@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Manager_Team extends Manager_Data{
+class Manager_Gallery extends Manager_Data{
 
 	/**
 	 * Logged in user
@@ -20,29 +20,7 @@ class Manager_Team extends Manager_Data{
 	}
 	/*ACTIONS*/
 	
-	/**
-	 * 
-	 */
-	public function index()
-	{
-		$team = $this->object;
-		if ($team->loaded())
-		{
-			$this->view_container=View::factory('Container/Team/Main')
-			->set('modal_title', 'confirm');
-			$this->set_view_details($this->view_container);
-		}
-		else
-		{
-			$ask_view=View::factory('Component/Info/Team/Ask');
-			$this->view_container=View::factory('Container/Team/Main')
-			->set('view_top', $ask_view)
-			->set('modal_title', 'registrate')
-			->set('view_details', null)
-			->set('view_component_about', null);
-		}
-		$this->view_container->set('active', array('team'=>'active'));
-	}
+
 	public function add_photo($post)
 	{
 		$json_pack=Request::factory(
@@ -125,7 +103,7 @@ class Manager_Team extends Manager_Data{
 		$menu = Menu::factory('Team', $user);
 		$submenu = $menu->get_resource_by_user($user->username, 'gallery');
 		
-		$this->view_container = View::factory('Container/Team/Main')
+		$this->view_container = View::factory('Container/Gallery/Main')
 		->set('modal_title', 'confirm');
 		$component_gallery = View::factory('Component/Gallery')
 		->set('menu', $submenu)
@@ -138,173 +116,7 @@ class Manager_Team extends Manager_Data{
 			->set('view_component_about', $component_gallery)
 				->set('view_details', NULL);
 	}
-	/**
-	 *
-	 * @param array $post
-	 */
-	public function change_team_avatar($post)
-	{
-		$json_pack=Request::factory(
-				Route::get('default')->uri(
-						array('controller'=>'image', 'action'=>'change-team-avatar')
-				)
-		)
-		->post($post)
-		->execute();
-		$json_pack=json_decode($json_pack);
-	
-		$this->set_change_team_avatar_result($json_pack);
-	}
-	
-	/**
-	 *
-	 * @param object decoded JSON $pack
-	 */
-	protected function set_change_team_avatar_result($pack)
-	{
-		$this->view_content=unserialize($pack->View);
-	
-		Message::instance()->set($pack->status->state, $pack->status->message);
-		
-		$this->view_container=View::factory('Container/Team/Main')
-		->set('view_top', $this->view_content);
-		$this->view_container->set('modal_title', 'are you sure?');
-	
-	
-		$this->set_view_details($this->view_container);
-	}
-	
-	public function change($post, $change_field)
-	{
-		$team = $this->object;
-		$user = $this->user;
-		$menu = Menu::factory('Team', $user);
-		
-		$fields = $menu->get_resource_by_user($user->username, 'edit');
-		
-		
-		if ($post)
-		{
-			$this->set_data($post);
-			$validator = $team->validate_change($post);		
-			if($validator->check())
-			{
-				$team->update();
-				$this->success = TRUE;
-			}
-			$this->error = $validator->errors('Team/Change');
-			//change field on given id description training success
-		}
-		else
-		{
-			$post = $team->as_array();
-		}
-		
-		//results
-		$this->set_change_result($post, $change_field, $fields);
-		
-	}
-	public function set_change_result($post, $change_field, $fields)
-	{	
-		$id = $change_field;
-		//select fields permited to change (TRUE), prepare suitable names of views
-		$fields_allowed = array();
-		foreach ($fields as $field_name => $val)
-		{
-			if ($val === TRUE)array_push($fields_allowed, ucfirst($field_name));
-		}
 
-		//is specific field selected if not return all permited fields
-		$change_field = $change_field ? array(ucfirst($change_field)) : $fields_allowed;
-	
-		$this->view_container=View::factory('Container/Team/Main');
-		
-		if ($this->success === FALSE)
-		{
-			$form_change=View::factory('Component/Form/Change/Team/Data', 
-					array('fields' => $change_field) )
-				->set('team', $post)
-				->set('error', $this->error)
-				->set('id', $id);
-			$this->view_content=$form_change;
-			
-	//		$this->view_container->set('view_top', $form_change);
-			Message::instance()->set(Message::WARNING);
-		}
-		else
-		{
-
-			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
-			);
-			$this->view_content=Message::instance()->get_view('Component/Info/Success')
-			->set('info', 'zarządzaj klubem');
-		}
-		$this->view_container->set('modal_title', 'are you sure?');
-		$this->set_view_details($this->view_container);
-	}
-	
-	public function create($post)
-	{
-		$team = $this->object;
-		$user = $this->user;
-		
-		if($post)
-		{
-			$validator=$team->validate_create($post);
-			if($validator->check())
-			{
-				$this->set_data($post);
-				try
-				{
-					$team->save();
-					$user->team=$team;
-					$user->save();
-					
-					Manager::factory('User', $user)->add_role('manager');
-					$this->success = TRUE;
-				}
-				catch(Database_Exception $dbex)
-				{
-					Message::instance()->set(Message::ERROR, $dbex->getMessage());
-					//Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
-					$this->content=print_r($dbex->getMessage(), TRUE);
-				}
-			}
-			else
-			{
-				$this->error=$validator->errors('Team/Create');
-			}
-		}
-		$this->set_create_result($post);
-	
-	}
-	public function set_create_result($post)
-	{
-		if ($this->success === FALSE)
-		{
-			$form_create=View::factory('Component/Form/Create/Team')
-			->set('team', $post)
-			->set('error', $this->error);
-			$this->view_content=$form_create;
-		
-			Message::instance()->set(Message::WARNING);
-		}
-		else
-		{
-			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
-			);
-			
-			$this->view_content=Message::instance()->get_view('Component/Info/Success')
-			->set('info', 'zarządzaj klubem');
-		}
-	}
-	
 	/**
 	 * Default view details
 	 * @see Kohana_Interface_Manager::set_view_details()
