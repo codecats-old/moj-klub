@@ -9,6 +9,7 @@
        	<?php echo HTML::style('assets/style/Css/bootstrap.fix.css');?>
        	<?php echo HTML::style('assets/style/Css/ajax.css');?>
        	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
+       	<?php echo HTML::style('assets/vendor/gallery/css/styles.css');?>
         <meta name="viewport" content="initial-scale=1.0 , minimum-scale=1 , maximum-scale=1" />
         <title><?php echo $page_title;?></title>
         

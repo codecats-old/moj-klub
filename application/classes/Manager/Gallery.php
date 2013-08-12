@@ -42,12 +42,28 @@ class Manager_Gallery extends Manager_Data{
 		
 		$this->view_content=unserialize($pack->View);
 		
-		Message::instance()->set($pack->status->state, $pack->status->message);
+		
 		
 		if ( Message::instance()->get('state') === Message::SUCCESS)
 		{
-			//show success in modal window
+			//show success and reload
+			Message::instance()->set(
+				$pack->status->state, 
+				$pack->status->message, 
+				//jquery not ajax support files so redirect by header
+				array(
+					'reload' => TRUE
+				)
+			);
+			HTTP::redirect(Route::get('default')->uri(
+				array(
+					'controller' 	=> 'gallery',
+					'id'			=> Coder::instance()->to_url($team_id)							
+				))
+			);
+			
 			$this->view_container->set('info_content', $this->view_content);
+			
 		}
 		else
 		{
@@ -58,30 +74,34 @@ class Manager_Gallery extends Manager_Data{
 	}
 	public function delete_photo($id, $confirm)
 	{
+		
 		$id = Coder::instance()->from_url($id);
+		
+		//confirm is a string with true or nothing
 		if ($confirm == TRUE)
 		{
-			echo 'delete';
-	/*		$json_pack=Request::factory(
+			$json_pack=Request::factory(
 					Route::get('default')->uri(
 							array(
 								'controller'=>'image', 
-								'action'=>'delete_team_photo',
-								'id' => $id
+								'action'=>'delete-team-photo',
+								'id' => Coder::instance()->to_url($id)
 							)
 					)
 			)
-	
 			->execute();
 			$json_pack=json_decode($json_pack);
 			
-			$this->set_delete_photo_result($json_pack);*/
+			$this->set_delete_photo_result($json_pack);
 		}
 		else
 		{
+			$photo = ORM::factory('Photo', $id);
+			
 			$this->set_gallery_result(Auth::instance()->get_user()->team->id);
 			
-			$confirm_view = View::factory('Component/Info/Gallery/Confirm')->set('error', array('e'=>$id));
+			$confirm_view = View::factory('Component/Info/Gallery/Confirm')
+				->set('photo', $photo->as_array());
 			//content of modal window
 			$this->view_container->set('info_content', $confirm_view);
 			$this->view_content = $confirm_view;
@@ -89,8 +109,14 @@ class Manager_Gallery extends Manager_Data{
 	}
 	public function set_delete_photo_result($pack)
 	{
+		$this->view_content=unserialize($pack->View);
 		
+		Message::instance()->set($pack->status->state, $pack->status->message);
 	}
+	/**
+	 * 
+	 * @param int $id - team_id
+	 */
 	public function gallery($id)
 	{
 		$id = Coder::instance()->from_url($id);

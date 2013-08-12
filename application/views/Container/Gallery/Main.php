@@ -15,13 +15,14 @@
 	</section>
 	
     <section class="span9">             
-<?php if(isset($view_top)):?>
 		<section class="row-fluid">
-			<div class="span12">
+			<div class="span12"  rel="gallery_form">
+<?php if(isset($view_top)):?>
 	<?php echo $view_top;?>
+<?php endif;?>
 			</div>
 		</section>
-<?php endif;?>
+
 <?php echo $view_component_about;?>
     </section>
 

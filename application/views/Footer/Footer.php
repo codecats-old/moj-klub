@@ -23,6 +23,7 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Change/GetFormChange.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Change/SubmitChange.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Confirm/GetConfirm.class.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Menu/Confirm/DoAction.class.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
@@ -33,26 +34,12 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
 
 <?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
-
-
-
-<?php // echo HTML::script('assets/script/Js/Ajax/Controller/Content.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Index.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Access.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Form/Get.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Form/SubmitOnId.js');?>
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/Link.js');?>
-
-<?php // echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
-
-<?php // echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
 <!-- >AJAX -->
 
 <?php echo HTML::script('assets/script/Js/Components/Initializator/Component.js');?>
 
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>
+<?php echo HTML::script('assets/vendor/gallery/js/gallery.min.js');?>
 <script>
 	if(typeof(Storage)!=="undefined")
 	{
@@ -62,6 +49,12 @@
 		if(localStorage.showQuickMenu==='false'){
 			$('div#quick_access').removeClass('in');
 		}
+
+	    $(document).ready(function(){
+	        $('#gallery-container').sGallery({
+	          fullScreenEnabled: true
+	        });
+	      });
 	}
 	else
 	{

@@ -35,8 +35,10 @@ class Controller_Gallery extends Controller_Automatic{
 	{
 		$user = Auth::instance()->get_user();
 		$team = $user->team;
+		
 		$id = $this->request->param('id') ;
 		$confirm = $this->request->param('confirm');
+		
 		$manager = Manager::factory('Gallery', $team);
 		$manager->set_user($user);
 		
@@ -58,5 +60,6 @@ class Controller_Gallery extends Controller_Automatic{
 		
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
+
 	}
 }

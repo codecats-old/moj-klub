@@ -46,7 +46,8 @@ class Controller_Image extends Controller_Automatic{
 		$team = Auth::instance()->get_user()->team;
 		$photo = $team->photo;
 		//decode photo id
-		$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
+	//	$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
+		$id = Coder::instance()->from_url($this->request->param('id'));
 	
 		/**
 		 * Every team photo is needed to find out photo id belongs to right team
@@ -152,7 +153,7 @@ class Controller_Image extends Controller_Automatic{
 					array(
 						'name' => (new DateTime)->getTimestamp(),
 						'width' => 1024,
-						'height' => 1024
+						'height' => 800
 					)
 				);
 				try
@@ -384,7 +385,6 @@ class Controller_Image extends Controller_Automatic{
 	protected function make_dir_if_not_exists($dir)
 	{
 		$dir = DOCROOT.'upload/'.$dir.'/';
-		echo $dir;
 		if ( ! is_dir($dir))
 		{
 			// Create the directory

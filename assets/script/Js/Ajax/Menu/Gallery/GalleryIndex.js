@@ -19,10 +19,26 @@
 					this.photos.push(conf);
 				}
 				
+				//form to upload photos to gallery
+				this.linkAddPhoto=new strz_Ajax.GetForm('gallery_add_get', 'div[rel=gallery_form]');
+				this.linkAddPhoto.run();
+				
+				//TODO : Confirmation
 			//	this.actionConfirm = new strz_Ajax.GetConfirm('confirm_get');
 			//	this.actionConfirm.run();
 				
 				
+				this.gallery=new strz_Ajax.Component({
+					trigger:'#gallery-container',
+					component:'sGallery',
+					params:{
+						fullScreenEnabled: true
+					},
+					init:true
+				});
+
+				
+				//TODO: index behavior so callbacks are needed
 				this.addCallback({
 					/*logout:{
 						reference:this.logout,

@@ -1,6 +1,7 @@
 (function() {
 	strz_Ajax.GetConfirm = function(rel){
 		this.init();
+		//rel is sender no
 		this.rel=rel;
 	};
 	strz_Ajax.GetConfirm.prototype = {
@@ -16,8 +17,8 @@
 				this.setContentShow('#AccessModal>#ContentModal');
 				this.ajaxRun();
 	
-			//	var relSubmit=this.rel.replace('_get','');
-		//		var form=new strz_Ajax.Submit(relSubmit);
+			
+				var confirm=new strz_Ajax.DoAction('a[rel=confirm_action]', 'a[sender='+this.rel+']');
 	
 				this.addCallback({
 
@@ -27,12 +28,12 @@
 								'showModal':null
 							}
 						},
-				/*	form:{
-						reference:form,
-						methods:{
-							'run':[],
+						confirm:{
+							reference : confirm,
+							methods : {
+								'run':[],
+							}
 						}
-					}*/
 				});
 			}
 		},

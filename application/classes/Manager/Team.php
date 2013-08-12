@@ -43,101 +43,6 @@ class Manager_Team extends Manager_Data{
 		}
 		$this->view_container->set('active', array('team'=>'active'));
 	}
-	public function add_photo($post)
-	{
-		$json_pack=Request::factory(
-				Route::get('default')->uri(
-						array('controller'=>'image', 'action'=>'add-team-photo')
-				)
-		)
-		->post($post)
-		->execute();
-		$json_pack=json_decode($json_pack);
-		
-		$this->set_add_photo_result($json_pack);
-	}
-	
-	public function set_add_photo_result($pack)
-	{
-		$team_id = Auth::instance()->get_user()->team->id;
-		$this->set_gallery_result($team_id);
-		
-		$this->view_content=unserialize($pack->View);
-		
-		Message::instance()->set($pack->status->state, $pack->status->message);
-		
-		if ( Message::instance()->get('state') === Message::SUCCESS)
-		{
-			//show success in modal window
-			$this->view_container->set('info_content', $this->view_content);
-		}
-		else
-		{
-			//show Warning in view_top place
-			$this->view_container->set('view_top', $this->view_content);
-		}
-		
-	}
-	public function delete_photo($id, $confirm)
-	{
-		$id = Coder::instance()->from_url($id);
-		if ($confirm == TRUE)
-		{
-			echo 'delete';
-	/*		$json_pack=Request::factory(
-					Route::get('default')->uri(
-							array(
-								'controller'=>'image', 
-								'action'=>'delete_team_photo',
-								'id' => $id
-							)
-					)
-			)
-	
-			->execute();
-			$json_pack=json_decode($json_pack);
-			
-			$this->set_delete_photo_result($json_pack);*/
-		}
-		else
-		{
-			$this->set_gallery_result(Auth::instance()->get_user()->team->id);
-			
-			$confirm_view = View::factory('Component/Info/Team/Gallery/Confirm')->set('error', array('e'=>$id));
-			//content of modal window
-			$this->view_container->set('info_content', $confirm_view);
-			$this->view_content = $confirm_view;
-		}
-	}
-	public function set_delete_photo_result($pack)
-	{
-		
-	}
-	public function gallery($id)
-	{
-		$id = Coder::instance()->from_url($id);
-		$this->set_gallery_result($id);
-	}
-	public function set_gallery_result($id)
-	{
-		$user = $this->user;
-		
-		$menu = Menu::factory('Team', $user);
-		$submenu = $menu->get_resource_by_user($user->username, 'gallery');
-		
-		$this->view_container = View::factory('Container/Team/Main')
-		->set('modal_title', 'confirm');
-		$component_gallery = View::factory('Component/Gallery')
-		->set('menu', $submenu)
-		->set('photos', ORM::factory('Photo')->get_team_photos($id)->find_all()->as_array());
-		
-		//
-		$this->set_view_details($this->view_container);
-		$this->view_container
-		->set('active', array('gallery' => 'active'))
-			->set('view_component_about', $component_gallery)
-				->set('view_details', NULL);
-	}
 	/**
 	 *
 	 * @param array $post
@@ -170,7 +75,9 @@ class Manager_Team extends Manager_Data{
 		->set('view_top', $this->view_content);
 		$this->view_container->set('modal_title', 'are you sure?');
 	
-	
+		
+		
+		
 		$this->set_view_details($this->view_container);
 	}
 	
