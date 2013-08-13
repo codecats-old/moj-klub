@@ -383,7 +383,8 @@ class Manager_User extends Manager_Data{
 		->set('team', $team->as_array());
 		$view
 		->set('view_component_about_user', $view_component_about_user)
-		->set('view_details', $view_details);
+		->set('view_details', $view_details)
+		->set('team', $team->as_array());
 
 		return $this;
 	}

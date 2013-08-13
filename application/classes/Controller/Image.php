@@ -123,8 +123,10 @@ class Controller_Image extends Controller_Automatic{
 		{
 			Message::instance()->set(Message::SUCCESS);
 	
+			//component dissapear so info no needed
 			$view_success = Message::instance()->get_view('Component/Info/Success')
-			->set('info', 'zmiana będzie widoczna do 5 min');
+				->set('info', NULL)
+				->set('messages', NULL);
 			$this->view_content = $view_success;
 	
 	
@@ -349,7 +351,7 @@ class Controller_Image extends Controller_Automatic{
 		{
 			$filename=$properties['name'].'.'.substr(strstr($image['type'], '/'),1);
 			Image::factory($file)
-				->resize($properties['width'], $properties['height'], Image::AUTO)
+				->resize($properties['width'], $properties['height'], Image::HORIZONTAL)
 				->save($directory.$filename);
 			unlink($file);
 			return implode('/', array('upload', $dir, $filename));

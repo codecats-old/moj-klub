@@ -1,8 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<?php $user_form=(isset($user_form)?$user_form:null);?>
+<?php $user_form = (isset($user_form) ? $user_form : null);?>
+<?php $team = (isset($team) ? $team :NULL);?>
             <div class="row-fluid">
 	            <section class="span3">
-<?php echo View::factory('Component/Menu/User/Visit');?>
+<?php echo View::factory('Component/Menu/User/Visit')->set('team', $team);?>
 				</section>
                 <section class="span5">
              		<div rel="user_form">

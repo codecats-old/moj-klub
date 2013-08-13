@@ -2,11 +2,11 @@
 	strz_Ajax.DoAction = function(rel, sender){
 		this.init();
 		
-		//confirm trigger 
+		//confirm trigger - has destination url
 		this.rel=rel;
 		
-		//button which even started
-		this['sender'] = sender;
+		//button which even started has element id
+		this.sender = sender;
 	};
 	strz_Ajax.DoAction.prototype = {
 		run:function(){			
@@ -14,15 +14,20 @@
 			this.setTriggerSelector(this.rel);
 			
 			if($(this.getTriggerSelector()).length>0){
-				this.setCallbackMyself(true);
+				//no need for reload because after action element is getting by difference class
+				this.setCallbackMyself(false);
 				
-				this.setSendInformator(this.sender);
+				//confirm form
 				var show = $(this.getTriggerSelector())[0];
+				this.setSendInformator(show);
 				
+				//parent of button id = photo
 				this.setContentShow($(this.sender)[0].parentNode);
+				//send address of button
 				this.setSendToURL(show);
 				this.ajaxRun();
 				
+				//close modal window
 				this.addCallback({
 					this:{
 						reference:this,
@@ -41,7 +46,7 @@
 			this.showStatusMessage(data);
 			
 			//hide deleted photo
-			$(this.getContentShow()).hide('slow');
+			$(this.getContentShow()).hide(2500);
 			
 
 		},

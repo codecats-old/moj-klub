@@ -37,12 +37,12 @@ class Menu_Team extends Menu{
 		$this->add_resource($resource);
 		
 		//gallery has the same roles as avatar
-		$resource = Menu::get_generic_resource('gallery');
-		$this->add_resource($resource);
+//		$resource = Menu::get_generic_resource('gallery');
+//		$this->add_resource($resource);
 		
 		//manipulate gallery
-		$this->add_resource('new_photo', 'gallery')
-			->add_resource('delete_photo', 'gallery');
+//		$this->add_resource('add_photo', 'gallery')
+//			->add_resource('delete_photo', 'gallery');
 		
 		
 		return $this;
@@ -66,12 +66,16 @@ class Menu_Team extends Menu{
 		->add_role('manager', 'coach')
 		->allow('manager', array('description', 'contact', 'address', 'name'))
 		->allow('manager', 'management')
-		->allow('manager', array('avatar', 'gallery'))
+	//	->allow('manager', array('avatar', 'gallery'))
+		->allow('manager', 'avatar')
 		//admin
 		->add_role('admin', 'manager');
 		
-		$urs_roles = $user->roles->find_all()->as_array();
-		$this->add_user_role($urs_roles, $user->username);
+		if ($user !== NULL)
+		{
+			$urs_roles = $user->roles->find_all()->as_array();
+			$this->add_user_role($urs_roles, $user->username);
+		}
 		
 		return $this;
 	}

@@ -9,13 +9,25 @@
        	<?php echo HTML::style('assets/style/Css/bootstrap.fix.css');?>
        	<?php echo HTML::style('assets/style/Css/ajax.css');?>
        	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
+
+<?php if ( !
+			strcasecmp(
+				Request::$current->controller(), 
+				Route::get('default')->uri(array('controller' => 'gallery'))
+			)
+		):
+?>
+	<!-- Gallery styles -->
        	<?php echo HTML::style('assets/vendor/gallery/css/styles.css');?>
+<?php endif;?>
+
         <meta name="viewport" content="initial-scale=1.0 , minimum-scale=1 , maximum-scale=1" />
         <title><?php echo $page_title;?></title>
         
     </head>
     <body>
 
+    
 <?php  echo View::factory('Header/Header')->set('header_menu_access',$header_menu_access);?>
 
 <?php echo $view_container;?>

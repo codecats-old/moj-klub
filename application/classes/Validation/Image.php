@@ -15,7 +15,8 @@ class Validation_Image extends Validation_General{
 			array('Upload::not_empty'),
 			array('Upload::valid'),
 			array('Upload::type', array(':value', array('jpg', 'jpeg', 'png', 'gif'))),
-			array('Upload::size', array(':value' ,'1M'))
+			array('Upload::size', array(':value' ,'1M')),
+			array('Validation_Image::is_permitted', array(':field', 'Team'))
 		),
 			/**
 			 * check if id is not empty, user is permitted to delete photos, photo belongs to specific team.
@@ -40,6 +41,10 @@ class Validation_Image extends Validation_General{
 		$team_id = Auth::instance()->get_user()->team->id;
 		return ($team_id === $val);
 	}
+	/**
+	 * The same method: is unique but this one get specific query to execute but before add
+	 * some data in where statemnt
+	 */
 	public static function is_exists($id, $model)
 	{
 		

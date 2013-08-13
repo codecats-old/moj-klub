@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+<?php $team = (isset($team) ? $team : NULL);?>
 <?php $view_top=(isset($view_top)?$view_top:null);?>
 <?php $active = isset($active) ? $active :array();?>
 
@@ -19,7 +20,7 @@
 			<div class="span12"  rel="gallery_form">
 <?php if(isset($view_top)):?>
 	<?php echo $view_top;?>
-<?php endif;?>
+<?php endif; ?>
 			</div>
 		</section>
 

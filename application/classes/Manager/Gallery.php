@@ -2,6 +2,7 @@
 
 class Manager_Gallery extends Manager_Data{
 
+	private $gallery_id;
 	/**
 	 * Logged in user
 	 *
@@ -58,6 +59,7 @@ class Manager_Gallery extends Manager_Data{
 			HTTP::redirect(Route::get('default')->uri(
 				array(
 					'controller' 	=> 'gallery',
+					'action'		=> 'team',
 					'id'			=> Coder::instance()->to_url($team_id)							
 				))
 			);
@@ -124,23 +126,8 @@ class Manager_Gallery extends Manager_Data{
 	}
 	public function set_gallery_result($id)
 	{
-		$user = $this->user;
-		
-		$menu = Menu::factory('Team', $user);
-		$submenu = $menu->get_resource_by_user($user->username, 'gallery');
-		
-		$this->view_container = View::factory('Container/Gallery/Main')
-		->set('modal_title', 'confirm');
-		$component_gallery = View::factory('Component/Gallery')
-		->set('menu', $submenu)
-		->set('photos', ORM::factory('Photo')->get_team_photos($id)->find_all()->as_array());
-		
-		//
+		$this->gallery_id = $id;
 		$this->set_view_details($this->view_container);
-		$this->view_container
-		->set('active', array('gallery' => 'active'))
-			->set('view_component_about', $component_gallery)
-				->set('view_details', NULL);
 	}
 
 	/**
@@ -151,13 +138,29 @@ class Manager_Gallery extends Manager_Data{
 	{
 		$team = $this->object;
 		
-		$view_details=$this->get_view_user_details($this->object);
-		$view_about=$this->get_view_about();
-
-		$view
-		->set('view_details', $view_details)
-		->set('view_component_about', $view_about);
+		$user = $this->user;
 		
+		$id = $this->gallery_id;
+
+		$menu = Menu::factory('Gallery', $user);
+		// user can be not logged in
+		$submenu = NULL;
+		if ($user !== NULL){
+			$submenu = $menu->get_resource_by_user($user->username, 'gallery');
+		}
+		
+		$component_gallery = View::factory('Component/Gallery')
+			->set('menu', $submenu)
+			->set('photos', ORM::factory('Photo')->get_team_photos($id)->find_all()->as_array())
+			->set('team', $team->as_array());
+		
+		
+		$this->view_container = View::factory('Container/Gallery/Main')
+			->set('modal_title', 'confirm')
+			->set('active', array('gallery' => 'active'))
+			->set('view_component_about', $component_gallery);
+		
+
 		if ($team->loaded() === TRUE)
 		{
 			$this->view_container->set('team', $team->as_array());
@@ -169,84 +172,6 @@ class Manager_Gallery extends Manager_Data{
 	 * Default data set form post to object
 	 * @see Kohana_Interface_Manager::set_data()
 	 */
-	public function set_data($data)
-	{
-		$team = $this->object;
-		if(key_exists('submit', $data))unset($data['submit']);
-		
-		$zip = null;
-		if(empty($data['zip_code']) === FALSE)
-		{
-			$zip=implode('-', array($data['zip_code'], $data['zip_code2']));
-		}
-		foreach($data as $key => $val)
-		{
-			if($key !== 'zip_code' AND $key !== 'zip_code2')
-			{
-				$this->set_if_not_empty($team, $data, $key);
-			}
-			else
-			{
-				if($key === 'zip_code' AND empty($zip) === FALSE)
-				{
-					$team->set($key, $zip);
-				}
-			}
-		}
-	}
+	public function set_data($data)	{}
 
-	protected function get_view_about()
-	{
-		$team = $this->object;
-
-		$view = View::factory('Component/About/Team');
-		$players = $team->get_players();
-		$capitan = $team->get_capitan();
-		$staff = $team->get_staff();
-		$manager = $team->get_manager();
-		$coach = $team->get_coach();
-		$view->set('team', $team->as_array())
-		->set('players', $players->as_array())
-		->set('capitan', $capitan->as_array())
-		->set('staff', $staff->as_array())
-		->set('manager', $manager->as_array())
-		->set('coach', $coach->as_array());
-		return $view;
-	}
-
-	protected function get_view_user_details()
-	{
-		$team = $this->object;
-		$user = $this->user;
-		$avatar = $team->avatar;
-		
-		$view=View::factory('Component/Menu/Team/Details');
-		$view_team_change_details = View::factory('Component/Menu/Team/Change/Details');
-		$view_team_change_manage = View::factory('Component/Menu/Team/Change/Manage');
-		$view_team_change_avatar = View::factory('Component/Menu/Team/Change/Avatar');
-
-		$menu = Menu::factory('Team', $user);
-
-		$view_team_change_details->set('options',
-				$menu->get_resource_by_user($user->username, 'edit'));
-		$view_team_change_manage->set('options',
-				$menu->get_resource_by_user($user->username, 'manage'));
-		$view_team_change_avatar->set('options',
-				$menu->get_resource_by_user($user->username, 'avatar'));
-		
-		$view->set('view_team_change_avatar', $view_team_change_avatar)
-		->set('view_team_change_details', $view_team_change_details)
-		->set('view_team_change_manage', $view_team_change_manage)
-		->set('avatar', $avatar->as_array());
-
-		$manager = $team->get_manager();
-		$coach = $team->get_coach();
-		$capitan = $team->get_capitan();
-		$view->set('user', $user->as_array())
-		->set('team',$team->as_array())
-		->set('manager', $manager->as_array())
-		->set('capitan', $capitan->as_array())
-		->set('coach', $coach->as_array());
-		return $view;
-	}
 }

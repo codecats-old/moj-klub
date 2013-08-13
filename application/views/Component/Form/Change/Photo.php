@@ -22,7 +22,10 @@
 <?php echo HTML::anchor(
 		Route::get('default')->uri(
 			array(
-				'controller'=>lcfirst(Request::initial()->controller()))
+				'controller'	=> lcfirst(Request::initial()->controller()),
+				'action'		=> lcfirst(Request::initial()->action())
+			)
+				
 			),
 		ucfirst(__('close')),
 		array('class'=>'btn btn-small', 'rel'=>'form_close'));?>

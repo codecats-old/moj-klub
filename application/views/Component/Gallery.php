@@ -1,6 +1,20 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 
-<?php if(Arr::get($menu, 'new_photo')):?>
+<?php if ($team):?>
+<div class="thumbnail text-center alert alert-info">
+	<h2>
+	<?php echo $team['short_name'];?>
+	</h2>
+	<p class="label">
+	<?php echo $team['full_name'].'\'s gallery.' ;?>
+		
+	</p>
+</div>
+<?php else:?>
+	No club gallery.
+<?php endif;?>
+
+<?php if(Arr::get($menu, 'add_photo')):?>
 <!-- UPLAD PHOTOS -->
 <div class="row-fluid">
 	<ul class="nav navbar">
@@ -30,7 +44,11 @@
 <?php foreach($photos as $photo):?>
 		<li class="item well">
 	
-	<?php echo HTML::image($photo->address);?>
+	<?php echo HTML::image($photo->address, array('class' => 'img-polaroid'));?>
+	
+			<label class="label">
+	<?php echo $photo->uploaded;?>
+			</label>
 	
 	<?php if(Arr::get($menu, 'delete_photo')):?>
 		<?php echo HTML::anchor(Route::get('default')->uri(

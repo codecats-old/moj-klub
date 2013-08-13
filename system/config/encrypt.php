@@ -16,7 +16,7 @@ return array(
 		'key'	 => hash('sha256', Session::instance()->id().Cookie::$salt )
 	),
 	'url' => array(
-		'cipher' => MCRYPT_3DES,
+		'cipher' => MCRYPT_DES,
 		'mode'   => MCRYPT_MODE_ECB,
 		'key'	 => hash('sha256', Session::instance()->id().Cookie::$salt )
 	)

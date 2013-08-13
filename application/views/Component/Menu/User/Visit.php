@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $active = isset($active) ? $active :array();?>
-<?php $disabled = !isset($team) ? array('gallery' => 'disabled') : array();?>
-<?php $team = isset($team) ? $team : array();?>
+
 <h3>Przeglądaj</h3>
 
 <p>
@@ -16,24 +15,24 @@
 );?>
 </p>
 
-
+<?php if (isset($team)):?>
 <p>
 	<?php echo HTML::anchor(
 		Route::get('default')->uri(
 			array(
-				'controller' => empty($team) ? NULL : 'gallery',
-				'action' =>  empty($team) ? NULL : 'team',
+				'controller' => 'gallery',
+				'action' =>  'team',
 				'id' => Coder::instance()->to_url(Arr::get($team, 'id'))
 			)
 		), 
 		'Gallery',
 		array(
 			'class'=>'btn btn-block btn-info '
-				.Arr::get($active, 'gallery').' '.Arr::get($disabled, 'gallery')
+				.Arr::get($active, 'gallery')
 		)
 	);?>
 </p>
-
+<?php endif;?>
 
 <!-- <a href="#" class="btn btn-large btn-info btn-block">Twój klub<label>informacje, ważniejse wydarzenia</label></a> -->
 <p>
