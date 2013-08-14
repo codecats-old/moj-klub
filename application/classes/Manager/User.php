@@ -434,6 +434,7 @@ class Manager_User extends Manager_Data{
 		$roles = $user->roles->find_all();
 
 		$avatar=$user->avatar;
+	//	echo $avatar->path;
 		$team = $user->team;
 		$roles_view = $this->object->get_teams_roles($roles);
 		$roles = $this->to_array($roles_view, 'name');

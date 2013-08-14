@@ -18,6 +18,88 @@ class Model_Team extends ORM{
 			),
 	);
 	
+	/**
+	 * Select teams which recently added photos and from this teams
+	 * select team which has user more than some count of users
+	 * 
+	 * @return Ambigous <Database_Result, ORM, Model_Team, object, mixed, number, Database_Result_Cached, multitype:>
+	 */
+	public function get_most_popular()
+	{			
+		$photos = DB::select('team_id')
+			->from('photos')
+			->where('uploaded', '>', DB::expr('(now() - interval 14 day)'))
+			->group_by('team_id');
+
+		return $this
+			->select(
+					'team.id', 'short_name', 'username', 
+					array(DB::expr('count(u.id)'), 'counter')
+			)
+			->join(array('users', 'u'))
+			->on('team.id', '=', 'u.team_id')
+			->where('team.id', 'IN', $photos)
+			->or_where('team.id', '=', 20)//debug
+			->group_by('team.short_name')
+			->having('counter', '>', 0)
+			->order_by('counter', 'DESC')
+		;
+	}
+	/**
+	 * Return team with biggest count of members
+	 * 
+	 * @param unsigned int $max_members - count of max members (for precentage counter)
+	 * @param unsigned int $omit - omit given id
+	 * @return Ambigous <$this, Model_Team>
+	 */
+	public function get_biggest($max_members = 1, $omit = -1)
+	{
+		return $this
+			->select(
+					'team.id', 'team.short_name', 'team.full_name', 'team.description', 'team.success',
+					'team.training', 'team.email', 'team.phone', 'team.street', 'team.street_no',
+					'team.zip_code', 'team.city', 'team.avatar_id', 'avatar.path', 
+					array(DB::expr('count(user.id)'), 'counter'),
+					// team member *100 / max_team [%]
+					array(DB::expr('count(user.username) * 100 / '.$max_members), 'counter_percent')
+			)
+			->join(array('users', 'user'))
+			->on('team.id', '=', 'user.team_id')
+			->join(array('avatars', 'avatar'), 'LEFT')
+			->on('team.avatar_id', '=', 'avatar.id')
+			->where('team.id', '<>', $omit)
+			->group_by('team.id')
+			->having('counter', '>', 0)
+			->order_by('counter', 'DESC')
+		;
+	}
+	
+	/**
+	 * Return team with maximum count of members  
+	 * 
+	 */
+	public function get_max_member_count()
+	{
+		return $this
+			->select(array(DB::expr('count(user.id)'), 'counter'))
+			->join(array('users', 'user'))
+			->on('team.id', '=', 'user.team_id')
+			->group_by('team.id')
+			->order_by('counter', 'DESC')
+			->limit(1);
+	}
+	
+	public function get_cities()
+	{
+		return $this
+			->select('team.city', array(DB::expr('count(user.id)'), 'counter'))
+			->join(array('users', 'user'))
+			->on('team.id', '=', 'user.team_id')
+			->where('city', '<>', '')
+			->group_by('team.id')
+			->order_by('counter', 'DESC');
+	}
+	
 	public function get_manager()
 	{
 		$manager=$this->get_members('manager')->find();

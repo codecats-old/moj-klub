@@ -4,48 +4,35 @@ class Controller_Welcome extends Controller_Automatic {
 
 	public function action_index()
 	{
-		$this->view_content=View::factory('Container/Welcome/Main');
-	/*	$this->view_container=View::factory('Container/Main')
-			->set('view', $view);
-*/
-	}
-	public function action_registrate()
-	{
-	//	$accessView=View::factory('Component/Access/Registrate');
-			//->set('user', null)->set('info', null)->set('error', null);
-	/*	$this->view_container=View::factory('Container/Main')
-			->set('view', $accessView);*/
-	}
-	public function action_test()
-	{
-		$user=ORM::factory('User', 2);
-		$info=ORM::factory('Info');
-		$info->user=$user;
-		$info->set('name', 'Tomek');
-		$info->save();
-	echo $user->info->name;
-	echo '<hr>';
-		//view
-		echo '<pre>';
-		echo Debug::dump($info);
-		echo '</pre>';
+		$bigger_team = ORM::factory('Team')->get_biggest()->find();
 		
-		echo '<pre>';
-		echo Debug::dump($user);
-		echo '</pre>';
+		$main_team = ORM::factory('Team')->get_most_popular()->find();
+		$main_team_photos = ORM::factory('Photo', $main_team->id )
+		->order_by('uploaded', 'DESC')
+		->limit(5)
+		->find_all();
+		$main_team_avatar = $main_team->avatar;
+
+		$popular_teams = ORM::factory('Team')->get_biggest($bigger_team->counter, $main_team->id-10)->limit(3)->find_all();
+
+	//	$main_team->set('precentage_counter', $percents);
+//	echo ORM::factory('Team')->get_max_member_count()->find()->counter;
 		
+		$component_carousel =  View::factory('Component/Carousel')
+			->set('team', 	$main_team->as_array())
+			->set('photos', $main_team_photos->as_array())
+			->set('avatar', $main_team_avatar->as_array());
 		
-	/*	$role=ORM::factory('Role', array('name'=>'login'));
-		echo '<pre>';
-		echo Debug::dump($role);
-		echo '</pre>';
-		$user->add('roles', $role);*/
-//		$user->add('roles', $role);
-	
-	/*	$user->set('email', 'tomek11@gmail.com');
-		$user->set('username', 'tomek11');
-		$user->set('password', 'tomek11');
-		$user->save();*/
+		$component_access_quick = View::factory('Component/Access/Quick');
+		
+		$component_thumbnails_team = View::factory('Component/Thumbnails/Team')
+			->set('teams', $popular_teams->as_array());
+		
+		$this->view_content = View::factory('Container/Welcome/Main')
+			->set('component_carousel', 		$component_carousel)
+			->set('component_thumbnails_team', 	$component_thumbnails_team);
+		
+
 	}
 
-} // End Welcome
+}

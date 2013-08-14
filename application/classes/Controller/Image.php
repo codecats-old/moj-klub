@@ -114,10 +114,7 @@ class Controller_Image extends Controller_Automatic{
 			$form_upload = Message::instance()->get_view('Component/Info/Warning')
 			->set('info', 'The operation failed')
 			->set('errors', $this->error);
-			$this->view_content = $form_upload;
-	
-	
-	
+			$this->view_content = $form_upload;	
 		}
 		else
 		{
@@ -127,9 +124,7 @@ class Controller_Image extends Controller_Automatic{
 			$view_success = Message::instance()->get_view('Component/Info/Success')
 				->set('info', NULL)
 				->set('messages', NULL);
-			$this->view_content = $view_success;
-	
-	
+			$this->view_content = $view_success;	
 		}
 	}
 
@@ -225,14 +220,11 @@ class Controller_Image extends Controller_Automatic{
 				);
 				try
 				{
-					
-					//Save new avatar if not exists
-					if ($avatar->loaded() === FALSE)
-					{	
-						$avatar->path = $file_path;
-						$avatar->save();
-					}
-					//Update avatar - in real nothing was changed (path for the club still the same
+					$avatar->path = $file_path;
+					//Save new avatar or just update the path
+					$avatar->save();
+
+					//Update avatar
 					$team->avatar = $avatar;
 					$team->save();
 					$upload_success = TRUE;
@@ -273,14 +265,15 @@ class Controller_Image extends Controller_Automatic{
 	}
 	public function action_change_user_avatar()
 	{
-		if ($this->request->is_initial())HTTP::redirect(Route::get('default')->uri());
+	//	if ($this->request->is_initial())HTTP::redirect(Route::get('default')->uri());
 		$this->redirect_user(FALSE);
 		$upload_success = FALSE;
 		$post = $this->request->post();
 		$files = $_FILES;
 		
-		$avatar = ORM::factory('Avatar');
+//		$avatar = ORM::factory('Avatar');
 		$user = Auth::instance()->get_user();
+		$avatar = $user->avatar;
 		
 		if ($post)
 		{
@@ -294,15 +287,13 @@ class Controller_Image extends Controller_Automatic{
 						'height' => 80
 					)
 				);
-				$avatar->find();
+		
 				try
 				{
-					//Save new avatar if not exists
-					if ($avatar->loaded() === FALSE)
-					{
-						$avatar->path = $file_path;
-						$avatar->save();
-					}
+					$avatar->path = $file_path;
+					//Save new avatar
+					$avatar->save();
+					
 					//Update avatar
 					$user->avatar = $avatar;
 					$user->save();
@@ -322,7 +313,9 @@ class Controller_Image extends Controller_Automatic{
 		if ($upload_success === FALSE)
 		{
 			Message::instance()->set(Message::WARNING);
-			$form_upload = $this->get_view_upload('Avatar')->set('error', $this->error);
+			$form_upload = Message::instance()
+				->get_view($this->get_view_upload('Avatar'))
+				->set('error', $this->error);
 			$this->view_content = $form_upload;
 			
 		

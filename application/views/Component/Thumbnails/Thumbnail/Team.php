@@ -1,29 +1,48 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
- <li class="span4 btn btn-warning" data-toggle="collapse" data-target="#progress<?php echo $id;?>">
-                        <h3>Gwardia Warszawa</h3>
-<?php echo HTML::image('upload/Avatar/club-avatar.jpg', array('style'=>'width:50px;height:50px;'));?>
-                        
-                        <p>
-                            Gwardia Warszawa is a Polish sports club based in Warsaw, Poland. The club was founded in 1948. Gwardia Warszawa football team currently playing in the Polish A klasa (7th tier of Polish league football). It participated in the Polish 1st League between 1953–1960 (8 seasons), 1962–1966 (5 seasons), 1967–1968, 1969–1975, 1978–1979 and 1981–1983. The biggest success was finishing 2nd at Polish Championship in 1957 season. 
-                        </p>
-                        
-                        <div id="progress<?php echo $id;?>"  class="collapse out">
-	                        <div class="row-fluid">
-	                            <div class="span5">Poziom Treningów</div>
-	                            <div class="span7">
-	                                <div class="progress progress-striped active">
-	                                    <div class="bar" style="width: 70%;"></div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="row-fluid">
-	                            <div class="span5">Popularność</div>
-	                            <div class="span7">
-	                                <div class="progress progress-danger progress-striped active">
-	                                    <div class="bar" style="width: 60%;"></div>
-	                                </div>
-	                            </div>
-	                        </div>
-                        </div>
-                        <a class="btn btn-success" href="#">Zobacz klub</a>
-                    </li>
+<?php $path = Arr::get($team, 'path') ? Arr::get($team, 'path') : 'upload/default/avatar/team.png' ?>
+
+<li class="span4 btn btn-warning" data-toggle="collapse" data-target="#progress<?php echo $id;?>">
+	<h3><?php echo Arr::get($team, 'short_name');?></h3>
+<?php echo HTML::image($path);?>
+	                        
+	<p>
+<?php echo Arr::get($team, 'description');?> 
+	</p>
+	                        
+	<div id="progress<?php echo $id;?>"  class="collapse out">
+<?php if (FALSE):?>
+		<div class="row-fluid">
+			<div class="span5">Poziom Treningów</div>
+			<div class="span7">
+				<div class="progress progress-striped active">
+					<div class="bar" style="width: 0%;"></div>
+				</div>
+			</div>
+		</div>
+<?php endif;?>
+		<div class="row-fluid">
+			<div class="span5">Popularność</div>
+				<div class="span7">
+					<div class="progress progress-danger progress-striped active">
+						<div class="bar" style="width: <?php echo Arr::get($team, 'counter_percent')?>%;"></div>
+					</div>
+				</div>
+		</div>
+	</div>
+<?php 
+	echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller' 	=> 'team',
+ 				'action' 		=> 'show',
+ 				'id' 			=> Coder::instance()->to_url($team['id'])
+			)
+		), 
+		'see the club',
+		array(
+			'class' => 'btn btn-success'
+		)
+	);
+?>
+
+</li>

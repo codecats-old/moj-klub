@@ -16,7 +16,7 @@ class Validation_Image extends Validation_General{
 			array('Upload::valid'),
 			array('Upload::type', array(':value', array('jpg', 'jpeg', 'png', 'gif'))),
 			array('Upload::size', array(':value' ,'1M')),
-			array('Validation_Image::is_permitted', array(':field', 'Team'))
+			array('Validation_Image::is_permitted', array(':field', 'Gallery'))
 		),
 			/**
 			 * check if id is not empty, user is permitted to delete photos, photo belongs to specific team.
@@ -25,7 +25,7 @@ class Validation_Image extends Validation_General{
 				array('not_empty'),
 				array('digit'),
 				//deleting Team photo so we need resource name :field and model name Team which has the resource
-				array('Validation_Image::is_permitted', array(':field', 'Team'))//,
+				array('Validation_Image::is_permitted', array(':field', 'Gallery'))//,
 		),
 		'exist' => array(
 			array('Validation_Image::is_exists', array(':id', ':value'))

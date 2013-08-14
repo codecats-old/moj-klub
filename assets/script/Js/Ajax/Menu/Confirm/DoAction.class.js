@@ -39,7 +39,8 @@
 			}
 		},
 		ajaxDone:function(data, action) {
-			this.uber.ajaxDone(data,action);
+			//Do not show result just animate
+	//		this.uber.ajaxDone(data,action);
 			data=JSON.parse(data);
 		//	var form=this.getForm(this.getTriggerSelector());
 	//		this.setSendData(form);

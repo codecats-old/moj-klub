@@ -55,7 +55,7 @@ class Controller_Gallery extends Controller_Automatic{
 	public function action_delete()
 	{
 		$user = Auth::instance()->get_user();
-		$menu = Menu::factory('Team', $user);
+		$menu = Menu::factory('Gallery', $user);
 		
 		if ( ! $menu->is_allowed($user->username, 'delete_photo'))
 		{

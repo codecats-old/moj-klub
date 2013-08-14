@@ -43,6 +43,19 @@ class Manager_Team extends Manager_Data{
 		}
 		$this->view_container->set('active', array('team'=>'active'));
 	}
+
+	public function show()
+	{
+		$this->view_container=View::factory('Container/Team/Main')
+			->set('modal_title', 'confirm');
+		$this->set_view_details($this->view_container);
+	}
+	
+	public function set_show_result()
+	{
+	
+	}
+	
 	/**
 	 *
 	 * @param array $post
@@ -220,7 +233,7 @@ class Manager_Team extends Manager_Data{
 	{
 		$team = $this->object;
 		
-		$view_details=$this->get_view_user_details($this->object);
+		$view_details=$this->get_view_user_details($team);
 		$view_about=$this->get_view_about();
 
 		$view
