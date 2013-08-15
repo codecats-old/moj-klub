@@ -18,7 +18,18 @@
 				<li class="well">
 	<?php echo Arr::get($player->as_array(), 'username');?>
 	<?php if($player->id===Arr::get($capitan, 'id')) echo ' C';?>
-					<a class="btn btn-mini btn-info pull-right" href="#">go</a>
+	
+	<?php echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'user',
+				'action'		=> 'show',
+				'id'			=> Coder::instance()->to_url($player->id)
+			)
+		),
+		'go',
+		array('class' => 'btn btn-mini btn-info pull-right')
+	)?>
+
 		<!-- when training for user will be set
 					<div class="progress progress-striped active">
 						<div class="bar" style="width: 50%;">training time</div>

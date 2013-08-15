@@ -3,11 +3,18 @@
 <?php if ($team):?>
 <div class="thumbnail text-center alert alert-info">
 	<h2>
-	<?php echo $team['short_name'];?>
+	<?php echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'team',
+				'action'		=> 'show',
+				'id'			=> Coder::instance()->to_url($team['id'])
+			)
+		),
+		$team['short_name']
+	);?>
 	</h2>
 	<p class="label">
 	<?php echo $team['full_name'].'\'s gallery.' ;?>
-		
 	</p>
 </div>
 <?php else:?>

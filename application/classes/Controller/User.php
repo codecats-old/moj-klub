@@ -17,14 +17,14 @@ class Controller_User extends Controller_Automatic{
 	public function action_index()
 	{
 		// redirect if not logged in
-		$this->redirect_user(FALSE);
+		$this->redirect_user(FALSE, array('controller' => 'user', 'action' => 'registrate'));
 
 		// view main site
-		$this->view_container=View::factory('Container/User/Main');
+		$this->view_container = View::factory('Container/User/Main');
 		// view form specific action
-		$this->view_content=$this->view_container;
+		$this->view_content = $this->view_container;
 
-		$user=Auth::instance()->get_user();
+		$user = Auth::instance()->get_user();
 		
 		// set details views for main site
 		Manager::factory('User', $user)->set_view_details($this->view_container);
@@ -150,6 +150,27 @@ class Controller_User extends Controller_Automatic{
 		
 		$manager->registrate($post);
 		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
+	}
+	
+	/**
+	 * Show present user to other
+	 */
+	public function action_show()
+	{
+		$id = Coder::instance()->from_url($this->request->param('id'));
+		
+		if (is_numeric($id) === FALSE)
+		{
+			HTTP::redirect(Route::get('default')->uri());
+		}
+		
+		$user = ORM::factory('User', $id);
+		$manager = Manager::factory('User', $user);
+		
+		$manager->show();
+
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
 	}

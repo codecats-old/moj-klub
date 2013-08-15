@@ -73,13 +73,36 @@ class Menu_Team extends Menu_General{
 		//admin
 		->add_role('admin', 'manager');
 		
-/*		if ($user !== NULL)
-		{
-			$urs_roles = $user->roles->find_all()->as_array();
-			$this->add_user_role($urs_roles, $user->username);
-		}
-		
-		return $this;*/
 		return parent::prepare_permissions($user);
+	}
+	
+	/**
+	 * Deny access if user is not belongs to specific team
+	 * 
+	 * @param unknown $resource
+	 * @param unknown $resource_owner
+	 */
+	public function deny_permissions($resource, $resource_owner)
+	{
+		/**
+		 * Resource can be null
+		 */
+		if ($resource_owner !== NULL)
+		{
+			/**
+			 * Resource is not null so set context
+			 */
+			$resource_owner = $resource_owner->team;
+			
+			/**
+			 * Deny only if resource_owner not equal view resource
+			 */
+			if ($resource->id !== $resource_owner->id)
+			{
+				$role = ($this->user !== NULL) ? $this->user->username : NULL;
+				$this->deny($role, array('avatar', 'edit', 'manage'));
+			}
+		}
+		return $this;
 	}
 }

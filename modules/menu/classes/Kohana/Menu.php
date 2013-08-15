@@ -9,6 +9,11 @@
 abstract class Kohana_Menu extends Zend_Acl implements Kohana_Interface_Menu{
 	
 	/**
+	 * Owner of permission context 
+	 */
+	protected $user;
+	
+	/**
 	 * 
 	 * 
 	 * @param string $name
@@ -29,6 +34,8 @@ abstract class Kohana_Menu extends Zend_Acl implements Kohana_Interface_Menu{
 	 */
 	public function __construct($user)
 	{
+		$this->user = $user;
+		
 		$this->prepare_resources()->prepare_permissions($user);
 	}
 	

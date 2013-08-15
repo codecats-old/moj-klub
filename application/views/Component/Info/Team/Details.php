@@ -21,4 +21,22 @@
 <?php echo Arr::get($team, 'training');?>
 		</p>
 	</article>
+<?php if ($photos_count > 0):?>
+	<div>
+	<?php echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller' => 'gallery',
+				'action'	 =>	'team',
+				'id'		 => Coder::instance()->to_url($team['id'])
+			)
+		),
+		'Photos count: '.$photos_count,
+		array(
+			'class' => 'btn btn-info'
+		)
+	)?>
+	<a></a>
+	</div>
+<?php endif;?>
 </div>

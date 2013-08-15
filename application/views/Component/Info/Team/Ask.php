@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="row-fluid">
+<div class="row-fluid hero-unit">
 	<div class="row-fluid">
 	<div class="span12"><h4>Nie masz jeszcze swojego klubu co robić?</h4></div>
 	</div>

@@ -13,14 +13,11 @@ class Controller_Team extends Controller_Automatic{
 		/*
 		 * Redirect if user is not logged in  
 		 */
-		if (Auth::instance()->logged_in() === FALSE)
-		{
-			HTTP::redirect(Route::get('default')->uri());
-		}
+		$this->redirect_user(FALSE);
 		/*
 		 * Redirect if user has no team
 		 */
-		$this->redirect_user(FALSE);
+		//$this->redirect_team_member(FALSE);
 		
 		$user = Auth::instance()->get_user();
 		$team = $user->team;
@@ -124,14 +121,11 @@ class Controller_Team extends Controller_Automatic{
 		/*
 		 * Redirect user not logged in
 		 */
-		if (Auth::instance()->logged_in() === FALSE)
-		{
-			HTTP::redirect(Route::get('default')->uri());
-		}
+		$this->redirect_user(FALSE);
 		/*
 		 * Redirect if user has a team 
 		 */
-		$this->redirect_user(TRUE);
+		$this->redirect_team_member(TRUE);
 		
 		//set up data
 		$user = Auth::instance()->get_user();

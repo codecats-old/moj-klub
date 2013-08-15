@@ -9,6 +9,14 @@
  * To see hows it work with typhical action go to 'change_password'
 */
 class Manager_User extends Manager_Data{
+	
+	public function show()
+	{
+		$this->team = ORM::factory('Team', $this->object->team_id);
+		
+		$this->view_container = View::factory('Container/User/Main');
+		$this->set_view_details($this->view_container);
+	}
 
 	/**
 	 * Registrate
@@ -375,7 +383,9 @@ class Manager_User extends Manager_Data{
 	public function set_view_details($view)
 	{
 		$user = $this->object;
-		$team=$user->team;
+		$team = $user->team;
+		
+		$menu_visit = Menu::factory('Visit', $user);
 
 		$view_details=$this->get_view_details();
 
@@ -384,7 +394,8 @@ class Manager_User extends Manager_Data{
 		$view
 		->set('view_component_about_user', $view_component_about_user)
 		->set('view_details', $view_details)
-		->set('team', $team->as_array());
+		->set('team', $team->as_array())
+		->set('menu_visit', $menu_visit->get_resource_by_user($user, NULL));
 
 		return $this;
 	}

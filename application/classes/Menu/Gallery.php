@@ -11,28 +11,27 @@ class Menu_Gallery extends Menu_General{
 		$this->add_resource('add_photo', 'gallery')
 			->add_resource('delete_photo', 'gallery');
 		
-		
 		return $this;
 	}
 	
 	public function prepare_permissions($user)
 	{
 		$this
-		->add_role('guest')
-		//player
-		->add_role('player', 'guest')
-		
-		//capitan
-		->add_role('capitan', 'player')
-
-		//coach
-		->add_role('coach', 'capitan')
-
-		//manager
-		->add_role('manager', 'coach')
-		->allow('manager', 'gallery')
-		//admin
-		->add_role('admin', 'manager');
+			->add_role('guest')
+			//player
+			->add_role('player', 'guest')
+			
+			//capitan
+			->add_role('capitan', 'player')
+	
+			//coach
+			->add_role('coach', 'capitan')
+	
+			//manager
+			->add_role('manager', 'coach')
+			->allow('manager', 'gallery')
+			//admin
+			->add_role('admin', 'manager');
 		
 		/*if ($user !== NULL)
 		{
@@ -41,5 +40,29 @@ class Menu_Gallery extends Menu_General{
 		}*/
 		
 		return parent::prepare_permissions($user);
+	}
+	/**
+	 * Deny access if user is not belongs to specific team
+	 *
+	 * @param unknown $resource
+	 * @param unknown $resource_owner
+	 */
+	public function deny_permissions($resource, $resource_owner)
+	{
+		if ($resource_owner !== NULL)
+		{
+			$resource_owner = $resource_owner->team->id;
+		}
+		/**
+		 * Deny only if resource_owner not equal view resource
+		 */
+		if ($resource !== $resource_owner)
+		{
+			$role = ($this->user !== NULL) ? $this->user->username : NULL;
+			$this->deny($role, array('gallery'));
+		}
+	
+	
+		return $this;
 	}
 }

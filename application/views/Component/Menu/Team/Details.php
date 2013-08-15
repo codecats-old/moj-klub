@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<?php $avatar = isset($avatar) ? $avatar : array();?>
+<?php $avatar = isset($avatar['path']) ? $avatar : array('path' => 'upload/default/avatar/team.png');?>
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
        	<li class="thumbnail span12">

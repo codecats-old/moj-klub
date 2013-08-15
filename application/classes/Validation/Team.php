@@ -21,7 +21,7 @@ class Validation_Team extends Validation_General{
 			),
 			'description'=>array(
 					array('min_length', array(':value', 5)),
-					array('max_length', array(':value', 50)),
+					array('max_length', array(':value', 250)),
 					array('regex', array(':value', '/^[\pL\pN\pZ\p{Pc}\p{Pd}\p{Po}\s]++$/uD'))
 			),
 			'street'=>array(
@@ -57,12 +57,12 @@ class Validation_Team extends Validation_General{
 			),
 			'success'=>array(
 					array('min_length', array(':value', 5)),
-					array('max_length', array(':value', 50)),
+					array('max_length', array(':value', 250)),
 					array('regex', array(':value', '/^[\pL\pN\pZ\p{Pc}\p{Pd}\p{Po}\s]++$/uD'))
 			),
 			'training'=>array(
 					array('min_length', array(':value', 5)),
-					array('max_length', array(':value', 50)),
+					array('max_length', array(':value', 250)),
 					array('regex', array(':value', '/^[\pL\pN\pZ\p{Pc}\p{Pd}\p{Po}\s]++$/uD'))
 			),
 	);

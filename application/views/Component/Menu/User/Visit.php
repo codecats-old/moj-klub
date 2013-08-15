@@ -1,10 +1,24 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<?php $active = isset($active) ? $active :array();?>
+<?php $controller = strtolower(Request::current()->controller() );?>
+<?php $active = array($controller => 'active');?>
 
-<h4 class="label label-info">Przeglądaj</h4>
+<h3 class="label label-info">Przeglądaj</h3>
 
+<?php if (Arr::get($menu,	'user')):?>
+<p>
+<?php echo HTML::anchor(
+	Route::get('default')->uri(
+		array(
+			'controller'=>'user',
+		)
+	), 
+	'My profile<label>options<label>',
+	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'user'))
+);?>
+</p>
+<?php endif;?>
 
-<?php if (Arr::get($active,	'team') !== FALSE):?>
+<?php if (Arr::get($menu,	'team')):?>
 <p>
 <?php echo HTML::anchor(
 	Route::get('default')->uri(
@@ -18,24 +32,7 @@
 </p>
 <?php endif;?>
 
-<?php if (Arr::get($active,	'show') !== FALSE):?>
-<p>
-<?php echo HTML::anchor(
-	Route::get('default')->uri(
-		array(
-			'controller'=> 'team',
-			'action'	=> 'show',
-			'id'		=> Coder::instance()->to_url(Arr::get($active, 'team_id'))
-		)
-	), 
-	'Club\'s profile<label>informacje, ważniejse wydarzenia<label>',
-	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'show'))
-);?>
-</p>
-<?php endif;?>
-
-
-<?php if (isset($team)):?>
+<?php if (Arr::get($menu, 'gallery')):?>
 <p>
 	<?php echo HTML::anchor(
 		Route::get('default')->uri(
@@ -45,19 +42,20 @@
 				'id' => Coder::instance()->to_url(Arr::get($team, 'id'))
 			)
 		), 
-		'Gallery',
+		'Gallery<label>pictures from team</label>',
 		array(
-			'class'=>'btn btn-block btn-info '
-				.Arr::get($active, 'gallery')
+			'class'=>'btn btn-block btn-info '.Arr::get($active, 'gallery')
 		)
 	);?>
 </p>
 <?php endif;?>
 
 <!-- <a href="#" class="btn btn-large btn-info btn-block">Twój klub<label>informacje, ważniejse wydarzenia</label></a> -->
+<!-- 
 <p>
 	<a href="#" class="btn btn-large btn-info btn-block">Panel<label>statystyki, treningi ect.</label></a>
 </p>
 <p>
 	<a href="#" class="btn btn-large btn-info btn-block">Twój profil<label>widoczny dla innych</label></a>
 </p>
+ -->

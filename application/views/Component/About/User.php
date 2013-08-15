@@ -5,7 +5,18 @@
 			<h3>Dane użytkownika</h3>
 			 <div>
 			 	<label class="label">Klub</label>
-			 	<span class="text-info pull-right"><?php echo Arr::get($team, 'short_name');?></span>
+			 	<span class="text-info pull-right">
+	
+<?php echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'team',
+				'action' 		=> 'show',
+				'id' 			=> Coder::instance()->to_url($team['id'])
+			)
+		),
+		Arr::get($team, 'short_name')
+);?>
+			 	</span>
 			 </div>
 <?php if(Arr::get($team, 'city')):?>
 			 <div>

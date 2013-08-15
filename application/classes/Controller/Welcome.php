@@ -13,7 +13,8 @@ class Controller_Welcome extends Controller_Automatic {
 		->find_all();
 		$main_team_avatar = $main_team->avatar;
 
-		$popular_teams = ORM::factory('Team')->get_biggest($bigger_team->counter, $main_team->id-10)->limit(3)->find_all();
+		$popular_teams = ORM::factory('Team')
+			->get_biggest($bigger_team->counter, $main_team->id)->limit(3)->find_all();
 
 	//	$main_team->set('precentage_counter', $percents);
 //	echo ORM::factory('Team')->get_max_member_count()->find()->counter;
@@ -32,7 +33,15 @@ class Controller_Welcome extends Controller_Automatic {
 			->set('component_carousel', 		$component_carousel)
 			->set('component_thumbnails_team', 	$component_thumbnails_team);
 		
+//------------------------------------------------------------------------------------------------
 
+		$user = Auth::instance()->get_user();
+		
+		$menu = Menu::factory('Visit', $user);
+		echo '<pre style="background:white">';
+		print_r($menu->get_resource_by_user($user, NULL));
+		echo '</pre>';
+		
 	}
 
 }

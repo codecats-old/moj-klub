@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $view_top=(isset($view_top)?$view_top:null);?>
 <?php $active = isset($active) ? $active :array();?>
-<?php $info_content = isset($info_content) ? $info_content : NULL?>
+<?php $info_content = isset($info_content) ? $info_content : NULL;?>
+<?php $team = isset($team) ? $team : NULL;?>
 
 <div class="row-fluid">
 
@@ -9,7 +10,7 @@
 <?php 
 	echo View::factory('Component/Menu/User/Visit')
 		->set('team', $team)
-		->set('active', $active);
+		->set('menu', $visit_menu);
 ?>
 	</section>
 	

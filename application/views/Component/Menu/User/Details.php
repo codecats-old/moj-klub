@@ -49,7 +49,17 @@
 			</div>
 		    <div><label class="label">Drużyna:</label>
 		    	<span class="text-info pull-right">
-<?php echo Arr::get($team, 'short_name');?>		    
+<?php if (Arr::get($team, 'id')):?>
+	<?php echo HTML::anchor(Route::get('default')->uri(
+				array(
+					'controller' 	=> 'team',
+					'action' 		=> 'show',
+					'id' 			=> Coder::instance()->to_url($team['id'])
+				)
+			),
+			Arr::get($team, 'short_name')
+	);?>
+<?php endif;?>
 		    	</span>
 		    </div>
 		    <div><label class="label">Rola:</label>

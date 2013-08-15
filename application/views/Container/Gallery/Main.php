@@ -11,7 +11,8 @@
 <?php 
 	echo View::factory('Component/Menu/User/Visit')
 		->set('team', $team)
-		->set('active', $active);
+		->set('team_id', $team_id)
+		->set('menu', $visit_menu);
 ?>
 	</section>
 	
@@ -23,7 +24,6 @@
 <?php endif; ?>
 			</div>
 		</section>
-
 <?php echo $view_component_about;?>
     </section>
 

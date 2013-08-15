@@ -142,47 +142,25 @@ class Manager_Gallery extends Manager_Data{
 		
 		$id = $this->gallery_id;
 		
-		//set active menu gallery
-		$active_menu = array('gallery' => 'active');
-		
-		//if user is null he can own club so deactive some menu
-		if ($user === NULL)
-		{
-			$active_menu['show'] = '';
-			$active_menu['team_id'] = $id;
-			$active_menu['team'] = FALSE;
-		}
-		//if user's team id is difference than gallery id
-		else 
-		{
-			if ($id !== $team->id)
-			{
-				$active_menu['show'] = '';
-				$active_menu['team_id'] = $id;
-				$active_menu['team'] = '';
-			}
-			else
-			{
-				$active_menu['show'] = FALSE;
-				$active_menu['team_id'] = $id;
-				$active_menu['team'] = '';
-			}
-		}
 
-		$menu = Menu::factory('Gallery', $user);
+		$menu_gallery = Menu::factory('Gallery', $user);
+		$menu_gallery->deny_permissions($id, $user);
 		// user can be not logged in
-		$submenu = $menu->get_resource_by_user($user, 'gallery');
+		$submenu_gallery = $menu_gallery->get_resource_by_user($user, 'gallery');
 		
 		
 		$component_gallery = View::factory('Component/Gallery')
-			->set('menu', $submenu)
+			->set('menu', $submenu_gallery)
 			->set('photos', ORM::factory('Photo')->get_team_photos($id)->find_all()->as_array())
 			->set('team', $team->as_array());
 		
+		$menu_visit = Menu::factory('Visit', $user);
+		$submenu_visit = $menu_visit->get_resource_by_user($user, NULL);
 		
 		$this->view_container = View::factory('Container/Gallery/Main')
 			->set('modal_title', 'confirm')
-			->set('active', $active_menu)
+			->set('visit_menu', $submenu_visit)
+			->set('team_id', $id)
 			->set('view_component_about', $component_gallery);
 		
 

@@ -3,7 +3,9 @@
 <?php $team = (isset($team) ? $team :NULL);?>
             <div class="row-fluid">
 	            <section class="span3">
-<?php echo View::factory('Component/Menu/User/Visit')->set('team', $team);?>
+<?php echo View::factory('Component/Menu/User/Visit')
+	->set('menu', $menu_visit)
+	->set('team', $team);?>
 				</section>
                 <section class="span5">
              		<div rel="user_form">

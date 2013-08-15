@@ -121,11 +121,11 @@ class Controller_Automatic extends Controller_Template{
 	 * @param string $logged_in
 	 * @return Controller_Automatic
 	 */
-	public function redirect_user($logged_in = TRUE)
+	public function redirect_user($logged_in = TRUE, $redirect = array())
 	{
 		if (Auth::instance()->logged_in() === $logged_in)
 		{
-			HTTP::redirect(Route::get('default')->uri());
+			HTTP::redirect(Route::get('default')->uri($redirect));
 		}
 		return $this;
 	}
