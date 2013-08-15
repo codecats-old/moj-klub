@@ -53,6 +53,10 @@ class Controller_Automatic extends Controller_Template{
 		 * page title will be controler name (its bined as global)
 		*/
 		$this->page_title=$this->request->controller();
+		
+		/*
+		 * user is binded as global for views
+		 */
 		if (Auth::instance()->logged_in() === TRUE)
 		{
 			View::set_global('user', Auth::instance()->get_user()->as_array());
@@ -103,7 +107,7 @@ class Controller_Automatic extends Controller_Template{
 			$this->template->set('view_container', $view_main);
 				
 			/**
-			 * create header menu TODO: Zend_ACL menu method
+			 * create header menu, Zend_ACL menu method
 			*/
 			$user = Auth::instance()->get_user();
 			$menu = Menu::factory('Header', $user);

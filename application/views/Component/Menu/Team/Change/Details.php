@@ -1,5 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+
+<?php if(array_filter($options)):// if all options are empty show nothing?>
+
+
 <div class="btn-group">
+
 <?php echo HTML::anchor(
 		Route::get('default')->uri(array('controller'=>'team', 'action'=>'change')),
 		'edit club',
@@ -103,3 +108,4 @@
 		<!--<li class="divider"></li>-->
 	</ul>
 </div>
+<?php endif; //empty all?>

@@ -141,13 +141,38 @@ class Manager_Gallery extends Manager_Data{
 		$user = $this->user;
 		
 		$id = $this->gallery_id;
+		
+		//set active menu gallery
+		$active_menu = array('gallery' => 'active');
+		
+		//if user is null he can own club so deactive some menu
+		if ($user === NULL)
+		{
+			$active_menu['show'] = '';
+			$active_menu['team_id'] = $id;
+			$active_menu['team'] = FALSE;
+		}
+		//if user's team id is difference than gallery id
+		else 
+		{
+			if ($id !== $team->id)
+			{
+				$active_menu['show'] = '';
+				$active_menu['team_id'] = $id;
+				$active_menu['team'] = '';
+			}
+			else
+			{
+				$active_menu['show'] = FALSE;
+				$active_menu['team_id'] = $id;
+				$active_menu['team'] = '';
+			}
+		}
 
 		$menu = Menu::factory('Gallery', $user);
 		// user can be not logged in
-		$submenu = NULL;
-		if ($user !== NULL){
-			$submenu = $menu->get_resource_by_user($user->username, 'gallery');
-		}
+		$submenu = $menu->get_resource_by_user($user, 'gallery');
+		
 		
 		$component_gallery = View::factory('Component/Gallery')
 			->set('menu', $submenu)
@@ -157,7 +182,7 @@ class Manager_Gallery extends Manager_Data{
 		
 		$this->view_container = View::factory('Container/Gallery/Main')
 			->set('modal_title', 'confirm')
-			->set('active', array('gallery' => 'active'))
+			->set('active', $active_menu)
 			->set('view_component_about', $component_gallery);
 		
 

@@ -17,14 +17,14 @@
             	</div>
 <?php if(isset($view_team_change_avatar)) echo $view_team_change_avatar;?>
 			</div>
-			<div>
+			<div class="row-fluid">
 				<label class="label">skrócona nazwa:</label>
 				<span class="text-info pull-right">
 <?php echo Arr::get($team, 'short_name');?>
 				</span>
 			</div>
 <?php if(Arr::get($team, 'phone')):?>
-		    <div>
+		    <div class="row-fluid">
 		    	<label class="label">tel</label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'phone');?>
@@ -32,21 +32,23 @@
 			</div>
 <?php endif;?>
 <?php if(Arr::get($team, 'email')):?>
-		    <div><label class="label">email:</label>
+		    <div class="row-fluid">
+		    	<label class="label">email:</label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'email');?>
 		    	</span>
 		    </div>
 <?php endif;?>
 <?php if(Arr::get($team, 'city')):?>
-		    <div><label class="label">Miasto:</label>
+		    <div class="row-fluid">
+		    	<label class="label">Miasto:</label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'city');?>
 				</span>
 		    </div>
 <?php endif;?>
 <?php if(Arr::get($team, 'street')):?>
-		    <div>
+		    <div class="row-fluid">
 		    	<label class="label">ul.</label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'street').' '.'no.'.Arr::get($team, 'street_no');?>
@@ -54,19 +56,19 @@
 				    	
 		    </div>
 <?php endif;?>
-		    <div>
+		    <div class="row-fluid">
 		    	<label class="label">manager:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($manager, 'username');?>
 				</span>		    	
 		    </div>
-		    <div>
+		    <div class="row-fluid">
 		    	<label class="label">coach:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($coach, 'username');?>
 				</span>				    	
 		    </div>
-		    <div>
+		    <div class="row-fluid">
 		    	<label class="label">capitan:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($capitan, 'username');?>

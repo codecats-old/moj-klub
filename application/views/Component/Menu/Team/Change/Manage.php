@@ -1,4 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
+
+<?php if(array_filter($options)):// if all options are empty show nothing?>
+
 <div class="btn-group">
 
 	<a href="#" class="btn btn-inverse btn-mini disabled">manage</a>
@@ -30,3 +33,4 @@
 		<!--<li class="divider"></li>-->
 	</ul>
 </div>
+<?php endif; //empty all?>

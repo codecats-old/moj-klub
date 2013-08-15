@@ -1,8 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $active = isset($active) ? $active :array();?>
 
-<h3>Przeglądaj</h3>
+<h4 class="label label-info">Przeglądaj</h4>
 
+
+<?php if (Arr::get($active,	'team') !== FALSE):?>
 <p>
 <?php echo HTML::anchor(
 	Route::get('default')->uri(
@@ -14,6 +16,24 @@
 	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'team'))
 );?>
 </p>
+<?php endif;?>
+
+<?php if (Arr::get($active,	'show') !== FALSE):?>
+<p>
+<?php echo HTML::anchor(
+	Route::get('default')->uri(
+		array(
+			'controller'=> 'team',
+			'action'	=> 'show',
+			'id'		=> Coder::instance()->to_url(Arr::get($active, 'team_id'))
+		)
+	), 
+	'Club\'s profile<label>informacje, ważniejse wydarzenia<label>',
+	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'show'))
+);?>
+</p>
+<?php endif;?>
+
 
 <?php if (isset($team)):?>
 <p>

@@ -38,7 +38,7 @@
 <?php endif;?>
 
 
-<div id="gallery-container">
+<div id="gallery-container" class="well well-opacity">
 	<ul class="items--small">
 <?php $id=0;?>
 <?php foreach($photos as $photo):?>

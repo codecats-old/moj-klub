@@ -41,14 +41,28 @@ class Manager_Team extends Manager_Data{
 			->set('view_details', null)
 			->set('view_component_about', null);
 		}
-		$this->view_container->set('active', array('team'=>'active'));
+		$this->view_container->set('active', 
+				array(
+					'team'	=>	'active',
+					'show' 	=>	FALSE
+				)
+		);
 	}
 
 	public function show()
 	{
-		$this->view_container=View::factory('Container/Team/Main')
-			->set('modal_title', 'confirm');
-		$this->set_view_details($this->view_container);
+		$this->index();
+		
+		//hide my club button
+		$this->view_container
+			
+			->set('active', 
+				array(
+					'team'		=>	FALSE,
+					'show'		=>	'active',
+					'team_id'	=>	$this->object->id
+				)
+		);
 	}
 	
 	public function set_show_result()
@@ -100,7 +114,7 @@ class Manager_Team extends Manager_Data{
 		$user = $this->user;
 		$menu = Menu::factory('Team', $user);
 		
-		$fields = $menu->get_resource_by_user($user->username, 'edit');
+		$fields = $menu->get_resource_by_user($user, 'edit');
 		
 		
 		if ($post)
@@ -155,9 +169,9 @@ class Manager_Team extends Manager_Data{
 		{
 
 			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
+				array(
+					'reload' => TRUE
+				)
 			);
 			$this->view_content=Message::instance()->get_view('Component/Info/Success')
 			->set('info', 'zarządzaj klubem');
@@ -215,9 +229,9 @@ class Manager_Team extends Manager_Data{
 		else
 		{
 			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
+				array(
+					'reload' => TRUE
+				)
 			);
 			
 			$this->view_content=Message::instance()->get_view('Component/Info/Success')
@@ -287,12 +301,12 @@ class Manager_Team extends Manager_Data{
 		$staff = $team->get_staff();
 		$manager = $team->get_manager();
 		$coach = $team->get_coach();
-		$view->set('team', $team->as_array())
-		->set('players', $players->as_array())
-		->set('capitan', $capitan->as_array())
-		->set('staff', $staff->as_array())
-		->set('manager', $manager->as_array())
-		->set('coach', $coach->as_array());
+		$view->set('team', 		$team->as_array())
+			->set('players', 	$players->as_array())
+			->set('capitan', 	$capitan->as_array())
+			->set('staff', 		$staff->as_array())
+			->set('manager', 	$manager->as_array())
+			->set('coach', 		$coach->as_array());
 		return $view;
 	}
 
@@ -308,27 +322,33 @@ class Manager_Team extends Manager_Data{
 		$view_team_change_avatar = View::factory('Component/Menu/Team/Change/Avatar');
 
 		$menu = Menu::factory('Team', $user);
-
-		$view_team_change_details->set('options',
-				$menu->get_resource_by_user($user->username, 'edit'));
-		$view_team_change_manage->set('options',
-				$menu->get_resource_by_user($user->username, 'manage'));
-		$view_team_change_avatar->set('options',
-				$menu->get_resource_by_user($user->username, 'avatar'));
 		
-		$view->set('view_team_change_avatar', $view_team_change_avatar)
-		->set('view_team_change_details', $view_team_change_details)
-		->set('view_team_change_manage', $view_team_change_manage)
-		->set('avatar', $avatar->as_array());
+		$view_team_change_details->set('options',
+				$menu->get_resource_by_user($user, 'edit'));
+		$view_team_change_manage->set('options',
+				$menu->get_resource_by_user($user, 'manage'));
+		$view_team_change_avatar->set('options',
+				$menu->get_resource_by_user($user, 'avatar'));
+		
+		$view->set('view_team_change_avatar', 		$view_team_change_avatar)
+			->set('view_team_change_details', 		$view_team_change_details)
+			->set('view_team_change_manage', 		$view_team_change_manage)
+			->set('avatar', 						$avatar->as_array());
 
 		$manager = $team->get_manager();
 		$coach = $team->get_coach();
 		$capitan = $team->get_capitan();
-		$view->set('user', $user->as_array())
-		->set('team',$team->as_array())
-		->set('manager', $manager->as_array())
-		->set('capitan', $capitan->as_array())
-		->set('coach', $coach->as_array());
+		$view
+			->set('team',		$team->as_array())
+			->set('manager', 	$manager->as_array())
+			->set('capitan', 	$capitan->as_array())
+			->set('coach', 		$coach->as_array());
+		
+		if ($user !== NULL)
+		{
+			$view->set('user', $user->as_array());
+		}
+		
 		return $view;
 	}
 }

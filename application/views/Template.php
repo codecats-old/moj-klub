@@ -5,12 +5,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="trening, klub, drużyna, zawodnicy">
+        <meta name="keywords" content="my club, sport, team, training">
+		<meta name="author" content="Tomasz Strzeszkowski">
+        <link 
+        	href="<?php echo Kohana::$base_url;?>assets/img/favicon.ico" 
+        	rel="icon" type="image/x-icon" />
        	<?php echo HTML::style('assets/style/Css/bootstrap.min.css');?>
        	<?php echo HTML::style('assets/style/Css/bootstrap.fix.css');?>
        	<?php echo HTML::style('assets/style/Css/ajax.css');?>
        	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
 
-<?php if ( !
+<?php //Add style gallery when user is on gallery
+		if ( !
 			strcasecmp(
 				Request::$current->controller(), 
 				Route::get('default')->uri(array('controller' => 'gallery'))

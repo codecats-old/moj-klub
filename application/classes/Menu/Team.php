@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script acccess.');
 
-class Menu_Team extends Menu{
+class Menu_Team extends Menu_General{
 
 	public function prepare_resources()
 	{
@@ -51,7 +51,9 @@ class Menu_Team extends Menu{
 	public function prepare_permissions($user)
 	{
 		$this
-		->add_role('player')
+		->add_role('guest')
+		
+		->add_role('player', 'guest')
 		//player
 		->allow('player', 'leave')
 		//capitan
@@ -71,12 +73,13 @@ class Menu_Team extends Menu{
 		//admin
 		->add_role('admin', 'manager');
 		
-		if ($user !== NULL)
+/*		if ($user !== NULL)
 		{
 			$urs_roles = $user->roles->find_all()->as_array();
 			$this->add_user_role($urs_roles, $user->username);
 		}
 		
-		return $this;
+		return $this;*/
+		return parent::prepare_permissions($user);
 	}
 }
