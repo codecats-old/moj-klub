@@ -50,8 +50,25 @@ class Manager_Team extends Manager_Data{
 
 	public function show()
 	{
-		$this->set_user(Auth::instance()->get_user());
+		$user = Auth::instance()->get_user();
+		$this->set_user($user);
 		$this->index();
+		
+		$team = $this->object;
+		
+		$menu = Menu::factory('User', $this->user);
+		
+		
+		$biggest_team = $biggest_team = ORM::factory('Team')->get_biggest()->find();
+		$members = ORM::factory('User')->where('team_id', '=', $team->id);
+		$popularity = $members->count_all() / $biggest_team->counter *100;//[%]
+
+		/**
+		 * Decorated view to show
+		 */
+		$this->view_container
+			->set('popularity', $popularity)
+			->set('join_team',	$menu->is_allowed($user, 'join_team'));
 	}
 
 	public function set_show_result(){}
@@ -100,7 +117,7 @@ class Manager_Team extends Manager_Data{
 		$user = $this->user;
 		$menu = Menu::factory('Team', $user);
 
-		$menu->deny_permissions($team, $user->team);
+		$menu->deny_permissions($team, $user);
 
 		$fields = $menu->get_resource_by_user($user, 'edit');
 
@@ -186,6 +203,7 @@ class Manager_Team extends Manager_Data{
 					$user->save();
 						
 					Manager::factory('User', $user)->add_role('manager');
+					
 					$this->success = TRUE;
 				}
 				catch(Database_Exception $dbex)

@@ -40,9 +40,10 @@ class Controller_Team extends Controller_Automatic{
 	public function action_show()
 	{
 		/*
-		 * Id have to be given encoded
+		 * Id have to be encoded
 		 */
 		$id = Coder::instance()->from_url($this->request->param('id'));
+		
 		if (is_numeric($id) === FALSE)
 		{
 			HTTP::redirect(Route::get('default')->uri());

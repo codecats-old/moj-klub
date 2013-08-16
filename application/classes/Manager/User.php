@@ -12,10 +12,48 @@ class Manager_User extends Manager_Data{
 	
 	public function show()
 	{
-		$this->team = ORM::factory('Team', $this->object->team_id);
+		/*
+		 * Reading data
+		 */
+		$user = $this->object;
+		//global variable for model decorator, local for method
+		$team = $this->team = ORM::factory('Team', $this->object->team_id);
+		$user_avatar = $user->avatar;
+		$user_info 	 = $user->info;
+		$user_roles	 = $user->get_teams_roles();
 		
+		/*
+		 * Prepare content views
+		 */
+		$view_show_user_about 	= View::factory('Show/User/About');
+		$view_show_user_details = View::factory('Show/User/Details');
+		
+		/*
+		 * Set data user about (personal info)
+		 */
+		$view_show_user_about
+			->set('user', 	$user->as_array())
+			->set('avatar',	$user_avatar->loaded() ? $user_avatar->as_array() : NULL)
+			->set('info',	$user_info->loaded() ? $user_info->as_array() : NULL)
+			->set('team',	$team->loaded() ? $team->as_array() : NULL)
+			->set('roles',	$user_roles ? $user_roles->as_array() : NULL);
+		
+		/*
+		 * set data user details (about team he play)
+		 */
+		$view_show_user_details
+			->set('team', $team->loaded() ? $team->as_array() : NULL);
+
+		
+		//main view
 		$this->view_container = View::factory('Container/User/Main');
+		//decorate main view
 		$this->set_view_details($this->view_container);
+		
+		//set content to main view
+		$this->view_container
+			->set('view_component_about_user', 	$view_show_user_about)
+			->set('view_details',				$view_show_user_details);
 	}
 
 	/**
@@ -114,6 +152,19 @@ class Manager_User extends Manager_Data{
 				if (Auth::instance()->login(
 						$post['login_identificator'], $post['password'], $post['stay_login']) === TRUE)
 				{
+					/**
+					 * refresh technical cookies
+					 */
+					Request::factory(
+						Route::get('default')->uri(
+							array(
+								'controller' => 'ajax',
+								'action' 	 => 'roles'
+							)
+						)
+					)
+					->execute();
+					
 					$this->success = TRUE;
 				}
 				else
@@ -151,9 +202,9 @@ class Manager_User extends Manager_Data{
 		else
 		{
 			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
+				array(
+					'reload' => TRUE
+				)
 			);
 			$user = Auth::instance()->get_user()->as_array();
 			//View for header
@@ -164,6 +215,32 @@ class Manager_User extends Manager_Data{
 			$this->view_container = View::factory('Component/Access/Login')
 			->set('form_login', $this->view_content);
 		}
+	}
+	
+	public function logout()
+	{
+
+		Auth::instance()->logout();
+		
+		/**
+		 * refresh technical cookies
+		*/
+		Request::factory(
+			Route::get('default')->uri(
+				array(
+					'controller' => 'ajax', 
+					'action'	 => 'logout'
+				)
+			)
+		)
+		->execute();
+		
+		Message::instance()->set(Message::SUCCESS, NULL,
+			array(
+				'reload' => TRUE
+			)
+		);
+		$this->view_content = Message::instance()->get_view('Component/Info/Logout/Success');
 	}
 	/**
 	 *
@@ -442,12 +519,10 @@ class Manager_User extends Manager_Data{
 		$info_popover['show_phone'] = $this->set_view_popver($info->show_phone);
 		$info_popover['show_email'] = $this->set_view_popver($info->show_email);
 
-		$roles = $user->roles->find_all();
-
 		$avatar=$user->avatar;
 	//	echo $avatar->path;
 		$team = $user->team;
-		$roles_view = $this->object->get_teams_roles($roles);
+		$roles_view = $this->object->get_teams_roles();
 		$roles = $this->to_array($roles_view, 'name');
 		$roles_view = implode(', ', $roles);
 		$view_details = View::factory('Component/Menu/User/Details')
@@ -467,7 +542,20 @@ class Manager_User extends Manager_Data{
 	public function add_role($role_name, $user = NULL)
 	{
 		if($user === NULL)$user = $this->object;
-		$role=ORM::factory('Role', array('name' => $role_name));
+		$role = ORM::factory('Role', array('name' => $role_name));
 		$user->add('roles', $role);
+		
+		/**
+		 * refresh technical cookies
+		 */
+		Request::factory(
+		Route::get('default')->uri(
+				array(
+					'controller' => 'ajax',
+					'action' 	 => 'roles'
+				)
+			)
+		)
+		->execute();
 	}
 }

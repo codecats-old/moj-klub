@@ -8,10 +8,12 @@
 <?php endif;?>
 
                         <div class="carousel-inner">
+<?php $active = ' active';?>
 <?php foreach ($photos as $photo):?>
-                            <div class="item">
+                            <div class="item<?php echo $active;?>">
 	<?php echo HTML::image($photo->address);?>
                             </div>
+    <?php $active = '';?>
 <?php endforeach;?>
                           
                         </div>

@@ -6,6 +6,9 @@
 	background:rgba(0,0,0,0.3);
 	opacity:0;
 }*/
+header+div.container-fluid{
+	min-height:500px;
+}
 body{
 	background-image: url('../Img/bg.jpg');
 	background-repeat:no-repeat;

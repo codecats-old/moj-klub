@@ -33,7 +33,7 @@
 		),
 		'Photos count: '.$photos_count,
 		array(
-			'class' => 'btn btn-info'
+			'class' => 'btn btn-info btn-block'
 		)
 	)?>
 	<a></a>

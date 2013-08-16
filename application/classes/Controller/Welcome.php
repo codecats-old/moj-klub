@@ -34,14 +34,14 @@ class Controller_Welcome extends Controller_Automatic {
 			->set('component_thumbnails_team', 	$component_thumbnails_team);
 		
 //------------------------------------------------------------------------------------------------
-
+/*
 		$user = Auth::instance()->get_user();
 		
 		$menu = Menu::factory('Visit', $user);
 		echo '<pre style="background:white">';
 		print_r($menu->get_resource_by_user($user, NULL));
 		echo '</pre>';
-		
+	*/	
 	}
 
 }

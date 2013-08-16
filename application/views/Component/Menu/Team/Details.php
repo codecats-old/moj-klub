@@ -1,5 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $avatar = isset($avatar['path']) ? $avatar : array('path' => 'upload/default/avatar/team.png');?>
+<label class="label label-info">details</label>
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
        	<li class="thumbnail span12">
@@ -17,6 +18,8 @@
             	</div>
 <?php if(isset($view_team_change_avatar)) echo $view_team_change_avatar;?>
 			</div>
+		</li>
+		<li class="thumbnail span12">
 			<div class="row-fluid">
 				<label class="label">skrócona nazwa:</label>
 				<span class="text-info pull-right">
@@ -75,7 +78,12 @@
 				</span>				    	
 		    </div>
 		</li>
+		<li class="thumbnail span12">
+<?php echo View::factory('Component/Info/Address')->set('object', $team);?>
+		</li>
+
 	</ul>
+
 <?php if(isset($view_team_change_details)) echo $view_team_change_details;?>
 <?php if(isset($view_team_change_manage)) echo $view_team_change_manage;?>
 </div>

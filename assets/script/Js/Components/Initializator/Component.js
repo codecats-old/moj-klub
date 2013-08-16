@@ -1,41 +1,46 @@
-(function(){
-	strz_Ajax.Component=function(obj){
-		if(obj)this.set(obj);
+(function() {
+	strz_Ajax.Component = function(obj) {
+		if (obj)
+			this.set(obj);
 	}
-	strz_Ajax.Component.prototype={
-		triggerName:null,
-		setTriggerName:function(trigger){
-			this.triggerName=trigger;
+	strz_Ajax.Component.prototype = {
+		triggerName : null,
+		setTriggerName : function(trigger) {
+			this.triggerName = trigger;
 		},
-		getTriggerName:function(){
+		getTriggerName : function() {
 			return this.triggerName;
 		},
-		componentName:null,
-		setComponentName:function(name){
-			this.componentName=name;
+		componentName : null,
+		setComponentName : function(name) {
+			this.componentName = name;
 		},
-		getComponentName:function(){
+		getComponentName : function() {
 			return this.componentName;
 		},
-		params:null,
-		setParams:function(params){
-			this.params=params;
+		params : null,
+		setParams : function(params) {
+			this.params = params;
 		},
-		getParams:function(){
+		getParams : function() {
 			return this.params;
 		},
-		init:function(){
-			var tr=this.getTriggerName();
-			var component=this.getComponentName();
-			var params=this.getParams();
+		init : function() {
+			var tr = this.getTriggerName();
+			var component = this.getComponentName();
+			var params = this.getParams();
+			
+			/**
+			 * initializtion of component
+			 */
 			$(tr)[component](params);
 		},
-		set:function(obj){
-			console.log(obj);
+		set : function(obj) {
 			this.setTriggerName(obj['trigger']);
 			this.setComponentName(obj['component']);
 			this.setParams(obj['params']);
-			if(obj['init']===true)this.init();
+			if (obj['init'] === true)
+				this.init();
 		}
 	}
 })();

@@ -10,11 +10,13 @@
 <?php echo HTML::script('assets/script/Js/bootstrap.min.js');?>
 
 <!-- AJAX -->
+<!-- Core -->
 <?php echo HTML::script('assets/script/Js/Ajax/Core.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/Node/NodeBasicAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/Node/NodePermissionAction.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Class/Node/NodeAction.class.js');?>
 
+<!-- Components ajax -->
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Anchor/Anchor.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/GetForm.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Form/Submit.class.js');?>
@@ -25,21 +27,35 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Confirm/GetConfirm.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Confirm/DoAction.class.js');?>
 
+<!-- Pages -->
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Index.class.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/User/UserIndex.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Team/TeamIndex.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Gallery/GalleryIndex.js');?>
 
+<!-- Roles -->
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Guest.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Admin.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Player.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Staff.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Accountant.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Manager.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Coach.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Controller/Capitan.js');?>
 
+<!-- Control list -->
 <?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
 <!-- >AJAX -->
 
+<!-- Component factory -->
 <?php echo HTML::script('assets/script/Js/Components/Initializator/Component.js');?>
 
+<!-- Vendor libs -->
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>
 <?php echo HTML::script('assets/vendor/gallery/js/gallery.min.js');?>
+
+<!-- testing -->
 <script>
 	if(typeof(Storage)!=="undefined")
 	{
@@ -61,4 +77,5 @@
 	// Sorry! No web storage support..
 	}
 </script>
+<!-- main -->
 <?php echo HTML::script('assets/script/Js/main.js');?>

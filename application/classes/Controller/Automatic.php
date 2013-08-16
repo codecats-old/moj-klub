@@ -44,7 +44,7 @@ class Controller_Automatic extends Controller_Template{
 	{
 		parent::before();
 		
-		if (($this->request->is_ajax() === TRUE) OR ($this->request->is_initial()===FALSE))
+		if (($this->request->is_ajax() === TRUE) OR ($this->request->is_initial() === FALSE))
 			$this->auto_render=FALSE;
 
 		View::bind_global('page_title', $this->page_title);

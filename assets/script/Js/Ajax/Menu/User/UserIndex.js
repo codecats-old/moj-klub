@@ -1,18 +1,16 @@
 (function(){
 	strz_Ajax.UserIndex=function(){
 		this.init();
-	//	this.rel='index';
-	//	this.reload=false;
-	//	this.setContentShow('header+.container-fluid');
+
 	};
 	strz_Ajax.UserIndex.prototype={
 		run:function(){
 			this.setAllowedPages(['/moj-klub/user', '/moj-klub/index.php/user']);
 			if(this.isAllowedLocation(document.location.href)){
-			//	this.setCallbackMyself(false);
-			//	this.setTriggerSelector('a[rel=user_index]');
+
 				this.setCallbackMyself(true);
 				this.setTriggerSelector('[rel=user_index]');
+				
 			
 				this.setSendInformator(this.getTriggerSelector());
 				this.setSendToURL($(this.getTriggerSelector())[0].href);//$(a.getTriggerSelector())[0].href

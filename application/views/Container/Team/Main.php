@@ -1,8 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $view_top=(isset($view_top)?$view_top:null);?>
-<?php $active = isset($active) ? $active :array();?>
+<?php // $active = isset($active) ? $active :array();?>
 <?php $info_content = isset($info_content) ? $info_content : NULL;?>
 <?php $team = isset($team) ? $team : NULL;?>
+<?php $popularity = isset($popularity) ? $popularity : NULL;?>
+<?php $join_team = isset($join_team) ? $join_team : NULL;?>
 
 <div class="row-fluid">
 
@@ -21,8 +23,10 @@
 	<?php echo $view_top;?>
 			</div>
 		</section>
-
-<?php echo $view_component_about;?>
+		
+<?php echo $view_component_about
+	->set('popularity', $popularity)
+	->set('join_team',	$join_team);?>
     </section>
     
 <?php if (isset($view_details)):?>

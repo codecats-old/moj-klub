@@ -1,4 +1,5 @@
-<?php defined('SYSPATH') or die('No direct script access.');?>
+<?php defined('SYSPATH') OR die('No direct script access.');?>
+
 <div class="tabbable">
 	<ul class="nav nav-tabs">
 		<li class="active btn-mini">
@@ -16,8 +17,19 @@
 			<ol>
 <?php foreach($players as $player): ?>
 				<li class="well">
+					<strong>
 	<?php echo Arr::get($player->as_array(), 'username');?>
-	<?php if($player->id===Arr::get($capitan, 'id')) echo ' C';?>
+					</strong>
+	
+	<?php if ($player->info->name):?>
+		<?php echo $player->info->name;?>
+	<?php endif;?>
+					
+	<?php if ($player->info->surname):?>
+		<?php echo $player->info->surname;?>
+	<?php endif;?>
+	
+	<?php if ($player->id === Arr::get($capitan, 'id')) echo ' <i class="icon-star-empty"></i>';?>
 	
 	<?php echo HTML::anchor(Route::get('default')->uri(
 			array(
@@ -26,7 +38,7 @@
 				'id'			=> Coder::instance()->to_url($player->id)
 			)
 		),
-		'go',
+		'see the profile',
 		array('class' => 'btn btn-mini btn-info pull-right')
 	)?>
 
@@ -52,7 +64,30 @@
 		<li id="tab3" class="tab-pane">
 			<ul class="unstyled">
 				<li class="well hero-unit">
+					<strong>
 <?php echo Arr::get($manager, 'username');?>
+					</strong>
+
+
+<?php if (Arr::get($manager, 'name')):?>
+	<?php echo Arr::get($manager, 'name');?>
+<?php endif;?>
+				
+<?php if (Arr::get($manager, 'surname')):?>
+	<?php echo Arr::get($manager, 'surname');?>
+<?php endif;?>
+	
+
+	<?php echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'user',
+				'action'		=> 'show',
+				'id'			=> Coder::instance()->to_url(Arr::get($manager, 'id'))
+			)
+		),
+		'see the profile',
+		array('class' => 'btn btn-mini btn-info pull-right')
+	)?>
 				</li>
 				<li class="well">
 <?php echo Arr::get($coach, 'username');?>

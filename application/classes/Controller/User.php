@@ -126,14 +126,12 @@ class Controller_User extends Controller_Automatic{
 			$this->redirect_user(TRUE);
 		}
 		
-		Auth::instance()->logout();
+		$manager = Manager::factory('User', NULL);
 		
-		Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-				'reload' => TRUE
-			)
-		);
-		$this->view_content = Message::instance()->get_view('Component/Info/Logout/Success');
+		$manager->logout();
+		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
 	}
 		
 	/**

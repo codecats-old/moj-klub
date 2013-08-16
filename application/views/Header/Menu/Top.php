@@ -23,10 +23,14 @@
                         </ul>
                         <!-- >Search -->
                     </div>
+                   
                     <!-- Access -->
 <?php if (Arr::get($header_menu_access, 'access') === TRUE) echo View::factory('Header/Access');?>
 <?php if (Arr::get($header_menu_access, 'loged') === TRUE) echo View::factory('Header/Loged');?>
 
                     <!-- >Access -->
+              <!-- Messages  -->      
+                  <!--     <span class="pull-right">aaa</span>-->
+              <!-- >messages -->
                 </div>
             </nav>
