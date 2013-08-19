@@ -23,10 +23,11 @@
 	<?php echo $view_top;?>
 			</div>
 		</section>
-		
-<?php echo $view_component_about
-	->set('popularity', $popularity)
-	->set('join_team',	$join_team);?>
+<?php if ($view_component_about !== NULL):?>
+	<?php echo $view_component_about
+		->set('popularity', $popularity)
+		->set('join_team',	$join_team);?>
+<?php endif;?>
     </section>
     
 <?php if (isset($view_details)):?>

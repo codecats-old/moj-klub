@@ -166,3 +166,21 @@
 2013-08-19 20:50:25 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 94 ] in :
 2013-08-19 20:50:25 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
 #1 {main} in :
+2013-08-19 21:14:16 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function set() on a non-object ~ APPPATH/views/Container/Team/Main.php [ 28 ] in :
+2013-08-19 21:14:16 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-19 21:17:03 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function set() on a non-object ~ APPPATH/views/Container/Team/Main.php [ 28 ] in :
+2013-08-19 21:17:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-19 21:18:20 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function set() on a non-object ~ APPPATH/views/Container/Team/Main.php [ 28 ] in :
+2013-08-19 21:18:20 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-19 21:18:41 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function set() on a non-object ~ APPPATH/views/Container/Team/Main.php [ 28 ] in :
+2013-08-19 21:18:41 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-19 21:29:41 --- EMERGENCY: ErrorException [ 1 ]: Class Manager_User contains 2 abstract methods and must therefore be declared abstract or implement the remaining methods (Kohana_Interface_Manager::set_view_details, Kohana_Interface_Manager::set_data) ~ APPPATH/classes/Manager/Administration.php [ 11 ] in :
+2013-08-19 21:29:41 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-19 21:30:41 --- EMERGENCY: ErrorException [ 1 ]: Class 'Manager_Administration' not found ~ MODPATH/manager/classes/Kohana/Manager.php [ 29 ] in :
+2013-08-19 21:30:41 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

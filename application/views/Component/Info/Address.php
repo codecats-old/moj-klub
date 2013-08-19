@@ -3,9 +3,7 @@
 	<address>
 		<strong><?php echo Arr::get($object, 'full_name')?></strong><br>
 	<?php echo Arr::get($object, 'street').' '.Arr::get($object, 'street_no');?><br>
-	<?php echo substr(Arr::get($object, 'zip_code'), 0, 2).
-		'-'.
-		substr(Arr::get($object, 'zip_code'), 2)
+	<?php echo Arr::get($object, 'zip_code');
 	?>
 	<?php echo Arr::get($object, 'city')?><br>
 	

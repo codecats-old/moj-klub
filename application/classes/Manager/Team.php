@@ -26,6 +26,8 @@ class Manager_Team extends Manager_Data{
 	public function index()
 	{
 		$team = $this->object;
+		
+	
 		if ($team->loaded())
 		{
 			$this->view_container = View::factory('Container/Team/Main')
@@ -34,7 +36,8 @@ class Manager_Team extends Manager_Data{
 		}
 		else
 		{
-			$user = Auth::instance()->get_user();
+		//	$user = Auth::instance()->get_user();
+			$user = $this->user;
 			$visit_menu = Menu::factory('Visit', $user);
 			
 			$ask_view=View::factory('Component/Info/Team/Ask');

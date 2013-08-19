@@ -6,4 +6,11 @@ class Controller_Administration extends Controller_Automatic{
 	{
 		
 	}
+	
+	public function action_join()
+	{
+		print_r($this->request->param('id'));
+		
+		$manager = Manager::factory('Administration', '');
+	}
 }

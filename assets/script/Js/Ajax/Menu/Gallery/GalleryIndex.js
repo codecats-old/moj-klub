@@ -9,6 +9,7 @@
 				/**
 				 * Refresh Gallery Index
 				 */
+				/* No index callbacks because gallery not adapt height
 				this.setCallbackMyself(true);
 				this.setTriggerSelector('[rel=gallery_index]');
 				
@@ -17,6 +18,7 @@
 				this.setSendToURL($(this.getTriggerSelector())[0].href);//$(a.getTriggerSelector())[0].href
 				this.setContentShow('#component_about');
 				this.ajaxRun();
+				*/
 				///
 				
 
@@ -28,7 +30,7 @@
 					params:{
 						fullScreenEnabled: true
 					},
-					init:true
+					init : true
 				});
 
 				
