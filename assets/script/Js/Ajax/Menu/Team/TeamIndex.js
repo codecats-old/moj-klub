@@ -24,25 +24,6 @@
 				this.formGetter=new strz_Ajax.GetFormRegistrate('create_form_get');
 				this.formGetter.run();
 				
-				/*Move it to suitable roles*/
-				/*Callbacks it */
-				/*Submenu change*/
-				//manager
-
-				
-				//capitan
-	//			this.formGetterChangeTraining=new strz_Ajax.GetFormChange('change_training_form_get');
-	//			this.formGetterChangeTraining.run();
-				
-				//coach
-
-				
-
-				
-
-				
-
-				
 				this.addCallback({
 					logout:{
 						reference:this.logout,
@@ -58,8 +39,30 @@
 					}
 				});
 				
+				/*
+				 * Object will be created only if Factory has access table roles for this object
+				 */
 				
-				this.capitan = strz_Ajax.Factory.create('Capitan');
+				var orders = strz_Ajax.Factory.getObjects();
+				
+				for (var i in orders) {
+					var name = orders[i];
+					this['controller '+name] = strz_Ajax.Factory.create(name);
+				
+					if (typeof(this['controller '+name]) !== 'undefined') {
+						this['controller '+name].run();
+						this.addCallback({
+							name : {
+								reference : this['controller '+name].roleTeam,
+								methods : {
+									'run' : null
+								}
+							}
+						});
+					}
+				}
+				
+		/*		this.capitan = strz_Ajax.Factory.create('Capitan');
 				if(typeof(this.capitan) !== 'undefined')this.capitan.run();
 				
 				if(typeof(this.capitan) !== 'undefined'){
@@ -86,7 +89,7 @@
 							}
 						}
 					});
-				}
+				}*/
 			}
 		}
 	};

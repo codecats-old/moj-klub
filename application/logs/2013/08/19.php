@@ -160,3 +160,9 @@
 #9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-19 20:49:05 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 88 ] in :
+2013-08-19 20:49:05 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-19 20:50:25 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 94 ] in :
+2013-08-19 20:50:25 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

@@ -19,8 +19,7 @@
 				this.ajaxRun();
 				///
 				
-				this.manager = strz_Ajax.Factory.create('Manager');
-				if(typeof(this.manager) !== 'undefined')this.manager.run();
+
 				
 			
 				this.gallery=new strz_Ajax.Component({
@@ -41,19 +40,9 @@
 							'init' : {}
 						}
 					},
-					/*logout:{
-						reference:this.logout,
-						methods:{
-							'run':[]
-						}
-					},
-					formGetter:{
-						reference:this.formGetter,
-						methods:{
-							'run':[]
-						}
-					}*/
 				});
+				this.manager = strz_Ajax.Factory.create('Manager');
+				if(typeof(this.manager) !== 'undefined')this.manager.run();
 				
 				if(typeof(this.manager) !== 'undefined'){
 					this.addCallback({

@@ -3,7 +3,7 @@
 		
 	};
 	strz_Ajax.Player.prototype={
-		//roleTeam : null,
+	//	roleTeam : null,
 		
 		run:function(){			
 		//	this.roleTeam = new strz_Ajax.RolesCapitanTeam();

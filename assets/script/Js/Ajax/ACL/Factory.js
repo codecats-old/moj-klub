@@ -17,6 +17,10 @@
 			this.accessTable = table;
 		},
 		
+		getAccessTable : function() {
+			return this.accessTable;
+		},
+		
 		/**
 		 * objects allowed to create: id, name
 		 */
@@ -26,6 +30,9 @@
 			this.objects = obj;
 		},
 		
+		getObjects : function() {
+			return this.objects;
+		},
 		/**
 		 * Objects already created
 		 */
@@ -33,6 +40,7 @@
 		
 		/**
 		 * Create objects if they are allowed in access table
+		 * Object will be created only if Factory has access table roles for this object
 		 */
 		create : function(name) {
 			for (var i in this.accessTable) {
@@ -48,7 +56,8 @@
 		},
 		
 		/**
-		 * Create objects without checking permission in access table
+		 * Create objects without checking permission in access table, method wont save instance
+		 * to running table
 		 */
 		constructor : function(name) {
 			

@@ -269,6 +269,7 @@ class Manager_Team extends Manager_Data{
 		{
 			$this->view_container->set('team', $team->as_array());
 		}
+
 		return $this;
 	}
 

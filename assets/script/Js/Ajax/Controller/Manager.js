@@ -7,7 +7,7 @@
 		roleTeam	: null,
 		
 		run:function(){
-			
+			console.log('run');
 			//component initializator for gallery
 			this.roleGallery = new strz_Ajax.RolesManagerGallery();
 			this.roleGallery.run();

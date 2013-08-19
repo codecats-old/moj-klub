@@ -6,31 +6,36 @@
 
 <?php if (Arr::get($menu,	'user')):?>
 <p>
-<?php echo HTML::anchor(
-	Route::get('default')->uri(
+	<?php echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller'=>'user',
+			)
+		), 
+		'My profile<label>options<label>',
 		array(
-			'controller'=>'user',
+			'class' 	=>'btn btn-large btn-info btn-block '.Arr::get($active, 'user')
 		)
-	), 
-	'My profile<label>options<label>',
-	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'user'))
-);?>
+	);?>
 </p>
 <?php endif;?>
 
 <?php if (Arr::get($menu,	'team')):?>
 <p>
-<?php echo HTML::anchor(
-	Route::get('default')->uri(
+	<?php echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller'=>'team',
+			)
+		), 
+		'Twój klub<label>informacje, ważniejse wydarzenia<label>',
 		array(
-			'controller'=>'team',
+			'class' 	=> 'btn btn-large btn-info btn-block '.Arr::get($active, 'team'),
+			'rel' 		=> 'team_index'
 		)
-	), 
-	'Twój klub<label>informacje, ważniejse wydarzenia<label>',
-	array('class'=>'btn btn-large btn-info btn-block '.Arr::get($active, 'team'))
-);?>
-</p>
-<?php endif;?>
+	);?>
+	</p>
+	<?php endif;?>
 
 <?php if (Arr::get($menu, 'gallery')):?>
 <p>
