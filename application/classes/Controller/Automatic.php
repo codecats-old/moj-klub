@@ -99,11 +99,11 @@ class Controller_Automatic extends Controller_Template{
 			//when no container sets request content as container
 			if (isset($this->view_container) === FALSE)
 			{
-				$this->view_container=$this->view_content;
+				$this->view_container = $this->view_content;
 			}
 				
 			//sets main view
-			$view_main=View::factory('Container/Main')->set('view', $this->view_container);
+			$view_main = View::factory('Container/Main')->set('view', $this->view_container);
 			$this->template->set('view_container', $view_main);
 				
 			/**
@@ -111,7 +111,7 @@ class Controller_Automatic extends Controller_Template{
 			*/
 			$user = Auth::instance()->get_user();
 			$menu = Menu::factory('Header', $user);
-			$this->template->set('header_menu_access',$menu->get_resource_by_user($user, NULL));
+			$this->template->set('header_menu_access', $menu->get_resource_by_user($user, NULL));
 		}
 		parent::after();
 	}
@@ -123,10 +123,11 @@ class Controller_Automatic extends Controller_Template{
 	 */
 	public function redirect_user($logged_in = TRUE, $redirect = array())
 	{
-		if (Auth::instance()->logged_in() === $logged_in)
+		if (Auth::instance()->logged_in() == $logged_in)
 		{
 			HTTP::redirect(Route::get('default')->uri($redirect));
 		}
+		
 		return $this;
 	}
 }

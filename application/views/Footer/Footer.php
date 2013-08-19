@@ -46,6 +46,7 @@
 
 <!-- Control list -->
 <?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/ACL/Factory.js');?>
 <!-- >AJAX -->
 
 <!-- Component factory -->

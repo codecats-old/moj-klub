@@ -6,8 +6,19 @@
 		run:function(){
 			this.setAllowedPages(['/moj-klub/gallery', '/moj-klub/index.php/gallery']);
 			if(this.isAllowedLocation(document.location.href)){
-
-
+				/**
+				 * Refresh Gallery Index
+				 */
+				this.setCallbackMyself(true);
+				this.setTriggerSelector('[rel=gallery_index]');
+				
+			
+				this.setSendInformator(this.getTriggerSelector());
+				this.setSendToURL($(this.getTriggerSelector())[0].href);//$(a.getTriggerSelector())[0].href
+				this.setContentShow('#component_about');
+				this.ajaxRun();
+				///
+				
 				/*Move it to suitable roles*/
 				/*Callbacks it */
 				/*Gallery delete photo confirm*/
@@ -20,8 +31,12 @@
 				}
 				
 				//form to upload photos to gallery
-				this.linkAddPhoto=new strz_Ajax.GetForm('gallery_add_get', 'div[rel=gallery_form]');
+			/*	this.linkAddPhoto=new strz_Ajax.GetForm('gallery_add_get', 'div[rel=gallery_form]');
 				this.linkAddPhoto.run();
+			*/
+				
+				this.manager = strz_Ajax.Factory.create('Manager');
+				if(typeof(this.manager) !== 'undefined')this.manager.run();
 				
 				//TODO : Confirmation
 			//	this.actionConfirm = new strz_Ajax.GetConfirm('confirm_get');
@@ -40,6 +55,12 @@
 				
 				//TODO: index behavior so callbacks are needed
 				this.addCallback({
+					gallery : {
+						reference : this.gallery,
+						methods : {
+							'init' : {}
+						}
+					},
 					/*logout:{
 						reference:this.logout,
 						methods:{
@@ -53,6 +74,18 @@
 						}
 					}*/
 				});
+				
+				if(typeof(this.manager) !== 'undefined'){
+					this.addCallback({
+						manager : {
+							reference : this.manager,
+							methods : {
+								'run' : null
+							}
+						}
+					});
+				}
+				
 				
 			}
 		}

@@ -128,6 +128,7 @@ class Manager_Gallery extends Manager_Data{
 	{
 		$this->gallery_id = $id;
 		$this->set_view_details($this->view_container);
+		
 	}
 
 	/**
@@ -162,7 +163,7 @@ class Manager_Gallery extends Manager_Data{
 			->set('visit_menu', $submenu_visit)
 			->set('team_id', $id)
 			->set('view_component_about', $component_gallery);
-		
+		$this->view_content = $component_gallery;
 
 		if ($team->loaded() === TRUE)
 		{

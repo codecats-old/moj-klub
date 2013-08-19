@@ -44,7 +44,8 @@
 		), 
 		'Gallery<label>pictures from team</label>',
 		array(
-			'class'=>'btn btn-block btn-info '.Arr::get($active, 'gallery')
+			'class' 	=> 'btn btn-block btn-info '.Arr::get($active, 'gallery'),
+			'rel'		=> 'gallery_index'
 		)
 	);?>
 </p>

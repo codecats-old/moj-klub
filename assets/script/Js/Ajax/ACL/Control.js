@@ -63,6 +63,7 @@
 		},
 		running : [],
 		run : function(i) {
+			if(i!=6){
 			/*
 			 * when production turn off the comments
 			 */
@@ -74,6 +75,7 @@
 		//		console.log('container for role: ' + i + ' not declared');
 				// console.log(err);
 		//	}
+			}
 		},
 		/**
 		 * Run all Controllers

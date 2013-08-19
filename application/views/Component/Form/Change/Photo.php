@@ -7,7 +7,7 @@
 ?>
 <div class="well">
 	<div class="row-fluid">
-		<div class="span12">
+		<div class="span12 text-center">
 			<label for="photo">
 				photo:
 			</label>
@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<hr>
-<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success'));?>
+<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success offset8'));?>
 
 <?php echo HTML::anchor(
 		Route::get('default')->uri(

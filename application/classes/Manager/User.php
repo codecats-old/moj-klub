@@ -459,6 +459,7 @@ class Manager_User extends Manager_Data{
 	 */
 	public function set_view_details($view)
 	{
+		//user to show
 		$user = $this->object;
 		$team = $user->team;
 		

@@ -24,7 +24,9 @@
 <?php endif; ?>
 			</div>
 		</section>
+		<div id="component_about">
 <?php echo $view_component_about;?>
+		</div>
     </section>
 
 

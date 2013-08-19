@@ -30,6 +30,10 @@ class Menu_Header extends Menu_General{
 		$this->
 			add_role('guest')->allow('guest', 'access');
 		
+		if ( $user AND ( ! $user->loaded()))
+		{
+			$user->username = 'guest';
+		}
 		return parent::prepare_permissions($user);
 	}
 }

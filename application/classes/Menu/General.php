@@ -28,8 +28,9 @@ abstract class Menu_General extends Menu{
 			$roles = $user->roles->find_all()->as_array();
 			$child = $user->username;
 		}
+
 		
-		if ($roles !== NULL)$this->add_user_role($roles, $child);
+		if ( ! empty($roles))$this->add_user_role($roles, $child);
 		
 		return $this;
 	}

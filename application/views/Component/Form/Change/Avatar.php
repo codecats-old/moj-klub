@@ -5,7 +5,7 @@
 		array('controller'=>Request::initial()->controller(), 'action'=>Request::initial()->action())),
 		array('enctype' => 'multipart/form-data', 'class'=>'form-horizontal'));
 ?>
-<div class="well">
+<div class="well text-center">
 	<div class="row-fluid">
 		<div class="span12">
 			<label for="avatar">
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<hr>
-<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success'));?>
+<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success offset8'));?>
 
 <?php echo HTML::anchor(
 		Route::get('default')->uri(
