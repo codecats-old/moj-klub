@@ -19,30 +19,10 @@
 				this.ajaxRun();
 				///
 				
-				/*Move it to suitable roles*/
-				/*Callbacks it */
-				/*Gallery delete photo confirm*/
-				this.photos = [];
-				//multiple photos so id is rel=confim_get and in this table every sender has unique id 
-				for(var i=0; i<$('a[rel=confirm_get]').length; i++){
-					var conf = new strz_Ajax.GetConfirm(i);
-					conf.run();
-					this.photos.push(conf);
-				}
-				
-				//form to upload photos to gallery
-			/*	this.linkAddPhoto=new strz_Ajax.GetForm('gallery_add_get', 'div[rel=gallery_form]');
-				this.linkAddPhoto.run();
-			*/
-				
 				this.manager = strz_Ajax.Factory.create('Manager');
 				if(typeof(this.manager) !== 'undefined')this.manager.run();
 				
-				//TODO : Confirmation
-			//	this.actionConfirm = new strz_Ajax.GetConfirm('confirm_get');
-			//	this.actionConfirm.run();
-				
-				
+			
 				this.gallery=new strz_Ajax.Component({
 					trigger:'#gallery-container',
 					component:'sGallery',
@@ -77,8 +57,8 @@
 				
 				if(typeof(this.manager) !== 'undefined'){
 					this.addCallback({
-						manager : {
-							reference : this.manager,
+						managerGallery : {
+							reference : this.manager.roleGallery,
 							methods : {
 								'run' : null
 							}

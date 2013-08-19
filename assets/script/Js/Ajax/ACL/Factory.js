@@ -1,5 +1,9 @@
 /**
- * Initialize object on given key
+ * Singleton create objects.
+ * Initialize object on given key 
+ * objects is objects allowed to create,
+ * accessTable is all possible classes to create
+ * running is all created instances
  */
 (function() {
 	strz_Ajax.Factory = {
@@ -27,6 +31,9 @@
 		 */
 		running : [],
 		
+		/**
+		 * Create objects if they are allowed in access table
+		 */
 		create : function(name) {
 			for (var i in this.accessTable) {
 				var tableId = this.accessTable[i];
@@ -36,6 +43,19 @@
 					}
 					return this.running[tableId];
 					
+				}
+			}
+		},
+		
+		/**
+		 * Create objects without checking permission in access table
+		 */
+		constructor : function(name) {
+			
+			for (var i in this.objects) {
+
+				if (this.objects[i] === name) {
+					return new strz_Ajax[name]();
 				}
 			}
 		}

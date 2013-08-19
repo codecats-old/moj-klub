@@ -3,7 +3,13 @@
  */
 (function() {
 	strz_Ajax.Control = function() {
-
+		/*
+		 * Controller Guest and Login only
+		 */
+		this.setOrders({
+			'-1'	:	'Guest',
+			'1'		:	'Login'
+		});
 	};
 	strz_Ajax.Control.prototype = {
 		accessTable : [],
@@ -40,6 +46,10 @@
 			//do send the request
 			action.ajaxInitialize();
 		},
+		
+		/**
+		 * Read cookies with access ids, if no cookies ask serwer for them
+		 */
 		readAccessTableCookie : function() {
 			var roles = $.cookie('roles');
 
@@ -63,22 +73,21 @@
 		},
 		running : [],
 		run : function(i) {
-			if(i!=6){
 			/*
-			 * when production turn off the comments
+			 * If orders table not contain object from access table do not run it,
+			 * running instances are stored in running table
 			 */
-		//	try {
-				var content = new strz_Ajax[this.orders[i]];
+
+			if (typeof(strz_Ajax[this.orders[i]]) !== 'undefined'){	
+				var content = new strz_Ajax[this.orders[i]]();
 				content.run();
-				this.running.push(content);
-		//	} catch (err) {
-		//		console.log('container for role: ' + i + ' not declared');
-				// console.log(err);
-		//	}
+				//this.running.push(content);
+				this.running[i] = content;
 			}
+
 		},
 		/**
-		 * Run all Controllers
+		 * Run all Controllers saved in access table
 		 */
 		runAll : function() {
 			var accessTable = this.getAccessTable();

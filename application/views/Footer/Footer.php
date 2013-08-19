@@ -33,7 +33,7 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Team/TeamIndex.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Menu/Gallery/GalleryIndex.js');?>
 
-<!-- Roles -->
+<!-- Controllers Roles -->
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Guest.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Login.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Admin.js');?>
@@ -43,6 +43,18 @@
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Manager.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Coach.js');?>
 <?php echo HTML::script('assets/script/Js/Ajax/Controller/Capitan.js');?>
+
+<!-- Roles -->
+	<!-- Manager -->
+<?php echo HTML::script('assets/script/Js/Ajax/Roles/Manager/Gallery.js');?>
+<?php echo HTML::script('assets/script/Js/Ajax/Roles/Manager/Team.js');?>
+	<!-- Capitan -->
+<?php echo HTML::script('assets/script/Js/Ajax/Roles/Capitan/Team.js');?>
+	<!-- Coach -->
+<?php echo HTML::script('assets/script/Js/Ajax/Roles/Coach/Team.js');?>
+	<!-- Player -->
+<?php echo HTML::script('assets/script/Js/Ajax/Roles/Player/Team.js');?>
+<!-- >Roles -->
 
 <!-- Control list -->
 <?php echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');?>
