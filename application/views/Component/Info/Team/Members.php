@@ -5,9 +5,11 @@
 		<li class="active btn-mini">
 			<a data-toggle="tab" href="#tab1">Members</a>
 		</li>
-		<li class="btn-mini">
+<!-- STAFF SECTION
+ 		<li class="btn-mini">
 			<a data-toggle="tab" href="#tab2">Staff</a>
 		</li>
+ -->
 		<li class="btn-mini">
 			<a data-toggle="tab" href="#tab3">management</a>
 		</li>

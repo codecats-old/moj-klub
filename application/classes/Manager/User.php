@@ -79,8 +79,8 @@ class Manager_User extends Manager_Data{
 					$user->save();
 					$info->user = $user;
 					$info->save();
-					$this->add_role($user, 'login');
-					$this->add_role($user, 'player');
+					$this->add_role('login', $user);
+					$this->add_role('player', $user);
 					$this->success = TRUE;
 				}
 				catch(Database_Exception $dbex)

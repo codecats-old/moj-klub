@@ -9,10 +9,16 @@ class Menu_Header extends Menu_General{
 	 */
 	public function prepare_resources()
 	{
+		//Buttons to see user and logout
 		$resource = Zend_Acl::get_generic_resource('loged');
 		$this->add_resource($resource);
 		
+		//Buttons to registrate and login
 		$resource = Menu::get_generic_resource('access');
+		$this->add_resource($resource);
+		
+		//Administration button
+		$resource = Menu::get_generic_resource('administration');
 		$this->add_resource($resource);
 
 		return $this;
@@ -25,10 +31,13 @@ class Menu_Header extends Menu_General{
 	public function prepare_permissions($user)
 	{
 		$this->
-			add_role('login')->allow('login', 'loged');
+			add_role('login')
+			->allow('login', 'loged')
+			->allow('login', 'administration');
 		
 		$this->
-			add_role('guest')->allow('guest', 'access');
+			add_role('guest')
+			->allow('guest', 'access');
 		
 		if ( $user AND ( ! $user->loaded()))
 		{

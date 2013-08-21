@@ -5,6 +5,7 @@
 <?php $team = isset($team) ? $team : NULL;?>
 <?php $popularity = isset($popularity) ? $popularity : NULL;?>
 <?php $join_team = isset($join_team) ? $join_team : NULL;?>
+<?php $join_sent = isset($join_sent) ? $join_sent : FALSE;?>
 
 <div class="row-fluid">
 
@@ -26,7 +27,9 @@
 <?php if ($view_component_about !== NULL):?>
 	<?php echo $view_component_about
 		->set('popularity', $popularity)
-		->set('join_team',	$join_team);?>
+		->set('join_team',	$join_team)
+		->set('join_sent', 	$join_sent);
+	?>
 <?php endif;?>
     </section>
     

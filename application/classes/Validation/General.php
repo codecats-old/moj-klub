@@ -13,4 +13,10 @@ class Validation_General extends Validation{
 	{
 		return ORM::factory($model)->unique($col, $field);
 	}
+	public static function is_loaded($model, $value = TRUE)
+	{
+		if ($model->loaded() === FALSE) $model->find();
+		
+		return ($model->loaded() === $value) ? TRUE : FALSE;
+	}
 }

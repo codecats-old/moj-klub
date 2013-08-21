@@ -13,6 +13,7 @@
        	<?php echo HTML::style('assets/style/Css/bootstrap.min.css');?>
        	<?php echo HTML::style('assets/style/Css/bootstrap.fix.css');?>
        	<?php echo HTML::style('assets/style/Css/ajax.css');?>
+       	<?php echo HTML::style('assets/style/Css/notification.css');?>
        	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
 
 <?php //Add style gallery when user is on gallery
@@ -34,7 +35,7 @@
     <body>
 
     
-<?php  echo View::factory('Header/Header')->set('header_menu_access',$header_menu_access);?>
+<?php  echo View::factory('Header/Header')->set('header_menu_access', $header_menu_access);?>
 
 <?php echo $view_container;?>
 

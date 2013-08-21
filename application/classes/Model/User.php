@@ -2,24 +2,27 @@
 
 class Model_User extends Model_Auth_User{
 	
-	protected $_has_many=array(
-		'roles'=>array(
-			'through'=>'role_users'
-		)
-	);
-	protected $_has_one=array(
-		'info'=>array(
-			'foreign_key'=>'id'
-		)
-	);
-	protected $_belongs_to=array(
-		'avatar'=>array(
-			'model'=>'Avatar',
-			'foreign_key'=>'avatar_id'
+	protected $_has_many = array(
+		'roles' => array(
+			'through' => 'role_users'
 		),
-		'team'=>array(
-				'model'=>'Team',
-				'foreign_key'=>'team_id'
+		'request' => array(
+			'model' => 'Request'
+		)
+	);
+	protected $_has_one = array(
+		'info' => array(
+			'foreign_key' => 'id'
+		)
+	);
+	protected $_belongs_to = array(
+		'avatar' => array(
+			'model' => 'Avatar',
+			'foreign_key' => 'avatar_id'
+		),
+		'team' => array(
+				'model' => 'Team',
+				'foreign_key' => 'team_id'
 		)
 	);
 	

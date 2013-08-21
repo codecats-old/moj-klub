@@ -145,6 +145,9 @@ class Manager_Gallery extends Manager_Data{
 		
 
 		$menu_gallery = Menu::factory('Gallery', $user);
+		/**
+		 * Deny for modification by roles
+		 */
 		$menu_gallery->deny_permissions($id, $user);
 		// user can be not logged in
 		$submenu_gallery = $menu_gallery->get_resource_by_user($user, 'gallery');

@@ -3,5 +3,6 @@ return array(
 		'registrate'=>'rejestracja',
 		'Needed data'=>'Dane wymagane',
 		'yours data'=>'twoje dane',
-		'user'=>'uzytnik'
+		'user'=>'uzytnik',
+		'title' => 'tytuł'
 );

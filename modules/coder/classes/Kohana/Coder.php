@@ -28,6 +28,7 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 		
 		return bin2hex(Encrypt::instance()->encode($val));
 	}
+	
 	public function from_url($val)
 	{
 		//check if value is code if not exception will be thrown
@@ -42,5 +43,23 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 		}
 	}
 	
+	/**
+	 * Convert integer to shorter representation (better works with big integers)
+	 * if value is not a number then function converts it back to integer
+	 * 
+	 * @param mixed $val
+	 * @return string|number
+	 */
+	public function convert_int ($val)
+	{
+		if (is_numeric($val))
+		{
+			return base_convert($val, 10, 36);	
+		}
+		else 
+		{
+			return intval($val);
+		}
+	}
 	
 }

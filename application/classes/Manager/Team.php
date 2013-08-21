@@ -67,11 +67,36 @@ class Manager_Team extends Manager_Data{
 		$popularity = $members->count_all() / $biggest_team->counter *100;//[%]
 
 		/**
+		 * check if user can join the club
+		 */
+		$request = NULL;
+		$request_sent = FALSE;
+		$request_canceled = FALSE;
+		
+		if ($user AND $team){
+			$request = ORM::factory('Request', array('team_id' => $team->id, 'user_id' => $user->id));
+		}
+		
+		/**
+		 * If request sent or if request canceled before time offset
+		 */
+		if (isset($request) AND $request->loaded())
+		{
+			$request_sent = TRUE;
+			
+			if ($request->active == FALSE) $request_canceled = TRUE;
+		}
+		
+
+		
+		/**
 		 * Decorated view to show
 		 */
 		$this->view_container
 			->set('popularity', $popularity)
-			->set('join_team',	$menu->is_allowed($user, 'join_team'));
+			->set('join_team',	$menu->is_allowed($user, 'join_team'))
+			->set('join_sent', $request_sent);
+	//	$this->view_container->view_component_about->set('join_canceled', $request_canceled);
 	}
 
 	public function set_show_result(){}

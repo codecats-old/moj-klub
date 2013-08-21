@@ -1,25 +1,113 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 class Validation_User extends Validation_General{
+	
+	protected $rules_register=array(
+			'email'=>array(
+					array('not_empty'),
+					array('email'),
+					array('Validation_User::is_unique', array(':field',':value'))
+			),
+			'username'=>array(
+					array('not_empty'),
+					array('alpha_dash'),
+					array('min_length', array(':value', 3)),
+					array('max_length', array(':value', 15)),
+					array('Validation_User::is_unique', array(':field',':value'))
+			),
+			'password'=>array(
+					array('not_empty'),
+					array('min_length', array(':value', 5)),
+					array('max_length', array(':value', 25))
+			),
+			'password_confirm'=>array(
+					array('matches', array(':validation', ':field', 'password'))
+			),
+			'name'=>array(
+					array('alpha'),
+					array('min_length', array(':value', 2)),
+					array('max_length', array(':value', 15))
+			),
+			'surname'=>array(
+					array('alpha'),
+					array('min_length', array(':value', 2)),
+					array('max_length', array(':value', 25))
+			),
+			'phone'=>array(
+					array('phone', array(':value',array(7,9,10)))
+			),
+			'show_phone'=>array(
+					/* checked or nothing*/
+					array('regex', array(':value', '/^(checked)$/'))
+			),
+			'show_email'=>array(
+					array('regex', array(':value', '/^(checked)$/'))
+			),
+			'captcha'=>array(
+					array('not_empty'),
+					array('Captcha::valid')
+			)
+	);
+	
+	protected $rules_login=array(
+			'login_identificator'=>array(
+					array('not_empty'),
+					array('min_length', array(':value', 3)),
+					array('max_length', array(':value', 15))
+			),
+			'password'=>array(
+					array('not_empty'),
+					array('min_length', array(':value', 5)),
+					array('max_length', array(':value', 25))
+			),
+			'stay_login'=>array(
+					array('regex', array(':value', '/^(checked)$/'))
+			)
+	);
+	
+	protected $rules_change_password=array(
+			'password_confirm'=>array(
+					array('matches', array(':validation', ':field', 'new_password'))
+			)
+	);
+	
+	protected $rules_change_data=array(
+			'password'=>array(
+					array('not_empty'),
+					array('Validation_User::is_correct_password', array(':value'))
+			),
+			'email'=>array(
+					array('not_empty'),
+					array('email'),
+					array('Validation_User::changable', array(':field', ':value'))
+					//	array('Validation_User::is_unique', array(':field', ':value')),
+					//	array('Validation_User::is_owner', array(':field', ':value'))
+			)
+	);
+	
 	public static function changable($col, $field)
 	{
 		if(self::is_unique($col, $field)===TRUE)return TRUE;
 		if(self::is_owner($col, $field)===TRUE)return TRUE;
 		return FALSE;
 	}
+	
 	public static function is_owner($col, $field)
 	{
 		$user=Auth::instance()->get_user();
 		if($user->reload()->$col===$field)return TRUE;
 		else return FALSE;
 	}
+	
 	public static function is_unique($col, $field, $model='User')
 	{
 		return parent::is_unique($col, $field, $model);
 	}
+	
 	public static function is_correct_password($val)
 	{
 		return Auth::instance()->check_password($val);
 	}
+	
 	public function change_password()
 	{
 		$object=Validation::factory($this->_data);
@@ -28,11 +116,7 @@ class Validation_User extends Validation_General{
 			->rules('password', $this->rules_change_data['password']);
 		return $object;
 	}
-	protected $rules_change_password=array(
-		'password_confirm'=>array(
-			array('matches', array(':validation', ':field', 'new_password'))
-		)
-	);
+
 	public function change_data()
 	{
 		$object=Validation::factory($this->_data);
@@ -45,19 +129,7 @@ class Validation_User extends Validation_General{
 			->rules('password', $this->rules_change_data['password']);
 		return $object;
 	}
-	protected $rules_change_data=array(
-		'password'=>array(
-			array('not_empty'),
-			array('Validation_User::is_correct_password', array(':value'))
-		),
-		'email'=>array(
-			array('not_empty'),
-			array('email'),
-			array('Validation_User::changable', array(':field', ':value'))
-		//	array('Validation_User::is_unique', array(':field', ':value')),
-		//	array('Validation_User::is_owner', array(':field', ':value'))
-		)
-	);
+
 	public function login()
 	{
 		$object=Validation::factory($this->_data);
@@ -65,21 +137,7 @@ class Validation_User extends Validation_General{
 			->rules('password', $this->rules_login['password']);
 		return $object;
 	}
-	protected $rules_login=array(
-		'login_identificator'=>array(
-			array('not_empty'),
-			array('min_length', array(':value', 3)),
-			array('max_length', array(':value', 15))
-		),
-		'password'=>array(
-			array('not_empty'),
-			array('min_length', array(':value', 5)),
-			array('max_length', array(':value', 25))
-		),
-		'stay_login'=>array(
-			array('regex', array(':value', '/^(checked)$/'))
-		)
-	);
+	
 	public function register()
 	{	
 		$object=Validation::factory($this->_data);
@@ -95,50 +153,5 @@ class Validation_User extends Validation_General{
 			->rules('captcha', $this->rules_register['captcha']);
 		return $object;
 	}
-	protected $rules_register=array(
-		'email'=>array(
-			array('not_empty'),
-			array('email'),
-			array('Validation_User::is_unique', array(':field',':value'))
-		),
-		'username'=>array(
-			array('not_empty'),
-			array('alpha_dash'),
-			array('min_length', array(':value', 3)),
-			array('max_length', array(':value', 15)),
-			array('Validation_User::is_unique', array(':field',':value'))
-		),
-		'password'=>array(
-			array('not_empty'),
-			array('min_length', array(':value', 5)),
-			array('max_length', array(':value', 25))
-		),
-		'password_confirm'=>array(
-			array('matches', array(':validation', ':field', 'password'))
-		),
-		'name'=>array(
-			array('alpha'),
-			array('min_length', array(':value', 2)),
-			array('max_length', array(':value', 15))
-		),
-		'surname'=>array(
-			array('alpha'),
-			array('min_length', array(':value', 2)),
-			array('max_length', array(':value', 25))
-		),
-		'phone'=>array(
-			array('phone', array(':value',array(7,9,10)))
-		),
-		'show_phone'=>array(
-		/* checked or nothing*/
-			array('regex', array(':value', '/^(checked)$/'))
-		),
-		'show_email'=>array(
-			array('regex', array(':value', '/^(checked)$/'))
-		),
-		'captcha'=>array(
-			array('not_empty'),
-			array('Captcha::valid')
-		)
-	);
+
 }

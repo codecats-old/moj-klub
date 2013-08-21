@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
+<nav class="navbar navbar-fixed-top navbar-inverse">
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -29,8 +29,12 @@
 <?php if (Arr::get($header_menu_access, 'loged') === TRUE) echo View::factory('Header/Loged');?>
 
                     <!-- >Access -->
-              <!-- Messages  -->      
-                  <!--     <span class="pull-right">aaa</span>-->
-              <!-- >messages -->
+<?php if (Arr::get($header_menu_access, 'administration') === TRUE): ?>
+              <!-- Administration  -->      
+                  <span class="pull-right">
+	<?php echo View::factory('Header/Administration/Icon');?>
+                  </span>
+              <!-- >Administration -->
+<?php endif;?>
                 </div>
-            </nav>
+</nav>

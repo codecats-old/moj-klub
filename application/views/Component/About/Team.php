@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $photos_count = isset($photos_count) ? $photos_count : 0;?>
+
+
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
 		<li class="thumbnail span12">
@@ -15,16 +17,32 @@
 			<span>
 				You not belongs to any club, ask for join this one:
 			</span>
-	<?php echo HTML::anchor(Route::get('default')->uri(
-			array(
-				'controller' 	=> 'administration',
-				'action'		=> 'join',
-				'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
-			)
-		),
-		'join team'.'!',
-		array('class' => 'btn btn-danger btn-large')
-	);?>
+	<?php if ($join_sent === FALSE):?>
+		<?php echo HTML::anchor(Route::get('default')->uri(
+				array(
+					'controller' 	=> 'administration',
+					'action'		=> 'join',
+					'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
+				)
+			),
+			'join team'.'!',
+			array('class' => 'btn btn-danger btn-large')
+		);?>
+	<?php else:?>
+			<div class="btn-group">
+				<a href="#team" class="btn btn-danger btn-large label disabled">in progress</a>
+			<?php echo HTML::anchor(Route::get('default')->uri(
+					array(
+						'controller' 	=> 'administration',
+						'action'		=> 'join-cancel',
+						'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
+					)
+				),
+				'cancel',
+				array('class' => 'btn btn-danger btn-large')
+			);?>
+			</div>
+	<?php endif;?>
 		</li>
 <?php endif;?>
 		

@@ -6,9 +6,17 @@
 	<div class="row-fluid">
 		<div class="span6">
 <?php echo HTML::anchor(
-		Route::get('default')->uri(array('controller'=>'team', 'action'=>'create')),
+		Route::get('default')->uri(
+			array(
+				'controller' 	=> 'team', 
+				'action' 		=> 'create'
+			)
+		),
 		'Stwórz<label>zarządzaj nowym klubem i zaproś członków drużyny</label>',
-		array('class'=>'btn btn-large btn-success btn-block', 'rel'=>'create_form_get')
+		array(
+			'class' 	=> 'btn btn-large btn-success btn-block', 
+			'rel' 		=> 'create_form_get'
+		)
 );?>
 		</div>
 		<div class="span6">

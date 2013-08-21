@@ -1,6 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<h3>Dane drużyny</h3>
+<h4>Dane drużyny</h4>
 <div>
+	<h3 class="text-center">
+<?php echo HTML::anchor(
+	Route::get('default')->uri(
+		array(
+			'controller' => 'team',
+			'action'	 =>	'show',
+			'id'		 => Coder::instance()->to_url($team['id'])
+		)
+	),
+	Arr::get($team, 'short_name')
+);?>
+	</h3>
+	
 	<label class="label">Pełna nazwa</label>
 	<span class="text-info pull-right">
 <?php echo Arr::get($team, 'full_name');?>
@@ -35,8 +48,8 @@
 		array(
 			'class' => 'btn btn-info btn-block'
 		)
-	)?>
-	<a></a>
+	);?>
+
 	</div>
 <?php endif;?>
 </div>

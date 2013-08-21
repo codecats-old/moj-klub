@@ -21,4 +21,11 @@ interface Kohana_Interface_Coder{
 	 * @param <string> $value encoded
 	 */
 	public function from_url($value);
+	
+	/**
+	 * Convert integer to shorter string
+	 * 
+	 * @param mixed $val
+	 */
+	public function convert_int ($val);
 }

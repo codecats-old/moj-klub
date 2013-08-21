@@ -9,6 +9,9 @@ class Model_Team extends ORM{
 			'photo' => array(
 					'model' => 'Photo',
 					'foreign_key' => 'team_id'
+			),
+			'request' => array(
+				'model' => 'Request'
 			)
 	);
 	protected $_belongs_to=array(
