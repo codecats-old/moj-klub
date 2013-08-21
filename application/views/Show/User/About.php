@@ -1,5 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 <?php $label_empty = 'not set yet.';?>
+<?php $avatar = (isset($avatar)) ? $avatar : array('path' => 'upload/default/avatar/user.jpeg')?>
 <div class="well">
 	<div class="row-fluid">
 		<div class="span9">
@@ -22,7 +23,7 @@
 		</div>
 		<div class="span3">
 			<p>
-<?php echo HTML::image($avatar['path'], array('alt' => 'avatar', 'class' => 'img-polaroid'));?>
+<?php echo HTML::image(Arr::get($avatar, 'path'), array('alt' => 'avatar', 'class' => 'img-polaroid'));?>
 			</p>
 			<p class="text-center">
 <?php echo HTML::anchor(Route::get('default')->uri(

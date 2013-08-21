@@ -20,7 +20,7 @@
 	<?php if ($join_sent === FALSE):?>
 		<?php echo HTML::anchor(Route::get('default')->uri(
 				array(
-					'controller' 	=> 'administration',
+					'controller' 	=> 'management',
 					'action'		=> 'join',
 					'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
 				)
@@ -33,7 +33,7 @@
 				<a href="#team" class="btn btn-danger btn-large label disabled">in progress</a>
 			<?php echo HTML::anchor(Route::get('default')->uri(
 					array(
-						'controller' 	=> 'administration',
+						'controller' 	=> 'management',
 						'action'		=> 'join-cancel',
 						'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
 					)

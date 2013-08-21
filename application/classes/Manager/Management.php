@@ -5,10 +5,34 @@
  * @author t
  *
  * Manipulate with views and object data - work like controller with low level staff,
- * actions of managers called always from controller so MVC architecture is not broken.
- * To see hows it work with typhical action go to 'change_password'
+ * actions of managers called always from controller.
+ * 
  */
-class Manager_Administration extends Manager_Data{
+class Manager_Management extends Manager_Data{
+	public function consider_result()
+	{
+		
+	}
+	protected function join_club()
+	{
+		
+	}
+	protected function cancel_join_club()
+	{
+		
+	}
+	protected function consider_accept()
+	{
+		
+	} 
+	protected function consider_refuse()
+	{
+		
+	}
+	protected function consider_cancel()
+	{
+		
+	}
 	/**
 	 * Default view details
 	 * @see Kohana_Interface_Manager::set_view_details()

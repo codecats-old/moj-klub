@@ -17,8 +17,8 @@ class Menu_Header extends Menu_General{
 		$resource = Menu::get_generic_resource('access');
 		$this->add_resource($resource);
 		
-		//Administration button
-		$resource = Menu::get_generic_resource('administration');
+		//Management button
+		$resource = Menu::get_generic_resource('management');
 		$this->add_resource($resource);
 
 		return $this;
@@ -33,7 +33,7 @@ class Menu_Header extends Menu_General{
 		$this->
 			add_role('login')
 			->allow('login', 'loged')
-			->allow('login', 'administration');
+			->allow('login', 'management');
 		
 		$this->
 			add_role('guest')

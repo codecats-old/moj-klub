@@ -5,7 +5,7 @@
 	<li>
 <?php echo HTML::anchor(Route::get('default')->uri(
 	array(
-			'controller' => 'administration',
+			'controller' => 'management',
 			'action' 	 => 'requests',
 			'id' 		 => Coder::instance()->to_url($team['id'])
 		)
@@ -15,11 +15,15 @@
 );?>
 	</li>
 	<li class="divider"></li>
+	
+<!-- messages -->
 <?php if (isset($requests_views)):?>
 	<?php foreach ($requests_views as $request_view):?>
 		<?php echo $request_view->render();?>
 	<?php endforeach;?>
 <?php endif;?>
+<!-- >messages -->
+
 </ul>
 
 <?php echo $pagination;?>

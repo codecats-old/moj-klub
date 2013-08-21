@@ -29,7 +29,7 @@
 <?php if (Arr::get($header_menu_access, 'loged') === TRUE) echo View::factory('Header/Loged');?>
 
                     <!-- >Access -->
-<?php if (Arr::get($header_menu_access, 'administration') === TRUE): ?>
+<?php if (Arr::get($header_menu_access, 'management') === TRUE): ?>
               <!-- Administration  -->      
                   <span class="pull-right">
 	<?php echo View::factory('Header/Administration/Icon');?>

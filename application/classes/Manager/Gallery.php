@@ -152,11 +152,24 @@ class Manager_Gallery extends Manager_Data{
 		// user can be not logged in
 		$submenu_gallery = $menu_gallery->get_resource_by_user($user, 'gallery');
 		
+		/**
+		 * Photos for team gallery
+		 */
+		$count = ORM::factory('Photo')->get_team_photos($id)->count_all();
+		
+		$pagination = Pagination::factory(array(
+				'total_items' 		=> 	$count,
+				'items_per_page' 	=> 	15
+		));
+		
+		$photos = ORM::factory('Photo')->get_team_photos($id)
+			->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
 		
 		$component_gallery = View::factory('Component/Gallery')
-			->set('menu', $submenu_gallery)
-			->set('photos', ORM::factory('Photo')->get_team_photos($id)->find_all()->as_array())
-			->set('team', $team->as_array());
+			->set('menu', 		$submenu_gallery)
+			->set('photos', 	$photos)
+			->set('pagination',	$pagination)
+			->set('team', 		$team->as_array());
 		
 		$menu_visit = Menu::factory('Visit', $user);
 		$submenu_visit = $menu_visit->get_resource_by_user($user, NULL);

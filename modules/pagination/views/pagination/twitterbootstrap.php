@@ -1,5 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access');?>
-<div class="pagination pagination-small well well-opacity pagination-right">
+
+<div class="pagination well well-opacity pagination-small pagination-right">
 	<ul>
 		
 	<?php if ($first_page !== FALSE): ?>

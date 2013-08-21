@@ -1,21 +1,30 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Controller_Administration extends Controller_Automatic{
+class Controller_Management extends Controller_Automatic{
 	
 	public function action_index()
 	{
 		
 	}
+	public function action_consider_join()
+	{
+		$user_id = Coder::instance()->from_url($this->request->param('id'));
+		$result = $this->request->param('result');
+		
+		$manager = Manager::factory('Management', '');
+		echo $result;
+		echo '<br>';
+		echo $user_id;
+	}
 	
-	public function action_request()
+	public function action_requests()
 	{
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
-		echo $team_id;
+
+		
 		$team = ORM::factory('Team', $team_id);
 		$count = $team->request->order_by('date', 'DESC')->count_all();
-		echo '<br>'.$count.'<br>';
-	
-	
+
 		
 		$pagination=Pagination::factory(array(
 			'total_items'=>$count
@@ -86,7 +95,7 @@ class Controller_Administration extends Controller_Automatic{
 		}
 
 		
-		$manager = Manager::factory('Administration', '');
+		$manager = Manager::factory('Management', '');
 	}
 	
 	public function action_join_cancel()

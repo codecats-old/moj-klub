@@ -45,7 +45,10 @@
 <?php endif;?>
 
 
-<div id="gallery-container" class="well well-opacity">
+<div class="well well-opacity">
+<?php echo $pagination;?>
+<div id="gallery-container">
+	
 	<ul class="items--small">
 <?php $id=0;?>
 <?php foreach($photos as $photo):?>
@@ -95,5 +98,7 @@
 	    <span class="grid icon-grid"></span>
 	    <span class="fs-toggle icon-fullscreen"></span>
     </div>
- 
+
+</div>
+<?php echo $pagination;?>
 </div>

@@ -232,3 +232,9 @@
 #9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-21 21:23:04 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Pagination::set() ~ APPPATH/views/Component/Gallery.php [ 49 ] in :
+2013-08-21 21:23:04 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-21 21:27:29 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Pagination::set() ~ APPPATH/views/Component/Gallery.php [ 49 ] in :
+2013-08-21 21:27:29 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

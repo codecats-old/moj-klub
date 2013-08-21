@@ -138,9 +138,9 @@ Kohana::modules(array(
  * defaults for the URI.
  */
 Route::set(
-		'image', 
-		'image/<action>/<id>/<width>/<height>/<ext>', 
-		array('id' => '[0-9]+', 'width' => '[0-9]+', 'height' => '[0-9]+', 'ext'=> '(jpg|jpeg|png|gif)'))
+	'image', 
+	'image/<action>/<id>/<width>/<height>/<ext>', 
+	array('id' => '[0-9]+', 'width' => '[0-9]+', 'height' => '[0-9]+', 'ext'=> '(jpg|jpeg|png|gif)'))
 	->filter(
 		function($route, $params, $request)
 		{
@@ -169,8 +169,8 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 	));
 	
 Route::set(
-		'delete',
-		'(<controller>(/<action>(/<id>/<confirm>)))',
+	'delete',
+	'(<controller>(/<action>(/<id>/<confirm>)))',
 	array('confirm' => '(true)'))
 	->filter(
 		function($route, $params, $request)
@@ -181,5 +181,21 @@ Route::set(
 	)
 	->defaults(array(
 			'controller' => 'team',
+			'action'     => 'gallery',
+	));
+
+Route::set(
+	'consider',
+	'management/<action>/<id>/<result>',
+	array('result' => '(accept|refuse|cancel)'))
+	->filter(
+		function($route, $params, $request)
+		{
+			$params['action']=str_replace('-', '_', $params['action']);
+			return $params;
+		}
+	)
+	->defaults(array(
+			'controller' => 'management',
 			'action'     => 'gallery',
 	));
