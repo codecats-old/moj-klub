@@ -8,19 +8,46 @@ class Controller_Management extends Controller_Automatic{
 	}
 	public function action_consider_join()
 	{
+		echo '<br><br><br><br><br><br><br><br><br><br>';
+		$this->redirect_user(FALSE);
+		
 		$user_id = Coder::instance()->from_url($this->request->param('id'));
 		$result = $this->request->param('result');
 		
-		$manager = Manager::factory('Management', '');
-		echo $result;
-		echo '<br>';
-		echo $user_id;
+		
+		$new_member = ORM::factory('User', $user_id);
+		$master = Auth::instance()->get_user();
+		$team = $master->team;
+		$request = $new_member->request->where('team_id', '=', $team->id)->find();
+
+		$manager = Manager::factory('Management', $request);
+		$manager->set_objects(
+			array(
+				'master' 		=> $master,
+				'team' 			=> $team,
+				'new_member'	=> $new_member
+			)
+		);
+
+		$result = $manager->consider_result($result);
+		
+		/**
+		 * Redirect if no permitted to do consideration of join user to team
+		 */
+		if ($result === FALSE)
+		{
+			HTTP::redirect();
+		}
+
+		$this->view_container 	= $manager->get_views_result('container');
+		$this->view_content 	= $manager->get_views_result('content');
 	}
 	
 	public function action_requests()
 	{
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
 
+		$master = Auth::instance()->get_user();
 		
 		$team = ORM::factory('Team', $team_id);
 		$count = $team->request->order_by('date', 'DESC')->count_all();
@@ -40,11 +67,17 @@ class Controller_Management extends Controller_Automatic{
 					'pagination' 	=> $pagination
 				)
 		);
+		
 		$this->view_container->set('team', $team->as_array());
 		$this->view_container->requests_views = array();
 		foreach ($requests as $request)
 		{
+			//creating the menu
+			$menu = Menu::factory('Request', $master);
+			$menu->deny_permissions($request);
+			
 			$single = View::factory('Component/Request/Single');
+			$single->status = $menu->get_resource_by_user($master, NULL);
 			$single->request = $request->as_array();
 			$single->user = ORM::factory('User', $request->user_id)->as_array();
 			array_push($this->view_container->requests_views, $single);

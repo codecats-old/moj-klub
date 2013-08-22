@@ -20,6 +20,6 @@
 			),
 			ucfirst(__('logout')).'<span class="icon-off icon-white"></span>',
 			array('class' => 'btn btn-mini btn-inverse','rel'=>'logout'));?>
-	
-	<span class="divider-vertical"></span>
+		
+
 </div>

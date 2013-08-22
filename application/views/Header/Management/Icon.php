@@ -1,19 +1,10 @@
 <?php defined('SYSPATH') OR die('No direct script access');?>
 
 <div class="dropdown">
-<?php echo HTML::anchor(Route::get('default')->uri(
-		array(
-			'controller' 	=> 'administration',
-			'action' 		=> 'show'
-		)
-	),
-	'<i class="icon-envelope icon-white"></i>',
-	array( 
-		'class' 		=> 'btn btn-inverse btn-mini blinking-icon dropdown-toggle',
-		'data-toggle' 	=> 'dropdown',
-		'rel' 			=> ''
-	)
-);?>
+	<button class="btn btn-inverse btn-mini blinking-icon dropdown-toggle" data-toggle="dropdown">
+		events<i class="icon-envelope icon-white"></i>
+	</button>
+
 
 
     <!-- Link or button to toggle dropdown -->
@@ -21,7 +12,21 @@
     <!--  $('.scrollable').click(function(e){e.stopPropagation();}); -->
     <ul class="dropdown-menu scrollable pull-right min-width-20">
     
-	    <li><a tabindex="-1" href="#">To Panel</a></li>
+	    <li>
+<?php echo HTML::anchor(Route::get('default')->uri(
+		array(
+			'controller' 	=> 'management',
+			'action' 		=> 'requests',
+			'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
+		)
+	),
+	'Panel',
+	array( 
+		'tabindex' 	=> '-1'
+	)
+);?>
+	    </li>
+	    
 	    <li class="divider"></li>
     	<li class="row-fluid">
     		<div>

@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="trening, klub, drużyna, zawodnicy">
         <meta name="keywords" content="my club, sport, team, training">
-		<meta name="author" content="Tomasz Strzeszkowski">
+		<meta name="author" content="ssstrz">
         <link 
         	href="<?php echo Kohana::$base_url;?>assets/img/favicon.ico" 
         	rel="icon" type="image/x-icon" />
@@ -35,7 +35,10 @@
     <body>
 
     
-<?php  echo View::factory('Header/Header')->set('header_menu_access', $header_menu_access);?>
+<?php echo View::factory('Header/Header')
+	->set('header_menu_access', $header_menu_access)
+	->set('team', $team);
+?>
 
 <?php echo $view_container;?>
 

@@ -7,7 +7,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-<?php echo HTML::anchor(Route::get('default')->uri(),'Mój klub', array('class'=>'brand', 'rel'=>'index'));?>
+<?php echo HTML::anchor(
+		Route::get('default')->uri(),
+		'Mój klub', 
+		array('class'=>'brand', 'rel'=>'index')
+);?>
                         <!--Collapse less than 940px -->
                         <div  class="nav-collapse">
 <?php echo View::factory('Header/Menu/Main')?>
@@ -23,18 +27,18 @@
                         </ul>
                         <!-- >Search -->
                     </div>
-                   
+
                     <!-- Access -->
 <?php if (Arr::get($header_menu_access, 'access') === TRUE) echo View::factory('Header/Access');?>
 <?php if (Arr::get($header_menu_access, 'loged') === TRUE) echo View::factory('Header/Loged');?>
-
+					
                     <!-- >Access -->
 <?php if (Arr::get($header_menu_access, 'management') === TRUE): ?>
-              <!-- Administration  -->      
+              <!-- Management  -->      
                   <span class="pull-right">
-	<?php echo View::factory('Header/Administration/Icon');?>
+	<?php echo View::factory('Header/Management/Icon')->set('team', $team);?>
                   </span>
-              <!-- >Administration -->
+              <!-- >Management -->
 <?php endif;?>
                 </div>
 </nav>
