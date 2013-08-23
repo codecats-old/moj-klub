@@ -14,7 +14,9 @@ class Manager_Header extends Manager_Data{
 			
 			if ($object->loaded())
 			{
-				$this->team = $object->team;
+				$this->object = isset($object) ? $object : NULL;
+				
+				$this->team = isset($object) ? $object->team :NULL;
 			}
 		}
 		parent::__construct($object);
@@ -32,13 +34,18 @@ class Manager_Header extends Manager_Data{
 				'team' 	=> $this->team
 			)
 		);
-		
-		$panel->create_panel(FALSE);
+		$panel->display(FALSE);
 		
 		$menu = Menu::factory('Header', $user);
+		$blink = Notificator::update_blink();
 		$template
 			->set('header_menu_access', $menu->get_resource_by_user($user, NULL))
-			->set('component_request_menu', $panel);
+			->set('component_request_menu', $panel)
+			->set('header_management_icon', 
+					array(
+						'blink' => 	$blink['active']
+					)
+			);
 	}
 	
 

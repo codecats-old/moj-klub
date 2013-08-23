@@ -4,7 +4,7 @@
 <ul class="<?php echo $panel_style; ?>">
     	<li class="row-fluid navbar">
     		<div class="navbar-inverse">
-<?php if (isset($team)):?>
+<?php if (isset($team) AND Arr::get($team, 'id')):?>
     			<span>
 	<?php echo HTML::anchor(Route::get('default')->uri(
 			array(
@@ -15,7 +15,7 @@
 		),
 		'team panel',
 		array(
-			'class'		=> 'btn btn-mini active',
+			'class'		=> 'btn btn-mini',
 			'tabindex' 	=> '-1'
 		)
 	);?>
@@ -23,7 +23,19 @@
     			<span class="divider-vertical"></span>
 <?php endif;?>
     			<span>
-    				<a class="btn btn-mini" href="" >user panel</a>
+<?php echo HTML::anchor(Route::get('default')->uri(
+		array(
+			'controller' 	=> 'management',
+			'action' 		=> 'messages',
+			'id'			=> Coder::instance()->to_url(Arr::get($user, 'id'))
+		)
+	),
+	'user panel',
+	array(
+		'class'		=> 'btn btn-mini',
+		'tabindex' 	=> '-1'
+	)
+);?>
     			</span>
     		</div>
     	</li>

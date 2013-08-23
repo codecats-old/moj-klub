@@ -1,10 +1,21 @@
 <?php defined('SYSPATH') OR die('No direct script access');?>
+<?php $blink = (Arr::get($header_management_icon, 'blink') === TRUE) ? 'blinking-icon' : '';?>
 
 <div class="dropdown">
-	<button class="btn btn-inverse btn-mini blinking-icon dropdown-toggle" data-toggle="dropdown">
-		events<i class="icon-envelope icon-white"></i>
-	</button>
-
+<?php echo HTML::anchor(
+	Route::get('default')->uri(
+		array(
+			'controller' 	=> 'management',
+			'action' 		=> 'messages',
+			'id'			=> Coder::instance()->to_url($user['id'])
+		)
+	),
+	__('events').' <i class="icon-envelope icon-white"></i>',
+	array(
+		'class' 		=> 'btn btn-inverse btn-mini '.$blink.' dropdown-toggle',
+		'data-toggle'	=> 'dropdown'
+	)
+);?>
 
     <!-- Link or button to toggle dropdown -->
     <!-- to do not hide when clicked use: -->

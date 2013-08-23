@@ -50,19 +50,32 @@ class Controller_Management extends Controller_Automatic{
 		$master = Auth::instance()->get_user();
 		
 		$team = ORM::factory('Team', $team_id);
-		
-		
+
 		$panel = Manager::factory('Panel', $master);
 		$panel->set_data(
 				array(
 						'team' 	=> $team
 				)
-		);
-		
-		$panel->create_panel(TRUE);
+		);		
+		$panel->team(TRUE);
 		$this->view_container = $panel;
-		
+	}
 	
+	public function action_messages()
+	{
+		$user_id = Coder::instance()->from_url($this->request->param('id'));
+	
+		$master = ORM::factory('User', $user_id);
+
+		$panel = Manager::factory('Panel', $master);
+		$panel->set_data(
+				array(
+						'team' 	=> $master->team
+				)
+		);
+		$panel->user(TRUE);
+		
+		$this->view_container = $panel;
 	}
 	
 	public function action_join()

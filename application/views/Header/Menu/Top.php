@@ -37,6 +37,7 @@
               <!-- Management  -->      
                   <span class="pull-right">
 	<?php echo View::factory('Header/Management/Icon')
+		->set('header_management_icon', $header_management_icon)
 		->set('component_request_menu', $component_request_menu);
 	?>
                   </span>

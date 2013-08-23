@@ -8,7 +8,7 @@ class Controller_Automatic extends Controller_Template{
 	/**
 	 * @var View Default Template view
 	 */
-	public $template='Template';
+	public $template = 'Template';
 
 	/**
 	 * @var string Page title bind global in all views
@@ -42,17 +42,20 @@ class Controller_Automatic extends Controller_Template{
 	 */
 	public function before()
 	{
+		
 		parent::before();
 		
 		if (($this->request->is_ajax() === TRUE) OR ($this->request->is_initial() === FALSE))
-			$this->auto_render=FALSE;
+		{
+			$this->auto_render = FALSE;
+		}
 
 		View::bind_global('page_title', $this->page_title);
 
 		/*
 		 * page title will be controler name (its bined as global)
 		*/
-		$this->page_title=$this->request->controller();
+		$this->page_title = $this->request->controller();
 		
 		/*
 		 * user is binded as global for views
@@ -77,20 +80,20 @@ class Controller_Automatic extends Controller_Template{
 		if ($this->auto_render === FALSE)
 		{
 			//Prepare JSON pack for ajax or result for HMVC request
-			$json_array=array(
-					'View' => $this->view_content,
-					'status' => Message::instance()->get()
+			$json_array = array(
+					'View' 		=> $this->view_content,
+					'status' 	=> Message::instance()->get()
 			);
 				
 			//return suitable format for request
 			if ($this->request->is_ajax())
 			{
-				$json_array['View']=$json_array['View']->render();
+				$json_array['View'] = $json_array['View']->render();
 				echo json_encode($json_array);
 			}
 			elseif ($this->request->is_initial() === FALSE)
 			{
-				$json_array['View']=serialize($json_array['View']);
+				$json_array['View'] = serialize($json_array['View']);
 				$this->response->body(json_encode($json_array));
 			}
 		}
