@@ -37,7 +37,7 @@
     
 <?php echo View::factory('Header/Header')
 	->set('header_menu_access', $header_menu_access)
-	->set('team', $team);
+	->set('component_request_menu', $component_request_menu);
 ?>
 
 <?php echo $view_container;?>

@@ -50,38 +50,19 @@ class Controller_Management extends Controller_Automatic{
 		$master = Auth::instance()->get_user();
 		
 		$team = ORM::factory('Team', $team_id);
-		$count = $team->request->order_by('date', 'DESC')->count_all();
-
 		
-		$pagination=Pagination::factory(array(
-			'total_items'=>$count
-		));
-		$requests = $team->request->order_by('date', 'DESC')
-			->limit($pagination->items_per_page)
-			->offset($pagination->offset)->find_all();
-	
-	
-		$this->view_container = View::factory('Component/Request/Menu', 
+		
+		$panel = Manager::factory('Panel', $master);
+		$panel->set_data(
 				array(
-					'panel_style' 	=> TRUE,
-					'pagination' 	=> $pagination
+						'team' 	=> $team
 				)
 		);
 		
-		$this->view_container->set('team', $team->as_array());
-		$this->view_container->requests_views = array();
-		foreach ($requests as $request)
-		{
-			//creating the menu
-			$menu = Menu::factory('Request', $master);
-			$menu->deny_permissions($request);
-			
-			$single = View::factory('Component/Request/Single');
-			$single->status = $menu->get_resource_by_user($master, NULL);
-			$single->request = $request->as_array();
-			$single->user = ORM::factory('User', $request->user_id)->as_array();
-			array_push($this->view_container->requests_views, $single);
-		}
+		$panel->create_panel(TRUE);
+		$this->view_container = $panel;
+		
+	
 	}
 	
 	public function action_join()

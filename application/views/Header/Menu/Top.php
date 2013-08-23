@@ -36,7 +36,9 @@
 <?php if (Arr::get($header_menu_access, 'management') === TRUE): ?>
               <!-- Management  -->      
                   <span class="pull-right">
-	<?php echo View::factory('Header/Management/Icon')->set('team', $team);?>
+	<?php echo View::factory('Header/Management/Icon')
+		->set('component_request_menu', $component_request_menu);
+	?>
                   </span>
               <!-- >Management -->
 <?php endif;?>

@@ -109,12 +109,8 @@ class Controller_Automatic extends Controller_Template{
 			/**
 			 * create header menu, Zend_ACL menu method
 			*/
-			$user = Auth::instance()->get_user();
-			$team = ($user !== NULL) ? $user->team->as_array() : NULL;
-			$menu = Menu::factory('Header', $user);
-			$this->template
-				->set('header_menu_access', $menu->get_resource_by_user($user, NULL))
-				->set('team', $team);
+			$header = Manager::factory('Header', NULL);
+			$header->index($this->template);
 		}
 		parent::after();
 	}

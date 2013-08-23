@@ -32,7 +32,7 @@ class Controller_Welcome extends Controller_Automatic {
 		$this->view_content = View::factory('Container/Welcome/Main')
 			->set('component_carousel', 		$component_carousel)
 			->set('component_thumbnails_team', 	$component_thumbnails_team);
-		
+		$this->template->blink = 'elo';
 //------------------------------------------------------------------------------------------------
 /*
 		$user = Auth::instance()->get_user();
