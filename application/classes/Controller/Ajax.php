@@ -64,4 +64,17 @@ class Controller_Ajax extends Controller{
 	{
 		Cookie::delete(self::COOKIE_NAME);
 	}
+	public function action_notification()
+	{
+		echo serialize(Notificator::get_status());
+		
+	}
+	public function action_notification_config()
+	{
+		echo serialize(
+				array(
+						'duration' => Notificator::DURATION
+				)
+		);
+	}
 }

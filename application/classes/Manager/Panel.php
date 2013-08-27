@@ -13,19 +13,38 @@ class Manager_Panel extends Manager_Data{
 		
 		parent::__construct($object);
 		
-		if($this->object)
+		$user = $this->object;
+		
+		if($user)
 		{
-			$notificator = new Notificator($this->object, $this->object->team);
-		
-		
-			if ( $notificator->is_user_unread_messages())
+			/*
+			 * Initialize notificator
+			 */
+			$team = NULL;
+			
+			if ($user !== NULL AND $user->has('roles', ORM::factory('Role', array('name' => 'manager'))))
 			{
-		//		throw new Exception();
+				$team = $user->team;
 			}
 			
-			if ( $notificator->is_team_unread_messages())
+			$notificator = new Notificator($user, $team);
+			
+			if (
+					$team !== NULL AND 
+					$notificator->active == FALSE AND 
+					$notificator->is_team_unread_messages()
+			) 
 			{
-				
+				$notificator->start_blink();
+			}
+	
+			if (
+					$team === NULL AND 
+					$notificator->active == FALSE AND
+					$notificator->is_user_unread_messages()
+			) 
+			{
+				$notificator->start_blink();
 			}
 		}
 	}
@@ -143,7 +162,7 @@ class Manager_Panel extends Manager_Data{
 		
 		foreach ($requests as $request)
 		{
-			//creating the menu
+			//creating the menu master is and user
 			$menu = Menu::factory('Request', $properties['master']);
 			$menu->deny_permissions($request);
 		

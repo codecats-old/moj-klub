@@ -96,7 +96,6 @@ class Manager_Management extends Manager_Data{
 	 */
 	protected function consider_refuse()
 	{
-		
 		$request = $this->new_member->request->where('team_id', '=', $this->team->id)->find();
 		$request->active = $request->status = FALSE;
 		$request->read = Date::formatted_time();
@@ -104,7 +103,11 @@ class Manager_Management extends Manager_Data{
 	}
 	protected function consider_cancel()
 	{
-		
+		$request = $this->new_member->request->where('team_id', '=', $this->team->id)->find();
+		$request->active = TRUE;
+		$request->status = FALSE;
+		$request->read = Date::formatted_time();
+		$request->update();
 	}
 	/**
 	 * Set all needed objects 

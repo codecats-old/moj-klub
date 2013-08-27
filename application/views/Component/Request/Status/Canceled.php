@@ -4,11 +4,6 @@
 		<div class="well">
 			<small class="muted">
 				<strong>
-				<?php echo $user['username'];?>
-				</strong> 
-				asked to join the club 
-				<?php echo Date::fuzzy_span(strtotime($request['date']), time());?></small>
-			<div>
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array(
 			'controller' => 'user',
@@ -16,10 +11,15 @@
 			'id' 		 => Coder::instance()->to_url($user['id'])
 		)
 	),
-	'<strong>'.$user['username'].'</strong>',
-	array('class' => 'btn btn-block', 'tabindex' => '-1')
+	(Arr::get($status, 'owner') === FALSE) ?'<strong>'.$user['username'].'</strong>' : 'you',
+	array('class' => 'btn btn-link btn-tiny')
 	
 );?>
+				</strong> 
+				asked to join the club 
+				<?php echo Date::fuzzy_span(strtotime($request['date']), time());?></small>
+			<div>
+
 
 <?php if (Arr::get($status, 'modification')):?>
 	<?php if(Arr::get($status, 'management') AND Arr::get($status, 'status_unread')):?>
@@ -31,6 +31,10 @@
 		
 		
 	<?php endif;?>
+<?php endif;?>
+
+<?php  if (Arr::get($status, 'owner')):?>
+	<?php echo View::factory('Component/Request/Controls/Owner', array('request' => $request));?>
 <?php endif;?>
 			</div>
 		</div>

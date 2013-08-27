@@ -69,7 +69,7 @@ class Menu_Request extends Menu_General{
 			if ($request->team_id === $this->user->team_id
 				OR
 				$request->user_id === $this->user->id
-				)
+			)
 			{
 				$this->allow('player', 'modification');
 			}

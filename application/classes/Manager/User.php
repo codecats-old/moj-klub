@@ -164,6 +164,10 @@ class Manager_User extends Manager_Data{
 						)
 					)
 					->execute();
+					/*
+					 * After login clear notificator
+					 */
+					Notificator::clear();
 					
 					$this->success = TRUE;
 				}

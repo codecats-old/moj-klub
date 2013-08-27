@@ -61,8 +61,16 @@
 <?php echo HTML::script('assets/script/Js/Ajax/ACL/Factory.js');?>
 <!-- >AJAX -->
 
+<!--  COMPONENTS -->
 <!-- Component factory -->
 <?php echo HTML::script('assets/script/Js/Components/Initializator/Component.js');?>
+
+<!-- Components -->
+	<!-- Notificator -->
+<?php echo HTML::script('assets/script/Js/Components/Notificator/Notificator.js');?>
+	<!-- >Notificator -->
+<!-- >COMPONENTS -->
+
 
 <!-- Vendor libs -->
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>

@@ -13,7 +13,7 @@
 	__('events').' <i class="icon-envelope icon-white"></i>',
 	array(
 		'class' 		=> 'btn btn-inverse btn-mini '.$blink.' dropdown-toggle',
-		'data-toggle'	=> 'dropdown'
+	//DEBUG:	'data-toggle'	=> 'dropdown'
 	)
 );?>
 

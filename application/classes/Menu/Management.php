@@ -55,12 +55,7 @@ class Menu_Management extends Menu_General{
 			->allow('manager', 'consideration')
 			//admin
 			->add_role('admin', 'manager');
-		
-		/*if ($user !== NULL)
-		{
-			$urs_roles = $user->roles->find_all()->as_array();
-			$this->add_user_role($urs_roles, $user->username);
-		}*/
+
 		
 		return parent::prepare_permissions($user);
 	}

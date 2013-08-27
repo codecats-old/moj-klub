@@ -58,6 +58,15 @@ class Controller_Management extends Controller_Automatic{
 				)
 		);		
 		$panel->team(TRUE);
+		
+		/*
+		 * Set messages as readed
+		*/
+		$notificator = new Notificator($master, $team);
+
+		$notificator->stop_blink();
+		$notificator->check_blink();
+		
 		$this->view_container = $panel;
 	}
 	
@@ -74,6 +83,15 @@ class Controller_Management extends Controller_Automatic{
 				)
 		);
 		$panel->user(TRUE);
+		
+		/*
+		 * Set messages as readed
+		 */
+		$notificator = new Notificator($master, NULL);
+	
+		$notificator->set_user_read_messages();
+		$notificator->stop_blink();
+		$notificator->check_blink();
 		
 		$this->view_container = $panel;
 	}
@@ -147,7 +165,7 @@ class Controller_Management extends Controller_Automatic{
 		//$request = ORM::factory('Request');
 		$validator = $request->validate_join_cancel($user->id, $team_id);
 		
-
+		
 		
 		if ($validator->check())
 		{
@@ -158,6 +176,7 @@ class Controller_Management extends Controller_Automatic{
 			 */
 			if ($request->loaded())
 			{
+				
 				/**
 				 * 
 				 */
@@ -171,6 +190,7 @@ class Controller_Management extends Controller_Automatic{
 		}
 		
 		print_r($this->error);
+		
 		/**
 		 * are you sure?
 		 */

@@ -28,7 +28,7 @@ class Validation_Request extends Validation_General{
 		'request' => array(
 			array('Validation_Request::is_loaded', array(':value', TRUE)),
 			array('Validation_Request::is_active'),
-			array('Validation_Request::status_null')
+			array('Validation_Request::status_refused')
 		)
 	);
 	
@@ -43,18 +43,26 @@ class Validation_Request extends Validation_General{
 	{
 		return self::check_field($request, 'active', TRUE);
 	}
+	
+	
 	public static function is_inactive($request)
 	{
 		return self::check_field($request, 'active', FALSE);
 	}
+	
+	
 	public static function status_null($request)
 	{
 		return self::check_field($request, 'status', NULL);
 	}
+	
+	
 	public static function status_refused($request)
 	{
 		return self::check_field($request, 'status', FALSE);
 	}
+	
+	
 	public static function can_join($request)
 	{
 		if (self::is_loaded($request, FALSE))

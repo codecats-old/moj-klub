@@ -25,8 +25,6 @@ class Manager_Header extends Manager_Data{
 	public function index($template) 
 	{
 		$user = $this->object;
-	//	$team = ($user !== NULL) ? $user->team->as_array() : NULL;
-	//	$this->create_panel();
 	
 		$panel = Manager::factory('Panel', $user);
 		$panel->set_data(
@@ -35,9 +33,14 @@ class Manager_Header extends Manager_Data{
 			)
 		);
 		$panel->display(FALSE);
-		
+
 		$menu = Menu::factory('Header', $user);
-		$blink = Notificator::update_blink();
+		
+		/*
+		 * check for new notifications
+		 */	
+		$blink = Notificator::check_blink();
+		
 		$template
 			->set('header_menu_access', $menu->get_resource_by_user($user, NULL))
 			->set('component_request_menu', $panel)
@@ -47,8 +50,6 @@ class Manager_Header extends Manager_Data{
 					)
 			);
 	}
-	
-
 	
 	/**----------------------------------------------------------------------------------*/
 	public function set_view_details($view){}

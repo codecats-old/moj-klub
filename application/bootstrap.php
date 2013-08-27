@@ -57,6 +57,11 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  */
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
+/**
+ * Enable Composer's autoloader
+ */
+require_once './vendor/autoload.php';
+
 // -- Configuration and initialization -----------------------------------------
 
 /**
@@ -112,21 +117,22 @@ Cookie::$salt='a~d@d!s*o$m%e^7salt';
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	 'auth'       	=> MODPATH.'auth',       // Basic authentication
-	 'cache'      	=> MODPATH.'cache',      // Caching with multiple backends
-	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	 'database'   	=> MODPATH.'database',   // Database access
-	 'image'      	=> MODPATH.'image',      // Image manipulation
-	// 'minion'     => MODPATH.'minion',     // CLI Tasks
-	 'orm'        	=> MODPATH.'orm',        // Object Relationship Mapping
-	// 'unittest'   => MODPATH.'unittest',   // Unit testing
-	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
-	'captcha'		=> MODPATH.'captcha',	 //Captha module
-	'message'		=> MODPATH.'message',	 //Flash messages
-	'manager'		=> MODPATH.'manager',	 //Manipulate model and post data
-	'menu'			=> MODPATH.'menu',		 //Menu creator by roles based on Zend Acl module
-	'coder'			=> MODPATH.'coder',		 //Module helps protect urls from CSRF attack
-	'pagination'	=> MODPATH.'pagination'	 //Pagination module
+	 'auth'       	=> MODPATH.'auth',       	// Basic authentication
+	 'cache'      	=> MODPATH.'cache',      	// Caching with multiple backends
+	// 'codebench'  => MODPATH.'codebench',  	// Benchmarking tool
+	 'database'   	=> MODPATH.'database',   	// Database access
+	 'image'      	=> MODPATH.'image',      	// Image manipulation
+	// 'minion'     => MODPATH.'minion',     	// CLI Tasks
+	 'orm'        	=> MODPATH.'orm',        	// Object Relationship Mapping
+	// 'unittest'   => MODPATH.'unittest',   	// Unit testing
+	// 'userguide'  => MODPATH.'userguide',  	// User guide and API documentation
+	'captcha'		=> MODPATH.'captcha',	 	// Captha module
+	'message'		=> MODPATH.'message',	 	// Flash messages
+	'manager'		=> MODPATH.'manager',	 	// Manipulate model and post data
+	'menu'			=> MODPATH.'menu',		 	// Menu creator by roles based on Zend Acl module
+	'coder'			=> MODPATH.'coder',		 	// Module helps protect urls from CSRF attack
+	'pagination'	=> MODPATH.'pagination', 	// Pagination module
+	'notificator'	=> MODPATH.'notificator' 	// Messages notificator
 	));
 /**
  * Composer
