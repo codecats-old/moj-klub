@@ -26,12 +26,14 @@
     	lastNotificationTimeTo 		: 0,
     	requestor 					: null,
         attrs 						: {},
+        panel						: null,
         
         
     	init : function() {
+    		this.panel = new strz_Ajax.Panel()
+    		this.panel.init();
+    		
     		var checkFunction = this.checker();
-    		
-    		
     		/**
     		 * Requestor ask serwer in interval
     		 */

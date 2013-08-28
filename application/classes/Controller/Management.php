@@ -94,6 +94,7 @@ class Controller_Management extends Controller_Automatic{
 		$notificator->check_blink();
 		
 		$this->view_container = $panel;
+		$this->view_content = $panel->get_view();
 	}
 	
 	public function action_join()

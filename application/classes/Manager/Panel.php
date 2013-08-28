@@ -62,7 +62,10 @@ class Manager_Panel extends Manager_Data{
 	{
 		return $this->component_request_menu->render();
 	}
-	
+	public function get_view()
+	{
+		return $this->component_request_menu;
+	}
 
 	/**
 	 * Check what menu user had last time, based on session.

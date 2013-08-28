@@ -1301,3 +1301,169 @@
 #9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 20:34:40 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 20:34:40 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:06:22 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:06:22 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:11:34 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:11:34 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:13:02 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:13:02 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:13:03 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:13:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:13:03 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:13:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:13:04 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:13:04 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:20 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:14:20 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:14:29 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:29 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:30 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:30 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:37 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:37 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:38 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:38 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:39 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:39 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:40 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:40 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:40 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:40 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:41 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:41 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:42 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:42 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:42 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:42 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:43 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:43 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:14:43 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:14:43 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:15:03 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:15:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:15:03 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:15:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:15:14 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Management.php [ 97 ] in :
+2013-08-28 21:15:14 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:15:15 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Panel::render() ~ APPPATH/classes/Controller/Management.php [ 97 ] in :
+2013-08-28 21:15:15 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:15:52 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:15:52 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:15:52 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:15:52 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:17:07 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:17:07 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:17:08 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function render() on a non-object ~ APPPATH/classes/Controller/Automatic.php [ 91 ] in :
+2013-08-28 21:17:08 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-28 21:26:01 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:26:01 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(63): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_User))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:26:22 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:26:22 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(63): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:31:27 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:31:27 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:35:20 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-28 21:35:20 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125

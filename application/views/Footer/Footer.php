@@ -71,6 +71,10 @@
 	<!-- >Save -->
 	<!-- Notificator -->
 <?php echo HTML::script('assets/script/Js/Components/Notificator/Notificator.js');?>
+		<!-- Panel -->
+		<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Panel.js');?>
+			<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Get.js');?>
+		<!-- >Panel -->
 	<!-- >Notificator -->
 <!-- >COMPONENTS -->
 
