@@ -122,7 +122,6 @@ class Notificator_Notificator extends Blinker{
 		if ($this->already_shown($user->last_login))
 		{
 			$status = $this->get_status();
-			
 			$unread = $user->request
 				->where('read_recipient', '=', NULL)
 		//		->where('status', '=', TRUE)
@@ -130,6 +129,7 @@ class Notificator_Notificator extends Blinker{
 		}
 		else
 		{
+
 			$unread = $this->user_all_unread_query();
 		}
 

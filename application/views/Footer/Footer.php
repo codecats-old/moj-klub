@@ -62,10 +62,13 @@
 <!-- >AJAX -->
 
 <!--  COMPONENTS -->
-<!-- Component factory -->
+<!-- Component initializator -->
 <?php echo HTML::script('assets/script/Js/Components/Initializator/Component.js');?>
 
 <!-- Components -->
+	<!-- Save data -->
+<?php echo HTML::script('assets/script/Js/Components/Data/Data.js');?>	
+	<!-- >Save -->
 	<!-- Notificator -->
 <?php echo HTML::script('assets/script/Js/Components/Notificator/Notificator.js');?>
 	<!-- >Notificator -->

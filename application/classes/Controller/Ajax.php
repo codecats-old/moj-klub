@@ -66,12 +66,21 @@ class Controller_Ajax extends Controller{
 	}
 	public function action_notification()
 	{
-		echo serialize(Notificator::get_status());
+		//refresh notification status
+		$user = Auth::instance()->get_user();
+		Manager::factory('Panel', $user);
+		
+		/**
+		 * Check blink if asynchro request have to turn of blinking 
+		 */
+		//Notificator::check_blink();
+		
+		echo json_encode(Notificator::get_status());
 		
 	}
 	public function action_notification_config()
 	{
-		echo serialize(
+		echo json_encode(
 				array(
 						'duration' => Notificator::DURATION
 				)
