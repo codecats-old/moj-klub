@@ -27,7 +27,7 @@ class Kohana_Message {
 	
 	// Message types
 	const SUCCESS = 'Success';
-	const NOTICE  = 'Notice';
+	const INFO  = 'Info';
 	const WARNING = 'Warning';
 	const ERROR   = 'Error';
 	
@@ -91,10 +91,10 @@ class Kohana_Message {
 	{	
 		if ( ! isset($this->status))
 		{
-			$this->status['state']=$state;
-			$this->status['message']=$msg;
+			$this->status['state'] = $state;
+			$this->status['message'] = $msg;
 			
-			foreach($properties as $prop=>$val)
+			foreach($properties as $prop => $val)
 			{
 				$this->status[$prop]=$val;
 			}

@@ -88,7 +88,23 @@ class Controller_Automatic extends Controller_Template{
 			//return suitable format for request
 			if ($this->request->is_ajax())
 			{
-				$json_array['View'] = $json_array['View']->render();
+				/**
+				 * Multiple views allowed
+				 */
+				if (is_array($json_array['View']))
+				{
+					$container = array();
+					foreach ($json_array['View'] as $view)
+					{
+						array_push($container, $view->render());
+					}
+					$json_array['View'] = $container;
+				}
+				else 
+				{
+					$json_array['View'] = $json_array['View']->render();
+				}
+				
 				echo json_encode($json_array);
 			}
 			elseif ($this->request->is_initial() === FALSE)

@@ -68,6 +68,7 @@ class Controller_Management extends Controller_Automatic{
 		$notificator->check_blink();
 		
 		$this->view_container = $panel;
+		$this->view_content = $panel->get_view('team');
 	}
 	
 	public function action_messages()
@@ -94,7 +95,7 @@ class Controller_Management extends Controller_Automatic{
 		$notificator->check_blink();
 		
 		$this->view_container = $panel;
-		$this->view_content = $panel->get_view();
+		$this->view_content = $panel->get_view('user');
 	}
 	
 	public function action_join()

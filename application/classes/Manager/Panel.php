@@ -62,9 +62,22 @@ class Manager_Panel extends Manager_Data{
 	{
 		return $this->component_request_menu->render();
 	}
-	public function get_view()
+	public function get_view($model_name = NULL)
 	{
-		return $this->component_request_menu;
+	//	Message::instance()->set(Message::ERROR, NULL, array('views' => $this->view_content));
+		//save Content to messages to return by ajax
+		return $this->view_content;
+		switch ($model_name) {
+			case 'team' :
+				break;
+				
+			case 'user' :
+				break;
+				
+			default :
+				return $this->component_request_menu;
+				break;
+		}
 	}
 
 	/**
@@ -175,6 +188,7 @@ class Manager_Panel extends Manager_Data{
 			$single->user = ORM::factory('User', $request->user_id)->as_array();
 			array_push($this->component_request_menu->requests_views, $single);
 		}
+		$this->view_content = $this->component_request_menu->requests_views;
 		
 		$this->set_status($status);
 		
@@ -196,6 +210,12 @@ class Manager_Panel extends Manager_Data{
 		}
 	}
 	
+	/**
+	 * Save last opened subwindow of component
+	 * 
+	 * @param unknown $value
+	 * @return Manager_Panel
+	 */
 	protected function set_status($value)
 	{
 		//Cookie::set('panel', $value);
@@ -203,7 +223,7 @@ class Manager_Panel extends Manager_Data{
 		return $this;
 	}
 	
-	protected function get_status()
+	public function get_status()
 	{
 		return Session::instance()->get(__CLASS__.'panel');
 		//return Cookie::get('panel', NULL);

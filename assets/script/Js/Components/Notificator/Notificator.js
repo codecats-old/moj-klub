@@ -4,7 +4,6 @@
  * 
  * @returns {undefined}
  */
-'use strict';
 (function(){
     strz_Ajax.Notificator = function (obj){
     	var self = this;
@@ -119,10 +118,12 @@
 				
 				
     			/****************DEBUG****************/
-    			console.log('--------------- isActive '+self.isActive);
+    	/*
+				console.log('--------------- isActive '+self.isActive);
     			console.log('lastNotificationTimeFrom '+self.lastNotificationTimeFrom);
     			console.log('- lastNotificationTimeTo '+self.lastNotificationTimeTo);
     			console.log('-------- lastCheckedTime '+self.lastCheckedTime);
+    	*/
 			}
 			
     	},

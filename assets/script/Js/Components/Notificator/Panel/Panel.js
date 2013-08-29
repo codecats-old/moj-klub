@@ -4,7 +4,13 @@
  * 
  * @returns {undefined}
  */
-'use strict';
+
+/*
+
+open the menu
+$('a[rel=notification-icon]').parent().addClass('open')
+ */
+"use strict";
 (function(){
     strz_Ajax.Panel = function (obj) {
     	var self = this;
@@ -13,25 +19,41 @@
     };
     strz_Ajax.Panel.prototype = {
         
-    	requestor : null,
+    	requestor 			: null,
+    	
+    	mouseOverTimeout 	: null,
     		
     	init : function() {
-    		this.requestor = new strz_Ajax.NotificatorPanelAjaxGet();
+    		var trigger = 'a[rel=notification-icon]';
+    		this.requestor = new strz_Ajax.NotificatorPanelAjaxGet(trigger);
     		this.requestor.run();
+    		
+    		var requestor = this.requestor;
+    		
+    		/**EVENTS - open close**/
+    		$(trigger).on('click', function() {
+    			$('ul[rel=notification-menu]').fadeIn('fast');
+    		});
+    		
+    		var mouseOverTimeout = this.mouseOverTimeout;
+    		$('ul[rel=notification-menu]').on('mouseleave', function(eve) {
+    			mouseOverTimeout = window.setTimeout(function() {
+    					$('ul[rel=notification-menu]').fadeOut('slow');
+    				
+    			}, 1500);
+    		});
+    		$('ul[rel=notification-menu]').on('mouseenter', function(eve) {
+    			if (mouseOverTimeout) clearTimeout(mouseOverTimeout);
+    		});
+    		
+    		$('ul[rel=notification-menu] .close').on('click', function(eve) {
+    			$('ul[rel=notification-menu]').fadeOut('fast');
+    		});
+    		
+    		/**EVENTS**/
+    	
     	},
-   
 
-
-
-        _get : function(attribute) {
-            return this.attrs[attribute];
-        },
-        _set : function(attribute, value) {
-            this.attrs[attribute] = value;
-        },
-        _initAttrs : function(obj) {
-            for (var i in obj)this._set(i, obj[i]);
-        }
     };
     // ROOT element
 })();
