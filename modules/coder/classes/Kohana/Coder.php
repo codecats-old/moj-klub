@@ -58,7 +58,7 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 		}
 		else 
 		{
-			return intval($val);
+			return intval(base_convert($val,36,10));
 		}
 	}
 	
