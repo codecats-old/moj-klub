@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 <?php $type = ($request['active'] == FALSE) ? 'information' : 'request';?>
 
-<li class="row-fluid">
+<li class="row-fluid" sender="<?php echo $id;?>">
 
 <?php if (Arr::get($status, 'status_accepted')):?>
 	<?php echo View::factory('Component/Request/Status/Accepted', 

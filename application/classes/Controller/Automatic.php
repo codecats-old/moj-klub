@@ -94,9 +94,9 @@ class Controller_Automatic extends Controller_Template{
 				if (is_array($json_array['View']))
 				{
 					$container = array();
-					foreach ($json_array['View'] as $view)
+					foreach ($json_array['View'] as $key => $view)
 					{
-						array_push($container, $view->render());
+						$container[$key] = $view->render();
 					}
 					$json_array['View'] = $container;
 				}

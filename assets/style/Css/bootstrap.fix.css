@@ -85,3 +85,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
     -webkit-transform:scale(1.5, 1.5); /* Safari and Chrome */
     -o-transform:scale(1.5, 1.5); /* Opera */
 }
+.to-right {
+	text-align:right;
+	clear:both;
+}
+.to-left {
+	text-align:left;
+	clear:both;
+}

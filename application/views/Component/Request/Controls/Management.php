@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 <!-- management buttons -->
-<div class="btn-group">
+<div class="text-center">
+	<div class="btn-group">
 <?php echo HTML::anchor(Route::get('consider')->uri(
 		array(
 				'controller' 	=> 'management',
@@ -39,5 +40,6 @@
 	array('class' => 'btn btn-mini', 'tabindex' => '-1')
 	
 );?>
-				</div>
+	</div>
+</div>
 <!-- >management buttons -->

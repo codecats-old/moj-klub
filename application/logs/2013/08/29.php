@@ -585,3 +585,271 @@
 #9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 15:58:29 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 15:58:29 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 16:03:12 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 16:03:12 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(63): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Management))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 20:20:53 --- EMERGENCY: ErrorException [ 1 ]: Method Manager_Panel::__toString() must not throw an exception ~ APPPATH/views/Header/Management/Icon.php [ 0 ] in :
+2013-08-29 20:20:53 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:21:16 --- EMERGENCY: ErrorException [ 1 ]: Method Manager_Panel::__toString() must not throw an exception ~ APPPATH/views/Header/Management/Icon.php [ 0 ] in :
+2013-08-29 20:21:16 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:22:04 --- EMERGENCY: ErrorException [ 1 ]: Method Manager_Panel::__toString() must not throw an exception ~ APPPATH/views/Header/Management/Icon.php [ 0 ] in :
+2013-08-29 20:22:04 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:28:36 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: id ~ APPPATH/views/Component/Request/Single.php [ 4 ] in /home/t/www/moj-klub/application/views/Component/Request/Single.php:4
+2013-08-29 20:28:36 --- DEBUG: #0 /home/t/www/moj-klub/application/views/Component/Request/Single.php(4): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/t/www/moj...', 4, Array)
+#1 /home/t/www/moj-klub/system/classes/Kohana/View.php(61): include('/home/t/www/moj...')
+#2 /home/t/www/moj-klub/system/classes/Kohana/View.php(348): Kohana_View::capture('/home/t/www/moj...', Array)
+#3 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(99): Kohana_View->render()
+#4 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#5 [internal function]: Kohana_Controller->execute()
+#6 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Management))
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#9 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#10 {main} in /home/t/www/moj-klub/application/views/Component/Request/Single.php:4
+2013-08-29 20:30:52 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:30:52 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:31:12 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:31:12 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:31:32 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:31:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:31:52 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:31:52 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:32:12 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:32:12 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:32:32 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:32:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:32:52 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:32:52 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:33:12 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:33:12 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:33:32 --- EMERGENCY: ErrorException [ 4 ]: syntax error, unexpected ')' ~ APPPATH/classes/Manager/Panel.php [ 186 ] in :
+2013-08-29 20:33:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-08-29 20:37:57 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 20:37:57 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 20:40:57 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 20:40:57 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:11:50 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:11:50 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:17:06 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:17:06 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:23:47 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:23:47 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(63): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Management))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:25:29 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:25:29 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:35:54 --- EMERGENCY: ErrorException [ 2 ]: Illegal string offset 'source' ~ MODPATH/pagination/classes/Kohana/Pagination.php [ 147 ] in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 21:35:54 --- DEBUG: #0 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(147): Kohana_Core::error_handler(2, 'Illegal string ...', '/home/t/www/moj...', 147, Array)
+#1 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(79): Kohana_Pagination->setup(Array)
+#2 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(64): Kohana_Pagination->__construct(Array)
+#3 /home/t/www/moj-klub/application/classes/Manager/Panel.php(164): Kohana_Pagination::factory(Array)
+#4 /home/t/www/moj-klub/application/classes/Manager/Panel.php(132): Manager_Panel->set_view(Object(Model_Team), Array, 'team')
+#5 /home/t/www/moj-klub/application/classes/Manager/Panel.php(94): Manager_Panel->team(false)
+#6 /home/t/www/moj-klub/application/classes/Manager/Header.php(35): Manager_Panel->display(false)
+#7 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(132): Manager_Header->index(Object(View))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#13 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#14 {main} in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 21:36:26 --- EMERGENCY: ErrorException [ 2 ]: Illegal string offset 'source' ~ MODPATH/pagination/classes/Kohana/Pagination.php [ 147 ] in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 21:36:26 --- DEBUG: #0 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(147): Kohana_Core::error_handler(2, 'Illegal string ...', '/home/t/www/moj...', 147, Array)
+#1 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(79): Kohana_Pagination->setup(Array)
+#2 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(64): Kohana_Pagination->__construct(Array)
+#3 /home/t/www/moj-klub/application/classes/Manager/Panel.php(164): Kohana_Pagination::factory(Array)
+#4 /home/t/www/moj-klub/application/classes/Manager/Panel.php(132): Manager_Panel->set_view(Object(Model_Team), Array, 'team')
+#5 /home/t/www/moj-klub/application/classes/Manager/Panel.php(94): Manager_Panel->team(false)
+#6 /home/t/www/moj-klub/application/classes/Manager/Header.php(35): Manager_Panel->display(false)
+#7 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(132): Manager_Header->index(Object(View))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#13 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#14 {main} in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 21:41:08 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:41:08 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(63): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(69): Controller_Automatic->before()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Gallery))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 21:56:46 --- EMERGENCY: Kohana_Exception [ 0 ]: The requested route does not exist: managemnt ~ SYSPATH/classes/Kohana/Route.php [ 106 ] in /home/t/www/moj-klub/application/classes/Manager/Panel.php:158
+2013-08-29 21:56:46 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Manager/Panel.php(158): Kohana_Route::get('managemnt')
+#1 /home/t/www/moj-klub/application/classes/Manager/Panel.php(132): Manager_Panel->set_view(Object(Model_Team), Array, 'team')
+#2 /home/t/www/moj-klub/application/classes/Manager/Panel.php(94): Manager_Panel->team(false)
+#3 /home/t/www/moj-klub/application/classes/Manager/Header.php(35): Manager_Panel->display(false)
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(132): Manager_Header->index(Object(View))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/application/classes/Manager/Panel.php:158
+2013-08-29 22:01:34 --- EMERGENCY: Kohana_Exception [ 0 ]: Required route parameter not passed: id ~ SYSPATH/classes/Kohana/Route.php [ 599 ] in /home/t/www/moj-klub/application/classes/Manager/Panel.php:164
+2013-08-29 22:01:34 --- DEBUG: #0 /home/t/www/moj-klub/application/classes/Manager/Panel.php(164): Kohana_Route->uri()
+#1 /home/t/www/moj-klub/application/classes/Manager/Panel.php(132): Manager_Panel->set_view(Object(Model_Team), Array, 'team')
+#2 /home/t/www/moj-klub/application/classes/Manager/Panel.php(94): Manager_Panel->team(false)
+#3 /home/t/www/moj-klub/application/classes/Manager/Header.php(35): Manager_Panel->display(false)
+#4 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(132): Manager_Header->index(Object(View))
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/application/classes/Manager/Panel.php:164
+2013-08-29 22:02:05 --- EMERGENCY: ErrorException [ 2 ]: Illegal string offset 'source' ~ MODPATH/pagination/classes/Kohana/Pagination.php [ 147 ] in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 22:02:05 --- DEBUG: #0 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(147): Kohana_Core::error_handler(2, 'Illegal string ...', '/home/t/www/moj...', 147, Array)
+#1 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(79): Kohana_Pagination->setup(Array)
+#2 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(64): Kohana_Pagination->__construct(Array)
+#3 /home/t/www/moj-klub/application/classes/Manager/Panel.php(167): Kohana_Pagination::factory(Array)
+#4 /home/t/www/moj-klub/application/classes/Manager/Panel.php(132): Manager_Panel->set_view(Object(Model_Team), Array, 'team')
+#5 /home/t/www/moj-klub/application/classes/Manager/Panel.php(94): Manager_Panel->team(false)
+#6 /home/t/www/moj-klub/application/classes/Manager/Header.php(35): Manager_Panel->display(false)
+#7 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(132): Manager_Header->index(Object(View))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#13 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#14 {main} in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 22:31:05 --- EMERGENCY: ErrorException [ 8 ]: Undefined index: source ~ MODPATH/pagination/classes/Kohana/Pagination.php [ 147 ] in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 22:31:05 --- DEBUG: #0 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(147): Kohana_Core::error_handler(8, 'Undefined index...', '/home/t/www/moj...', 147, Array)
+#1 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(79): Kohana_Pagination->setup(Array)
+#2 /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php(64): Kohana_Pagination->__construct(Array)
+#3 /home/t/www/moj-klub/application/classes/Manager/Panel.php(172): Kohana_Pagination::factory(Array)
+#4 /home/t/www/moj-klub/application/classes/Manager/Panel.php(132): Manager_Panel->set_view(Object(Model_Team), Array, 'team')
+#5 /home/t/www/moj-klub/application/classes/Manager/Panel.php(94): Manager_Panel->team(false)
+#6 /home/t/www/moj-klub/application/classes/Manager/Header.php(35): Manager_Panel->display(false)
+#7 /home/t/www/moj-klub/application/classes/Controller/Automatic.php(132): Manager_Header->index(Object(View))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(87): Controller_Automatic->after()
+#9 [internal function]: Kohana_Controller->execute()
+#10 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Welcome))
+#11 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#12 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#13 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#14 {main} in /home/t/www/moj-klub/modules/pagination/classes/Kohana/Pagination.php:147
+2013-08-29 22:34:06 --- EMERGENCY: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH/classes/Kohana/Session.php [ 324 ] in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-08-29 22:34:06 --- DEBUG: #0 /home/t/www/moj-klub/system/classes/Kohana/Session.php(125): Kohana_Session->read(NULL)
+#1 /home/t/www/moj-klub/system/classes/Kohana/Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(58): Kohana_Session::instance('native')
+#3 /home/t/www/moj-klub/modules/auth/classes/Kohana/Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 /home/t/www/moj-klub/application/classes/Controller/Ajax.php(70): Kohana_Auth::instance()
+#5 /home/t/www/moj-klub/system/classes/Kohana/Controller.php(84): Controller_Ajax->action_notification()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /home/t/www/moj-klub/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Ajax))
+#8 /home/t/www/moj-klub/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
+#11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125

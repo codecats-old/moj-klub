@@ -4,8 +4,13 @@
 <ul class="<?php echo $style_for_panel; ?>" rel="notification-menu">
     	<li class="row-fluid navbar">
     		<div class="navbar-inverse">
+    			<div class="divider"></div>
+    			<span class="pull-right btn-large">
+    				<button class="close" type="button">×</button>
+    			</span>
+    			
 <?php if (isset($team) AND Arr::get($team, 'id')):?>
-    			<span class="btn-large">
+    			<span>
 	<?php echo HTML::anchor(Route::get('default')->uri(
 			array(
 				'controller' 	=> 'management',
@@ -22,7 +27,7 @@
     			</span>
     			<span class="divider-vertical"></span>
 <?php endif;?>
-    			<span class="btn-large">
+    			<span>
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array(
 			'controller' 	=> 'management',
@@ -37,9 +42,6 @@
 	)
 );?>
     			</span>
-    			<span class="pull-right btn-large">
-    				<button class="close" type="button">×</button>
-    			</span>
     		</div>
     	</li>
 		<li class="divider"></li>
@@ -47,12 +49,18 @@
 	
 		<li>
 <!-- messages -->
-<?php if (isset($requests_views)):?>
+<?php if (isset($requests_views) AND ! empty($requests_views)):?>
 			<ul class="unstyled" rel="notification-messages">
-	<?php foreach ($requests_views as $request_view):?>
-		<?php echo $request_view->render();?>
-	<?php endforeach;?>
+	<?php 
+	foreach ($requests_views as $request_view):
+		echo $request_view->render();
+	endforeach;
+	?>
 			</ul>
+<?php else :?>
+			<div class="text-center">
+				<i class="label label-info">no important data.</i>
+			</div>
 <?php endif;?>
 <!-- >messages -->
 		</li>

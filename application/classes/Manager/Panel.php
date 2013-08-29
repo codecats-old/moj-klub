@@ -67,7 +67,7 @@ class Manager_Panel extends Manager_Data{
 	//	Message::instance()->set(Message::ERROR, NULL, array('views' => $this->view_content));
 		//save Content to messages to return by ajax
 		return $this->view_content;
-		switch ($model_name) {
+	/*	switch ($model_name) {
 			case 'team' :
 				break;
 				
@@ -77,7 +77,7 @@ class Manager_Panel extends Manager_Data{
 			default :
 				return $this->component_request_menu;
 				break;
-		}
+		}*/
 	}
 
 	/**
@@ -158,8 +158,17 @@ class Manager_Panel extends Manager_Data{
 		$column = $properties['column'];
 		$count = $model->$column->count_all();
 		
+		$request = Route::get('management')->uri(
+			array(
+				'controller' 	=> 'management',
+				'action' 		=> 'requests',
+				'id' 			=> Coder::instance()->to_url($this->object->id)
+			)
+		);
+
 		$pagination = Pagination::factory(array(
-				'total_items'=>$count
+				'total_items' 	=> $count,
+				'current_page' 	=> array('source' => 'own', 'key' => $request)
 		));
 		
 		$requests = $model->$column->order_by($properties['order_by'], $properties['direction'])
@@ -176,17 +185,21 @@ class Manager_Panel extends Manager_Data{
 		
 		$this->component_request_menu->requests_views = array();
 		
+		//Sender is identificator on client site
+		$sender = $pagination->offset;
 		foreach ($requests as $request)
 		{
 			//creating the menu master is and user
 			$menu = Menu::factory('Request', $properties['master']);
 			$menu->deny_permissions($request);
 		
-			$single = View::factory('Component/Request/Single');
+			//Id is for identification on client site
+			$single = View::factory('Component/Request/Single', array('id' => $sender));
 			$single->status = $menu->get_resource_by_user($properties['master'], NULL);
 			$single->request = $request->as_array();
 			$single->user = ORM::factory('User', $request->user_id)->as_array();
-			array_push($this->component_request_menu->requests_views, $single);
+	
+			$this->component_request_menu->requests_views[$sender++] = $single;
 		}
 		$this->view_content = $this->component_request_menu->requests_views;
 		
