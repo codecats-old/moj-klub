@@ -162,15 +162,15 @@ class Manager_Panel extends Manager_Data{
 		$page = ($this->page !== NULL) ? (int)$this->page : 0;
 	
 
-		
+
 		$pagination = Pagination::factory(array(
-				'total_items' 	=> $count
+				'total_items' 	=> $count,
+				'group'			=> 'panel'
 		));
-		$pagination->current_page['page'] = $page;
 		
-		$offset = $pagination->offset;
+		$offset = $pagination->offset + $page * $pagination->items_per_page;
 		
-//	throw new Exception($page.', '.$pagination->offset);
+//	throw new Exception($page.', '.$pagination->items_per_page);
 
 		$requests = $model->$column->order_by($properties['order_by'], $properties['direction'])
 			->limit($pagination->items_per_page)

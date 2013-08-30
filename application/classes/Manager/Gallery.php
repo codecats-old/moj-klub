@@ -159,7 +159,7 @@ class Manager_Gallery extends Manager_Data{
 		
 		$pagination = Pagination::factory(array(
 				'total_items' 		=> 	$count,
-				'items_per_page' 	=> 	15
+				'group'				=> 'gallery'
 		));
 		
 		$photos = ORM::factory('Photo')->get_team_photos($id)

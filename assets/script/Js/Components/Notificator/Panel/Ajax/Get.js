@@ -15,20 +15,6 @@
 				this.setContentShow('ul[rel=notification-messages]');
 				this.ajaxRun();
 			
-	
-
-			//	var form=new strz_Ajax.Post();
-				//form.ajaxRun();
-	
-			/*	this.addCallback({
-					form:{
-						reference:form,
-						methods:{
-							'run':[],
-						//	'ajaxRun':[]
-						}
-					}
-				});*/
 			}
 			
 		},

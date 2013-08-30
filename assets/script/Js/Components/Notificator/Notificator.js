@@ -29,7 +29,7 @@
         
         
     	init : function() {
-    		this.panel = new strz_Ajax.Panel()
+    		this.panel = new strz_Ajax.Panel();
     		this.panel.init();
     		
     		var checkFunction = this.checker();

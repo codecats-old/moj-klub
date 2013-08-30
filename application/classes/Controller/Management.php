@@ -76,6 +76,8 @@ class Controller_Management extends Controller_Automatic{
 	
 	public function action_messages()
 	{
+		$page = $this->request->param('page');
+		
 		$user_id = Coder::instance()->from_url($this->request->param('id'));
 		
 		$master = ORM::factory('User', $user_id);
@@ -83,7 +85,8 @@ class Controller_Management extends Controller_Automatic{
 		$panel = Manager::factory('Panel', $master);
 		$panel->set_data(
 				array(
-						'team' 	=> $master->team
+						'team' 	=> $master->team,
+						'page' 	=> $page
 				)
 		);
 		$panel->user(TRUE);

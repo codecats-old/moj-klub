@@ -19,5 +19,5 @@ strz_Ajax.Factory.setObjects({
  */
 controlList.runAll();
 
+/**NOTIFICATOR TESTS**/
 var notificator = new strz_Ajax.Notificator();
-strz_Ajax.Data.remove('tomek');
