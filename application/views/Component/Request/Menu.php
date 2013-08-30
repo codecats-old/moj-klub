@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct script access.'); ?>
 <?php $style_for_panel = ($panel_style === TRUE) 
 				? 'well hero-unit unstyled' : 'dropdown-menu scrollable pull-right min-width-20';?>
-<ul class="<?php echo $style_for_panel; ?>" rel="notification-menu">
+<ul class="<?php echo $style_for_panel; ?> notification-panel" rel="notification-menu">
     	<li class="row-fluid navbar">
     		<div class="navbar-inverse">
     			<div class="divider"></div>
@@ -67,7 +67,21 @@
 
 		<li class="divider"></li>
 		<li>
-<?php echo $pagination;?>
+<?php
+if ($panel_style === TRUE):
+	echo $pagination;
+else :
+?>
+			<div class="">
+				<button 
+						class="btn btn-block btn-small" 
+						rel="notification-featch-more">
+					<i class="icon-forward"></i>
+				</button>
+			</div>
+<?php 
+endif;
+?>
 		</li>
 </ul>
 

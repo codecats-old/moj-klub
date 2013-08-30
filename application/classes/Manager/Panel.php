@@ -55,7 +55,7 @@ class Manager_Panel extends Manager_Data{
 	}
 	public function __get($key)
 	{
-		return $this->_values[$key];
+		return isset($this->_values[$key]) ? $this->_values[$key] : NULL;
 	}
 	
 	public function __toString()
@@ -157,23 +157,24 @@ class Manager_Panel extends Manager_Data{
 	{
 		$column = $properties['column'];
 		$count = $model->$column->count_all();
-		
-		$request = Route::get('management')->uri(
-			array(
-				'controller' 	=> 'management',
-				'action' 		=> 'requests',
-				'id' 			=> Coder::instance()->to_url($this->object->id)
-			)
-		);
 
-		$pagination = Pagination::factory(array(
-				'total_items' 	=> $count,
-				'current_page' 	=> array('source' => 'own', 'key' => $request)
-		));
 		
+		$page = ($this->page !== NULL) ? (int)$this->page : 0;
+	
+
+		
+		$pagination = Pagination::factory(array(
+				'total_items' 	=> $count
+		));
+		$pagination->current_page['page'] = $page;
+		
+		$offset = $pagination->offset;
+		
+//	throw new Exception($page.', '.$pagination->offset);
+
 		$requests = $model->$column->order_by($properties['order_by'], $properties['direction'])
 			->limit($pagination->items_per_page)
-			->offset($pagination->offset)->find_all();
+			->offset($offset)->find_all();
 		
 		$this->component_request_menu = View::factory('Component/Request/Menu',
 				array(
@@ -186,9 +187,11 @@ class Manager_Panel extends Manager_Data{
 		$this->component_request_menu->requests_views = array();
 		
 		//Sender is identificator on client site
-		$sender = $pagination->offset;
+		$sender = $offset;
+		Message::instance()->set(Message::NOTICE, 'No elder messages');
 		foreach ($requests as $request)
 		{
+			Message::instance()->clear();
 			//creating the menu master is and user
 			$menu = Menu::factory('Request', $properties['master']);
 			$menu->deny_permissions($request);

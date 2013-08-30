@@ -22,6 +22,8 @@ $('a[rel=notification-icon]').parent().addClass('open')
     	requestor 			: null,
     	
     	mouseOverTimeout 	: null,
+    	
+    	continueRead		: null,
     		
     	init : function() {
     		var trigger = 'a[rel=notification-icon]';
@@ -30,28 +32,37 @@ $('a[rel=notification-icon]').parent().addClass('open')
     		
     		var requestor = this.requestor;
     		
+    		var triggerMenu = 'ul[rel=notification-menu]'; 
     		/**EVENTS - open close**/
     		$(trigger).on('click', function() {
-    			$('ul[rel=notification-menu]').fadeIn('fast');
+    			$(triggerMenu).fadeIn('fast');
     		});
     		
     		var mouseOverTimeout = this.mouseOverTimeout;
-    		$('ul[rel=notification-menu]').on('mouseleave', function(eve) {
+    /*		$(triggerMenu).on('mouseleave', function(eve) {
     			mouseOverTimeout = window.setTimeout(function() {
-    					$('ul[rel=notification-menu]').fadeOut('slow');
+    					$(triggerMenu').fadeOut('slow');
     				
     			}, 1500);
-    		});
-    		$('ul[rel=notification-menu]').on('mouseenter', function(eve) {
+    		});*/
+    		$(triggerMenu).on('mouseenter', function(eve) {
     			if (mouseOverTimeout) clearTimeout(mouseOverTimeout);
     		});
     		
-    		$('ul[rel=notification-menu] .close').on('click', function(eve) {
-    			$('ul[rel=notification-menu]').fadeOut('fast');
+    		/**
+    		 * Close button
+    		 */
+    		$(triggerMenu+' .close').on('click', function(eve) {
+    			$(triggerMenu).fadeOut('fast');
     		});
     		
-    		/**EVENTS**/
-    	
+    		/**>EVENTS**/
+    		
+			this.continueRead = new strz_Ajax.NotificatorPanelAjaxContinue(
+								'button[rel=notification-featch-more]', 
+								trigger, 
+								'ul[rel=notification-messages]');
+			this.continueRead.run();
     	},
 
     };

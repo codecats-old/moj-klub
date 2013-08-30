@@ -11,5 +11,12 @@ return array(
 		'auto_hide'         => TRUE,
 		'first_page_in_url' => FALSE,
 	),
-
+	'panel' => array(
+		'current_page'      => array('route' => 'management', 'key' => 'page'), // source: "query_string" or "route"
+		'total_items'       => 0,
+		'items_per_page'    => 3,
+		'view'              => 'pagination/twitterbootstrap',
+		'auto_hide'         => TRUE,
+		'first_page_in_url' => FALSE,
+	) 
 );

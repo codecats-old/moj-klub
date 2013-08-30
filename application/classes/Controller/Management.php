@@ -45,6 +45,8 @@ class Controller_Management extends Controller_Automatic{
 	
 	public function action_requests()
 	{
+		$page = $this->request->param('page');
+	
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
 
 		$master = Auth::instance()->get_user();
@@ -54,7 +56,8 @@ class Controller_Management extends Controller_Automatic{
 		$panel = Manager::factory('Panel', $master);
 		$panel->set_data(
 				array(
-						'team' 	=> $team
+						'team' 	=> $team,
+						'page' 	=> $page
 				)
 		);		
 		$panel->team(TRUE);
@@ -74,7 +77,7 @@ class Controller_Management extends Controller_Automatic{
 	public function action_messages()
 	{
 		$user_id = Coder::instance()->from_url($this->request->param('id'));
-	
+		
 		$master = ORM::factory('User', $user_id);
 
 		$panel = Manager::factory('Panel', $master);

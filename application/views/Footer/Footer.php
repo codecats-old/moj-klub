@@ -74,6 +74,7 @@
 		<!-- Panel -->
 		<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Panel.js');?>
 			<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Get.js');?>
+			<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Continue.js');?>
 		<!-- >Panel -->
 	<!-- >Notificator -->
 <!-- >COMPONENTS -->

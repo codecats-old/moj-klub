@@ -13,7 +13,7 @@ return array(
 				'Success'	=>	'Success operation',
 				'Error'		=>	'System error',
 				'Warning'	=>	'Incorrect data',
-				'Info'		=>	'Updated',
+				'Notice'	=>	'Updated',
 			),
 			'view' => array(
 				'path' => 'Message/Basic'

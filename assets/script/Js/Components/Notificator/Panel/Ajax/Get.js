@@ -16,6 +16,7 @@
 				this.ajaxRun();
 			
 	
+
 			//	var form=new strz_Ajax.Post();
 				//form.ajaxRun();
 	
@@ -34,10 +35,10 @@
 		ajaxDone : function(data, action){
 			data = JSON.parse(data);
 			var contentShow = action.getContentShow();
+			$(contentShow+'> li[sender]').remove();
 			
-			for (var i in data) {
-				if ( $(contentShow+'> li[sender=' + i + ']'))$(contentShow+'> li[sender=' + i + ']').html(data[i]+'aa');
-				else $(contentShow).append(data[i]);
+			for (var i in data.View) {
+				$(contentShow).append(data.View[i]);
 			}
 		}
 	};

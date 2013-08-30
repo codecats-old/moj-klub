@@ -159,7 +159,15 @@ Route::set(
 	'action' => 'index'
 		));
 	
-	Route::set('management', 'management/<action>/<id>(/<page>)', array('id' => '[0-9]+','page' => '[0-9]+'))
+Route::set(
+		'management', 
+		'management/<action>/<id>(/<page>)', 
+		array(
+			'id' 		=> '[0-9 \w]+',
+			'page' 		=> '[0-9]+',
+			'action'	=> '(messages|requests)'
+		)
+	)
 	->defaults(array(
 	'controller' => 'management',
 	'action'     => 'messages'
