@@ -59,8 +59,9 @@
 			case 403:
 				console.log('just login error');
 			default:
-				var content = action.getContentError();
-				$(content).html(err.responseText);
+				//var content = action.getContentError();
+				//$(content).html(err.responseText);
+				throw err;
 				break;
 			}
 		},

@@ -1,46 +1,79 @@
 <?php defined('SYSPATH') OR die('No direct script access.'); ?>
-<?php $style_for_panel = ($panel_style === TRUE) 
-				? 'well hero-unit unstyled' : 'dropdown-menu scrollable pull-right min-width-20';?>
-<ul class="<?php echo $style_for_panel; ?> notification-panel" rel="notification-menu">
+<?php 
+$main_menu = array(
+	'style' => array(
+		$status => 'disabled'
+	),
+	'rel' 	=> array(
+		'user' => 'notification-switch-user',
+		'team' => 'notification-switch-team'
+	)
+);
+?>
+
+<?php if ($panel_style === TRUE):?>
+<ul class="well hero-unit unstyled notification-panel">
+<?php else:?>
+<ul class="dropdown-menu scrollable pull-right min-width-20 notification-panel" rel="notification-menu">
+<?php endif;?>
+
+
+
+	
     	<li class="row-fluid navbar">
     		<div class="navbar-inverse">
     			<div class="divider"></div>
-    			<span class="pull-right btn-large">
-    				<button class="close" type="button">×</button>
-    			</span>
+
+	<?php if ($panel_style === FALSE): ?>
     			
-<?php if (isset($team) AND Arr::get($team, 'id')):?>
+    			<span class="pull-right btn-large">
+    				<button class="close" type="button" tabindex="-1">×</button>
+    			</span>
+	<?php endif;?>
+    			
+    			
+	<?php 
+	/**
+	 * Team anchor
+	 */
+	if (isset($team) AND Arr::get($team, 'id')):?>
     			<span>
-	<?php echo HTML::anchor(Route::get('default')->uri(
+		<?php echo HTML::anchor(Route::get('default')->uri(
+				array(
+					'controller' 	=> 'management',
+					'action' 		=> 'requests',
+					'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
+				)
+			),
+			'team panel',
 			array(
-				'controller' 	=> 'management',
-				'action' 		=> 'requests',
-				'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
+				'class'		=> 'btn btn-mini '.Arr::get($main_menu['style'], 'team'),
+				'tabindex' 	=> '-1',
+				'rel' 		=> Arr::get($main_menu['rel'], 'team')
 			)
-		),
-		'team panel',
-		array(
-			'class'		=> 'btn btn-mini',
-			'tabindex' 	=> '-1'
-		)
-	);?>
+		);?>
     			</span>
     			<span class="divider-vertical"></span>
-<?php endif;?>
+	<?php endif;?>
     			<span>
-<?php echo HTML::anchor(Route::get('default')->uri(
+	<?php 
+	/**
+	 * User anchor
+	 */
+	echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'management',
+				'action' 		=> 'messages',
+				'id'			=> Coder::instance()->to_url(Arr::get($user, 'id'))
+			)
+		),
+		'user panel',
 		array(
-			'controller' 	=> 'management',
-			'action' 		=> 'messages',
-			'id'			=> Coder::instance()->to_url(Arr::get($user, 'id'))
+			'class'		=> 'btn btn-mini '.Arr::get($main_menu['style'], 'user'),
+			'tabindex' 	=> '-1',
+			'rel' 		=> Arr::get($main_menu['rel'], 'user')
 		)
-	),
-	'user panel',
-	array(
-		'class'		=> 'btn btn-mini',
-		'tabindex' 	=> '-1'
-	)
-);?>
+	);?>
     			</span>
     		</div>
     	</li>
@@ -49,39 +82,61 @@
 	
 		<li>
 <!-- messages -->
-<?php if (isset($requests_views) AND ! empty($requests_views)):?>
-			<ul class="unstyled" rel="notification-messages">
 	<?php 
-	foreach ($requests_views as $request_view):
-		echo $request_view->render();
-	endforeach;
+		if (isset($requests_views) AND ! empty($requests_views)):
 	?>
-			</ul>
-<?php else :?>
+		<?php if ($panel_style === TRUE):?>
+		<ul class="unstyled">
+		<?php else: ?>
+		<ul class="unstyled" rel="notification-messages">
+		<?php endif;?>
+				
+		<?php 
+		foreach ($requests_views as $request_view):
+			echo $request_view->render();
+		endforeach;
+		?>
+		
+		
+		<?php if ($panel_style === TRUE): //eclipse PDT needs this kind of closing DOM tag ?>
+		</ul>
+		<?php else: ?>
+		</ul>
+		<?php endif;?>
+			
+	<?php 
+		else :
+	?>
 			<div class="text-center">
 				<i class="label label-info">no important data.</i>
 			</div>
-<?php endif;?>
+	<?php endif;?>
 <!-- >messages -->
 		</li>
 
 		<li class="divider"></li>
 		<li>
-<?php
-if ($panel_style === TRUE):
-	echo $pagination;
-else :
-?>
-			<div class="">
+	<?php
+	if ($panel_style === TRUE):
+		echo $pagination;
+	else :
+	?>
+			<div>
 				<button 
 						class="btn btn-block btn-small" 
 						rel="notification-featch-more">
 					<i class="icon-forward"></i>
 				</button>
 			</div>
-<?php 
-endif;
-?>
+	<?php 
+	endif;
+	?>
 		</li>
-</ul>
 
+		
+		
+	<?php if ($panel_style === TRUE): //eclipse PDT needs this kind of closing DOM tag?>
+</ul>
+	<?php else:?>
+</ul>
+	<?php endif;?>

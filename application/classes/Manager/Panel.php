@@ -4,8 +4,6 @@ class Manager_Panel extends Manager_Data{
 	
 	private $team = NULL;
 	
-	private $component_request_menu = NULL;
-	
 	protected $_values = array();
 	
 	public function __construct($object)
@@ -60,26 +58,8 @@ class Manager_Panel extends Manager_Data{
 	
 	public function __toString()
 	{
-		return $this->component_request_menu->render();
+		return $this->view_container->render();
 	}
-	public function get_view($model_name = NULL)
-	{
-	//	Message::instance()->set(Message::ERROR, NULL, array('views' => $this->view_content));
-		//save Content to messages to return by ajax
-		return $this->view_content;
-	/*	switch ($model_name) {
-			case 'team' :
-				break;
-				
-			case 'user' :
-				break;
-				
-			default :
-				return $this->component_request_menu;
-				break;
-		}*/
-	}
-
 	/**
 	 * Check what menu user had last time, based on session.
 	 * 
@@ -104,11 +84,6 @@ class Manager_Panel extends Manager_Data{
 		}
 		
 		return $this;
-	}
-	
-	public function index($template) 
-	{
-
 	}
 	
 	public function team($full_site_view)
@@ -170,21 +145,21 @@ class Manager_Panel extends Manager_Data{
 		
 		$offset = $pagination->offset + $page * $pagination->items_per_page;
 		
-//	throw new Exception($page.', '.$pagination->items_per_page);
 
 		$requests = $model->$column->order_by($properties['order_by'], $properties['direction'])
 			->limit($pagination->items_per_page)
 			->offset($offset)->find_all();
 		
-		$this->component_request_menu = View::factory('Component/Request/Menu',
+		$component_request_menu = View::factory('Component/Request/Menu',
 				array(
 						'panel_style'	=> $properties['full_site_view'],
 						'pagination' 	=> $pagination,
-						'team'			=> (isset($properties['team']) ? $properties['team'] : NULL)
+						'team'			=> (isset($properties['team']) ? $properties['team'] : NULL),
+						'status'		=> $status
 				)
 		);
 		
-		$this->component_request_menu->requests_views = array();
+		$component_request_menu->requests_views = array();
 		
 		//Sender is identificator on client site
 		$sender = $offset;
@@ -202,9 +177,10 @@ class Manager_Panel extends Manager_Data{
 			$single->request = $request->as_array();
 			$single->user = ORM::factory('User', $request->user_id)->as_array();
 	
-			$this->component_request_menu->requests_views[$sender++] = $single;
+			$component_request_menu->requests_views[$sender++] = $single;
 		}
-		$this->view_content = $this->component_request_menu->requests_views;
+		$this->view_container = $component_request_menu;
+		$this->view_content = $component_request_menu->requests_views;
 		
 		$this->set_status($status);
 		

@@ -8,11 +8,19 @@
 (function(){
     strz_Ajax.Panel = function (obj) {
     	var self = this;
-    	var __construct = function(obj) {}
+    	var __construct = function(obj) {
+    		self.statusListener = obj;
+    	}
     	__construct(obj);
     };
     strz_Ajax.Panel.prototype = {
         
+    	/**
+    	 * When panel is opening then status schould be updated, statusListener is call when
+    	 * panel is opening
+    	 */
+    	statusListener 		: null,
+    		
     	/**
     	 * Requestor ask server for new or update messages
     	 */
@@ -29,10 +37,16 @@
     	continueRead		: null,
     	
     	/**
+    	 * Switches submenus
+    	 */
+    	switcherMenu 		: null,
+    	/**
     	 * Listener opens panel on given event
     	 */
     	initOpenListener : function(trigger, triggerMenu) {
-      		$(trigger).on('click', function() {		
+    		self = this;
+      		$(trigger).on('click', function() {
+      			self.statusListener();
     			$(trigger).children().removeClass('icon-envelope');
     			$(trigger).children().addClass('icon-refresh');
     			
@@ -56,7 +70,7 @@
     		 */
     		$(triggerMenu).on('mouseleave', function(eve) {
     			mouseOverTimeout = window.setTimeout(function() {
-    				closeOperation('fast');
+    			//	closeOperation('fast');
     			}, 1500);
     		});
     		/**
@@ -69,7 +83,7 @@
     		/**
     		 * Close button
     		 */
-    		$(triggerMenu+' .close').on('click', function(eve) {
+    		$(triggerMenu + ' .close').on('click', function(eve) {
     			closeOperation('slow');
     		});
     	},
@@ -92,23 +106,23 @@
     		this.initCloseListener(trigger, triggerMenu);
     		/**>EVENTS**/
     		
-    		/**
-    		 * Button continue read 
-    		 */
-			this.continueRead = new strz_Ajax.NotificatorPanelAjaxContinue(
-								'button[rel=notification-featch-more]', 
-								trigger, 
-								'ul[rel=notification-messages]');
-			this.continueRead.run();
+    		
+			
+			/**
+			 * Switcher menu
+			 */
+			this.switcherMenu = new strz_Ajax.NotificatorPanelAjaxMenuSwitch(trigger,
+					this.requestor);
+			this.switcherMenu.run();
 			
 			/**
 			 * When new request are featched call suitable listeners
 			 */
 			this.requestor.addCallback({
-				continueRead : {
-					reference:this.continueRead,
-					methods:{
-						'run':null
+				switcherMenu : {
+					reference : this.switcherMenu,
+					methods : {
+						'run' : null
 					}
 				}
 			});

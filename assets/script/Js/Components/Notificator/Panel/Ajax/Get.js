@@ -23,9 +23,13 @@
 			var contentShow = action.getContentShow();
 			$(contentShow+'> li[sender]').remove();
 			
+		
 			for (var i in data.View) {
 				$(contentShow).append(data.View[i]);
 			}
+			
+			if (data.status)
+				$().toastmessage('show'+data.status['state']+'Toast', data.status['message']);
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.NotificatorPanelAjaxGet, strz_Ajax.NodeAction);

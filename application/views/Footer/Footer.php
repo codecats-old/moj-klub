@@ -75,6 +75,9 @@
 		<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Panel.js');?>
 			<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Get.js');?>
 			<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Continue.js');?>
+				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/Switch.js');?>
+				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/Team.js');?>
+				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/User.js');?>
 		<!-- >Panel -->
 	<!-- >Notificator -->
 <!-- >COMPONENTS -->

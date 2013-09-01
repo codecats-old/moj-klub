@@ -20,7 +20,7 @@
     	durationTime 				: null,
     	interval 					: null,
     	lastCheckedTime 			: 0,
-    	isActive 					: false,
+    	isActive 					: null,
     	lastNotificationTimeFrom 	: 0,
     	lastNotificationTimeTo 		: 0,
     	requestor 					: null,
@@ -29,10 +29,11 @@
         
         
     	init : function() {
-    		this.panel = new strz_Ajax.Panel();
-    		this.panel.init();
-    		
+    		/**
+    		 * Status updater (check status for serwer or cache)
+    		 */
     		var checkFunction = this.checker();
+
     		/**
     		 * Requestor ask serwer in interval
     		 */
@@ -42,15 +43,26 @@
     		 */
     		this.getConfig();
 
+    		/**
+    		 * Interval check status;
+    		 */
     		var intervalValue = this._get('intervalTime');
     		this.interval = window.setInterval(function(){
     			checkFunction();
     				
     		}, intervalValue);
+    		
+    		//default action after panel request
+    		var changeIcon = this.changeIcon;
+    		this.panel = new strz_Ajax.Panel(function(){ 
+    			changeIcon(false);
+    		});
+    		this.panel.init();
     	},
     	checker : function() {
     		var self = this;
     		return function() {
+    			var date = new Date();
     			
     			/**
     			 * Read data from storage
@@ -61,25 +73,37 @@
     				self.lastNotificationTimeTo = strz_Ajax.Data.get('lastNotificationTimeTo');
   
 				}
-    			var date = new Date();
+    			
 
+    			/**
+    			 * If no information in cache then ask asynchronous for data.
+    			 */
     			if (typeof(self.lastNotificationTimeFrom) === 'undefined' || 
     						self.lastNotificationTimeTo < date.getTime()) {
     				self.lastCheckedTime = date.getTime();
 	    			self.requestor.ajaxInitialize();
     			}
+
     		}
     	},
     	ajaxDone : function(data, action) {
 			data = JSON.parse(data);
     		return data;
     	},
-
+    	
+    	/**
+    	 * Sets blinking status (only view)
+    	 */
+    	changeIcon : function(active) {
+    		if (active === true){
+				$('a[rel=notification-icon]').addClass('blinking-icon');
+			} else {
+				$('a[rel=notification-icon]').removeClass('blinking-icon');
+			}
+    	},
     	initRequestor : function() {
+    		
     		this.requestor = new strz_Ajax.NodeAction();
-    		this.requestor.ajaxError = function(err, action) {
-    			console.log(err);
-    		}
 			/**
 			 * setting destination of the request
 			 */		
@@ -108,11 +132,7 @@
 					strz_Ajax.Data.set('lastNotificationTimeFrom', data.from);
 					strz_Ajax.Data.set('lastNotificationTimeTo', data.to);
 					
-					if (self.isActive){
-	    				$('a[rel=notification-icon]').addClass('blinking-icon');
-	    			} else {
-	    				$('a[rel=notification-icon]').removeClass('blinking-icon');
-	    			}
+					self.changeIcon(self.isActive);
 				}
 				
 				
