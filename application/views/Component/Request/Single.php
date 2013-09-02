@@ -2,6 +2,15 @@
 <?php $type = ($request['active'] == FALSE) ? 'information' : 'request';?>
 
 <li class="row-fluid" sender="<?php echo $id;?>">
+<?php 
+/*-----------------__DEBUG-------------------*/
+//echo '<pre>';
+//print_r($status);
+//echo $request['id'];
+//echo '</pre>';
+
+
+?>
 
 <?php if (Arr::get($status, 'status_accepted')):?>
 	<?php echo View::factory('Component/Request/Status/Accepted', 

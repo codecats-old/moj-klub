@@ -20,6 +20,7 @@
 		},
 		ajaxDone : function(data, action){
 			data = JSON.parse(data);
+
 			var contentShow = action.getContentShow();
 			
 			/**
@@ -30,7 +31,7 @@
 			
 		
 			for (var i in data.View) {
-				$(contentShow).append(data.View[i]);
+				$(contentShow).append(data.View[i]['view']);
 			}
 			
 			if (data.status)

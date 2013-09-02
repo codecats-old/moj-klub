@@ -1,12 +1,12 @@
 (function() {
-	strz_Ajax.NotificatorPanelAjaxMenuUser = function(listener) {
+	strz_Ajax.NotificatorPanelAjaxMenuUser = function(listener, triggerContent) {
 		this.init();
 		this.listener = listener;
-		
+		this.triggerContent = triggerContent;
 	};
 	strz_Ajax.NotificatorPanelAjaxMenuUser.prototype = {
 		listener : null,
-		activeSwitch : null,
+		triggerContent : null,
 		run : function(){
 
 			this.setTriggerSelector('a[rel=notification-switch-user]');
@@ -18,7 +18,6 @@
 				this.setContentShow('ul[rel=notification-messages]');
 				this.ajaxRun();
 
-				
 				this.addCallback({
 					switchListener : {
 						reference : this,

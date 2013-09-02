@@ -26,15 +26,15 @@ class Manager_Management extends Manager_Data{
 		$this->menu->deny_permissions($this->object, $this->master);
 	}
 	
-	public function consider_result($result)
+	public function consider_operation($operation)
 	{
 		if ( ! $this->menu->is_allowed($this->master->username, 'consideration')) return FALSE;
 		
-		echo '<pre>';
-		print_r($this->menu->get_resource_by_user($this->master, NULL));
-		echo '</pre>';
+	//	echo '<pre>';
+	//	print_r($this->menu->get_resource_by_user($this->master, NULL));
+	//	echo '</pre>';
 		
-		switch ($result)
+		switch ($operation)
 		{
 			case 'accept' :
 				$this->consider_accept();
@@ -48,8 +48,14 @@ class Manager_Management extends Manager_Data{
 			default :
 				break;
 		}
+		$this->set_consider_operation_result();
 		
 		return TRUE;
+	}
+	public function set_consider_operation_result()
+	{
+		$this->view_content = $this->get_view_detail_single();
+		$this->view_container = $this->get_view_detail_single();
 	}
 	protected function join_club()
 	{
@@ -67,28 +73,35 @@ class Manager_Management extends Manager_Data{
 		 */
 		$requests = $this->new_member->request->find_all();
 		
+		
+		/**
+		 * Deactive other user's requests, sets suitable status for accepted request
+		 */
 		foreach ($requests as $request)
 		{
 			/**
-			 * Deactive other user's requests
-			 */
-			$request->active = FALSE;
-			
-			/**
 			 * Set considered request status
 			 */
-			if ($request->team_id === $this->team->id)
+			if ($request->id === $this->object->id)
 			{
+				//debug:
+				$this->object = $request;
+				//
+				
 				$request->status = TRUE;
+	
 			}
-			$request->read = Date::formatted_time();
-			$request->update();
+
+			$request->active 	= FALSE;
+			$request->read 		= Date::formatted_time();
+			//			$request->update();
+
 		}
 		/**
 		 * Set new team member
 		 */
 		$this->new_member->team = $this->team;
-		$this->new_member->update();
+//		$this->new_member->update();
 
 	}
 	/**
@@ -96,27 +109,29 @@ class Manager_Management extends Manager_Data{
 	 */
 	protected function consider_refuse()
 	{
-		$request = $this->new_member->request->where('team_id', '=', $this->team->id)->find();
+	///	$request = $this->new_member->request->where('team_id', '=', $this->team->id)->find();
+		$request = $this->object;
 		$request->active = $request->status = FALSE;
 		$request->read = Date::formatted_time();
-		$request->update();
+//		$request->update();
 	}
 	protected function consider_cancel()
 	{
-		$request = $this->new_member->request->where('team_id', '=', $this->team->id)->find();
+		///$request = $this->new_member->request->where('team_id', '=', $this->team->id)->find();
+		$request = $this->object;
 		$request->active = TRUE;
 		$request->status = FALSE;
 		$request->read = Date::formatted_time();
-		$request->update();
+//		$request->update();
 	}
 	/**
 	 * Set all needed objects 
 	 */
 	public function set_objects(array $objects)
 	{
-		$this->team = 		isset($objects['team']) ? $objects['team'] : NULL;
-		$this->master = 	isset($objects['master']) ? $objects['master'] : NULL;
-		$this->new_member = isset($objects['new_member']) ? $objects['new_member'] : NULL;
+		$this->team 		= isset($objects['team']) ? $objects['team'] : NULL;
+		$this->master 		= isset($objects['master']) ? $objects['master'] : NULL;
+		$this->new_member 	= isset($objects['new_member']) ? $objects['new_member'] : NULL;
 		$this->__initialize();
 		
 		return $this;
@@ -129,6 +144,27 @@ class Manager_Management extends Manager_Data{
 	{
 
 		return $this;
+	}
+	/**
+	 * Sets view details of single request
+	 * 
+	 * @param View $view
+	 * @param ORM $request
+	 */
+	public function get_view_detail_single()
+	{
+		$menu = Menu::factory('Request', $this->master);
+		$menu->deny_permissions($this->object);
+		
+		$view = View::factory('Component/Request/Single',
+				array(
+					'status' 	=> $menu->get_resource_by_user($this->master, NULL),
+					'user' 		=> $this->new_member->as_array(),
+					'request'	=> $this->object->as_array(),
+					'id' 		=> 'disabled'
+				)
+		);
+		return $view;
 	}
 	
 	/**

@@ -96,7 +96,12 @@ class Controller_Automatic extends Controller_Template{
 					$container = array();
 					foreach ($json_array['View'] as $key => $view)
 					{
-						$container[$key] = $view->render();
+						
+						//$container[$key] = $view->render();
+						array_push($container, array(
+							'view' 	=> $view->render(),
+							'key' 	=> $key
+						));
 					}
 					$json_array['View'] = $container;
 				}

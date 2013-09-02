@@ -1,11 +1,14 @@
 (function() {
-	strz_Ajax.NotificatorPanelAjaxMenuSwitch = function(triggerIcon, requestor) {
+	strz_Ajax.NotificatorPanelAjaxMenuSwitch = function(triggerIcon, requestor, triggerContent) {
 		this.triggerIcon = triggerIcon;
 		this.requestor = requestor;
+		this.triggerContent = triggerContent;
 	};
 	strz_Ajax.NotificatorPanelAjaxMenuSwitch.prototype = {
-		triggerIcon : null,
-		requestor	: null,
+		triggerIcon 	: null,
+		requestor		: null,
+		triggerContent 	: null,
+		
 		submenus : {
 			team 	: null,
 			user 	: null
@@ -16,9 +19,13 @@
 		 */
 		
 		run : function(){
-			this.submenus.team = new strz_Ajax.NotificatorPanelAjaxMenuTeam(this.onSwitchContext());
-			this.submenus.user = new strz_Ajax.NotificatorPanelAjaxMenuUser(this.onSwitchContext());
-			
+
+			this.submenus.team = new strz_Ajax.NotificatorPanelAjaxMenuTeam(
+					this.onSwitchContext(), this.triggerContent);
+			this.submenus.user = new strz_Ajax.NotificatorPanelAjaxMenuUser(
+					this.onSwitchContext(), this.triggerContent);
+
+
 			this.submenus.team.run();
 			this.submenus.user.run();
 			
@@ -71,6 +78,10 @@
 				}
 			}
 		},
+		
+		/**
+		 * Initializator continue read button
+		 */
 		initContinueReadButton : function() {
 			this.continueRead = new strz_Ajax.NotificatorPanelAjaxContinue(
 					'button[rel=notification-featch-more]', 
@@ -78,6 +89,10 @@
 					'ul[rel=notification-messages]');
 			this.continueRead.run();
 		},
+		
+		/**
+		 * Return array of submenus names as string
+		 */
 		getSubmenusNames : function() {
 			var arr = [];
 			for (var i in this.submenus) {
@@ -85,6 +100,15 @@
 			}
 			return arr;
 		},
+		
+		/**
+		 * Change last argument of rel:
+		 * 
+		 * relString: ul[rel=controller-action-first]
+		 * newArg	: secound
+		 * 
+		 * result 	: ul[rel=controller-action-secound]
+		 */
 		setRelLastArgument : function(relString, newArg) {
 			var arr = relString.split('-');
 			arr[ arr.length - 1 ] = (newArg + ']');

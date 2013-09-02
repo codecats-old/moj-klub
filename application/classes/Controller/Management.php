@@ -29,7 +29,7 @@ class Controller_Management extends Controller_Automatic{
 			)
 		);
 
-		$result = $manager->consider_result($result);
+		$result = $manager->consider_operation($result);
 		
 		/**
 		 * Redirect if no permitted to do consideration of join user to team

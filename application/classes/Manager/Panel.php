@@ -161,8 +161,7 @@ class Manager_Panel extends Manager_Data{
 		
 		$component_request_menu->requests_views = array();
 		
-		//Sender is identificator on client site
-		$sender = $offset;
+		$user = $this->object;
 		Message::instance()->set(Message::NOTICE, 'No elder messages');
 		foreach ($requests as $request)
 		{
@@ -172,13 +171,17 @@ class Manager_Panel extends Manager_Data{
 			$menu->deny_permissions($request);
 		
 			//Id is for identification on client site
-			$single = View::factory('Component/Request/Single', array('id' => $sender));
+			$single = View::factory('Component/Request/Single', array('id' => $request->id));
 			$single->status = $menu->get_resource_by_user($properties['master'], NULL);
 			$single->request = $request->as_array();
-			$single->user = ORM::factory('User', $request->user_id)->as_array();
+			
+			$single->user = ($user->id === $request->user_id) 
+					? $user->as_array() : ORM::factory('User', $request->user_id)->as_array();
+
 	
-			$component_request_menu->requests_views[$sender++] = $single;
+			$component_request_menu->requests_views[$request->id] = $single;
 		}
+
 		$this->view_container = $component_request_menu;
 		$this->view_content = $component_request_menu->requests_views;
 		

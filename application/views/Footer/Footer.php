@@ -78,6 +78,7 @@
 				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/Switch.js');?>
 				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/Team.js');?>
 				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/User.js');?>
+				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/Button.js');?>
 		<!-- >Panel -->
 	<!-- >Notificator -->
 <!-- >COMPONENTS -->

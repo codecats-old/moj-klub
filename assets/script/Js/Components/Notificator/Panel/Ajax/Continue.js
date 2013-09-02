@@ -85,11 +85,12 @@
 			
 			for (var i in data.View) {
 				//update
-				if ( $(contentShow+'> li[sender=' + i + ']').length > 0) {
-					$(contentShow+'> li[sender=' + i + ']').outerHtml = data.View[i];
+				var senderElement = $(contentShow+'> li[sender=' + data.View[i]['key'] + ']');
+				if ( senderElement.length > 0 ) {
+					senderElement.outerHtml = data.View[i]['view'];
 				} else {
 				//new content
-					$(contentShow).append(data.View[i]);
+					$(contentShow).append(data.View[i]['view']);
 				}
 				
 			}

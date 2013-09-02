@@ -7,11 +7,15 @@
 				'controller' 	=> 'management',
 				'action' 		=> 'consider-join',
 				'id'			=> Coder::instance()->to_url(Arr::get($user, 'id') ),
-						'result' 		=> 'accept'
-				)
-		),
+				'result' 		=> 'accept'
+		)
+	),
 	'Accept',
-				array('class' => 'btn btn-mini btn-success', 'tabindex' => '-1')
+	array(
+		'class' 	=> 'btn btn-mini btn-success', 
+		'tabindex' 	=> '-1',
+		'rel' 		=> 'accept'
+	)
 
 );?>
 
@@ -24,7 +28,11 @@
 		)
 	),
 	'Refuse',
-	array('class' => 'btn btn-mini btn-danger', 'tabindex' => '-1')
+	array(
+		'class' 	=> 'btn btn-mini btn-danger', 
+		'tabindex' 	=> '-1',
+		'rel' 		=> 'refuse'
+	)
 	
 );?>
 
@@ -37,7 +45,11 @@
 		)
 	),
 	'Cancel',
-	array('class' => 'btn btn-mini', 'tabindex' => '-1')
+	array(
+		'class' 	=> 'btn btn-mini', 
+		'tabindex' 	=> '-1',
+		'rel' 		=> 'cancel'
+	)
 	
 );?>
 	</div>
