@@ -6,6 +6,7 @@
 	};
 	strz_Ajax.NotificatorPanelAjaxMenuTeam.prototype = {
 		listener : null,
+		activeSwitch : null,
 		run : function(){
 
 			this.setTriggerSelector('a[rel=notification-switch-team]');
@@ -16,8 +17,7 @@
 				this.setSendToURL($(this.getTriggerSelector())[0].href);
 				this.setContentShow('ul[rel=notification-messages]');
 				this.ajaxRun();
-				
-				this.listener(this);
+
 			
 				this.addCallback({
 					switchListener : {

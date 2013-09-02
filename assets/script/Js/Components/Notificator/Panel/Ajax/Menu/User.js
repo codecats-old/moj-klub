@@ -6,6 +6,7 @@
 	};
 	strz_Ajax.NotificatorPanelAjaxMenuUser.prototype = {
 		listener : null,
+		activeSwitch : null,
 		run : function(){
 
 			this.setTriggerSelector('a[rel=notification-switch-user]');
@@ -16,8 +17,7 @@
 				this.setSendToURL($(this.getTriggerSelector())[0].href);
 				this.setContentShow('ul[rel=notification-messages]');
 				this.ajaxRun();
-			
-				this.listener(this);
+
 				
 				this.addCallback({
 					switchListener : {
@@ -29,12 +29,7 @@
 				});
 			}
 			
-		}/*,
-		ajaxDone : function(data, action){
-			data = JSON.parse(data);
-			
-			$().toastmessage('showNoticeToast', 'hula');
-		}*/
+		}
 	};
 	strz_Ajax.Extend(strz_Ajax.NotificatorPanelAjaxMenuUser, strz_Ajax.NotificatorPanelAjaxGet);
 })();

@@ -109,7 +109,7 @@
 			 * Check count of last elements and current elements if nothing changed it means
 			 * no more information to featch 
 			 */
-			if (lastSender === action.lastSender) {
+			if (isNaN(lastSender) || lastSender === action.lastSender) {
 				$(action.getTriggerSelector()).attr('disabled', 'disabled');
 			} else action.lastSender = lastSender;
 			

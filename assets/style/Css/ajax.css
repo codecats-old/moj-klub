@@ -1,14 +1,14 @@
 .ajax-load{
 	text-decoration:none;
 	opacity:0.6;
-	border-left:2px solid #b00a0a;
+/*	border-left:2px solid #b00a0a;
 	border-top-radiu
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-bottom-left-radius: 10px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-bottomleft: 10px;
 	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+	border-bottom-left-radius: 10px;*/
 }
 .ajax-load:after{			
 	content:'...';

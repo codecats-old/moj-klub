@@ -21,7 +21,12 @@
 		ajaxDone : function(data, action){
 			data = JSON.parse(data);
 			var contentShow = action.getContentShow();
-			$(contentShow+'> li[sender]').remove();
+			
+			/**
+			 * If new view content has come or info view not exists then remove old content
+			 */
+			if (data.View.length > 0 || ($(contentShow + '> li[sender=-1]').length === 0) )
+				$(contentShow + '> li[sender]').remove();
 			
 		
 			for (var i in data.View) {

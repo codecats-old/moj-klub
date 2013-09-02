@@ -9,6 +9,10 @@ $main_menu = array(
 		'team' => 'notification-switch-team'
 	)
 );
+// No JS needed on panel style
+if ($panel_style === TRUE):
+	$main_menu['rel'] = array();
+endif;
 ?>
 
 <?php if ($panel_style === TRUE):?>
@@ -86,9 +90,9 @@ $main_menu = array(
 		if (isset($requests_views) AND ! empty($requests_views)):
 	?>
 		<?php if ($panel_style === TRUE):?>
-		<ul class="unstyled">
+			<ul class="unstyled">
 		<?php else: ?>
-		<ul class="unstyled" rel="notification-messages">
+			<ul class="unstyled" rel="notification-messages">
 		<?php endif;?>
 				
 		<?php 
@@ -99,17 +103,19 @@ $main_menu = array(
 		
 		
 		<?php if ($panel_style === TRUE): //eclipse PDT needs this kind of closing DOM tag ?>
-		</ul>
+			</ul>
 		<?php else: ?>
-		</ul>
+			</ul>
 		<?php endif;?>
 			
 	<?php 
 		else :
 	?>
-			<div class="text-center">
-				<i class="label label-info">no important data.</i>
-			</div>
+			<ul class="unstyled" rel="notification-messages">
+				<li class="text-center" sender="-1">
+					<i class="label label-info">no important data.</i>
+				</li>
+			</ul>
 	<?php endif;?>
 <!-- >messages -->
 		</li>

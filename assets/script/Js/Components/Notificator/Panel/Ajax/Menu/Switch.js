@@ -21,34 +21,80 @@
 			
 			this.submenus.team.run();
 			this.submenus.user.run();
+			
+			/**
+    		 * Button continue read 
+    		 */
+			this.initContinueReadButton();
+			
 		
 		},
 		onSwitchContext : function(){
 			var self = this;
 			return function(context){
+								
 				triggerActivated = context.getTriggerSelector();
 				triggerIcon = self.triggerIcon;
 				
 				$(self.triggerIcon).attr('href', $(triggerActivated).attr('href'));
 				
 				self.changeIconAddress($(triggerActivated).attr('href'));
+				
 				/**
 	    		 * Button continue read 
 	    		 */
-				self.continueRead = new strz_Ajax.NotificatorPanelAjaxContinue(
-									'button[rel=notification-featch-more]', 
-									self.triggerIcon, 
-									'ul[rel=notification-messages]');
-				self.continueRead.run();
+				self.initContinueReadButton();
+				
+				
+				/**
+				 * Submenus behavior
+				 */
+				submenuNames = self.getSubmenusNames();
+				
+				trigCont = context.getTriggerSelector();
+				
+				if ($(trigCont).hasClass('disabled') === true) {
+					window.location.href = $(trigCont)[0].href;
+				} else {
+					//remove all disabledClass
+					var submenusArr = self.getSubmenusNames();
+
+					for (var i in submenusArr) {
+						var triggerEnable = self.setRelLastArgument(trigCont, submenusArr[i]);
+						
+						if (triggerEnable === trigCont) {
+							$(trigCont).addClass('disabled');
+						} else {
+							$(triggerEnable).removeClass('disabled');
+						}
+					}
+				}
 			}
+		},
+		initContinueReadButton : function() {
+			this.continueRead = new strz_Ajax.NotificatorPanelAjaxContinue(
+					'button[rel=notification-featch-more]', 
+					this.triggerIcon, 
+					'ul[rel=notification-messages]');
+			this.continueRead.run();
+		},
+		getSubmenusNames : function() {
+			var arr = [];
+			for (var i in this.submenus) {
+				arr.push(i);
+			}
+			return arr;
+		},
+		setRelLastArgument : function(relString, newArg) {
+			var arr = relString.split('-');
+			arr[ arr.length - 1 ] = (newArg + ']');
+			return arr.join('-');
 		},
 		/**
 		 * Listener is a requestor, method is setSendURL
 		 */
 		changeIconAddress : function(url) {
 			this.requestor.setSendToURL(url);
-			console.log(this);
-		//	listener.object[listener.method]('onet.pl');
 		}
 	};
 //	strz_Ajax.Extend(strz_Ajax.NotificatorPanelAjaxMenuSwitch, strz_Ajax.NodeAction);
