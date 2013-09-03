@@ -47,11 +47,12 @@
 		 * Commands to store, load and remove data
 		 */
 		_insert : function(storage, name, value) {
-			storage[this._getField(name)] = value;
+			storage.setItem(this._getField(name), value);
 			return this;
 		},
 		_select : function(storage, name) {
-			return storage[this._getField(name)];
+			var value = storage.getItem(this._getField(name));
+			return this._filter(value);
 		},
 		_delete : function(storage, name) {
 			if (typeof(name) === 'undefined'){
@@ -64,8 +65,15 @@
 		/**
 		 * Save data with the namespace
 		 */
-		_getField :function(name) {
+		_getField : function(name) {
 			return (this.prefix+name);
+		},
+		
+		/**
+		 * Storage is save as string so filter is needed
+		 */
+		_filter : function(val) {
+			return JSON.parse(val);
 		}
 		
 	};
@@ -75,7 +83,7 @@
 		strz_Ajax.Data.resources = localStorage;
 		strz_Ajax.Data.resourcesSession = sessionStorage;
 	} else {
-		console.log('Browser not support Storage. What\'s a pity...')
+		console.log('Browser not support HTML5 Storage. What\'s a pity...')
 	}
 })();
 

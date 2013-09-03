@@ -3,8 +3,6 @@
  *  https://bitbucket.org/CodeCats/canvasconsole/src/5cfc75c3b4afbd8fdef0357436fb61dd8ab0d3b1/assets/script/Js/Class/CanvasConsole/Lib/Node.js?at=master
  * 
  */
-
-"use strict";
 (function(){
     strz_Ajax.Panel = function (obj) {
     	var self = this;
@@ -45,7 +43,7 @@
     	 */
     	initOpenListener : function(trigger, triggerMenu) {
     		self = this;
-      		$(trigger).on('click', function() {
+      		$(trigger).on('click', function() {     			
       			self.statusListener();
     			$(trigger).children().removeClass('icon-envelope');
     			$(trigger).children().addClass('icon-refresh');
@@ -59,25 +57,43 @@
     	 */
     	initCloseListener : function(trigger, triggerMenu) {
     		var mouseOverTimeout = this.mouseOverTimeout;
-    		var closeOperation = function(speed) {
+    		
+    		var closeOperation = function(speed) {				
+				
+				$(triggerMenu+' .close').removeClass('ajax-load');
+    			
     			$(triggerMenu).fadeOut(speed);
 				$(trigger).children().removeClass('icon-refresh');
 				$(trigger).children().addClass('icon-envelope');
+				
+
     		}
-    		
+    		    		
     		/**
     		 * Close timeout
     		 */
     		$(triggerMenu).on('mouseleave', function(eve) {
+    			/**
+    			 * Init timeout
+    			 */
     			mouseOverTimeout = window.setTimeout(function() {
-    			//	closeOperation('fast');
-    			}, 1500);
+    				
+    				closeOperation('fast');
+    				
+    			}, 2500);
+    			/**
+    			 * Set info for close icon
+    			 */
+    			$(triggerMenu+' .close').addClass('ajax-load');
     		});
     		/**
     		 * Stop timeout
     		 */
     		$(triggerMenu).on('mouseenter', function(eve) {
-    			if (mouseOverTimeout) clearTimeout(mouseOverTimeout);
+    			if (mouseOverTimeout) {
+    				clearTimeout(mouseOverTimeout);
+    			}
+    			$(triggerMenu+' .close').removeClass('ajax-load');
     		});
     		
     		/**

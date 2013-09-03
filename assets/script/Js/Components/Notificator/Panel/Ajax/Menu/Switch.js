@@ -5,7 +5,7 @@
 	};
 	strz_Ajax.NotificatorPanelAjaxMenuSwitch.prototype = {
 		triggerIcon 	: null,
-		requestor		: null,
+		requestor 		: null,
 		
 		submenus : {
 			team 	: null,
@@ -137,5 +137,5 @@
 			this.requestor.setSendToURL(url);
 		}
 	};
-//	strz_Ajax.Extend(strz_Ajax.NotificatorPanelAjaxMenuSwitch, strz_Ajax.NodeAction);
+//ROOT ELEMENT
 })();

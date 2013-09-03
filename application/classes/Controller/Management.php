@@ -8,7 +8,6 @@ class Controller_Management extends Controller_Automatic{
 	}
 	public function action_consider_join()
 	{
-	//	echo '<br><br><br><br><br><br><br><br><br><br>';
 		$this->redirect_user(FALSE);
 		
 		$user_id = Coder::instance()->from_url($this->request->param('id'));
@@ -29,12 +28,12 @@ class Controller_Management extends Controller_Automatic{
 			)
 		);
 
-		$result = $manager->consider_operation($result);
+		$operation_status = $manager->consider_operation($result);
 		
 		/**
 		 * Redirect if no permitted to do consideration of join user to team
 		 */
-		if ($result === FALSE)
+		if ($operation_status === FALSE)
 		{
 			HTTP::redirect();
 		}
@@ -202,6 +201,7 @@ class Controller_Management extends Controller_Automatic{
 		$view_success = Message::instance()->get_view('Component/Info/Success')
 		->set('info', 'Canacel success');
 		$this->view_content[$request_id] = $view_success;
+		$this->view_container = $view_success;
 		
 	}
 }

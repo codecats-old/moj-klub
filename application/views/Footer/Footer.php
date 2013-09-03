@@ -81,6 +81,9 @@
 				<?php echo HTML::script('assets/script/Js/Components/Notificator/Panel/Ajax/Menu/Button.js');?>
 		<!-- >Panel -->
 	<!-- >Notificator -->
+	<!-- QuickAccess -->
+<?php echo HTML::script('assets/script/Js/Components/QuickAccess/QuickAccess.js');?>
+	<!-- >QuickAccess -->
 <!-- >COMPONENTS -->
 
 
@@ -90,25 +93,7 @@
 
 <!-- testing -->
 <script>
-	if(typeof(Storage)!=="undefined")
-	{
-		$('button[data-target=#quick_access]').click(function(){
-			localStorage.showQuickMenu=(!$('div#quick_access').hasClass('in'))?'true':'false';
-		});
-		if(localStorage.showQuickMenu==='false'){
-			$('div#quick_access').removeClass('in');
-		}
 
-	    $(document).ready(function(){
-	        $('#gallery-container').sGallery({
-	          fullScreenEnabled: true
-	        });
-	      });
-	}
-	else
-	{
-	// Sorry! No web storage support..
-	}
 </script>
 <!-- main -->
 <?php echo HTML::script('assets/script/Js/main.js');?>

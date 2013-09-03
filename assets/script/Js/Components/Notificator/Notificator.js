@@ -16,16 +16,50 @@
     };
     strz_Ajax.Notificator.prototype = {
     		
-    	//notification time value (blinking value)
+    	/**
+    	 * Notification time value (blinking value)
+    	 */
     	durationTime 				: null,
+    	
+    	/**
+    	 * Interval doing requests in specific time [ms]
+    	 */
     	interval 					: null,
+    	
+    	/**
+    	 * Timestamp of last received request (update only when success request)
+    	 */
     	lastCheckedTime 			: 0,
+    	
+    	/**
+    	 * If blinking status on the serwer is active value is true
+    	 */
     	isActive 					: null,
+    	
+    	/**
+    	 * Data from serwer, time of last notification begin
+    	 */
     	lastNotificationTimeFrom 	: 0,
+    	
+    	/**
+    	 * Data from serwer, time of last notification end
+    	 */
     	lastNotificationTimeTo 		: 0,
+    	
+    	/**
+    	 * Object to send asynchronous requests
+    	 */
     	requestor 					: null,
+    	
+    	/**
+    	 * Data storage
+    	 */
         attrs 						: {},
-        panel						: null,
+        
+        /**
+         * Object represents panel content
+         */
+        panel 						: null,
         
         
     	init : function() {
@@ -101,6 +135,10 @@
 				$('a[rel=notification-icon]').removeClass('blinking-icon');
 			}
     	},
+    	
+    	/**
+    	 * Prepare requestor behavior, and data.
+    	 */
     	initRequestor : function() {
     		
     		this.requestor = new strz_Ajax.NodeAction();
@@ -134,19 +172,13 @@
 					
 					self.changeIcon(self.isActive);
 				}
-				
-				
-				
-    			/****************DEBUG****************/
-    	/*
-				console.log('--------------- isActive '+self.isActive);
-    			console.log('lastNotificationTimeFrom '+self.lastNotificationTimeFrom);
-    			console.log('- lastNotificationTimeTo '+self.lastNotificationTimeTo);
-    			console.log('-------- lastCheckedTime '+self.lastCheckedTime);
-    	*/
 			}
 			
     	},
+    	
+    	/**
+    	 * If config is not in cache ask asynchronous for data
+    	 */
     	getConfig : function() {
     		if (strz_Ajax.Data.get('durationTime') === undefined){
 	    		var destination = this.requestor.getSendToURL();
@@ -158,7 +190,7 @@
     		} else {
     			this.durationTime = strz_Ajax.Data.get('durationTime');
     			strz_Ajax.Data.set('durationTime', this.durationTime);
-    			this._set('intervalTime', (this.durationTime*1000));//1000  = 120
+    			this._set('intervalTime', (this.durationTime*1000));//*1000  = 120 [s]
     			
     		}
     	},

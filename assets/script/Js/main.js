@@ -18,6 +18,3 @@ strz_Ajax.Factory.setObjects({
  * list may need access to some class from factory 
  */
 controlList.runAll();
-
-/**NOTIFICATOR TESTS**/
-var notificator = new strz_Ajax.Notificator();
