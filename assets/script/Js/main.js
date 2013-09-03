@@ -1,3 +1,5 @@
+//console.profile(['main.js']);
+
 var controlList=new strz_Ajax.Control();
 
 controlList.readAccessTableCookie();
@@ -18,3 +20,5 @@ strz_Ajax.Factory.setObjects({
  * list may need access to some class from factory 
  */
 controlList.runAll();
+
+//console.profileEnd();

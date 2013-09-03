@@ -218,3 +218,5 @@ Route::set(
 			'controller' => 'management',
 			'action'     => 'gallery',
 	));
+
+	Kohana::$profiling = TRUE;

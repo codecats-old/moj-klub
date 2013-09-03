@@ -3,9 +3,9 @@
  */
 (function(){
     strz_Ajax.QuickAccess = function (obj){
-    	var self = this;
-    	var __construct = function(obj){}
-    	__construct(obj);
+    //	var self = this;
+    //	var __construct = function(obj){}
+   // 	__construct(obj);
     };
     strz_Ajax.QuickAccess.prototype = {
     	trigger 	: 'button[data-target=#quick_access]', 
@@ -18,7 +18,6 @@
     		
     		$(this.trigger).click(function () {
     			var opened = (!$(content).hasClass('in')) ? true : false;
-    			console.log(opened);
     			strz_Ajax.Data.save(stateName, opened);
     		});
     		

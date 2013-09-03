@@ -4,17 +4,24 @@ class Controller_Welcome extends Controller_Automatic {
 
 	public function action_index()
 	{
+	    // Be sure to only profile if it's enabled
+	    if (Kohana::$profiling === TRUE)
+	    {
+	        // Start a new benchmark
+	        $benchmark = Profiler::start('Your Category', __FUNCTION__);
+	    }
+		
 		$bigger_team = ORM::factory('Team')->get_biggest()->find();
 		
 		$main_team = ORM::factory('Team')->get_most_popular()->find();
 		$main_team_photos = ORM::factory('Photo', $main_team->id )
-		->order_by('uploaded', 'DESC')
-		->limit(5)
-		->find_all();
+			->order_by('uploaded', 'DESC')
+			->limit(5)
+			->find_all();
 		$main_team_avatar = $main_team->avatar;
 
 		$popular_teams = ORM::factory('Team')
-			->get_biggest($bigger_team->counter, $main_team->id)->limit(3)->find_all();
+			->get_biggest($bigger_team->counter, $main_team->id)->limit(6)->find_all();
 
 	//	$main_team->set('precentage_counter', $percents);
 //	echo ORM::factory('Team')->get_max_member_count()->find()->counter;
@@ -33,15 +40,14 @@ class Controller_Welcome extends Controller_Automatic {
 			->set('component_carousel', 		$component_carousel)
 			->set('component_thumbnails_team', 	$component_thumbnails_team);
 
-//------------------------------------------------------------------------------------------------
-/*
-		$user = Auth::instance()->get_user();
-		
-		$menu = Menu::factory('Visit', $user);
-		echo '<pre style="background:white">';
-		print_r($menu->get_resource_by_user($user, NULL));
-		echo '</pre>';
-	*/	
+
+		if (isset($benchmark))
+		{
+			// Stop the benchmark
+			Profiler::stop($benchmark);
+			
+		//	file_put_contents('/home/t/www/moj-klub/upload/prof.html', View::factory('profiler/stats'));
+		}
 	}
 
 }
