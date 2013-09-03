@@ -20,8 +20,12 @@
 );?>
 				</div>
 				<div class="span6">
-					<button class="pull-right btn btn-mini" data-toggle="collapse" data-target=".collapse">
-						<?php echo ucfirst(__('edit'));?>
+					<button 
+						class="pull-right btn btn-mini" 
+						data-toggle="collapse" 
+						data-target=".collapse">
+						<?php echo ucfirst(__('edit'));?> 
+						<i class="icon-wrench"></i>
 					</button>
 					<div class="divider"></div>
 					<div class="pull-right collapse in">

@@ -8,7 +8,7 @@ class Controller_Management extends Controller_Automatic{
 	}
 	public function action_consider_join()
 	{
-		echo '<br><br><br><br><br><br><br><br><br><br>';
+	//	echo '<br><br><br><br><br><br><br><br><br><br>';
 		$this->redirect_user(FALSE);
 		
 		$user_id = Coder::instance()->from_url($this->request->param('id'));
@@ -171,25 +171,24 @@ class Controller_Management extends Controller_Automatic{
 		$user = Auth::instance()->get_user();
 		
 		$request = $user->request->where('team_id', '=', $team_id);
-		//$request = ORM::factory('Request');
+		$request_id = NULL;
+
 		$validator = $request->validate_join_cancel($user->id, $team_id);
 		
 		
 		
 		if ($validator->check())
-		{
-		//	$request->find();
-			
+		{		
 			/**
 			 * If request loaded it then cancel it
 			 */
 			if ($request->loaded())
 			{
-				
+				$request_id = $request->id;
 				/**
 				 * 
 				 */
-				$request->delete();
+			//	$request->delete();
 				
 			}
 		}
@@ -198,10 +197,11 @@ class Controller_Management extends Controller_Automatic{
 			$this->error = $validator->errors('Request/Join/Cancel');
 		}
 		
-		print_r($this->error);
+		Message::instance()->set(Message::SUCCESS);
 		
-		/**
-		 * are you sure?
-		 */
+		$view_success = Message::instance()->get_view('Component/Info/Success')
+		->set('info', 'Canacel success');
+		$this->view_content[$request_id] = $view_success;
+		
 	}
 }

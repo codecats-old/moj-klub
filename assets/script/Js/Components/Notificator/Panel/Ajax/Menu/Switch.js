@@ -1,13 +1,11 @@
 (function() {
-	strz_Ajax.NotificatorPanelAjaxMenuSwitch = function(triggerIcon, requestor, triggerContent) {
+	strz_Ajax.NotificatorPanelAjaxMenuSwitch = function(triggerIcon, requestor) {
 		this.triggerIcon = triggerIcon;
 		this.requestor = requestor;
-		this.triggerContent = triggerContent;
 	};
 	strz_Ajax.NotificatorPanelAjaxMenuSwitch.prototype = {
 		triggerIcon 	: null,
 		requestor		: null,
-		triggerContent 	: null,
 		
 		submenus : {
 			team 	: null,
@@ -21,9 +19,9 @@
 		run : function(){
 
 			this.submenus.team = new strz_Ajax.NotificatorPanelAjaxMenuTeam(
-					this.onSwitchContext(), this.triggerContent);
+					this.onSwitchContext());
 			this.submenus.user = new strz_Ajax.NotificatorPanelAjaxMenuUser(
-					this.onSwitchContext(), this.triggerContent);
+					this.onSwitchContext());
 
 
 			this.submenus.team.run();
@@ -88,6 +86,24 @@
 					this.triggerIcon, 
 					'ul[rel=notification-messages]');
 			this.continueRead.run();
+			
+			/**
+			 * When continue read featch new content controls-buttons have to be re-initialized
+			 */
+			this.continueRead.addCallback({
+				teamListener : {
+					reference : this.submenus.team,
+					methods : {
+						'initializeButtons' : null
+					}
+				},
+				userListener : {
+					reference : this.submenus.user,
+					methods : {
+						'initializeButtons' : null
+					}
+				}
+			});
 		},
 		
 		/**

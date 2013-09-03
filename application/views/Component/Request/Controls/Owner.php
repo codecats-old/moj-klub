@@ -11,7 +11,11 @@
 		)
 	),
 	'Cancel',
-	array('class' => 'btn btn-mini btn-danger', 'tabindex' => '-1')
+	array(
+		'class' 	=> 'btn btn-mini btn-danger', 
+		'tabindex' 	=> '-1',
+		'rel' 		=> 'cancel-owner'	
+	)
 	
 );?>
 	</div>

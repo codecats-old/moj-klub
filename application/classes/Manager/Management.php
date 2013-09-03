@@ -30,10 +30,6 @@ class Manager_Management extends Manager_Data{
 	{
 		if ( ! $this->menu->is_allowed($this->master->username, 'consideration')) return FALSE;
 		
-	//	echo '<pre>';
-	//	print_r($this->menu->get_resource_by_user($this->master, NULL));
-	//	echo '</pre>';
-		
 		switch ($operation)
 		{
 			case 'accept' :
@@ -55,7 +51,7 @@ class Manager_Management extends Manager_Data{
 	public function set_consider_operation_result()
 	{
 		$this->view_content = $this->get_view_detail_single();
-		$this->view_container = $this->get_view_detail_single();
+		$this->view_container = current($this->get_view_detail_single());
 	}
 	protected function join_club()
 	{
@@ -161,10 +157,12 @@ class Manager_Management extends Manager_Data{
 					'status' 	=> $menu->get_resource_by_user($this->master, NULL),
 					'user' 		=> $this->new_member->as_array(),
 					'request'	=> $this->object->as_array(),
-					'id' 		=> 'disabled'
+					'id' 		=> $this->object->id
 				)
 		);
-		return $view;
+		return array(
+				$this->object->id 	=> $view 
+		);
 	}
 	
 	/**

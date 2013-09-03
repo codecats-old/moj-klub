@@ -87,7 +87,7 @@
 				//update
 				var senderElement = $(contentShow+'> li[sender=' + data.View[i]['key'] + ']');
 				if ( senderElement.length > 0 ) {
-					senderElement.outerHtml = data.View[i]['view'];
+					senderElement[0].outerHTML = data.View[i]['view'];
 				} else {
 				//new content
 					$(contentShow).append(data.View[i]['view']);

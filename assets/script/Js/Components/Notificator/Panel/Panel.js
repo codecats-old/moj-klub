@@ -112,7 +112,7 @@
 			 * Switcher menu
 			 */
 			this.switcherMenu = new strz_Ajax.NotificatorPanelAjaxMenuSwitch(trigger,
-					this.requestor, triggerMenu);
+					this.requestor);
 			this.switcherMenu.run();
 			
 			/**
