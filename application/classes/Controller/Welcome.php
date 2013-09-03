@@ -36,7 +36,7 @@ class Controller_Welcome extends Controller_Automatic {
 		$component_thumbnails_team = View::factory('Component/Thumbnails/Team')
 			->set('teams', $popular_teams->as_array());
 		
-		$this->view_content = View::factory('Container/Welcome/Main')
+		$this->view_container = $this->view_content = View::factory('Container/Welcome/Main')
 			->set('component_carousel', 		$component_carousel)
 			->set('component_thumbnails_team', 	$component_thumbnails_team);
 
