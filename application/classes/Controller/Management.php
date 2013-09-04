@@ -20,7 +20,7 @@ class Controller_Management extends Controller_Automatic{
 		$request = $new_member->request->where('team_id', '=', $team->id)->find();
 
 		$manager = Manager::factory('Management', $request);
-		$manager->set_objects(
+		$manager->set_data(
 			array(
 				'master' 		=> $master,
 				'team' 			=> $team,
@@ -142,7 +142,7 @@ class Controller_Management extends Controller_Automatic{
 			{
 				$request->team = $team;
 				$request->user = $user;
-				$request->save();
+				//$request->save();
 			}
 			echo 'ok';
 		}
@@ -153,7 +153,6 @@ class Controller_Management extends Controller_Automatic{
 	
 	public function action_join_cancel()
 	{
-		/**NOT INITIAL*/
 		/**
 		 * Not logged user cant ask to join the club
 		 */
@@ -161,47 +160,26 @@ class Controller_Management extends Controller_Automatic{
 		
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
 		/**
-		 * If team_id is numeric it means somethig went wrong, solution: redirect
+		 * If team_id is numeric it means somethig went wrong (client may put random url), 
+		 * solution: redirect
 		 */
 		if (is_numeric($team_id) === FALSE)
 		{
-			echo 'redirect no numeric';
+			HTTP::redirect();
 		}
 		$user = Auth::instance()->get_user();
 		
 		$request = $user->request->where('team_id', '=', $team_id);
-		$request_id = NULL;
+		
+		$manager = Manager::factory('Management', $request);
+		$manager->set_data(
+			array(
+				'master' 	=> $user,
+			)
+		);
+		$manager->cancel_join_club($team_id);
 
-		$validator = $request->validate_join_cancel($user->id, $team_id);
-		
-		
-		
-		if ($validator->check())
-		{		
-			/**
-			 * If request loaded it then cancel it
-			 */
-			if ($request->loaded())
-			{
-				$request_id = $request->id;
-				/**
-				 * 
-				 */
-			//	$request->delete();
-				
-			}
-		}
-		else
-		{
-			$this->error = $validator->errors('Request/Join/Cancel');
-		}
-		
-		Message::instance()->set(Message::SUCCESS);
-		
-		$view_success = Message::instance()->get_view('Component/Info/Success')
-		->set('info', 'Canacel success');
-		$this->view_content[$request_id] = $view_success;
-		$this->view_container = $view_success;
-		
+		$this->view_container 	= $manager->get_views_result('container');
+		$this->view_content 	= $manager->get_views_result('content');
 	}
 }

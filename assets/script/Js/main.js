@@ -1,4 +1,4 @@
-console.profile(['main.js']);
+//console.profile(['main.js']);
 
 	var controlList=new strz_Ajax.Control();
 	
@@ -23,4 +23,4 @@ console.profile(['main.js']);
 	controlList.runAll();
 
 
-console.profileEnd();
+//console.profileEnd();

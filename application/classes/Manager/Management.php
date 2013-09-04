@@ -53,13 +53,48 @@ class Manager_Management extends Manager_Data{
 		$this->view_content = $this->get_view_detail_single();
 		$this->view_container = current($this->get_view_detail_single());
 	}
-	protected function join_club()
+	public function join_club()
 	{
 
 	}
-	protected function cancel_join_club()
+	public function cancel_join_club($team_id)
 	{
+		$request = $this->object;
+		$user = $this->master;
+		$request_id = TRUE;
 		
+		$validator = $request->validate_join_cancel($user->id, $team_id);
+		
+		if ($validator->check())
+		{
+			/**
+			 * If request loaded it then cancel it
+			 */
+			if ($request->loaded())
+			{
+				$request_id = $request->id;
+				/**
+				 *
+				 */
+				$request->delete();
+				$this->success = TRUE;
+			}
+		}
+		else
+		{
+			$this->error = $validator->errors('Request/Join/Cancel');
+		}
+		
+		$this->set_cancel_join_club_result($request_id);
+	}
+	public function set_cancel_join_club_result($request_id)
+	{
+		Message::instance()->set(Message::SUCCESS);
+		
+		$view_success = Message::instance()->get_view('Component/Info/Success')
+		->set('info', 'Canacel success');
+		$this->view_content[$request_id] = $view_success;
+		$this->view_container = $view_success;
 	}
 	protected function consider_accept()
 	{
@@ -121,18 +156,6 @@ class Manager_Management extends Manager_Data{
 //		$request->update();
 	}
 	/**
-	 * Set all needed objects 
-	 */
-	public function set_objects(array $objects)
-	{
-		$this->team 		= isset($objects['team']) ? $objects['team'] : NULL;
-		$this->master 		= isset($objects['master']) ? $objects['master'] : NULL;
-		$this->new_member 	= isset($objects['new_member']) ? $objects['new_member'] : NULL;
-		$this->__initialize();
-		
-		return $this;
-	}
-	/**
 	 * Default view details
 	 * @see Kohana_Interface_Manager::set_view_details()
 	 */
@@ -171,6 +194,10 @@ class Manager_Management extends Manager_Data{
 	 */
 	public function set_data($data)
 	{
-
+		$this->team 		= isset($data['team']) ? $data['team'] : NULL;
+		$this->master 		= isset($data['master']) ? $data['master'] : NULL;
+		$this->new_member 	= isset($data['new_member']) ? $data['new_member'] : NULL;
+		$this->__initialize();
+		
 	}
 }

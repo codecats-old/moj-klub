@@ -17,6 +17,9 @@
        	<?php echo HTML::style('assets/style/Css/ajax.css');?>
        	<?php echo HTML::style('assets/style/Css/notification.css');?>
        	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
+       	
+       	<?php echo HTML::style('assets/style/less/bootstrap.fix.less', array('rel' => 'stylesheet/less'));?>
+     	<?php echo HTML::script('assets/style/less/less-1.4.1.min.js');?>
 
 <?php //Add style gallery when user is on gallery
 		if ( !
