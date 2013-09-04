@@ -106,7 +106,6 @@ class Controller_Management extends Controller_Automatic{
 	
 	public function action_join()
 	{
-		/**NOT INITIAL*/
 		/**
 		 * Not logged user cant ask to join the club
 		 */
@@ -114,12 +113,15 @@ class Controller_Management extends Controller_Automatic{
 		
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
 		/**
-		 * If team_id is numeric it means somethig went wrong, solution: redirect
+		 * If team_id is numeric it means somethig went wrong (client may put random url), 
+		 * solution: redirect
 		 */
-		
+		if (is_numeric($team_id) === FALSE)
+		{
+			HTTP::redirect();
+		}
 		
 		$user = Auth::instance()->get_user();
-		
 		
 		$team = ORM::factory('Team', $team_id);
 		
@@ -127,28 +129,16 @@ class Controller_Management extends Controller_Automatic{
 		
 
 		
-		$validator = $request->validate_join($user->id, $team_id);
-		
-		if ($validator->check())
-		{
-			$request->where('team_id', '=', $team->id)->where('user_id', '=', $user->id)->find();
-
-			if ($request->loaded())
-			{
-				$request->date = date(Date::$timestamp_format);
-				$request->update();
-			}
-			else
-			{
-				$request->team = $team;
-				$request->user = $user;
-				//$request->save();
-			}
-			echo 'ok';
-		}
-
-		
-		$manager = Manager::factory('Management', '');
+		$manager = Manager::factory('Management', $request);
+		$manager->set_data(
+			array(
+				'master' 	=> $user,
+				'team' 		=> $team
+			)
+		);
+		$manager->join_club();
+		$this->view_container 	= $manager->get_views_result('container');
+		$this->view_content 	= $manager->get_views_result('content');
 	}
 	
 	public function action_join_cancel()

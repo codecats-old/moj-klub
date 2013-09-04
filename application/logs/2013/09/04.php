@@ -3083,3 +3083,12 @@
 #9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-09-04 21:20:19 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Manager_Management::join_cancel() ~ APPPATH/classes/Controller/Management.php [ 135 ] in :
+2013-09-04 21:20:19 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-09-04 21:20:45 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function validate_join() on a non-object ~ APPPATH/classes/Manager/Management.php [ 61 ] in :
+2013-09-04 21:20:45 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-09-04 21:24:06 --- EMERGENCY: ErrorException [ 1 ]: Call to a member function as_array() on a non-object ~ APPPATH/classes/Manager/Management.php [ 211 ] in :
+2013-09-04 21:24:06 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
