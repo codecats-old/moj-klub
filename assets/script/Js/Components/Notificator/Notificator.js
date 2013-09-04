@@ -8,7 +8,7 @@
     strz_Ajax.Notificator = function (obj){
     	var self = this;
     	var __construct = function(obj){
-        	self._set('intervalTime', 10000);//sec
+        	self._set('intervalTime', self.minimumIntervalValue);//milisec
         	self.init();
 
     	}
@@ -61,6 +61,10 @@
          */
         panel 						: null,
         
+        /**
+         * Minimum interval value if data is not available
+         */
+        minimumIntervalValue 		: 10000, //[ms]
         
     	init : function() {
     		/**
@@ -107,7 +111,6 @@
     				self.lastNotificationTimeTo = strz_Ajax.Data.get('lastNotificationTimeTo');
   
 				}
-    			
 
     			/**
     			 * If no information in cache then ask asynchronous for data.
@@ -115,7 +118,9 @@
     			if (typeof(self.lastNotificationTimeFrom) === 'undefined' || 
     						self.lastNotificationTimeTo < date.getTime()) {
     				self.lastCheckedTime = date.getTime();
-	    			self.requestor.ajaxInitialize();
+    				
+    				self.requestor.ajaxInitialize();
+	    			
     			}
 
     		}
@@ -154,11 +159,14 @@
 			this.requestor.ajaxDone = function(data, action){
 				data = ajaxDone(data, action);
 				
+				
 				if (typeof(data.duration) !== 'undefined') {
 					self.durationTime = data.duration;
 					strz_Ajax.Data.set('durationTime', data.duration);
 				}
 				if (typeof(data.active) !== 'undefined') {
+					data.from = (data.from === null) ? 0 : data.from;
+					data.to = (data.to === null) ? 0 : data.to;
 					data.from *= 1000;
 					data.to *= 1000;
 					
@@ -180,17 +188,24 @@
     	 * If config is not in cache ask asynchronous for data
     	 */
     	getConfig : function() {
-    		if (strz_Ajax.Data.get('durationTime') === undefined){
+    		if (strz_Ajax.Data.get('durationTime') === undefined || strz_Ajax.Data.get('durationTime') === null){
+    			strz_Ajax.Data.set('durationTime', (this.minimumIntervalValue / 1000));
 	    		var destination = this.requestor.getSendToURL();
 	
 	    		this.requestor.setSendToURL(this.getDestination('notification-config'));
-	    		this.requestor.ajaxInitialize();
-	    		
+    			this.requestor.ajaxInitialize();
+
 	    		this.requestor.setSendToURL(destination);
     		} else {
     			this.durationTime = strz_Ajax.Data.get('durationTime');
     			strz_Ajax.Data.set('durationTime', this.durationTime);
-    			this._set('intervalTime', (this.durationTime*1000));//*1000  = 120 [s]
+    			
+    			if (this.durationTime !== null) {
+    				this._set('intervalTime', (this.durationTime * 1000));//*1000  = 120 [s]
+    			} else {
+    				this._set('intervalTime', (this.minimumIntervalValue));
+    			}
+    				
     			
     		}
     	},

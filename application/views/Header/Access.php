@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 <div class="pull-right">
-                    
+                
 	<span class="divider-vertical"></span>
 <?php echo HTML::anchor(Route::get('default')->uri(
 		array(
@@ -8,7 +8,7 @@
 			'action' 		=> 'registrate'
 		)
 	),
-	ucfirst(__('registrate')).'<span class="icon-home icon-white"></span>',
+	ucfirst(__('registrate')).' <span class="icon-home icon-white"></span>',
 	array(
 		'class' => 'btn btn-mini btn-danger',
 		'rel' 	=> 'registrate'
@@ -22,11 +22,12 @@
 			'action' 		=> 'login'
 		)
 	),
-	ucfirst(__('login')).'<span class="icon-user icon-white"></span>',
+	ucfirst(__('login')).' <span class="icon-user icon-white"></span>',
 	array(
 		'class' => 'btn btn-mini btn-inverse', 
 		'rel' 	=> 'login'
 	)
 );?>
-	<span class="divider-vertical"></span>		
+
 </div>
+	

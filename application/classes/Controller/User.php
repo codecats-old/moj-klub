@@ -116,7 +116,8 @@ class Controller_User extends Controller_Automatic{
 	public function action_logout()
 	{
 		$this->redirect_user(FALSE);
-		$id = Encrypt::instance()->decode(hex2bin($this->request->param('id')));
+		
+		$id = Coder::instance()->from_url($this->request->param('id'));
 		
 		/**
 		 * if CSFR attack redirect from this action
@@ -157,7 +158,7 @@ class Controller_User extends Controller_Automatic{
 	 */
 	public function action_show()
 	{
-		$id = Coder::instance()->from_url($this->request->param('id'));
+		$id = Coder::instance()->short_url($this->request->param('id'));
 		
 		if (is_numeric($id) === FALSE)
 		{

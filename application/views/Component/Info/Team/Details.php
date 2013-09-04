@@ -7,7 +7,7 @@
 		array(
 			'controller' => 'team',
 			'action'	 =>	'show',
-			'id'		 => Coder::instance()->to_url($team['id'])
+			'id'		 => Coder::instance()->short_url($team['id'])
 		)
 	),
 	Arr::get($team, 'short_name')
@@ -41,7 +41,7 @@
 			array(
 				'controller' => 'gallery',
 				'action'	 =>	'team',
-				'id'		 => Coder::instance()->to_url($team['id'])
+				'id'		 => Coder::instance()->short_url($team['id'])
 			)
 		),
 		'Photos count: '.$photos_count,

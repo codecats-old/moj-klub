@@ -60,7 +60,7 @@ class Manager_Gallery extends Manager_Data{
 				array(
 					'controller' 	=> 'gallery',
 					'action'		=> 'team',
-					'id'			=> Coder::instance()->to_url($team_id)							
+					'id'			=> Coder::instance()->short_url($team_id)							
 				))
 			);
 			
@@ -111,7 +111,7 @@ class Manager_Gallery extends Manager_Data{
 	}
 	public function set_delete_photo_result($pack)
 	{
-		$this->view_content=unserialize($pack->View);
+		$this->view_content = unserialize($pack->View);
 		
 		Message::instance()->set($pack->status->state, $pack->status->message);
 	}
@@ -121,7 +121,7 @@ class Manager_Gallery extends Manager_Data{
 	 */
 	public function gallery($id)
 	{
-		$id = Coder::instance()->from_url($id);
+		$id = Coder::instance()->short_url($id);
 		$this->set_gallery_result($id);
 	}
 	public function set_gallery_result($id)
@@ -149,6 +149,7 @@ class Manager_Gallery extends Manager_Data{
 		 * Deny for modification by roles
 		 */
 		$menu_gallery->deny_permissions($id, $user);
+
 		// user can be not logged in
 		$submenu_gallery = $menu_gallery->get_resource_by_user($user, 'gallery');
 		

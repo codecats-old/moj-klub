@@ -6,7 +6,7 @@
 				array(
 					'controller'	=> 'team',
 					'action'		=> 'show',
-					'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
+					'id'			=> Coder::instance()->short_url(Arr::get($team, 'id'))
 				)
 			),
 			Arr::get($team, 'short_name'),

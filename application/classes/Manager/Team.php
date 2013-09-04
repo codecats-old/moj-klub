@@ -36,7 +36,6 @@ class Manager_Team extends Manager_Data{
 		}
 		else
 		{
-		//	$user = Auth::instance()->get_user();
 			$user = $this->user;
 			$visit_menu = Menu::factory('Visit', $user);
 			

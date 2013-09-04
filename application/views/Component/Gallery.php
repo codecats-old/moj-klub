@@ -7,7 +7,7 @@
 			array(
 				'controller' 	=> 'team',
 				'action'		=> 'show',
-				'id'			=> Coder::instance()->to_url($team['id'])
+				'id'			=> Coder::instance()->short_url($team['id'])
 			)
 		),
 		$team['short_name']
@@ -81,7 +81,6 @@
 	</ul>
 	
 	<ul class="items--big">
-	<?php $id=0;?>
 <?php foreach($photos as $photo):?>
 		<li class="item--big">
 	

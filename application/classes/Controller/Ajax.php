@@ -74,7 +74,7 @@ class Controller_Ajax extends Controller{
 		 * Check blink if asynchro request have to turn of blinking 
 		 */
 		//Notificator::check_blink();
-		
+	
 		echo json_encode(Notificator::get_status());
 		
 	}

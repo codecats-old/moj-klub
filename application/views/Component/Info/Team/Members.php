@@ -37,7 +37,7 @@
 			array(
 				'controller' 	=> 'user',
 				'action'		=> 'show',
-				'id'			=> Coder::instance()->to_url($player->id)
+				'id'			=> Coder::instance()->short_url($player->id)
 			)
 		),
 		'see the profile',
@@ -84,7 +84,7 @@
 			array(
 				'controller' 	=> 'user',
 				'action'		=> 'show',
-				'id'			=> Coder::instance()->to_url(Arr::get($manager, 'id'))
+				'id'			=> Coder::instance()->short_url(Arr::get($manager, 'id'))
 			)
 		),
 		'see the profile',

@@ -45,20 +45,22 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 	
 	/**
 	 * Convert integer to shorter representation (better works with big integers)
-	 * if value is not a number then function converts it back to integer
+	 * if value is not a number then function converts it back to integer.
+	 * Zero is not allowed.
 	 * 
 	 * @param mixed $val
 	 * @return string|number
 	 */
-	public function convert_int ($val)
+	public function short_url($val)
 	{
-		if (is_numeric($val))
+		if (is_numeric($val) AND $val != 0)
 		{
 			return base_convert($val, 10, 36);	
 		}
 		else 
 		{
-			return intval(base_convert($val,36,10));
+			$val = intval(base_convert($val,36,10));
+			return ($val !== 0) ? $val : FALSE;
 		}
 	}
 	

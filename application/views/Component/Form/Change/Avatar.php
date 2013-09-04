@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $error=(isset($error)?$error:null);?>
 <?php echo Form::open(Route::get('default')->uri(
-		//array('controller'=>'image', 'action'=>Request::current()->action())),
 		array('controller'=>Request::initial()->controller(), 'action'=>Request::initial()->action())),
 		array('enctype' => 'multipart/form-data', 'class'=>'form-horizontal'));
 ?>

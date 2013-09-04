@@ -27,5 +27,5 @@ interface Kohana_Interface_Coder{
 	 * 
 	 * @param mixed $val
 	 */
-	public function convert_int ($val);
+	public function short_url ($val);
 }

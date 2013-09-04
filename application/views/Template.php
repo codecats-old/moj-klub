@@ -10,7 +10,9 @@
         <link 
         	href="<?php echo Kohana::$base_url;?>assets/img/favicon.ico" 
         	rel="icon" type="image/x-icon" />
-       	<?php echo HTML::style('assets/style/Css/bootstrap.min.css');?>
+       	<?php // echo HTML::style('assets/style/Css/bootstrap.min.css');?>
+       	<?php // echo HTML::style('assets/style/Css/font-awesome.min.css');?>
+       	<?php echo HTML::style('assets/style/Css/my.min.css');?>
        	<?php echo HTML::style('assets/style/Css/bootstrap.fix.css');?>
        	<?php echo HTML::style('assets/style/Css/ajax.css');?>
        	<?php echo HTML::style('assets/style/Css/notification.css');?>

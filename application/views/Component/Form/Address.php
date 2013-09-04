@@ -29,14 +29,17 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="row-fluid">
-<?php echo Form::input(
+<?php 
+    $zip = explode('-', Arr::get($address, 'zip_code'));
+    $zip[1] = (! empty($zip[1])) ? $zip[1] : Arr::get($address, 'zip_code2');
+	echo Form::input(
 		'zip_code', 
-		Arr::get($address, 'zip_code'),
+		Arr::get($zip, 0),
 		array('class'=>'span5', 'placeholder'=>'', 'type'=>'number'));
 ?>
 <?php echo Form::input(
 		'zip_code2', 
-		Arr::get($address, 'zip_code2'),
+		Arr::get($zip, 1),
 		array('class'=>'span7', 'placeholder'=>'', 'type'=>'number'));
 ?>
 						</div>

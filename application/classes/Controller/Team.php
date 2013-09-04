@@ -14,10 +14,6 @@ class Controller_Team extends Controller_Automatic{
 		 * Redirect if user is not logged in  
 		 */
 		$this->redirect_user(FALSE);
-		/*
-		 * Redirect if user has no team
-		 */
-		//$this->redirect_team_member(FALSE);
 		
 		$user = Auth::instance()->get_user();
 		$team = $user->team;
@@ -42,7 +38,7 @@ class Controller_Team extends Controller_Automatic{
 		/*
 		 * Id have to be encoded
 		 */
-		$id = Coder::instance()->from_url($this->request->param('id'));
+		$id = Coder::instance()->short_url($this->request->param('id'));
 		
 		if (is_numeric($id) === FALSE)
 		{
@@ -66,6 +62,7 @@ class Controller_Team extends Controller_Automatic{
 		{
 			HTTP::redirect(Route::get('default')->uri());
 		}
+		//If not admin then check the permissions to access
 		if (Auth::instance()->logged_in('admin') === FALSE) $this->redirect_team_member(FALSE);
 		
 		//get data to change

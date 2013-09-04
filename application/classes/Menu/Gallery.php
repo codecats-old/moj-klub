@@ -51,7 +51,7 @@ class Menu_Gallery extends Menu_General{
 	{
 		if ($resource_owner !== NULL)
 		{
-			$resource_owner = $resource_owner->team->id;
+			$resource_owner = (int)$resource_owner->team->id;
 		}
 		/**
 		 * Deny only if resource_owner not equal view resource

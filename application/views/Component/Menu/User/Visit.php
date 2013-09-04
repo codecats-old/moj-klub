@@ -44,7 +44,7 @@
 			array(
 				'controller' => 'gallery',
 				'action' =>  'team',
-				'id' => Coder::instance()->to_url(Arr::get($team, 'id'))
+				'id' => Coder::instance()->short_url(Arr::get($team, 'id'))
 			)
 		), 
 		'Gallery<label>pictures from team</label>',

@@ -35,7 +35,7 @@
 			array(
 				'controller' 	=> 'team',
  				'action' 		=> 'show',
- 				'id' 			=> Coder::instance()->to_url($team['id'])
+ 				'id' 			=> Coder::instance()->short_url($team['id'])
 			)
 		), 
 		'see the club',

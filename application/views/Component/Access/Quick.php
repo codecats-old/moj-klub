@@ -4,7 +4,7 @@
 	type="button" 
 	data-toggle="collapse" 
 	data-target="#quick_access">
-<span class="icon-file icon-white"></span>
+<span class="icon-briefcase icon-large icon-white"></span>
 </button>
 <div class="well collapse in visible-desktop" id="quick_access">
 	<h4><?php echo ucfirst(__('quick access'));?></h4>
