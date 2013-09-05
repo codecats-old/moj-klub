@@ -103,3 +103,6 @@
 #9 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #10 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #11 {main} in /home/t/www/moj-klub/system/classes/Kohana/Session.php:125
+2013-09-05 20:25:50 --- EMERGENCY: ErrorException [ 1 ]: Method Manager_Panel::__toString() must not throw an exception ~ APPPATH/views/Container/Main.php [ 0 ] in :
+2013-09-05 20:25:50 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

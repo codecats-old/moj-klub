@@ -21,7 +21,7 @@ if ($services_json)
 	$db = 		$mysql_config["name"];
 	
 	/**
-	 * Turn off errors on serwers with VCAP_SERVICES
+	 * Turn off errors on servers with VCAP_SERVICES
 	 */
 	Kohana::$errors = FALSE;
 	Kohana::$environment = Kohana::PRODUCTION;
