@@ -17,10 +17,10 @@
   <email>sb@sebastian-bergmann.de</email>
   <active>yes</active>
  </lead>
- <date>2012-10-17</date>
+ <date>2013-07-06</date>
  <version>
-  <release>1.2.6</release>
-  <api>1.2.0</api>
+  <release>1.2.12</release>
+  <api>1.2.11</api>
  </version>
  <stability>
   <release>stable</release>
@@ -51,6 +51,7 @@
          <dir name="js">
           <file baseinstalldir="/" name="bootstrap.min.js" role="php" />
           <file baseinstalldir="/" name="highcharts.js" role="php" />
+          <file baseinstalldir="/" name="html5shiv.js" role="php" />
           <file baseinstalldir="/" name="jquery.min.js" role="php" />
          </dir>
          <file baseinstalldir="/" name="coverage_bar.html.dist" role="php" />
@@ -91,7 +92,6 @@
     </dir>
     <file baseinstalldir="/" name="CodeCoverage.php" role="php" />
    </dir>
-   <file baseinstalldir="/" name="ChangeLog.markdown" role="doc" />
    <file baseinstalldir="/" name="LICENSE" role="doc" />
   </dir>
  </contents>

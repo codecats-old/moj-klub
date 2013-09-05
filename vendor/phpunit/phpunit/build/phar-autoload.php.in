@@ -1,5 +1,12 @@
 #!/usr/bin/env php
 <?php
+if ($GLOBALS['_SERVER']['SCRIPT_NAME'] != '-') {
+    define('__PHPUNIT_PHAR__', realpath($GLOBALS['_SERVER']['SCRIPT_NAME']));
+} else {
+    $files = get_included_files();
+    define('__PHPUNIT_PHAR__', $files[0]);
+}
+
 spl_autoload_register(
   function ($class)
   {
@@ -19,6 +26,10 @@ spl_autoload_register(
   }
 );
 
-PHPUnit_TextUI_Command::main();
+Phar::mapPhar('___PHAR___');
+
+if ($GLOBALS['_SERVER']['SCRIPT_NAME'] != '-') {
+    PHPUnit_TextUI_Command::main();
+}
 
 __HALT_COMPILER();

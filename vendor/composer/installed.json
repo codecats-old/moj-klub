@@ -1,70 +1,24 @@
 [
     {
-        "name": "phpunit/php-file-iterator",
-        "version": "1.3.3",
-        "version_normalized": "1.3.3.0",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/sebastianbergmann/php-file-iterator.git",
-            "reference": "1.3.3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://github.com/sebastianbergmann/php-file-iterator/zipball/1.3.3",
-            "reference": "1.3.3",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2012-10-11 04:44:38",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "File/"
-            ]
-        },
-        "include-path": [
-            ""
-        ],
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Sebastian Bergmann",
-                "email": "sb@sebastian-bergmann.de",
-                "role": "lead"
-            }
-        ],
-        "description": "FilterIterator implementation that filters files based on a list of suffixes.",
-        "homepage": "http://www.phpunit.de/",
-        "keywords": [
-            "filesystem",
-            "iterator"
-        ]
-    },
-    {
         "name": "symfony/yaml",
-        "version": "v2.3.3",
-        "version_normalized": "2.3.3.0",
+        "version": "v2.3.4",
+        "version_normalized": "2.3.4.0",
         "target-dir": "Symfony/Component/Yaml",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/Yaml.git",
-            "reference": "3837ccd0830ef44ed5c5844403bf6f69f7998758"
+            "reference": "5a279f1b5f5e1045a6c432354d9ea727ff3a9847"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Yaml/zipball/3837ccd0830ef44ed5c5844403bf6f69f7998758",
-            "reference": "3837ccd0830ef44ed5c5844403bf6f69f7998758",
+            "url": "https://api.github.com/repos/symfony/Yaml/zipball/5a279f1b5f5e1045a6c432354d9ea727ff3a9847",
+            "reference": "5a279f1b5f5e1045a6c432354d9ea727ff3a9847",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2013-07-21 12:12:18",
+        "time": "2013-08-24 15:26:22",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -100,19 +54,19 @@
         "version_normalized": "1.1.4.0",
         "source": {
             "type": "git",
-            "url": "git://github.com/sebastianbergmann/php-text-template.git",
-            "reference": "1.1.4"
+            "url": "https://github.com/sebastianbergmann/php-text-template.git",
+            "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/sebastianbergmann/php-text-template/zipball/1.1.4",
-            "reference": "1.1.4",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/5180896f51c5b3648ac946b05f9ec02be78a0b23",
+            "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-10-31 11:15:28",
+        "time": "2012-10-31 18:15:28",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -290,6 +244,53 @@
         ]
     },
     {
+        "name": "phpunit/php-file-iterator",
+        "version": "1.3.3",
+        "version_normalized": "1.3.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
+            "reference": "16a78140ed2fc01b945cfa539665fadc6a038029"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/16a78140ed2fc01b945cfa539665fadc6a038029",
+            "reference": "16a78140ed2fc01b945cfa539665fadc6a038029",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2012-10-11 11:44:38",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "File/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            ""
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sb@sebastian-bergmann.de",
+                "role": "lead"
+            }
+        ],
+        "description": "FilterIterator implementation that filters files based on a list of suffixes.",
+        "homepage": "http://www.phpunit.de/",
+        "keywords": [
+            "filesystem",
+            "iterator"
+        ]
+    },
+    {
         "name": "phpunit/php-code-coverage",
         "version": "1.2.12",
         "version_normalized": "1.2.12.0",
@@ -430,23 +431,23 @@
     },
     {
         "name": "swiftmailer/swiftmailer",
-        "version": "v5.0.1",
-        "version_normalized": "5.0.1.0",
+        "version": "v5.0.2",
+        "version_normalized": "5.0.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/swiftmailer/swiftmailer.git",
-            "reference": "619aceb969f1e8759edc28fb22f9b64b3bddbc1e"
+            "reference": "f3917ecef35a4e4d98b303eb9fee463bc983f379"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/619aceb969f1e8759edc28fb22f9b64b3bddbc1e",
-            "reference": "619aceb969f1e8759edc28fb22f9b64b3bddbc1e",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/f3917ecef35a4e4d98b303eb9fee463bc983f379",
+            "reference": "f3917ecef35a4e4d98b303eb9fee463bc983f379",
             "shasum": ""
         },
         "require": {
             "php": ">=5.2.4"
         },
-        "time": "2013-06-17 13:32:32",
+        "time": "2013-08-30 12:35:21",
         "type": "library",
         "extra": {
             "branch-alias": {

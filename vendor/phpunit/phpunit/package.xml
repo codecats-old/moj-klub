@@ -17,9 +17,9 @@
   <email>sebastian@phpunit.de</email>
   <active>yes</active>
  </lead>
- <date>2012-10-17</date>
+ <date>2013-08-09</date>
  <version>
-  <release>3.7.8</release>
+  <release>3.7.24</release>
   <api>3.7.0</api>
  </version>
  <stability>
@@ -60,6 +60,9 @@
       <file baseinstalldir="/" name="Type.php" role="php" />
      </dir>
      <dir name="Constraint">
+      <dir name="JsonMatches">
+       <file baseinstalldir="/" name="ErrorMessageProvider.php" role="php" />
+      </dir>
       <file baseinstalldir="/" name="And.php" role="php" />
       <file baseinstalldir="/" name="ArrayHasKey.php" role="php" />
       <file baseinstalldir="/" name="Attribute.php" role="php" />
@@ -68,9 +71,9 @@
       <file baseinstalldir="/" name="ClassHasStaticAttribute.php" role="php" />
       <file baseinstalldir="/" name="Composite.php" role="php" />
       <file baseinstalldir="/" name="Count.php" role="php" />
-      <file baseinstalldir="/" name="Exception.php" role="php" />
       <file baseinstalldir="/" name="ExceptionCode.php" role="php" />
       <file baseinstalldir="/" name="ExceptionMessage.php" role="php" />
+      <file baseinstalldir="/" name="Exception.php" role="php" />
       <file baseinstalldir="/" name="FileExists.php" role="php" />
       <file baseinstalldir="/" name="GreaterThan.php" role="php" />
       <file baseinstalldir="/" name="IsAnything.php" role="php" />
@@ -79,9 +82,11 @@
       <file baseinstalldir="/" name="IsFalse.php" role="php" />
       <file baseinstalldir="/" name="IsIdentical.php" role="php" />
       <file baseinstalldir="/" name="IsInstanceOf.php" role="php" />
+      <file baseinstalldir="/" name="IsJson.php" role="php" />
       <file baseinstalldir="/" name="IsNull.php" role="php" />
       <file baseinstalldir="/" name="IsTrue.php" role="php" />
       <file baseinstalldir="/" name="IsType.php" role="php" />
+      <file baseinstalldir="/" name="JsonMatches.php" role="php" />
       <file baseinstalldir="/" name="LessThan.php" role="php" />
       <file baseinstalldir="/" name="Not.php" role="php" />
       <file baseinstalldir="/" name="ObjectHasAttribute.php" role="php" />
@@ -92,8 +97,8 @@
       <file baseinstalldir="/" name="StringEndsWith.php" role="php" />
       <file baseinstalldir="/" name="StringMatches.php" role="php" />
       <file baseinstalldir="/" name="StringStartsWith.php" role="php" />
-      <file baseinstalldir="/" name="TraversableContains.php" role="php" />
       <file baseinstalldir="/" name="TraversableContainsOnly.php" role="php" />
+      <file baseinstalldir="/" name="TraversableContains.php" role="php" />
       <file baseinstalldir="/" name="Xor.php" role="php" />
      </dir>
      <dir name="Error">
@@ -187,7 +192,6 @@
     </dir>
     <file baseinstalldir="/" name="Autoload.php" role="php" />
    </dir>
-   <file baseinstalldir="/" name="ChangeLog.md" role="doc" />
    <file baseinstalldir="/" name="CONTRIBUTING.md" role="doc" />
    <file baseinstalldir="/" name="LICENSE" role="doc" />
    <file baseinstalldir="/" name="README.md" role="doc" />
@@ -229,7 +233,7 @@
    <package>
     <name>PHP_Timer</name>
     <channel>pear.phpunit.de</channel>
-    <min>1.0.2</min>
+    <min>1.0.4</min>
    </package>
    <package>
     <name>PHPUnit_MockObject</name>
@@ -240,7 +244,8 @@
    <package>
     <name>Yaml</name>
     <channel>pear.symfony.com</channel>
-    <min>2.1.0</min>
+    <min>2.0.0</min>
+    <max>2.99.99</max>
    </package>
    <extension>
     <name>dom</name>
@@ -248,18 +253,13 @@
    <extension>
     <name>pcre</name>
    </extension>
-   <extension>
-    <name>reflection</name>
-   </extension>
-   <extension>
-    <name>spl</name>
-   </extension>
   </required>
   <optional>
    <package>
     <name>PHP_Invoker</name>
     <channel>pear.phpunit.de</channel>
     <min>1.1.0</min>
+    <max>1.1.99</max>
    </package>
    <extension>
     <name>json</name>
