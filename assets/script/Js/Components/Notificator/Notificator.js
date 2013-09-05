@@ -213,12 +213,8 @@
     	 * returns the destination of url
     	 */
     	getDestination : function(action){
-    		var protocol = window.document.location.protocol;
-			var host = window.document.location.host;
-			var secoundLevel = window.location.pathname.split('/')[1];
-
-			return (protocol + '//' + host + '/' + secoundLevel
-					+ '/index.php/ajax/'+action);
+    		
+    		return strz_Ajax.Http.getFullUrl(true)+'ajax/'+action;
     	},
 
         _get : function(attribute) {

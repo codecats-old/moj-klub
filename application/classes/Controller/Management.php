@@ -4,7 +4,7 @@ class Controller_Management extends Controller_Automatic{
 	
 	public function action_index()
 	{
-		
+
 	}
 	public function action_consider_join()
 	{

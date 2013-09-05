@@ -1,5 +1,27 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
+$username = 	'myclub_client';
+$password = 	'xi@Nix';
+$hostname = 	'localhost';
+$db = 			'my_club';
+$persistent = 	FALSE;
+$caching = 		FALSE;
+$table_prefix = '';
+$charset = 		'utf8';
+
+$services_json = json_decode(getenv("VCAP_SERVICES"),true);
+
+if ($services_json)
+{
+	$mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+
+	$username = $mysql_config["username"];
+	$password = $mysql_config["password"];
+	$hostname = $mysql_config["hostname"];
+	$db = 		$mysql_config["name"];
+}
+
+
 return array
 (
 	'default' => array
@@ -18,15 +40,15 @@ return array
 			 *
 			 * Ports and sockets may be appended to the hostname.
 			 */
-			'hostname'   => 'localhost',
-			'database'   => 'my_club',
-			'username'   => 'myclub_client',
-			'password'   => 'xi@Nix',
-			'persistent' => true,
+			'hostname'   => $hostname,
+			'database'   => $db,
+			'username'   => $username,
+			'password'   => $password,
+			'persistent' => $persistent,
 		),
-		'table_prefix' => '',
-		'charset'      => 'utf8',
-		'caching'      => FALSE,
+		'table_prefix' => $table_prefix,
+		'charset'      => $charset,
+		'caching'      => $caching,
 	),
 	'alternate' => array(
 		'type'       => 'PDO',
@@ -39,18 +61,18 @@ return array
 			 * string   password    database password
 			 * boolean  persistent  use persistent connections?
 			 */
-			'dsn'        => 'mysql:host=localhost;dbname=my_club',
-			'username'   => 'myclub_client',
-			'password'   => 'xi@Nix',
-			'persistent' => FALSE,
+			'dsn'        => 'mysql:host='.$hostname.';dbname='.$db,
+			'username'   => $username,
+			'password'   => $password,
+			'persistent' => $persistent,
 		),
 		/**
 		 * The following extra options are available for PDO:
 		 *
 		 * string   identifier  set the escaping identifier
 		 */
-		'table_prefix' => '',
-		'charset'      => 'utf8',
-		'caching'      => FALSE,
+		'table_prefix' => $table_prefix,
+		'charset'      => $charset,
+		'caching'      => $caching,
 	),
 );

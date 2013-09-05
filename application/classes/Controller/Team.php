@@ -1,10 +1,4 @@
-<?php 
-//use Zend\Permissions\Acl\Resource\GenericResource;
-
-// use Zend\Permissions\Acl\Role\GenericRole;
-
-
-defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 class Controller_Team extends Controller_Automatic{
 

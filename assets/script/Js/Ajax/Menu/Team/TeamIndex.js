@@ -4,7 +4,11 @@
 	};
 	strz_Ajax.TeamIndex.prototype={
 		run:function(){
-			this.setAllowedPages(['/moj-klub/team', '/moj-klub/index.php/team']);
+			var baseDir = strz_Ajax.Http.getSecoundLevel();
+			var indexNameAndSeparator = strz_Ajax.Http.getIndexName(true);
+			
+			this.setAllowedPages([baseDir + 'team', baseDir + indexNameAndSeparator + 'team']);
+			
 			if(this.isAllowedLocation(document.location.href)){
 			/*	this.setCallbackMyself(false);
 				this.setTriggerSelector('a[rel=user_index]');

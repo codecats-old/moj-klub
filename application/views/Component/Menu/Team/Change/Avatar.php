@@ -6,8 +6,19 @@
 					</button>
 					<div class="divider"></div>
 					<div class="pull-right collapse in">
-<a href="/moj-klub/index.php/team/change-team-avatar" rel="user_change-avatar_get">Change avatar</a>					</div>
+<?php echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'team',
+				'action' 		=> 'change-team-avatar'
+			)
+		),
+		'change avatar',
+		array(
+			'rel' 	=> 'user_change-avatar_get'
+		)
+);?>
+				</div>
 				<!-- 	<div class="divider"></div>
 					<div class="pull-right collapse in">more data here</div> -->
-				</div>
+</div>
 <?php endif;?>

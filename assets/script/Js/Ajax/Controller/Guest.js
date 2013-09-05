@@ -18,8 +18,6 @@
 			});
 
 			this.index = new strz_Ajax.Index();
-			this.index.setAllowedPages([ '/moj-klub/', '/moj-klub/index.php',
-					'/moj-klub/index.php/' ]);
 			this.index.run();
 
 			this.index.addCallback({

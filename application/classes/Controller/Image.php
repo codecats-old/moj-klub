@@ -146,9 +146,10 @@ class Controller_Image extends Controller_Automatic{
 				$save_dir = 'gallery/teams/'.$team->id;
 				$this->make_dir_if_not_exists($save_dir);
 				
+				$dateTime = new DateTime;
 				$file_path = $this->save_image($files['add_photo'], $save_dir,
 					array(
-						'name' => (new DateTime)->getTimestamp(),
+						'name' => $dateTime->getTimestamp(),
 						'width' => 1024,
 						'height' => 800
 					)

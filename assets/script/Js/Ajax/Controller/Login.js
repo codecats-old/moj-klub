@@ -4,7 +4,7 @@
 	};
 	strz_Ajax.Login.prototype={
 		run:function(){			
-			this.logout=new strz_Ajax.Anchor('logout', 'header+.container-fluid', false);//'header+.container-fluid'
+			this.logout=new strz_Ajax.Anchor('logout', 'header+.container-fluid', false);
 			this.logout.run();
 
 			

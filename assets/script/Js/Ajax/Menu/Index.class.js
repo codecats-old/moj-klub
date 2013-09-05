@@ -7,7 +7,10 @@
 	};
 	strz_Ajax.Index.prototype = {
 		run:function(){
-			this.setAllowedPages(['/moj-klub/', '/moj-klub/index.php', '/moj-klub/index.php/']);
+			var baseDir = strz_Ajax.Http.getSecoundLevel();
+			var indexName = strz_Ajax.Http.getIndexName();
+			var indexNameSeparator = strz_Ajax.Http.getIndexName(true);
+			this.setAllowedPages([baseDir, baseDir+indexName, baseDir+indexNameSeparator]);
 
 			var loc = document.location.href.replace(document.location.origin, '');
 			if(this.isAllowedLocation(loc)){

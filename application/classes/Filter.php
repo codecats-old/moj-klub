@@ -33,4 +33,5 @@ class Filter{
 			array('trim')
 		)
 	);
+
 }

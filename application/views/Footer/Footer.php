@@ -69,6 +69,9 @@
 	<!-- Save data -->
 <?php echo HTML::script('assets/script/Js/Components/Data/Data.js');?>	
 	<!-- >Save -->
+	<!-- Document HTTP Helper -->
+<?php echo HTML::script('assets/script/Js/Components/Http/Http.js');?>	
+	<!-- >Document -->
 	<!-- Notificator -->
 <?php echo HTML::script('assets/script/Js/Components/Notificator/Notificator.js');?>
 		<!-- Panel -->

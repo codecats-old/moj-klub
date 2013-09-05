@@ -97,7 +97,8 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/moj-klub/',
+//	'base_url'   => '/moj-klub/'
+	'base_url'   => '/'
 ));
 
 /**
@@ -134,89 +135,18 @@ Kohana::modules(array(
 	'pagination'	=> MODPATH.'pagination', 	// Pagination module
 	'notificator'	=> MODPATH.'notificator' 	// Messages notificator
 	));
-/**
- * Composer
- */
-//require Kohana::find_file('vendor', 'autoload');
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
-Route::set(
-	'image', 
-	'image/<action>/<id>/<width>/<height>/<ext>', 
-	array('id' => '[0-9]+', 'width' => '[0-9]+', 'height' => '[0-9]+', 'ext'=> '(jpg|jpeg|png|gif)'))
-	->filter(
-		function($route, $params, $request)
-		{
-			$params['action']=str_replace('-', '_', $params['action']);
-			return $params;
-		}
-	)
-	->defaults(array(
-	'controller' => 'image',
-	'action' => 'index'
-		));
-	
-Route::set(
-		'management', 
-		'management/<action>/<id>(/<page>)', 
-		array(
-			'id' 		=> '[0-9 \w]+',
-			'page' 		=> '[0-9]+',
-			'action'	=> '(messages|requests)'
-		)
-	)
-	->defaults(array(
-	'controller' => 'management',
-	'action'     => 'messages'
-	));
-	
-	
-Route::set('default', '(<controller>(/<action>(/<id>)))')
-	->filter(
-		function($route, $params, $request)
-		{
-			$params['action']=str_replace('-', '_', $params['action']);
-			return $params;
-		}
-	)
-	->defaults(array(
-		'controller' => 'welcome',
-		'action'     => 'index',
-	));
-	
-Route::set(
-	'delete',
-	'(<controller>(/<action>(/<id>/<confirm>)))',
-	array('confirm' => '(true)'))
-	->filter(
-		function($route, $params, $request)
-		{
-			$params['action']=str_replace('-', '_', $params['action']);
-			return $params;
-		}
-	)
-	->defaults(array(
-			'controller' => 'team',
-			'action'     => 'gallery',
-	));
+require_once APPPATH.'routes'.EXT;
 
-Route::set(
-	'consider',
-	'management/<action>/<id>/<result>',
-	array('result' => '(accept|refuse|cancel)'))
-	->filter(
-		function($route, $params, $request)
-		{
-			$params['action']=str_replace('-', '_', $params['action']);
-			return $params;
-		}
-	)
-	->defaults(array(
-			'controller' => 'management',
-			'action'     => 'gallery',
-	));
+Kohana::$profiling = TRUE;
 
-	Kohana::$profiling = TRUE;
+
+$basedir = Cookie::get('basedir');
+if (! $basedir OR $basedir != Kohana::$base_url)
+{
+	Cookie::set('basedir', Kohana::$base_url);
+}

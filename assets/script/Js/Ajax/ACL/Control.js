@@ -30,13 +30,8 @@
 
 			/**
 			 * setting destination of the request
-			 */
-			var protocol = window.document.location.protocol;
-			var host = window.document.location.host;
-			var secoundLevel = window.location.pathname.split('/')[1];
-
-			var destination = protocol + '//' + host + '/' + secoundLevel
-					+ '/index.php/ajax/roles';
+			 */	
+			var destination = strz_Ajax.Http.getFullUrl(true) + 'ajax/roles'; 
 
 			//set up ajax request
 			action.setSendToURL(destination)

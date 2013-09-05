@@ -34,7 +34,16 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 		//check if value is code if not exception will be thrown
 		try
 		{	
-			return Encrypt::instance()->decode(hex2bin($val));
+			//PHP 5.4
+			if (function_exists('hex2bin') === TRUE) 
+			{
+				return Encrypt::instance()->decode(hex2bin($val));
+			}
+			else 
+			{
+				return Encrypt::instance()->decode($this->hex2bin($val));
+			}
+			
 		}
 		catch(ErrorException $e)
 		{
@@ -62,6 +71,27 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 			$val = intval(base_convert($val,36,10));
 			return ($val !== 0) ? $val : FALSE;
 		}
+	}
+	private function hex2bin($hexstr)
+	{
+		$n = strlen($hexstr);
+		$sbin = '';
+		$i = 0;
+		while ($i < $n)
+		{
+			$a = substr($hexstr,$i,2);
+			$c = pack('H*',$a);
+			if ($i == 0)
+			{
+				$sbin = $c;
+			}
+			else 
+			{
+				$sbin .= $c;
+			}
+			$i += 2;
+		}
+		return $sbin;
 	}
 	
 }

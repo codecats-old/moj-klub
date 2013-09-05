@@ -5,7 +5,10 @@
 	};
 	strz_Ajax.UserIndex.prototype={
 		run:function(){
-			this.setAllowedPages(['/moj-klub/user', '/moj-klub/index.php/user']);
+			var baseDir = strz_Ajax.Http.getSecoundLevel();
+			var indexNameAndSeparator = strz_Ajax.Http.getIndexName(true);
+			
+			this.setAllowedPages([baseDir + 'user', baseDir + indexNameAndSeparator + 'user']);
 			if(this.isAllowedLocation(document.location.href)){
 
 				this.setCallbackMyself(true);

@@ -4,7 +4,11 @@
 	};
 	strz_Ajax.GalleryIndex.prototype={
 		run:function(){
-			this.setAllowedPages(['/moj-klub/gallery', '/moj-klub/index.php/gallery']);
+			var baseDir = strz_Ajax.Http.getSecoundLevel();
+			var indexNameAndSeparator = strz_Ajax.Http.getIndexName(true);
+			
+			this.setAllowedPages([baseDir + 'gallery', baseDir + indexNameAndSeparator + 'gallery']);
+
 			if(this.isAllowedLocation(document.location.href)){
 				/**
 				 * Refresh Gallery Index
