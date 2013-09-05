@@ -19,8 +19,13 @@ if ($services_json)
 	$password = $mysql_config["password"];
 	$hostname = $mysql_config["hostname"];
 	$db = 		$mysql_config["name"];
+	
+	/**
+	 * Turn off errors on serwers with VCAP_SERVICES
+	 */
+	Kohana::$errors = FALSE;
+	Kohana::$environment = Kohana::PRODUCTION;
 }
-
 
 return array
 (
