@@ -9,7 +9,7 @@ $caching = 		FALSE;
 $table_prefix = '';
 $charset = 		'utf8';
 
-$services_json = json_decode(getenv("VCAP_SERVICES"),true);
+$services_json = json_decode(getenv("VCAP_SERVICES"), TRUE);
 
 if ($services_json)
 {
@@ -18,7 +18,7 @@ if ($services_json)
 	$username = $mysql_config["username"];
 	$password = $mysql_config["password"];
 	$hostname = $mysql_config["hostname"];
-	$db = 		$mysql_config["name"];
+	$db = 		$mysql_config["name"	];
 	
 	/**
 	 * Turn off errors on servers with VCAP_SERVICES

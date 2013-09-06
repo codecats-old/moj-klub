@@ -55,11 +55,11 @@
 			return this._filter(value);
 		},
 		_delete : function(storage, name) {
-			if (typeof(name) === 'undefined'){
-				storage.clear();
-			} else {
-				storage.removeItem(this._getField(name));
-			}
+			storage.removeItem(this._getField(name));
+			return this;
+		},
+		_destroy : function(storage) {
+			storage.clear();
 			return this;
 		},
 		/**
