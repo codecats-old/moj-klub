@@ -22,6 +22,9 @@
 
 			this.index = new strz_Ajax.Index();
 			this.index.run();
+			
+			this.galleryIndex = new strz_Ajax.GalleryIndex();
+			this.galleryIndex.run();
 
 			this.index.addCallback({
 				formGetter : {

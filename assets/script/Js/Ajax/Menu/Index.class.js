@@ -21,7 +21,7 @@
 				this.setSendToURL($(this.getTriggerSelector())[0].href);//$(a.getTriggerSelector())[0].href
 				this.setContentShow('header+.container-fluid');
 				this.ajaxRun();
-				
+	
 				/**
 				 * COMPONENTS
 				 */
