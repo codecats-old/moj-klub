@@ -11,4 +11,4 @@
 <?php echo $component_thumbnails_team;?>
 	</section>
 
-<?php echo View::factory('Component/Window/Modal/Main')->set('title', 'registrate');?>
+<?php echo View::factory('Component/Window/Modal/Main')->set('title', 'access window');?>

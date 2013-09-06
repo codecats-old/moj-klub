@@ -10,6 +10,9 @@
 
 			this.login = new strz_Ajax.Submit('quick_login_form');
 			this.login.run();
+			
+			var LoginFormGetter=new strz_Ajax.GetFormRegistrate('login_form_get');
+			LoginFormGetter.run();
 
 			this.carousel = new strz_Ajax.Component({
 				trigger : '#overviewCarousel',

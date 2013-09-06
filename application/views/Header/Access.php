@@ -11,7 +11,7 @@
 	ucfirst(__('registrate')).' <span class="icon-home icon-white"></span>',
 	array(
 		'class' => 'btn btn-mini btn-danger',
-		'rel' 	=> 'registrate'
+		'rel' 	=> 'registrate_form_get'
 	)
 );?>
 		
@@ -25,7 +25,7 @@
 	ucfirst(__('login')).' <span class="icon-user icon-white"></span>',
 	array(
 		'class' => 'btn btn-mini btn-inverse', 
-		'rel' 	=> 'login'
+		'rel' 	=> 'login_form_get'
 	)
 );?>
 

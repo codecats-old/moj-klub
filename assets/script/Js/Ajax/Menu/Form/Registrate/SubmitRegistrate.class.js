@@ -17,7 +17,6 @@
 			}
 		},
 		ajaxDone:function(data, action) {
-			console.log(this);
 			this.uber.ajaxDone(data,action);
 			data=JSON.parse(data);
 			var form=this.getForm(this.getTriggerSelector());

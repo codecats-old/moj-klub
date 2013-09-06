@@ -6,15 +6,17 @@
        	<li class="thumbnail span12">
 	       	<div class="well well-dark span12">
 	       		<div class="span6">
-            		<h4 class="label label-success top-text"><?php echo Arr::get($team, 'short_name');?></h4>
             	
 <?php echo HTML::anchor(
 	Route::get('default')->uri(array('controller'=>'team')),
 	HTML::image(Arr::get($avatar, 'path'), 
-		array('class'=>'bg-img', 'alt'=>'avatar', 'rel'=>'team_index')
+		array('class'=>'img-polaroid', 'alt'=>'avatar', 'rel'=>'team_index')
 	)
-);?>
-            		
+);?>				
+					<h4 class="label">
+						<?php echo Arr::get($team, 'short_name');?>
+					</h4>
+             	
             	</div>
 <?php if(isset($view_team_change_avatar)) echo $view_team_change_avatar;?>
 			</div>

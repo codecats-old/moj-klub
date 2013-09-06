@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 class Controller_Welcome extends Controller_Automatic {
 
@@ -8,7 +8,7 @@ class Controller_Welcome extends Controller_Automatic {
 	    if (Kohana::$profiling === TRUE)
 	    {
 	        // Start a new benchmark
-	        $benchmark = Profiler::start('Your Category', __FUNCTION__);
+	        $benchmark = Profiler::start('Welcome index', __FUNCTION__);
 	    }
 		
 		$bigger_team = ORM::factory('Team')->get_biggest()->find();
