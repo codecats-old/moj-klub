@@ -1,9 +1,11 @@
-<?php defined('SYSPATH') or die('No direct script access.');?>
-<?php $roles_view=empty($roles_view)?'(empty)':$roles_view;?>
-<?php $info['name']=empty($info['name'])?'(empty)':$info['name'];?>
-<?php $info['surname']=empty($info['surname'])?'(empty)':$info['surname'];?>
-<?php $info['phone']=empty($info['phone'])?'(empty)':$info['phone'];?>
-<?php $team=empty($team)?array():$team;?>
+<?php defined('SYSPATH') OR die('No direct script access.');?>
+
+<?php $roles_view = empty($roles_view) ? '(empty)' : $roles_view;?>
+<?php $info['name'] = empty($info['name']) ? '(empty)': $info['name'];?>
+<?php $info['surname'] = empty($info['surname']) ? '(empty)': $info['surname'];?>
+<?php $info['phone'] = empty($info['phone']) ? '(empty)': $info['phone'];?>
+<?php $team = empty($team) ? array() : $team;?>
+<?php $avatar['path'] = empty($avatar['path']) ? '/upload/default/avatar/user.jpeg' : $avatar['path'];?>
 
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
@@ -13,9 +15,18 @@
             		<h4 class="label label-success top-text"><?php echo ucfirst(__('yours data'));?></h4>
             	
 <?php echo HTML::anchor(
-	Route::get('default')->uri(array('controller'=>'user')),
-	HTML::image(Arr::get($avatar, 'path'), 
-		array('class'=>'bg-img', 'alt'=>'avatar', 'rel'=>'user_index')
+	Route::get('default')->uri(
+		array(
+			'controller'=>'user'
+		)
+	),
+	HTML::image(
+		Arr::get($avatar, 'path'), 
+		array(
+			'class'=>'bg-img', 
+			'alt'=>'avatar', 
+			'rel'=>'user_index'
+		)
 	)
 );?>
 				</div>
@@ -30,9 +41,16 @@
 					<div class="divider"></div>
 					<div class="pull-right collapse in">
 <?php echo HTML::anchor(
-	Route::get('default')->uri(array('controller'=>'user', 'action'=>'change-user-avatar')),
+	Route::get('default')->uri(
+		array(
+			'controller' 	=> 'user', 
+			'action' 		=> 'change-user-avatar'
+		)
+	),
 	ucfirst(__('change avatar')),
-	array('rel'=>'user_change-avatar_get')
+	array(
+		'rel' 	=> 'user_change-avatar_get'
+	)
 );?>
 					</div>
 				<!-- 	<div class="divider"></div>
@@ -92,19 +110,52 @@
 		</li>
 	</ul>
 	<div class="row-fluid collapse in">
-<?php echo HTML::anchor(Route::get('default')->uri(
-		array('controller'=>'user', 'action'=>'change-data')),
+<?php 
+	echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller' 	=> 'user', 
+				'action' 		=> 'change-data'
+			)
+		),
 		ucfirst(__('Edit your data')),
-		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-data_get'));?>
+		array(
+			'class' 	=> 'btn btn-link btn-mini', 
+			'rel' 		=> 'user_change-data_get'
+		)
+	);
+?>
 		
-<?php echo HTML::anchor(Route::get('default')->uri(
-		array('controller'=>'user', 'action'=>'change-password')),
+<?php 
+	echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller' 	=> 'user', 
+				'action' 		=> 'change-password'
+			)
+		),
 		ucfirst(__('change password')),
-		array('class'=>'btn btn-link btn-mini', 'rel'=>'user_change-password_get'));?>
+		array(
+			'class' 	=> 'btn btn-link btn-mini', 
+			'rel' 		=> 'user_change-password_get'
+		)
+	);
+?>
 		
-<?php echo HTML::anchor(Route::get('default')->uri(
-		array('controller'=>'user', 'action'=>'logout')),
+<?php 
+	echo HTML::anchor(
+		Route::get('default')->uri(
+			array(
+				'controller' 	=> 'user', 
+				'action' 		=> 'logout'
+			)
+		),
 		ucfirst(__('logout')),
-		array('class'=>'btn btn-link btn-mini pull-right', 'rel'=>'logout'));?>
+		array(
+			'class' 	=> 'btn btn-link btn-mini pull-right', 
+			'rel' 		=> 'logout'
+		)
+	);
+?>
 	</div>
 </div>

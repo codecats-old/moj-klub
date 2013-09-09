@@ -221,14 +221,14 @@ class Manager_Management extends Manager_Data{
 
 			$request->active 	= FALSE;
 			$request->read 		= Date::formatted_time();
-			//			$request->update();
+			$request->update();
 
 		}
 		/**
 		 * Set new team member
 		 */
 		$this->new_member->team = $this->team;
-//		$this->new_member->update();
+		$this->new_member->update();
 
 	}
 	/**
@@ -240,7 +240,7 @@ class Manager_Management extends Manager_Data{
 		$request = 			$this->object;
 		$request->active = 	$request->status = FALSE;
 		$request->read = 	Date::formatted_time();
-//		$request->update();
+		$request->update();
 	}
 	
 	/**
@@ -253,7 +253,7 @@ class Manager_Management extends Manager_Data{
 		$request->active = 	TRUE;
 		$request->status = 	FALSE;
 		$request->read = 	Date::formatted_time();
-//		$request->update();
+		$request->update();
 	}
 	/**
 	 * Default view details
@@ -329,11 +329,11 @@ class Manager_Management extends Manager_Data{
 	{
 		Message::instance()->set(Message::WARNING);
 	
-		$view_error = Message::instance()
-		->get_view('Component/Info/Success')
+		$view_warning = Message::instance()
+		->get_view('Component/Info/Warning')
 			->set('info', $info_label)
 			->set('errors', $this->error);
 		
-		$this->view_container = $view_success;
+		$this->view_container = $view_warning;
 	}
 }

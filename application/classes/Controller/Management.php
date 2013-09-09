@@ -178,6 +178,7 @@ class Controller_Management extends Controller_Automatic{
 		$user_id = Coder::instance()->from_url($this->request->param('user_id'));
 		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
 		
+		
 		if ($confirm === FALSE)
 		{
 			$info_confirm = View::factory('Component/Info/Confirm');
@@ -189,6 +190,11 @@ class Controller_Management extends Controller_Automatic{
 		{
 			$master = Auth::instance()->get_user();
 			$team = $master->team;
+			
+			if ( ! $team->loaded())
+			{
+				throw new ErrorException('redirect user without team');
+			}
 			
 			/**
 			 * If manager want to leave the team coach takes the role manager, if no coach and
@@ -211,12 +217,54 @@ class Controller_Management extends Controller_Automatic{
 						throw new Exception('cant leave the club, u drunk go home');
 					}
 				}
-				else 
+				else
 				{
-					//leave manager and delete the team
+					//delete the team, leave manager
 				}
 			}
+			else 
+			{
+				$this->leave_club_roles($master);	
+				
+				Message::instance()->set(Message::SUCCESS, 'you just leave the club',
+					array(
+						'redirect' => TRUE
+					)
+				);
+				$component_info_success = Message::instance()->get_view('Component/Info/Success');
+				$this->view_container = $component_info_success;
+			}
 		}
+	}
+	public function leave_club_roles($user)
+	{
+		
+		$user->team_id = NULL;
+		$user->update();
+		$roles = array('capitan', 'coach', 'manager');
+		
+		foreach ($roles as $role) 
+		{
+			$user_role = ORM::factory('Role', array('name' => $role));
+			if ($user->has('roles', $user_role))
+			{
+				$user->remove('roles', $user_role);
+			}
+		}
+		
+		Auth::instance()->get_user()->reload();
+		/**
+		 * refresh technical cookies
+		 */
+		Request::factory(
+			Route::get('default')->uri(
+				array(
+					'controller' => 'ajax',
+					'action' 	 => 'roles'
+				)
+			)
+		)
+		->execute();
 	}
 	public function action_manage_management()
 	{
