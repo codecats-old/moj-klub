@@ -105,6 +105,33 @@ class Controller_Team extends Controller_Automatic{
 		$this->view_content = $manager->get_views_result('content');
 	}
 	
+	public function action_manage()
+	{
+		if (Auth::instance()->logged_in() === FALSE)
+		{
+			HTTP::redirect(Route::get('default')->uri());
+		}
+		$this->redirect_user(FALSE);
+		
+		//get data to change
+		$post = $this->request->post();
+		//get field to change
+		$id = $this->request->param('id');
+		
+		$user = Auth::instance()->get_user();
+		$team = $user->team;
+		
+		$manager = Manager::factory('Team', $team);
+		$manager->set_user($user);
+		
+		//make action change id - is field to change, post is data
+		$manager->manage($post, $id);
+		
+		//views
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
+	}
+	
 	/**
 	 * Create new team only if user has no team
 	 */

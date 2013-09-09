@@ -14,13 +14,27 @@
 			<h5><?php echo __('Needed data');?></h5>
 				<div class="row-fluid">
 					<div class="span12">
-<?php echo Form::input('login_identificator', Arr::get($post, 'login_identificator'),
-		array('class'=>'span12', 'placeholder'=>__('email/login')));?>
+<?php echo Form::input(
+	'login_identificator', 
+	Arr::get($post, 'login_identificator'),
+	array(
+		'class' 		=> 'span12 round-top-corners', 
+		'placeholder' 	=> __('email/login')
+	)
+);?>
 					</div>
 				</div>
 				<div class="row-fluid">
 					<div class="span12">
-<?php echo Form::input('password','',array('type'=>'password','class'=>'span12', 'placeholder'=>__('password')));?>
+<?php echo Form::input(
+	'password',
+	'',
+	array(
+		'type' 			=> 'password',
+		'class' 		=> 'span12 round-bottom-corners', 
+		'placeholder'	=> __('password')
+	)
+);?>
 <div class="label label-warning"><?php echo Arr::get($error, 'password');?></div>
 					</div>
 				</div>

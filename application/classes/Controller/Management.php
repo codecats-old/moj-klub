@@ -172,4 +172,62 @@ class Controller_Management extends Controller_Automatic{
 		$this->view_container 	= $manager->get_views_result('container');
 		$this->view_content 	= $manager->get_views_result('content');
 	}
+	
+	public function action_leave()
+	{
+		$user_id = Coder::instance()->from_url($this->request->param('user_id'));
+		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
+		
+		if ($confirm === FALSE)
+		{
+			$info_confirm = View::factory('Component/Info/Confirm');
+			$info_confirm->title = 'action leave';
+			$info_confirm->content = 'You want leave the club, are you sure?';
+			$this->view_container = $info_confirm;
+		}
+		else 
+		{
+			$master = Auth::instance()->get_user();
+			$team = $master->team;
+			
+			/**
+			 * If manager want to leave the team coach takes the role manager, if no coach and
+			 * the club is not empty manager can't leave the club, if the club is empty
+			 * it will be deleted
+			 */
+			if ($master->has('roles', ORM::factory('Role', array('name' => 'manager'))))
+			{
+				if ($team->users->where('id', '<>', $master->id)->count_all() > 0)
+				{
+					$new_manager = $team->get_coach();
+					if ($new_manager->loaded())
+					{
+						//add role manager to new_manager, leave manager
+						throw new Exception('coach to manager');
+					}
+					else 
+					{
+						//cant leave until coach is empty
+						throw new Exception('cant leave the club, u drunk go home');
+					}
+				}
+				else 
+				{
+					//leave manager and delete the team
+				}
+			}
+		}
+	}
+	public function action_manage_management()
+	{
+		
+	}
+	public function action_manage_staff()
+	{
+		
+	}
+	public function action_manage_players()
+	{
+		
+	}
 }

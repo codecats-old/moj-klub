@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 class Model_Team extends ORM{
 	protected $_has_many = array(
-			'user' => array(
+			'users' => array(
 					//UPDATED 'model' => 'user',
 					'model' => 'User',
 					'foreign_key' => 'team_id',

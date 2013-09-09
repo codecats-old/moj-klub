@@ -1,11 +1,13 @@
-<?php defined('SYSPATH') or die('No direct script access.');?>
+<?php defined('SYSPATH') OR die('No direct script access.');?>
 <?php $path = Arr::get($team, 'path') ? Arr::get($team, 'path') : 'upload/default/avatar/team.png' ?>
 
 <li class="span4 btn btn-warning" data-toggle="collapse" data-target="#progress<?php echo $id;?>">
 
 	<div class="ribbon rot-45">
 		<p>
-			<span><small>joined: </small></span>
+			<span>
+				<small>joined: </small>
+			</span>
 			<small class="label">
 <?php
 	if (Arr::get($team, 'join_date')):
@@ -22,7 +24,7 @@
 	
 	
 	<h3 class="head-show"><?php echo Arr::get($team, 'short_name');?></h3>
-<?php echo HTML::image($path);?>            
+<?php echo HTML::image($path, array('class' => 'img-polaroid'));?>            
 	<p>
 <?php echo Arr::get($team, 'description');?> 
 	</p>

@@ -15,20 +15,38 @@ function underscope2dash($route, $params, $request)
 }
 
 Route::set(
-	'image',
-	'image/<action>/<id>/<width>/<height>/<ext>',
+	'manage',
+	'management/<action>/<user_id>/<confirm>',
 	array(
-		'id' => '[0-9]+', 
-		'width' => '[0-9]+', 
-		'height' => '[0-9]+', 
-		'ext'=> '(jpg|jpeg|png|gif)'
+		'action' 	=> '(players|staff|management|leave)',
+		'user_id' 	=> '[\d \w]+',
+		'confirm' 	=> '(true|false)'
 	)
 )
 ->filter('underscope2dash')
-->defaults(array(
-		'controller' => 'image',
-		'action' => 'index'
-));
+->defaults(
+	array(
+		'controller' 	=> 'management'
+	)
+);
+
+Route::set(
+	'image',
+	'image/<action>/<id>/<width>/<height>/<ext>',
+	array(
+		'id' 		=> '[0-9]+', 
+		'width' 	=> '[0-9]+', 
+		'height' 	=> '[0-9]+', 
+		'ext'		=> '(jpg|jpeg|png|gif)'
+	)
+)
+->filter('underscope2dash')
+->defaults(
+	array(
+		'controller' 	=> 'image',
+		'action' 		=> 'index'
+	)
+);
 
 Route::set(
 	'management',
@@ -39,10 +57,12 @@ Route::set(
 		'action'	=> '(messages|requests)'
 	)
 )
-->defaults(array(
-'controller' => 'management',
-'action'     => 'messages'
-		));
+->defaults(
+	array(
+		'controller' => 'management',
+		'action'     => 'messages'
+	)
+);
 
 
 Route::set(
@@ -59,7 +79,9 @@ Route::set(
 Route::set(
 	'delete',
 	'(<controller>(/<action>(/<id>/<confirm>)))',
-	array('confirm' => '(true)')
+	array(
+		'confirm' => '(true)'
+	)
 )
 ->filter('underscope2dash')
 ->defaults(
@@ -72,7 +94,9 @@ Route::set(
 Route::set(
 	'consider',
 	'management/<action>/<id>/<result>',
-	array('result' => '(accept|refuse|cancel)')
+	array(
+		'result' => '(accept|refuse|cancel)'
+	)
 )
 ->filter('underscope2dash')
 ->defaults(

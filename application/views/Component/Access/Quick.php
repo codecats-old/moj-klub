@@ -6,7 +6,7 @@
 	data-target="#quick_access">
 <span class="icon-briefcase icon-large icon-white color-gray"></span>
 </button>
-<div class="well collapse in visible-desktop" id="quick_access">
+<div class="well collapse in visible-desktop round-corners" id="quick_access">
 	<h4><?php echo ucfirst(__('quick access'));?></h4>
 	<div>
 	<?php echo View::factory('Component/Form/Login')

@@ -4,7 +4,7 @@
  <?php if (Arr::get($avatar, 'path')):?>
  	<?php echo HTML::image($avatar['path']);?>
 <?php else:?>
-	<?php echo HTML::image('upload/default/avatar/user.jpeg');?>
+	<?php echo HTML::image('upload/default/avatar/team.png');?>
 <?php endif;?>
 
                         <div class="carousel-inner">

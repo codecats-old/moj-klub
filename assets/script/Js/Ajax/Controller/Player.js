@@ -3,11 +3,11 @@
 		
 	};
 	strz_Ajax.Player.prototype={
-	//	roleTeam : null,
+		roleTeam : null,
 		
 		run:function(){			
-		//	this.roleTeam = new strz_Ajax.RolesCapitanTeam();
-		//	this.roleTeam.run();
+			this.roleTeam = new strz_Ajax.RolesPlayerTeam();
+			this.roleTeam.run();
 		}
 	};
 	strz_Ajax.Extend(strz_Ajax.Player, strz_Ajax.NodePermissionAction);

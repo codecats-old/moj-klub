@@ -85,20 +85,21 @@ class Manager_Team extends Manager_Data{
 			
 			if ($request->active == FALSE) $request_canceled = TRUE;
 		}
+		$this->set_show_result($popularity, $menu, $request_sent);
 		
+	}
 
-		
+	public function set_show_result($popularity, $menu, $request_sent)
+	{
+		$user = $this->user;
 		/**
 		 * Decorated view to show
 		 */
 		$this->view_container
-			->set('popularity', $popularity)
-			->set('join_team',	$menu->is_allowed($user, 'join_team'))
-			->set('join_sent', $request_sent);
-	//	$this->view_container->view_component_about->set('join_canceled', $request_canceled);
+		->set('popularity', $popularity)
+		->set('join_team',	$menu->is_allowed($user, 'join_team'))
+		->set('join_sent', $request_sent);
 	}
-
-	public function set_show_result(){}
 
 	/**
 	 *
@@ -131,8 +132,6 @@ class Manager_Team extends Manager_Data{
 		$this->view_container=View::factory('Container/Team/Main')
 		->set('view_top', $this->view_content);
 		$this->view_container->set('modal_title', 'are you sure?');
-
-
 
 
 		$this->set_view_details($this->view_container);
@@ -177,13 +176,13 @@ class Manager_Team extends Manager_Data{
 		$fields_allowed = array();
 		foreach ($fields as $field_name => $val)
 		{
-			if ($val === TRUE)array_push($fields_allowed, ucfirst($field_name));
+			if ($val === TRUE) array_push($fields_allowed, ucfirst($field_name));
 		}
 
 		//is specific field selected if not return all permited fields
 		$change_field = $change_field ? array(ucfirst($change_field)) : $fields_allowed;
 
-		$this->view_container=View::factory('Container/Team/Main');
+		$this->view_container = View::factory('Container/Team/Main');
 
 		if ($this->success === FALSE)
 		{
@@ -201,14 +200,39 @@ class Manager_Team extends Manager_Data{
 		{
 
 			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
+				array(
+					'reload' => TRUE
+				)
 			);
 			$this->view_content=Message::instance()->get_view('Component/Info/Success')
 			->set('info', 'zarządzaj klubem');
 		}
 		$this->view_container->set('modal_title', 'are you sure?');
+		$this->set_view_details($this->view_container);
+	}
+	
+	public function manage($post, $change_field)
+	{
+		$team = $this->object;
+		$user = $this->user;
+		$menu = Menu::factory('Team', $user);
+		$menu->deny_permissions($team, $user);
+
+		$options = $menu->get_resource_by_user($user, 'manage');
+
+		//results
+		$this->set_manage_result($options);
+	}
+	
+	public function set_manage_result($options)
+	{
+		$this->view_container = View::factory('Container/Team/Main');
+
+		$manage_view = View::factory('Component/Menu/Team/Manage/Menu')
+				->set('options', $options);
+		$this->view_content = $manage_view;
+
+		$this->view_container->set('modal_title', 'Manage');
 		$this->set_view_details($this->view_container);
 	}
 
@@ -262,9 +286,9 @@ class Manager_Team extends Manager_Data{
 		else
 		{
 			Message::instance()->set(Message::SUCCESS, NULL,
-			array(
-			'reload' => TRUE
-			)
+				array(
+					'reload' => TRUE
+				)
 			);
 				
 			$this->view_content=Message::instance()->get_view('Component/Info/Success')
@@ -360,9 +384,13 @@ class Manager_Team extends Manager_Data{
 		$user = $this->user;
 		$avatar = $team->avatar;
 
-		$view=View::factory('Component/Menu/Team/Details');
+		$view = View::factory('Component/Menu/Team/Details');
 		$view_team_change_details = View::factory('Component/Menu/Team/Change/Details');
-		$view_team_change_manage = View::factory('Component/Menu/Team/Change/Manage');
+		$view_team_change_manage = View::factory('Component/Menu/Team/Change/Manage', 
+				array(
+					'team' 	=> $team->as_array()
+				)
+		);
 		$view_team_change_avatar = View::factory('Component/Menu/Team/Change/Avatar');
 
 		$menu = Menu::factory('Team', $user);
@@ -377,19 +405,20 @@ class Manager_Team extends Manager_Data{
 		$view_team_change_avatar->set('options',
 				$menu->get_resource_by_user($user, 'avatar'));
 
-		$view->set('view_team_change_avatar', 	$view_team_change_avatar)
-		->set('view_team_change_details', 		$view_team_change_details)
-		->set('view_team_change_manage', 		$view_team_change_manage)
-		->set('avatar', 						$avatar->as_array());
+		$view
+			->set('view_team_change_avatar', 		$view_team_change_avatar)
+			->set('view_team_change_details', 		$view_team_change_details)
+			->set('view_team_change_manage', 		$view_team_change_manage)
+			->set('avatar', 						$avatar->as_array());
 
 		$manager = $team->get_manager();
 		$coach = $team->get_coach();
 		$capitan = $team->get_capitan();
 		$view
-		->set('team',		$team->as_array())
-		->set('manager', 	$manager->as_array())
-		->set('capitan', 	$capitan->as_array())
-		->set('coach', 		$coach->as_array());
+			->set('team',		$team->as_array())
+			->set('manager', 	$manager->as_array())
+			->set('capitan', 	$capitan->as_array())
+			->set('coach', 		$coach->as_array());
 
 		if ($user !== NULL)
 		{
