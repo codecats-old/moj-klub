@@ -224,7 +224,7 @@ class Controller_Management extends Controller_Automatic{
 			}
 			else 
 			{
-				$this->leave_club_roles($master);	
+				$this->leave_club($master);	
 				
 				Message::instance()->set(Message::SUCCESS, 'you just leave the club',
 					array(
@@ -236,15 +236,19 @@ class Controller_Management extends Controller_Automatic{
 			}
 		}
 	}
-	public function leave_club_roles($user)
+
+	public function leave_club($user)
 	{
-		
+		//user has no club
 		$user->team_id = NULL;
 		$user->update();
+		
+		//user has no roles
 		$roles = array('capitan', 'coach', 'manager');
 		
 		foreach ($roles as $role) 
 		{
+			//if user has roles remove them
 			$user_role = ORM::factory('Role', array('name' => $role));
 			if ($user->has('roles', $user_role))
 			{
@@ -252,6 +256,15 @@ class Controller_Management extends Controller_Automatic{
 			}
 		}
 		
+		//find all requests (accepted one, refused and canceled)
+		$requests = $user->request->find_all();
+		foreach ($requests as $request)
+		{
+			//delete requests
+			$request->delete();
+		}
+		
+		//update session
 		Auth::instance()->get_user()->reload();
 		/**
 		 * refresh technical cookies
