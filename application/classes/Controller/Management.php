@@ -176,6 +176,12 @@ class Controller_Management extends Controller_Automatic{
 	public function action_leave()
 	{
 		$user_id = Coder::instance()->from_url($this->request->param('user_id'));
+		
+		if ( ! is_numeric($user_id))
+		{
+			throw new Exception('Redirect here, user_id is not numeric');
+		}
+		
 		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
 		
 		
@@ -214,12 +220,13 @@ class Controller_Management extends Controller_Automatic{
 					else 
 					{
 						//cant leave until coach is empty
-						throw new Exception('cant leave the club, u drunk go home');
+						throw new Exception('cant leave the club because team without manager');
 					}
 				}
 				else
 				{
 					//delete the team, leave manager
+					throw new Exception('delete the empty team');
 				}
 			}
 			else 
@@ -278,6 +285,24 @@ class Controller_Management extends Controller_Automatic{
 			)
 		)
 		->execute();
+	}
+	public function action_roles()
+	{
+	//	echo 'ORGANISE ROLES'.$this->request->param('id');
+		$user = Auth::instance()->get_user();
+		$team = $user->team;
+		$roles = ORM::factory('Role')
+			->where('name', '<>', 'login')->where('name', '<>', 'admin')->find_all();
+		
+		$menu = Menu::factory('Team', $user);
+		
+		
+		$players = $team->get_players();
+		$table = new Table($roles, $players, $menu->get_resource_by_user($user, 'manage'));
+			
+		$component_grid_roles = View::factory('Component/Form/Node');
+		$component_grid_roles->content = $table;
+		$this->view_container = $component_grid_roles;
 	}
 	public function action_manage_management()
 	{

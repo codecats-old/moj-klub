@@ -26,6 +26,28 @@
 	
 				this.linkChangeData=new strz_Ajax.GetForm('user_change-data_get', 'div[rel=user_form]');
 				this.linkChangeData.run();
+				
+				var switchButton = new strz_Ajax.Component({
+					trigger:'input[type=checkbox]',
+					component:'switchButton',
+					params:{
+						show_labels: true,
+						on_label: '<i class="icon-eye-open"></i>', 
+						off_label: '<i class="icon-eye-close"></i>'
+					}
+				});
+				/**
+				 * Call initialize switchButton
+				 */
+				this.linkChangeData.addCallback({
+					switchButton : {
+						reference : switchButton,
+						methods : {
+							'init' : null
+						}
+					}
+				});
+				
 				this.linkChangePass=new strz_Ajax.GetForm('user_change-password_get', 'div[rel=user_form]');
 				this.linkChangePass.run();
 				this.linkChangeAvatar=new strz_Ajax.GetForm('user_change-avatar_get', 'div[rel=user_form]');

@@ -22,27 +22,47 @@
 	<ul class="dropdown-menu pull-right" >
 <?php if(Arr::get($options, 'players')):?>
 		<li tabindex="-1">
-			<a href="#">players</a>
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Manage', 
+			array(
+				'context' 	=> 'players'
+			)
+		)->render();
+	?>
 		</li>
 <?php endif;?>
 <?php if(Arr::get($options, 'staff')):?>
 		<li tabindex="-1">
-			<a href="#">staff</a>
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Manage', 
+			array(
+				'context' 	=> 'staff'
+			)
+		)->render();
+	?>
 		</li>
 <?php endif;?>
 <?php if(Arr::get($options, 'management')):?>
 		<li tabindex="-1">
-			<a  href="#">management</a>
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Manage', 
+			array(
+				'context' 	=> 'management'
+			)
+		)->render();
+	?>
 		</li>
 <?php endif;?>
 <?php if(Arr::get($options, 'leave')):?>
 		<li class="divider"></li>
 		<li tabindex="-1">
-	<?php echo View::factory('Component/Menu/Team/Manage/Anchors/Leave', 
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Leave', 
 			array(
-				'user', $user
+				'user' 	=> $user
 			)
-	)->render();?>
+		)->render();
+	?>
 		</li>
 <?php endif;?>
 

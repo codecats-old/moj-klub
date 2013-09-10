@@ -4,10 +4,12 @@
 		<div class="navbar-inner">2013 &COPY; by CodeCats</div>
 	</nav>
 </footer>
-
+<!-- LIBS -->
 <?php echo HTML::script('assets/script/Js/jquery-2.0.2.min.js');?>
 <?php echo HTML::script('assets/vendor/jquery.cookie.js');?>
 <?php echo HTML::script('assets/script/Js/bootstrap.min.js');?>
+<?php echo HTML::script('assets/script/Js/jquery-ui-1.10.3.custom.min.js');?>
+<!-- >LIBS -->
 
 <!-- AJAX -->
 <!-- Core -->
@@ -93,7 +95,7 @@
 <!-- Vendor libs -->
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>
 <?php echo HTML::script('assets/vendor/gallery/js/gallery.min.js');?>
-
+<?php echo HTML::script('assets/vendor/switchButton/jquery.switchButton.js');?>
 <!-- testing -->
 <script>
 

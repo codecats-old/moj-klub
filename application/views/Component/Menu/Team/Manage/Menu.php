@@ -5,12 +5,26 @@
 	
 <?php if (Arr::get($options, 'players')): ?>
 		<div class="span6">
-			<a href="#" class="btn btn-block btn-large">players</a>
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Manage', 
+			array(
+				'context' 	=> 'players',
+				'style' 	=> 'btn btn-block btn-large'
+			)
+		)->render();
+	?>
 		</div>
 <?php endif;?>
 <?php if (Arr::get($options, 'staff')): ?>
 		<div class="span6">
-			<a href="#" class="btn btn-block btn-large">staff</a>
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Manage', 
+			array(
+				'context' 	=> 'staff',
+				'style' 	=> 'btn btn-block btn-large'
+			)
+		)->render();
+	?>
 		</div>
 <?php endif;?>
 	</div>
@@ -18,7 +32,14 @@
 	<div class="row-fluid">
 <?php if (Arr::get($options, 'management')): ?>
 		<div class="span6">
-			<a href="#" class="btn btn-block btn-large">management</a>
+	<?php 
+		echo View::factory('Component/Menu/Team/Manage/Anchors/Manage', 
+			array(
+				'context' 	=> 'management',
+				'style' 	=> 'btn btn-block btn-large'
+			)
+		)->render();
+	?>
 		</div>
 <?php endif;?>
 <?php if (Arr::get($options, 'leave')): ?>

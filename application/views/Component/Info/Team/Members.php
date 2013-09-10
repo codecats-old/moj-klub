@@ -3,13 +3,15 @@
 <div class="tabbable">
 	<ul class="nav nav-tabs">
 		<li class="active btn-mini">
-			<a data-toggle="tab" href="#tab1">Members</a>
+			<a data-toggle="tab" href="#tab1">players</a>
 		</li>
-<!-- STAFF SECTION
+		
+<?php if ( ! empty($staff)):?>
  		<li class="btn-mini">
-			<a data-toggle="tab" href="#tab2">Staff</a>
+			<a data-toggle="tab" href="#tab2">staff</a>
 		</li>
- -->
+<?php endif;?>
+ 
 		<li class="btn-mini">
 			<a data-toggle="tab" href="#tab3">management</a>
 		</li>
@@ -19,6 +21,13 @@
 			<ol>
 <?php foreach($players as $player): ?>
 				<li class="well">
+	<?php $path = (empty($player->avatar->path) === FALSE) ? $player->avatar->path : 'upload/default/avatar/user.jpeg'; 
+		echo HTML::image($path, 
+			array(
+				'class' 	=> 'img-polaroid',
+				'alt' 		=> 'avatar'
+			)
+	);?>
 					<strong>
 	<?php echo Arr::get($player->as_array(), 'username');?>
 					</strong>
@@ -32,7 +41,7 @@
 	<?php endif;?>
 	
 	<?php if ($player->id === Arr::get($capitan, 'id')) echo ' <i class="icon-star-empty"></i>';?>
-	
+					<div class="row-fluid">
 	<?php echo HTML::anchor(Route::get('default')->uri(
 			array(
 				'controller' 	=> 'user',
@@ -43,7 +52,7 @@
 		'see the profile',
 		array('class' => 'btn btn-mini btn-info pull-right')
 	)?>
-
+					</div>
 		<!-- when training for user will be set
 					<div class="progress progress-striped active">
 						<div class="bar" style="width: 50%;">training time</div>
