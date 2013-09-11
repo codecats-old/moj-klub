@@ -613,3 +613,6 @@
 #7 /home/t/www/moj-klub/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #8 /home/t/www/moj-klub/index.php(118): Kohana_Request->execute()
 #9 {main} in /home/t/www/moj-klub/modules/menu/classes/Zend/Acl.php:28
+2013-09-10 21:47:55 --- EMERGENCY: ErrorException [ 1 ]: Method Table::__toString() must not throw an exception ~ APPPATH/views/Component/Form/Node.php [ 0 ] in :
+2013-09-10 21:47:55 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

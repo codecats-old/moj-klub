@@ -1,0 +1,2087 @@
+
+<style type="text/css">
+.kohana table.profiler { width: 99%; margin: 0 auto 1em; border-collapse: collapse; }
+.kohana table.profiler th,
+.kohana table.profiler td { padding: 0.2em 0.4em; background: #fff; border: solid 1px #999; border-width: 1px 0; text-align: left; font-weight: normal; font-size: 1em; color: #111; vertical-align: top; text-align: right; }
+.kohana table.profiler th.name { text-align: left; }
+.kohana table.profiler tr.group th { font-size: 1.4em; background: #222; color: #eee; border-color: #222; }
+.kohana table.profiler tr.group td { background: #222; color: #777; border-color: #222; }
+.kohana table.profiler tr.group td.time { padding-bottom: 0; }
+.kohana table.profiler tr.headers th { text-transform: lowercase; font-variant: small-caps; background: #ddd; color: #777; }
+.kohana table.profiler tr.mark th.name { width: 40%; font-size: 1.2em; background: #fff; vertical-align: middle; }
+.kohana table.profiler tr.mark td { padding: 0; }
+.kohana table.profiler tr.mark.final td { padding: 0.2em 0.4em; }
+.kohana table.profiler tr.mark td > div { position: relative; padding: 0.2em 0.4em; }
+.kohana table.profiler tr.mark td div.value { position: relative; z-index: 2; }
+.kohana table.profiler tr.mark td div.graph { position: absolute; top: 0; bottom: 0; right: 0; left: 100%; background: #71bdf0; z-index: 1; }
+.kohana table.profiler tr.mark.memory td div.graph { background: #acd4f0; }
+.kohana table.profiler tr.mark td.current { background: #eddecc; }
+.kohana table.profiler tr.mark td.min { background: #d2f1cb; }
+.kohana table.profiler tr.mark td.max { background: #ead3cb; }
+.kohana table.profiler tr.mark td.average { background: #ddd; }
+.kohana table.profiler tr.mark td.total { background: #d0e3f0; }
+.kohana table.profiler tr.time td { border-bottom: 0; font-weight: bold; }
+.kohana table.profiler tr.memory td { border-top: 0; }
+.kohana table.profiler tr.final th.name { background: #222; color: #fff; }
+.kohana table.profiler abbr { border: 0; color: #777; font-weight: normal; }
+.kohana table.profiler:hover tr.group td { color: #ccc; }
+.kohana table.profiler:hover tr.mark td div.graph { background: #1197f0; }
+.kohana table.profiler:hover tr.mark.memory td div.graph { background: #7cc1f0; }</style>
+
+
+<div class="kohana">
+		<table class="profiler">
+		<tr class="group">
+			<th class="name" rowspan="2">Requests</th>
+			<td class="time" colspan="4">0.398434 <abbr title="seconds">s</abbr></td>
+		</tr>
+		<tr class="group">
+			<td class="memory" colspan="4">2,704.8828 <abbr title="kilobyte">kB</abbr></td>
+		</tr>
+		<tr class="headers">
+			<th class="name">Benchmark</th>
+						<th class="min">Min</th>
+						<th class="max">Max</th>
+						<th class="average">Average</th>
+						<th class="total">Total</th>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">&quot;management/roles/players&quot; (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.408535 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.408535 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.408535 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.408535 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">2,720.9609 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">2,720.9609 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">2,720.9609 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">2,720.9609 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+			</table>
+		<table class="profiler">
+		<tr class="group">
+			<th class="name" rowspan="2">Kohana</th>
+			<td class="time" colspan="4">0.019588 <abbr title="seconds">s</abbr></td>
+		</tr>
+		<tr class="group">
+			<td class="memory" colspan="4">54.6953 <abbr title="kilobyte">kB</abbr></td>
+		</tr>
+		<tr class="headers">
+			<th class="name">Benchmark</th>
+						<th class="min">Min</th>
+						<th class="max">Max</th>
+						<th class="average">Average</th>
+						<th class="total">Total</th>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">find_file (80)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000098 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000437 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000245 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.019588 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5313 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">2.5625 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6837 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">54.6953 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+			</table>
+		<table class="profiler">
+		<tr class="group">
+			<th class="name" rowspan="2">Database (default)</th>
+			<td class="time" colspan="4">0.142696 <abbr title="seconds">s</abbr></td>
+		</tr>
+		<tr class="group">
+			<td class="memory" colspan="4">23.0156 <abbr title="kilobyte">kB</abbr></td>
+		</tr>
+		<tr class="headers">
+			<th class="name">Benchmark</th>
+						<th class="min">Min</th>
+						<th class="max">Max</th>
+						<th class="average">Average</th>
+						<th class="total">Total</th>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SHOW FULL COLUMNS FROM `users` (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.001040 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.001040 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.001040 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.001040 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 97,144091766185%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `user`.`id` AS `id`, `user`.`email` AS `email`, `user`.`username` AS `username`, `user`.`password` AS `password`, `user`.`logins` AS `logins`, `user`.`last_login` AS `last_login`, `user`.`avatar_id` AS `avatar_id`, `user`.`team_id` AS `team_id` FROM `users` AS `user` WHERE `user`.`id` = &#039;1&#039; LIMIT 1 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000254 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000254 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000254 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000254 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,302063691599%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SHOW FULL COLUMNS FROM `teams` (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.001381 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.001381 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.001381 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.001381 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 96,207181018228%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `team`.`id` AS `id`, `team`.`short_name` AS `short_name`, `team`.`full_name` AS `full_name`, `team`.`description` AS `description`, `team`.`success` AS `success`, `team`.`training` AS `training`, `team`.`email` AS `email`, `team`.`phone` AS `phone`, `team`.`street` AS `street`, `team`.`street_no` AS `street_no`, `team`.`zip_code` AS `zip_code`, `team`.`city` AS `city`, `team`.`avatar_id` AS `avatar_id`, `team`.`join_date` AS `join_date` FROM `teams` AS `team` WHERE `team`.`id` = &#039;19&#039; LIMIT 1 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000262 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000262 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000262 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000262 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,280457783365%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SHOW FULL COLUMNS FROM `roles` (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000957 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000957 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000957 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000957 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 97,371935889378%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `role`.`id` AS `id`, `role`.`name` AS `name`, `role`.`description` AS `description` FROM `roles` AS `role` JOIN `role_users` ON (`role_users`.`role_id` = `role`.`id`) WHERE `role_users`.`user_id` = &#039;1&#039; (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,406819610308%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `role`.`id` AS `id`, `role`.`name` AS `name`, `role`.`description` AS `description` FROM `roles` AS `role` WHERE `name` &lt;&gt; &#039;login&#039; AND `name` &lt;&gt; &#039;admin&#039; (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,40420071234%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `role`.`id` AS `id`, `role`.`name` AS `name`, `role`.`description` AS `description` FROM `roles` AS `role` WHERE `name` = &#039;player&#039; LIMIT 1 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000235 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000235 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000235 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000235 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,354441650953%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `user`.`id` AS `id`, `user`.`email` AS `email`, `user`.`username` AS `username`, `user`.`password` AS `password`, `user`.`logins` AS `logins`, `user`.`last_login` AS `last_login`, `user`.`avatar_id` AS `avatar_id`, `user`.`team_id` AS `team_id` FROM `users` AS `user` JOIN `role_users` ON (`role_users`.`user_id` = `user`.`id`) WHERE `role_users`.`role_id` = &#039;3&#039; AND `team_id` = &#039;19&#039; LIMIT 30 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000797 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000797 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000797 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000797 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 97,811910747957%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;1&#039; AND `role_id` IN (&#039;3&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000241 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000241 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000241 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000241 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,338728263147%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;1&#039; AND `role_id` IN (&#039;4&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000222 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000222 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000222 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000222 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,389796773518%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;1&#039; AND `role_id` IN (&#039;5&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000223 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000223 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000223 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000223 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,38717787555%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;1&#039; AND `role_id` IN (&#039;6&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000214 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000214 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000214 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000214 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,412057406243%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;1&#039; AND `role_id` IN (&#039;7&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000217 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,40420071234%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;1&#039; AND `role_id` IN (&#039;8&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000233 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000233 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000233 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000233 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,360334171381%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;2&#039; AND `role_id` IN (&#039;3&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000228 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000228 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000228 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000228 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,374083385711%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;2&#039; AND `role_id` IN (&#039;4&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000230 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000230 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000230 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000230 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,368190865284%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;2&#039; AND `role_id` IN (&#039;5&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000196 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000196 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000196 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000196 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,46181646763%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;2&#039; AND `role_id` IN (&#039;6&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000171 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000171 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000171 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000171 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,529907814792%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;2&#039; AND `role_id` IN (&#039;7&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000463 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000463 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000463 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000463 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 98,728525036665%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;2&#039; AND `role_id` IN (&#039;8&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000216 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,406819610308%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;3&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,414676304211%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;4&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000213 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,415331028703%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;5&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000190 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000190 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000190 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000190 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,478184579929%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;6&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000201 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000201 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000201 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000201 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,4480672533%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;7&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000212 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000212 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000212 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000212 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,417949926671%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT COUNT(*) AS `records_found` FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;8&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000209 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000209 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000209 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000209 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,426461345066%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">DELETE FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;3&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.036415 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.036415 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.036415 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.036415 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">DELETE FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;4&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000398 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000398 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000398 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000398 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 98,907264822963%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">DELETE FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;5&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000366 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000366 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000366 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000366 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 98,994997904882%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">DELETE FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;6&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000393 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000393 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000393 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000393 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 98,921014037293%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">DELETE FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;7&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000373 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000373 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000373 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000373 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 98,976010894616%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">DELETE FROM `role_users` WHERE `user_id` = &#039;22&#039; AND `role_id` IN (&#039;8&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000307 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000307 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000307 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000307 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,156714854389%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `role`.`id` AS `id`, `role`.`name` AS `name`, `role`.`description` AS `description` FROM `roles` AS `role` WHERE `role`.`id` = &#039;3&#039; LIMIT 1 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000202 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000202 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000202 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000202 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,445448355332%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">INSERT INTO `role_users` (`user_id`, `role_id`) VALUES (&#039;22&#039;, &#039;3&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.036198 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.036198 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.036198 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.036198 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 0,59645401215168%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `role`.`id` AS `id`, `role`.`name` AS `name`, `role`.`description` AS `description` FROM `roles` AS `role` WHERE `role`.`id` = &#039;7&#039; LIMIT 1 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000229 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000229 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000229 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000229 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,371464487744%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">INSERT INTO `role_users` (`user_id`, `role_id`) VALUES (&#039;22&#039;, &#039;7&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.029144 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.029144 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.029144 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.029144 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 19,967132830505%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">SELECT `role`.`id` AS `id`, `role`.`name` AS `name`, `role`.`description` AS `description` FROM `roles` AS `role` WHERE `role`.`id` = &#039;8&#039; LIMIT 1 (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.000239 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.000239 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.000239 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.000239 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 99,343966059082%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.6172 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">INSERT INTO `role_users` (`user_id`, `role_id`) VALUES (&#039;22&#039;, &#039;8&#039;) (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.028981 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.028981 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.028981 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.028981 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 20,414964382988%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.5000 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 18,987341772152%"></div>
+									</div>
+			</td>
+					</tr>
+			</table>
+		<table class="profiler">
+		<tr class="group">
+			<th class="name" rowspan="2">Change role</th>
+			<td class="time" colspan="4">0.167442 <abbr title="seconds">s</abbr></td>
+		</tr>
+		<tr class="group">
+			<td class="memory" colspan="4">105.7109 <abbr title="kilobyte">kB</abbr></td>
+		</tr>
+		<tr class="headers">
+			<th class="name">Benchmark</th>
+						<th class="min">Min</th>
+						<th class="max">Max</th>
+						<th class="average">Average</th>
+						<th class="total">Total</th>
+					</tr>
+				<tr class="mark time">
+						<th class="name" rowspan="2" scope="rowgroup">manage_players (1)</th>
+						<td class="min">
+				<div>
+					<div class="value">0.167442 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">0.167442 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">0.167442 <abbr title="seconds">s</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">0.167442 <abbr title="seconds">s</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+		<tr class="mark memory">
+						<td class="min">
+				<div>
+					<div class="value">105.7109 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="max">
+				<div>
+					<div class="value">105.7109 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="average">
+				<div>
+					<div class="value">105.7109 <abbr title="kilobyte">kB</abbr></div>
+									</div>
+			</td>
+						<td class="total">
+				<div>
+					<div class="value">105.7109 <abbr title="kilobyte">kB</abbr></div>
+											<div class="graph" style="left: 0%"></div>
+									</div>
+			</td>
+					</tr>
+			</table>
+	
+	<table class="profiler">
+				<tr class="final mark time">
+			<th class="name" rowspan="2" scope="rowgroup">Application Execution (7)</th>
+						<td class="min">0.363496 <abbr title="seconds">s</abbr></td>
+						<td class="max">0.481668 <abbr title="seconds">s</abbr></td>
+						<td class="average">0.426328 <abbr title="seconds">s</abbr></td>
+						<td class="current">0.477742 <abbr title="seconds">s</abbr></td>
+					</tr>
+		<tr class="final mark memory">
+						<td class="min">3,910.6875 <abbr title="kilobyte">kB</abbr></td>
+						<td class="max">4,028.8906 <abbr title="kilobyte">kB</abbr></td>
+						<td class="average">3,994.3951 <abbr title="kilobyte">kB</abbr></td>
+						<td class="current">3,910.6875 <abbr title="kilobyte">kB</abbr></td>
+					</tr>
+	</table>
+</div>

@@ -1,15 +1,41 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
+/**
+ * Table creator
+ * 
+ * @author t
+ *
+ */
 class Table {
+	
+	/**
+	 * Default view
+	 * @var string
+	 */
 	protected $view = 'Component/Grid/Table/Node';
 	
+	/**
+	 * container
+	 * @var array
+	 */
 	protected $_data = array();
-	public function __construct($roles, $users)
+	
+	/**
+	 * 
+	 * @param Model $roles
+	 * @param Model $users
+	 */
+	public function __construct($roles, $users, array $errors = NULL)
 	{
-		$this->roles = $roles;
-		$this->users = $users;
+		$this->roles = 	$roles;
+		$this->users = 	$users;
+		$this->errors = $errors;
 		$this->_initialize();
 	}
+	
+	/**
+	 * Initialize content for table
+	 */
 	protected function _initialize()
 	{
 		$this->heads = $this->roles;
@@ -46,6 +72,8 @@ class Table {
 		$view->head_field = $this->head_field;
 		
 		$view->bodies = $this->body;
+		
+		$view->errors = $this->errors;
 		
 		return $view->render();
 	}

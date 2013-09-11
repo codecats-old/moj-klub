@@ -33,6 +33,17 @@ class Menu_Team extends Menu_General{
 			->addResource(Menu::get_generic_resource('management'), $resource)
 			->addResource(Menu::get_generic_resource('leave'), $resource);
 		
+		//id of role from database
+		$this
+			->add_resource('3', 'players')//3 - player
+			->add_resource('4', 'staff')//4 - staff
+			->add_resource('8', 'staff')//8 - capitan
+			->add_resource('5', 'management')//5 - accountant
+			->add_resource('6', 'management')//6 - manager
+			->add_resource('7', 'management')//7 - coach
+			
+		;
+		
 		$resource = Menu::get_generic_resource('avatar');
 		$this->add_resource($resource);
 		

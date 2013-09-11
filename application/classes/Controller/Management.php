@@ -288,32 +288,202 @@ class Controller_Management extends Controller_Automatic{
 	}
 	public function action_roles()
 	{
-	//	echo 'ORGANISE ROLES'.$this->request->param('id');
+		
+		$order = $this->request->param('id');
+	
+		$post = $this->request->post();
+		
 		$user = Auth::instance()->get_user();
 		$team = $user->team;
+		
+		$menu = Menu::factory('Team', $user);
+
 		$roles = ORM::factory('Role')
 			->where('name', '<>', 'login')->where('name', '<>', 'admin')->find_all();
 		
-		$menu = Menu::factory('Team', $user);
+		$manager = Manager::factory('Role', $roles);
+		$manager->set_data(
+			array(
+				'user' 	=> $user,
+				'team' 	=> $team,
+				'menu' 	=> $menu
+			)
+		);
+		$manager->change_roles($order, $post);
 		
+		$this->view_content = $manager->get_views_result('content');
+		$this->view_container = $manager->get_views_result('container');
 		
+	/*	$data = array(
+			'user' 		=> $user,
+			'team' 		=> $team,
+			'menu' 		=> $menu,
+			'post' 		=> $post,
+			'roles' 	=> $roles
+		);
+		
+		switch ($order)
+		{
+			case 'management' 	:
+				$this->manage_management($data);
+				break;
+				
+			case 'staff' 		:
+				$this->manage_staff($data);
+				break;
+				
+			case 'players' 		:
+				$this->manage_players($data);
+				break;
+		}
+	*/	
+	}
+	public function manage_management($data)
+	{
+		
+	}
+	public function manage_staff($data)
+	{
+		
+	}
+	public function manage_players($data)
+	{
+		$user 	= $data['user'];
+		$team 	= $data['team'];
+		$menu 	= $data['menu'];
+		$post 	= $data['post'];
+		$roles 	= $data['roles'];
+
 		$players = $team->get_players();
-		$table = new Table($roles, $players, $menu->get_resource_by_user($user, 'manage'));
+		$error = [];
+		$table = new Table($roles, $players, NULL);
+		echo $table;	
+		
+		echo '<pre>';
+var_dump($post);
+		
+		foreach ($players as $player)
+		{
+			$status = ' '.$player->username;
+			if (
+					empty($post) === FALSE AND 
+					key_exists($player->username, $post) AND
+					$this->changes_allowed($user, $post[$player->username], $menu))
+			{
+				$allow_changes = TRUE;
+				
+				if ($this->is_role($player, 'players'))
+				{
+					if ($menu->is_allowed($user->username, 'players') === FALSE)
+					{
+						$allow_changes = FALSE;
+					}
+				}
+				
+				if ($allow_changes AND $this->is_role($player, 'staff'))
+				{
+					if ($menu->is_allowed($user->username, 'staff') === FALSE)
+					{
+						$allow_changes = FALSE;
+					}
+				}
+				
+				if ($allow_changes AND $this->is_role($player, 'management'))
+				{
+					if ($menu->is_allowed($user->username, 'management') === FALSE)
+					{
+						$allow_changes = FALSE;
+					}
+				}
+				
+		
+				
+				if ($allow_changes)
+				{
+					$status ='change'.$status;
+				}
+				else 
+				{
+					
+					$status = 'dal'.$status;
+				}
+			}
+			else
+			{
+				$error = ['wtf man'];
+				$status = 'dissallow change'.$status;
+			}
+			echo $status.'<br>';
+		}
+		
+		foreach ($players as $player)
+		{
+			echo 'management'.$user->username.': '.$menu->is_allowed($user->username, 'management').', ';
+			echo 'management'.$player->username.': '.$this->is_role($player, 'management').'<br>';
 			
+			echo 'staff'.$user->username.': '.$menu->is_allowed($user->username, 'staff').', ';
+			echo 'staff'.$player->username.': '.$this->is_role($player, 'staff').'<br>';
+			
+			echo 'players'.$user->username.': '.$menu->is_allowed($user->username, 'players').', ';
+			echo 'players'.$player->username.': '.$this->is_role($player, 'players').'<br>';
+		}
+	//	$this->set_new_roles($players, $post, $roles);
+
+		var_dump($post);
+		var_dump($menu->get_resource_by_user($user, 'players'));
+
+		
+		echo '</pre>';
+		
+		$table = new Table($roles, $players, $error);
 		$component_grid_roles = View::factory('Component/Form/Node');
 		$component_grid_roles->content = $table;
 		$this->view_container = $component_grid_roles;
 	}
-	public function action_manage_management()
+	protected function is_unique($member, $post)
 	{
 		
 	}
-	public function action_manage_staff()
+	protected function changes_allowed($user, $roles, $menu)
 	{
-		
+		$allowed = TRUE;
+
+		foreach ($roles as $id)
+		{	
+			if ( ! $menu->is_allowed($user->username, $id))
+			{
+				$allowed = FALSE;	
+			}
+		}
+		return $allowed;
 	}
-	public function action_manage_players()
+	protected function is_role($user, $role_name)
 	{
-		
+		$menu = Menu::factory('Team', $user);
+		return $menu->is_allowed($user->username, $role_name);
+	}
+
+	protected function set_new_roles($user, $post, $roles)
+	{
+			echo $user->username.'-'.'remove force all team roles<br>';
+			foreach ($roles as $role)
+			{
+				$user->remove('roles', $role);
+			}
+	
+			foreach ($post as $name => $arr_roles)
+			{
+				if ($user->username === $name)
+				{
+					//add roles
+					foreach($arr_roles as $id_role)
+					{
+						echo $user->username.'+'.$role->name.'<br>';
+						$role = ORM::factory('Role', $id_role);
+						$user->add('roles', $role);
+					}
+				}
+			}
+
 	}
 }
