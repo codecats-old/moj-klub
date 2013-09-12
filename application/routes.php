@@ -15,6 +15,22 @@ function underscope2dash($route, $params, $request)
 }
 
 Route::set(
+	'roles',
+	'management/roles/<order>/<confirm>',
+	array(
+		'order' 	=> '(players|staff|management)',
+		'confirm' 	=> '(true|false)'
+	)
+)
+->filter('underscope2dash')
+->defaults(
+		array(
+			'controller' 	=> 'management',
+			'action' 		=> 'roles'
+		)
+);
+
+Route::set(
 	'manage',
 	'management/<action>/<user_id>/<confirm>',
 	array(

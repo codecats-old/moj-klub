@@ -289,7 +289,8 @@ class Controller_Management extends Controller_Automatic{
 	public function action_roles()
 	{
 		
-		$order = $this->request->param('id');
+		$order = $this->request->param('order');
+		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
 	
 		$post = $this->request->post();
 		
@@ -298,18 +299,28 @@ class Controller_Management extends Controller_Automatic{
 		
 		$menu = Menu::factory('Team', $user);
 
-		$roles = ORM::factory('Role')
-			->where('name', '<>', 'login')->where('name', '<>', 'admin')->find_all();
+		$roles = ORM::factory('Role');
 		
 		$manager = Manager::factory('Role', $roles);
 		$manager->set_data(
 			array(
 				'user' 	=> $user,
 				'team' 	=> $team,
-				'menu' 	=> $menu
+				'menu' 	=> $menu,
+				'order' => $order
 			)
 		);
-		$manager->change_roles($order, $post);
+		
+		$success = TRUE;
+		if ($confirm)
+			$success = $manager->change_roles($order, $post);
+		else 
+			$success = $manager->show_roles($order);
+		
+		if ( ! $success)
+		{
+			throw new Exception('Redirect here');
+		}
 		
 		$this->view_content = $manager->get_views_result('content');
 		$this->view_container = $manager->get_views_result('container');

@@ -4,11 +4,10 @@
 ?>
 
 <?php echo HTML::anchor(
-	Route::get('default')->uri(
+	Route::get('roles')->uri(
 		array(
-			'controller' 	=> 'management',
-			'action' 		=> 'roles',
-			'id' 			=> 	$context
+			'order'		=> 	$context,
+			'confirm' 	=> 'false'
 		)
 	),
 	$context,
