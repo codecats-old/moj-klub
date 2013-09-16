@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 // -- Environment setup --------------------------------------------------------
 
@@ -115,26 +115,30 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
  */
 Kohana::$config->attach(new Config_File);
 
-
+/**
+ * Salt.
+ */
 Cookie::$salt='a~d@d!s*o$m%e^7salt';
 
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
-Kohana::modules(array(
-	'auth'       	=> MODPATH.'auth',       	// Basic authentication
-	'cache'      	=> MODPATH.'cache',      	// Caching with multiple backends
-	'database'   	=> MODPATH.'database',   	// Database access
-	'image'      	=> MODPATH.'image',      	// Image manipulation
-	'orm'        	=> MODPATH.'orm',        	// Object Relationship Mapping
-	'captcha'		=> MODPATH.'captcha',	 	// Captha module
-	'message'		=> MODPATH.'message',	 	// Flash messages
-	'manager'		=> MODPATH.'manager',	 	// Manipulate model and post data
-	'menu'			=> MODPATH.'menu',		 	// Menu creator by roles based on Zend Acl module
-	'coder'			=> MODPATH.'coder',		 	// Module helps protect urls from CSRF attack
-	'pagination'	=> MODPATH.'pagination', 	// Pagination module
-	'notificator'	=> MODPATH.'notificator' 	// Messages notificator
-	));
+Kohana::modules(
+	array(
+		'auth'       	=> MODPATH.'auth',       	// Basic authentication
+		'cache'      	=> MODPATH.'cache',      	// Caching with multiple backends
+		'database'   	=> MODPATH.'database',   	// Database access
+		'image'      	=> MODPATH.'image',      	// Image manipulation
+		'orm'        	=> MODPATH.'orm',        	// Object Relationship Mapping
+		'captcha'		=> MODPATH.'captcha',	 	// Captha module
+		'message'		=> MODPATH.'message',	 	// Flash messages
+		'manager'		=> MODPATH.'manager',	 	// Manipulate model and post data
+		'menu'			=> MODPATH.'menu',		 	// Menu creator by roles based on Zend Acl module
+		'coder'			=> MODPATH.'coder',		 	// Module helps protect urls from CSRF attack
+		'pagination'	=> MODPATH.'pagination', 	// Pagination module
+		'notificator'	=> MODPATH.'notificator' 	// Messages notificator
+	)
+);
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
@@ -142,7 +146,9 @@ Kohana::modules(array(
  */
 require_once APPPATH.'routes'.EXT;
 
-
+/**
+ * Basedir in cookie for enable all functions on client site.
+ */
 $basedir = Cookie::get('basedir');
 if (! $basedir OR $basedir != Kohana::$base_url)
 {
