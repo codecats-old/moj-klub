@@ -19,7 +19,7 @@ Route::set(
 	'management/roles/<order>/<confirm>',
 	array(
 		'order' 	=> '(players|staff|management)',
-		'confirm' 	=> '(true|false)'
+		'confirm' 	=> '[\d \w]*'
 	)
 )
 ->filter('underscope2dash')

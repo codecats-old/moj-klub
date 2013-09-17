@@ -140,7 +140,7 @@ class Controller_Management extends Controller_Automatic{
 		$this->view_container 	= $manager->get_views_result('container');
 		$this->view_content 	= $manager->get_views_result('content');
 	}
-	
+
 	public function action_join_cancel()
 	{
 		/**
@@ -184,113 +184,30 @@ class Controller_Management extends Controller_Automatic{
 		
 		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
 		
+		$user = ORM::factory('User', $user_id);
+		$manager = Manager::factory('Management', $user);
+
+		$success = $manager->leave($confirm);
 		
-		if ($confirm === FALSE)
+		/**
+		 * Some data is not exists or not allowed so redirect
+		 */
+		if ( ! $success)
 		{
-			$info_confirm = View::factory('Component/Info/Confirm');
-			$info_confirm->title = 'action leave';
-			$info_confirm->content = 'You want leave the club, are you sure?';
-			$this->view_container = $info_confirm;
+			HTTP::redirect(Route::get('default')->uri());	
 		}
-		else 
-		{
-			$master = Auth::instance()->get_user();
-			$team = $master->team;
-			
-			if ( ! $team->loaded())
-			{
-				throw new ErrorException('redirect user without team');
-			}
-			
-			/**
-			 * If manager want to leave the team coach takes the role manager, if no coach and
-			 * the club is not empty manager can't leave the club, if the club is empty
-			 * it will be deleted
-			 */
-			if ($master->has('roles', ORM::factory('Role', array('name' => 'manager'))))
-			{
-				if ($team->users->where('id', '<>', $master->id)->count_all() > 0)
-				{
-					$new_manager = $team->get_coach();
-					if ($new_manager->loaded())
-					{
-						//add role manager to new_manager, leave manager
-						throw new Exception('coach to manager');
-					}
-					else 
-					{
-						//cant leave until coach is empty
-						throw new Exception('cant leave the club because team without manager');
-					}
-				}
-				else
-				{
-					//delete the team, leave manager
-					throw new Exception('delete the empty team');
-				}
-			}
-			else 
-			{
-				$this->leave_club($master);	
-				
-				Message::instance()->set(Message::SUCCESS, 'you just leave the club',
-					array(
-						'redirect' => TRUE
-					)
-				);
-				$component_info_success = Message::instance()->get_view('Component/Info/Success');
-				$this->view_container = $component_info_success;
-			}
-		}
+		
+		$this->view_content = $manager->get_views_result('content');
+		$this->view_container = $manager->get_views_result('container');
 	}
 
-	public function leave_club($user)
-	{
-		//user has no club
-		$user->team_id = NULL;
-		$user->update();
-		
-		//user has no roles
-		$roles = array('capitan', 'coach', 'manager');
-		
-		foreach ($roles as $role) 
-		{
-			//if user has roles remove them
-			$user_role = ORM::factory('Role', array('name' => $role));
-			if ($user->has('roles', $user_role))
-			{
-				$user->remove('roles', $user_role);
-			}
-		}
-		
-		//find all requests (accepted one, refused and canceled)
-		$requests = $user->request->find_all();
-		foreach ($requests as $request)
-		{
-			//delete requests
-			$request->delete();
-		}
-		
-		//update session
-		Auth::instance()->get_user()->reload();
-		/**
-		 * refresh technical cookies
-		 */
-		Request::factory(
-			Route::get('default')->uri(
-				array(
-					'controller' => 'ajax',
-					'action' 	 => 'roles'
-				)
-			)
-		)
-		->execute();
-	}
+	
 	public function action_roles()
 	{
-		
 		$order = $this->request->param('order');
-		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
+		$confirm = filter_var(
+				Coder::instance()->from_url($this->request->param('confirm')), 
+				FILTER_VALIDATE_BOOLEAN);
 	
 		$post = $this->request->post();
 		
@@ -312,189 +229,24 @@ class Controller_Management extends Controller_Automatic{
 		);
 		
 		$success = TRUE;
-		if ($confirm)
+		if ($confirm === TRUE)
+		{
 			$success = $manager->change_roles($order, $post);
-		else 
+		}
+		else
+		{
 			$success = $manager->show_roles($order);
-		
+		} 
+		/**
+		 * Some data is not exists or not allowed so redirect
+		 */
 		if ( ! $success)
 		{
-			throw new Exception('Redirect here');
+			HTTP::redirect(Route::get('default')->uri());	
 		}
 		
 		$this->view_content = $manager->get_views_result('content');
 		$this->view_container = $manager->get_views_result('container');
-		
-	/*	$data = array(
-			'user' 		=> $user,
-			'team' 		=> $team,
-			'menu' 		=> $menu,
-			'post' 		=> $post,
-			'roles' 	=> $roles
-		);
-		
-		switch ($order)
-		{
-			case 'management' 	:
-				$this->manage_management($data);
-				break;
-				
-			case 'staff' 		:
-				$this->manage_staff($data);
-				break;
-				
-			case 'players' 		:
-				$this->manage_players($data);
-				break;
-		}
-	*/	
-	}
-	public function manage_management($data)
-	{
-		
-	}
-	public function manage_staff($data)
-	{
-		
-	}
-	public function manage_players($data)
-	{
-		$user 	= $data['user'];
-		$team 	= $data['team'];
-		$menu 	= $data['menu'];
-		$post 	= $data['post'];
-		$roles 	= $data['roles'];
-
-		$players = $team->get_players();
-		$error = [];
-		$table = new Table($roles, $players, NULL);
-		echo $table;	
-		
-		echo '<pre>';
-var_dump($post);
-		
-		foreach ($players as $player)
-		{
-			$status = ' '.$player->username;
-			if (
-					empty($post) === FALSE AND 
-					key_exists($player->username, $post) AND
-					$this->changes_allowed($user, $post[$player->username], $menu))
-			{
-				$allow_changes = TRUE;
-				
-				if ($this->is_role($player, 'players'))
-				{
-					if ($menu->is_allowed($user->username, 'players') === FALSE)
-					{
-						$allow_changes = FALSE;
-					}
-				}
-				
-				if ($allow_changes AND $this->is_role($player, 'staff'))
-				{
-					if ($menu->is_allowed($user->username, 'staff') === FALSE)
-					{
-						$allow_changes = FALSE;
-					}
-				}
-				
-				if ($allow_changes AND $this->is_role($player, 'management'))
-				{
-					if ($menu->is_allowed($user->username, 'management') === FALSE)
-					{
-						$allow_changes = FALSE;
-					}
-				}
-				
-		
-				
-				if ($allow_changes)
-				{
-					$status ='change'.$status;
-				}
-				else 
-				{
-					
-					$status = 'dal'.$status;
-				}
-			}
-			else
-			{
-				$error = ['wtf man'];
-				$status = 'dissallow change'.$status;
-			}
-			echo $status.'<br>';
-		}
-		
-		foreach ($players as $player)
-		{
-			echo 'management'.$user->username.': '.$menu->is_allowed($user->username, 'management').', ';
-			echo 'management'.$player->username.': '.$this->is_role($player, 'management').'<br>';
-			
-			echo 'staff'.$user->username.': '.$menu->is_allowed($user->username, 'staff').', ';
-			echo 'staff'.$player->username.': '.$this->is_role($player, 'staff').'<br>';
-			
-			echo 'players'.$user->username.': '.$menu->is_allowed($user->username, 'players').', ';
-			echo 'players'.$player->username.': '.$this->is_role($player, 'players').'<br>';
-		}
-	//	$this->set_new_roles($players, $post, $roles);
-
-		var_dump($post);
-		var_dump($menu->get_resource_by_user($user, 'players'));
-
-		
-		echo '</pre>';
-		
-		$table = new Table($roles, $players, $error);
-		$component_grid_roles = View::factory('Component/Form/Node');
-		$component_grid_roles->content = $table;
-		$this->view_container = $component_grid_roles;
-	}
-	protected function is_unique($member, $post)
-	{
-		
-	}
-	protected function changes_allowed($user, $roles, $menu)
-	{
-		$allowed = TRUE;
-
-		foreach ($roles as $id)
-		{	
-			if ( ! $menu->is_allowed($user->username, $id))
-			{
-				$allowed = FALSE;	
-			}
-		}
-		return $allowed;
-	}
-	protected function is_role($user, $role_name)
-	{
-		$menu = Menu::factory('Team', $user);
-		return $menu->is_allowed($user->username, $role_name);
 	}
 
-	protected function set_new_roles($user, $post, $roles)
-	{
-			echo $user->username.'-'.'remove force all team roles<br>';
-			foreach ($roles as $role)
-			{
-				$user->remove('roles', $role);
-			}
-	
-			foreach ($post as $name => $arr_roles)
-			{
-				if ($user->username === $name)
-				{
-					//add roles
-					foreach($arr_roles as $id_role)
-					{
-						echo $user->username.'+'.$role->name.'<br>';
-						$role = ORM::factory('Role', $id_role);
-						$user->add('roles', $role);
-					}
-				}
-			}
-
-	}
 }

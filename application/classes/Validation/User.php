@@ -23,12 +23,14 @@ class Validation_User extends Validation_General{
 					array('matches', array(':validation', ':field', 'password'))
 			),
 			'name'=>array(
-					array('alpha'),
+					//array('alpha'),
+					array('regex', array(':value', '/^[\w]++$/iuD')),
 					array('min_length', array(':value', 2)),
 					array('max_length', array(':value', 15))
 			),
 			'surname'=>array(
-					array('alpha'),
+					//array('alpha'),
+					array('regex', array(':value', '/^[\w]++$/iuD')),
 					array('min_length', array(':value', 2)),
 					array('max_length', array(':value', 25))
 			),

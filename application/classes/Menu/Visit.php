@@ -34,10 +34,10 @@ class Menu_Visit extends Menu_General{
 		->add_role('guest')
 		->allow('guest', 	'user')
 
-	//	->allow('gallery', 	'guest')
+		->add_role('login', 'guest')
+		->allow('login', 'team')
 		//player
-		->add_role('player', 'guest')
-		->allow('player', 	 'team')
+		->add_role('player', 'login')
 		//capitan
 		->add_role('capitan', 'player')
 

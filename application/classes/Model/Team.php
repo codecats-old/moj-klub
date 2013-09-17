@@ -46,7 +46,7 @@ class Model_Team extends ORM{
 					'team.id', 'short_name', 'username', 
 					array(DB::expr('count(u.id)'), 'counter')
 			)
-			->join(array('users', 'u'))
+			->join(array('users', 'u'), 'LEFT')
 			->on('team.id', '=', 'u.team_id')
 			->where('team.id', 'IN', $photos)
 			->group_by('team.short_name')
@@ -72,7 +72,7 @@ class Model_Team extends ORM{
 					// team member *100 / max_team [%]
 					array(DB::expr('count(user.username) * 100 / '.$max_members), 'counter_percent')
 			)
-			->join(array('users', 'user'))
+			->join(array('users', 'user'), 'LEFT')
 			->on('team.id', '=', 'user.team_id')
 			->join(array('avatars', 'avatar'), 'LEFT')
 			->on('team.avatar_id', '=', 'avatar.id')

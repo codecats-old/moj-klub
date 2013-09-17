@@ -7,7 +7,7 @@
 	Route::get('roles')->uri(
 		array(
 			'order'		=> 	$context,
-			'confirm' 	=> 'false'
+			'confirm' 	=> 	Coder::instance()->to_url('false')
 		)
 	),
 	$context,

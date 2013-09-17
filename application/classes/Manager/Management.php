@@ -189,6 +189,144 @@ class Manager_Management extends Manager_Data{
 		
 	}
 	
+	public function leave($confirm)
+	{
+		if ($confirm === TRUE)
+		{
+			$user = $this->object;
+			$team = $user->team;
+			
+			if ( ! $team->loaded())
+			{
+				return FALSE;
+			}
+			
+			/**
+			 * If manager want to leave the team coach takes the role manager, if no coach and
+			 * the club is not empty manager can't leave the club, if the club is empty
+			 * it will be deleted
+			 */
+			$role_manager = ORM::factory('Role', array('name' => 'manager'));
+			if ($user->has('roles', $role_manager))
+			{
+				/**
+				 * Check if team is not empty
+				 */
+				if ($team->users->where('id', '<>', $user->id)->count_all() > 0)
+				{
+					$new_manager = $team->get_coach();
+					if ($new_manager->loaded() AND $new_manager->id !== $user->id)
+					{
+						//add role manager to new_manager, leave manager
+						$new_manager->add('roles', $role_manager);
+						$this->leave_club($user);
+						$this->success = TRUE;
+					}
+					else
+					{
+						$this->success = FALSE;
+						$this->error = array('can\'t leave the club because team can\'t stay without manager');
+					}
+				}
+				else
+				{
+					//delete the empty team, leave manager
+					$this->leave_club($user);
+					$team->delete();
+					$this->success = TRUE;
+				}
+			}
+			else
+			{
+				$this->leave_club($user);
+				$this->success = TRUE;
+			
+			}
+		}
+		
+		$this->set_leave_result($confirm);
+		return TRUE;
+	}
+	
+	/**
+	 * Difference success view becauser reload is needed
+	 */
+	public function set_leave_result($confirm)
+	{
+		if ($confirm === TRUE)
+		{
+			if ($this->success)
+			{
+				Message::instance()->set(Message::SUCCESS, 'you just leave the club',
+					array(
+						'redirect' => TRUE
+					)
+				);
+				$component_info_success = Message::instance()->get_view('Component/Info/Success');
+				$this->view_container = $component_info_success;
+			}
+			else
+			{
+				$this->set_view_warning();
+			}
+		}
+		else 
+		{
+			$info_confirm = View::factory('Component/Info/Confirm');
+			$info_confirm->title = 'action leave';
+			$info_confirm->content = 'You want leave the club, are you sure?';
+			$this->view_container = $info_confirm;
+		}
+	}
+	
+	/**
+	 * Leave the club by given user. Cleans up the necessary requests and delete unique roles
+	 * that user had in team which just leave. Cookies are refreshed because user which quit
+	 * the club may be client logged in himself. 
+	 * 
+	 * @param Model $user
+	 */
+	protected function leave_club($user)
+	{
+		//user has no club
+		$user->team_id = NULL;
+		$user->update();
+	
+		//user has no roles
+		$roles = Manager_Role::$unique_roles;
+	
+		foreach ($roles as $role)
+		{
+			//if user has roles remove them
+			$user_role = ORM::factory('Role', array('name' => $role));
+			if ($user->has('roles', $user_role))
+			{
+				$user->remove('roles', $user_role);
+			}
+		}	
+		//find all requests (accepted one, refused and canceled)
+		$requests = $user->request->find_all();
+		foreach ($requests as $request)
+		{
+			//delete requests
+			$request->delete();
+		}
+	
+		//update session
+		Auth::instance()->get_user()->reload();
+		/**
+		 * refresh technical cookies
+		*/
+		Request::factory(
+			Route::get('default')->uri(
+					array(
+						'controller' => 'ajax',
+						'action' 	 => 'roles'
+					)
+			)
+		)
+		->execute();
+	}
 	/**
 	 * Accept request
 	 */
@@ -330,7 +468,7 @@ class Manager_Management extends Manager_Data{
 		Message::instance()->set(Message::WARNING);
 	
 		$view_warning = Message::instance()
-		->get_view('Component/Info/Warning')
+			->get_view('Component/Info/Warning')
 			->set('info', $info_label)
 			->set('errors', $this->error);
 		

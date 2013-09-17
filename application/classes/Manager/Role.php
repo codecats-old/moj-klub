@@ -52,7 +52,7 @@ class Manager_Role extends Manager_Data{
 			'controller' 	=> Request::current()->controller(),
 			'action' 		=> Request::current()->action(),
 			'order' 		=> $this->order,
-			'confirm' 		=> 'true'
+			'confirm' 		=> Coder::instance()->to_url(TRUE)
 		));
 		$this->view_container = $component_grid_roles;
 	}

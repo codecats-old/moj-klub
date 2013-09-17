@@ -12,16 +12,17 @@ class Controller_Welcome extends Controller_Automatic {
 	    }
 		
 		$bigger_team = ORM::factory('Team')->get_biggest()->find();
-		
+
 		$main_team = ORM::factory('Team')->get_most_popular()->find();
-		$main_team_photos = ORM::factory('Photo', $main_team->id )
+		$main_team_photos = ORM::factory('Photo')
 			->order_by('uploaded', 'DESC')
+			->where('team_id', '=', $main_team->id)
 			->limit(5)
 			->find_all();
 		$main_team_avatar = $main_team->avatar;
 
 		$popular_teams = ORM::factory('Team')
-			->get_biggest($bigger_team->counter, $main_team->id)->limit(6)->find_all();
+			->get_biggest($bigger_team->counter, $main_team->id)->limit(3)->find_all();
 
 	//	$main_team->set('precentage_counter', $percents);
 //	echo ORM::factory('Team')->get_max_member_count()->find()->counter;

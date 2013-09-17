@@ -2,7 +2,6 @@
 <?php $path = Arr::get($team, 'path') ? Arr::get($team, 'path') : 'upload/default/avatar/team.png' ?>
 
 <li class="span4 btn btn-warning" data-toggle="collapse" data-target="#progress<?php echo $id;?>">
-
 	<div class="ribbon rot-45">
 		<p>
 			<span>
@@ -65,5 +64,4 @@
 		)
 	);
 ?>
-
 </li>
