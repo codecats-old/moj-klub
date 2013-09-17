@@ -8,6 +8,10 @@ class Model_User extends Model_Auth_User{
 		),
 		'request' => array(
 			'model' => 'Request'
+		),
+			
+		'training_users' => array(
+			'model' => 'Training_User'
 		)
 	);
 	protected $_has_one = array(

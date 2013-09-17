@@ -2,14 +2,18 @@
 
 class Controller_Management extends Controller_Automatic{
 	
-	public function action_index()
+	public function before()
 	{
-
+		parent::before();
+		
+		/**
+		 * Redirect all not logged in users from controller
+		 */
+		$this->redirect_user(FALSE);
 	}
+
 	public function action_consider_join()
 	{
-		$this->redirect_user(FALSE);
-		
 		$user_id = Coder::instance()->from_url($this->request->param('id'));
 		$result = $this->request->param('result');
 		
@@ -106,11 +110,6 @@ class Controller_Management extends Controller_Automatic{
 	
 	public function action_join()
 	{
-		/**
-		 * Not logged user cant ask to join the club
-		 */
-		$this->redirect_user(FALSE);
-		
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
 		/**
 		 * If team_id is numeric it means somethig went wrong (client may put random url), 
@@ -143,11 +142,6 @@ class Controller_Management extends Controller_Automatic{
 
 	public function action_join_cancel()
 	{
-		/**
-		 * Not logged user cant ask to join the club
-		 */
-		$this->redirect_user(FALSE);
-		
 		$team_id = Coder::instance()->from_url($this->request->param('id'));
 		/**
 		 * If team_id is numeric it means somethig went wrong (client may put random url), 
@@ -179,7 +173,7 @@ class Controller_Management extends Controller_Automatic{
 		
 		if ( ! is_numeric($user_id))
 		{
-			throw new Exception('Redirect here, user_id is not numeric');
+			HTTP::redirect();
 		}
 		
 		$confirm = filter_var($this->request->param('confirm'), FILTER_VALIDATE_BOOLEAN);
