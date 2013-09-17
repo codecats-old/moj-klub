@@ -5,7 +5,7 @@
 <!-- ERRORS -->
 	<?php foreach ($errors as $error):?>
 	<div class="label label-warning">
-		<?php echo $error;?>
+		<?php if (is_string($error)) echo $error;?>
 	</div>
 	<?php endforeach;?>
 <!-- >ERRORS -->

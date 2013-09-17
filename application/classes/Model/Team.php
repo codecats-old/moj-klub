@@ -1,23 +1,30 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
+
+/**
+ * Team Model
+ * @author t
+ *
+ */
 class Model_Team extends ORM{
+	
 	protected $_has_many = array(
-			'users' => array(
+			'users' 	=> array(
 					//UPDATED 'model' => 'user',
-					'model' => 'User',
-					'foreign_key' => 'team_id',
+					'model' 		=> 'User',
+					'foreign_key' 	=> 'team_id',
 			),
-			'photo' => array(
-					'model' => 'Photo',
-					'foreign_key' => 'team_id'
+			'photo' 	=> array(
+					'model' 		=> 'Photo',
+					'foreign_key' 	=> 'team_id'
 			),
-			'request' => array(
-				'model' => 'Request'
+			'request' 	=> array(
+					'model' 		=> 'Request'
 			)
 	);
-	protected $_belongs_to=array(
-			'avatar'=>array(
-					'model'=>'Avatar',
-					'foreign_key'=>'avatar_id'
+	protected $_belongs_to = array(
+			'avatar' 	=> array(
+					'model' 		=> 'Avatar',
+					'foreign_key' 	=> 'avatar_id'
 			),
 	);
 	
@@ -42,7 +49,6 @@ class Model_Team extends ORM{
 			->join(array('users', 'u'))
 			->on('team.id', '=', 'u.team_id')
 			->where('team.id', 'IN', $photos)
-			->or_where('team.id', '=', 20)//debug
 			->group_by('team.short_name')
 			->having('counter', '>', 0)
 			->order_by('counter', 'DESC')
@@ -105,27 +111,79 @@ class Model_Team extends ORM{
 	
 	public function get_manager()
 	{
-		$manager=$this->get_members('manager')->find();
+		$manager = $this->get_members('manager')->find();
 		return $manager;
 	}
 	public function get_coach()
 	{
-		$coach=$this->get_members('coach')->find();
+		$coach = $this->get_members('coach')->find();
 		return $coach;
 	}
 	public function get_capitan()
 	{
-		$capitan=$this->get_members('capitan')->find();
+		$capitan = $this->get_members('capitan')->find();
 		return $capitan;
+	}
+	
+	/**
+	 * Select all users in scope management
+	 * 
+	 * query:
+	select 
+	    u.id, u.username, ru.*, r.name
+	from 
+	    users u
+	left join
+	    role_users ru
+	on 
+	    ru.user_id = u.id
+	left join
+	    roles r
+	on 
+	    r.id = ru.role_id
+	where 
+	    (
+	        u.team_id = 19
+	        and
+	        (
+	                r.name = 'player'
+	            or 
+	                r.name = 'manager'
+	        )
+	    );
+	 */
+	public function get_management($limit=10)
+	{
+		$users = ORM::factory('User');
+		$unique_roles = Manager_Role::$unique_roles;
+		$users
+			->join(array('role_users', 'ru'), 'LEFT')
+			->on('ru.user_id', '=', 'user.id')
+			->join(array('roles', 'role'), 'LEFT')
+			->on('role.id', '=', 'ru.role_id')
+			->where('team_id', '=', $this->id)
+			->and_where_open();
+		
+		foreach ($unique_roles as $role)
+		{
+			$users->or_where('role.name', '=', $role);
+		}
+		
+		$users
+			->and_where_close()
+			->group_by('id');
+		
+		return $users->limit($limit)->find_all();
+		 
 	}
 	public function get_staff($limit=10)
 	{
-		$players=$this->get_members('staff', $limit)->find_all();
+		$players = $this->get_members('staff', $limit)->find_all();
 		return $players;
 	}
 	public function get_players($limit=30)
 	{
-		$players=$this->get_members('player', $limit)->find_all();
+		$players = $this->get_members('player', $limit)->find_all();
 		return $players;
 	}
 	protected function get_members($role_name, $limit=0)
@@ -156,7 +214,7 @@ class Model_Team extends ORM{
 	}
 	public function filters()
 	{
-		$f=new Filter();
+		$f = new Filter();
 		return $f->get_team();
 	}
 }
