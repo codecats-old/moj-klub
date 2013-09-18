@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 class Model_User extends Model_Auth_User{
 	
@@ -9,7 +9,6 @@ class Model_User extends Model_Auth_User{
 		'request' => array(
 			'model' => 'Request'
 		),
-			
 		'training_users' => array(
 			'model' => 'Training_User'
 		)
@@ -21,12 +20,12 @@ class Model_User extends Model_Auth_User{
 	);
 	protected $_belongs_to = array(
 		'avatar' => array(
-			'model' => 'Avatar',
-			'foreign_key' => 'avatar_id'
+			'model' 		=> 'Avatar',
+			'foreign_key' 	=> 'avatar_id'
 		),
 		'team' => array(
-				'model' => 'Team',
-				'foreign_key' => 'team_id'
+				'model' 		=> 'Team',
+				'foreign_key' 	=> 'team_id'
 		)
 	);
 	
@@ -37,24 +36,37 @@ class Model_User extends Model_Auth_User{
 			->where('name', '<>', 'admin')
 			->find_all(); 
 	}
+	
+	public function get_finished_trainings($limit = 20)
+	{
+		return $this->training_users
+			->where('finish', 'IS NOT', NULL)
+			->order_by('start', 'DESC')
+			->limit($limit)
+			->find_all();
+	}
+	
 	public function validate_register($post)
 	{
-		$validation=new Validation_User($post);
+		$validation = new Validation_User($post);
 		return $validation->register();
 	}
+	
 	public function validate_login($post)
 	{
-		$validation=new Validation_User($post);
+		$validation = new Validation_User($post);
 		return $validation->login();
 	}
+	
 	public function validate_change_data($post)
 	{
-		$validation=new Validation_User($post);
+		$validation = new Validation_User($post);
 		return $validation->change_data();
 	}
+	
 	public function validate_change_password($post)
 	{
-		$validation=new Validation_User($post);
+		$validation = new Validation_User($post);
 		return $validation->change_password();
 	}
 }

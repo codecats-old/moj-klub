@@ -29,7 +29,19 @@ class Controller_User extends Controller_Automatic{
 		// set details views for main site
 		Manager::factory('User', $user)->set_view_details($this->view_container);
 	}
-
+	
+	public function action_train()
+	{
+		$this->redirect_user(FALSE);
+		
+		$user = Auth::instance()->get_user();
+		$manager = Manager::factory('User', $user);
+		
+		$manager->train($this->request->post());
+		
+		$this->view_container = $manager->get_views_result('container');
+		$this->view_content = $manager->get_views_result('content');
+	}
 	/**
 	 * Avatar change, request for Controller_Image to change avatar, 
 	 * content is and answer serialized JSON

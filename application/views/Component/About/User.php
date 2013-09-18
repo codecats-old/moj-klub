@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<div class="well row-fluid  span12">
+<div class="well row-fluid span12">
 	<ul class="thumbnails">
 		<li class="thumbnail span12">
 			<h3>Dane użytkownika</h3>

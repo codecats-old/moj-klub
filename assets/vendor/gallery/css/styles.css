@@ -82,10 +82,9 @@
 }
 
 .icon-grid,
-.icon-arrow-left,
-.icon-arrow-right,
 .icon-fullscreen-exit,
-.icon-fullscreen {
+.icon-fullscreen 
+{
   display:inline-block;
   width: 25px;
   height: 25px;

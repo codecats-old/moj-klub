@@ -55,7 +55,7 @@ class Manager_User extends Manager_Data{
 			->set('view_component_about_user', 	$view_show_user_about)
 			->set('view_details',				$view_show_user_details);
 	}
-
+	
 	/**
 	 * Registrate
 	 * 
@@ -148,7 +148,7 @@ class Manager_User extends Manager_Data{
 			$validator = $user->validate_login($post);
 			if ($validator->check())
 			{
-				$post['stay_login']=(isset($post['stay_login']) === TRUE) ? TRUE : FALSE;
+				$post['stay_login'] = (isset($post['stay_login']) === TRUE) ? TRUE : FALSE;
 				if (Auth::instance()->login(
 						$post['login_identificator'], $post['password'], $post['stay_login']) === TRUE)
 				{
@@ -431,11 +431,11 @@ class Manager_User extends Manager_Data{
 			Message::instance()->set(Message::WARNING);
 
 			//prepare form, error will be setted only if they exists
-			$user_form=View::factory('Component/Form/Change/Password')
+			$user_form = View::factory('Component/Form/Change/Password')
 			->set('error', $this->error);
 
 			//conslusion from this action is form, so it is content answer
-			$this->view_content=$user_form;
+			$this->view_content = $user_form;
 			//set to main view form
 			$this->view_container->set('user_form', $user_form);
 
@@ -457,6 +457,23 @@ class Manager_User extends Manager_Data{
 		return $this;
 	}
 
+	public function train($post)
+	{
+		$user = $this->object;
+		$last_training = $user->get_finished_trainings(1);
+		
+		$this->set_train_result($last_training);
+	}
+	
+	protected function set_train_result($last_training)
+	{
+		$this->view_container=View::factory('Container/User/Main');
+		$this->set_view_details($this->view_container);
+		
+		$this->view_content = $user_form = View::factory('Component/Form/Train/Train');
+		$user_form->last_training = $last_training;
+		$this->view_container->user_form = $user_form;
+	}
 	/**
 	 * (non-PHPdoc)
 	 * @see Kohana_Interface_Manager::set_view_details()
@@ -465,19 +482,21 @@ class Manager_User extends Manager_Data{
 	{
 		//user to show
 		$user = $this->object;
-		$team = $user->team;
-		
+		$team = $user->team;	
+		$trainings = $user->get_finished_trainings();
+
 		$menu_visit = Menu::factory('Visit', $user);
 
-		$view_details=$this->get_view_details();
+		$view_details = $this->get_view_details();
 
-		$view_component_about_user=View::factory('Component/About/User')
+		$view_component_about_user = View::factory('Component/About/User')
 		->set('team', $team->as_array());
 		$view
 		->set('view_component_about_user', $view_component_about_user)
 		->set('view_details', $view_details)
 		->set('team', $team->as_array())
-		->set('menu_visit', $menu_visit->get_resource_by_user($user, NULL));
+		->set('menu_visit', $menu_visit->get_resource_by_user($user, NULL))
+		->set('trainings', $trainings);
 
 		return $this;
 	}
@@ -524,10 +543,10 @@ class Manager_User extends Manager_Data{
 		$info_popover['show_phone'] = $this->set_view_popver($info->show_phone);
 		$info_popover['show_email'] = $this->set_view_popver($info->show_email);
 
-		$avatar=$user->avatar;
+		$avatar = $user->avatar;
 	//	echo $avatar->path;
 		$team = $user->team;
-		$roles_view = $this->object->get_teams_roles();
+		$roles_view = $user->get_teams_roles();
 		$roles = $this->to_array($roles_view, 'name');
 		$roles_view = implode(', ', $roles);
 		$view_details = View::factory('Component/Menu/User/Details')
