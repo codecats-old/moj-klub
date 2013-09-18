@@ -18,6 +18,7 @@
        	<?php echo HTML::style('assets/style/Css/notification.css');?>
        	<?php echo HTML::style('assets/vendor/toasts/toasts.min.css');?>
        	<?php echo HTML::style('assets/vendor/switchButton/jquery.switchButton.css');?>
+       	<?php echo HTML::style('assets/vendor/runner/runner.css');?>
        	
        	<?php echo HTML::style('assets/style/less/bootstrap.fix.less', array('rel' => 'stylesheet/less'));?>
      	<?php echo HTML::script('assets/style/less/less-1.4.1.min.js');?>

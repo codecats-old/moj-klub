@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.runner input {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #2D2D2D;
+    color: #fff;
+}
+.main-btn {
+	vertical-align:top;
+	display: inline-block;
+}
+.control-btn {
+	display: inline-block;
+}
+
+.blocks {
+	display:block;
+}
+.gray {
+	color: #D6D6D6;
+}
+.red {
+	color: #79221e;
+	
+}

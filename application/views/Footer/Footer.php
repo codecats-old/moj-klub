@@ -96,9 +96,33 @@
 <?php echo HTML::script('assets/vendor/toasts/toasts.min.js');?>
 <?php echo HTML::script('assets/vendor/gallery/js/gallery.min.js');?>
 <?php echo HTML::script('assets/vendor/switchButton/jquery.switchButton.js');?>
+<?php echo HTML::script('assets/vendor/runner/jquery.runner.js');?>
 <!-- testing -->
 <script>
 
+(function() {
+    $('#timer').runner({
+        autostart: false,
+        milliseconds: false
+    });
+    
+    $('#timerStart').click(function(e) {
+        e.preventDefault();
+        $('#timer').runner('start');
+        $('#timerStart').addClass('active');
+    });
+    
+    $('#timerReset').click(function(e) {
+    	e.preventDefault();
+        $('#timer').runner('reset');
+    });
+    
+    $('#timerStop').click(function(e) {
+    	e.preventDefault();
+        $('#timer').runner('stop');
+        $('#timerStart').removeClass('active');
+    });
+})();
 </script>
 <!-- main -->
 <?php echo HTML::script('assets/script/Js/main.js');?>
