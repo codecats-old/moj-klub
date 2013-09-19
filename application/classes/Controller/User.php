@@ -39,6 +39,7 @@ class Controller_User extends Controller_Automatic{
 		
 		$manager->train($this->request->post());
 		
+		
 		$this->view_container = $manager->get_views_result('container');
 		$this->view_content = $manager->get_views_result('content');
 	}

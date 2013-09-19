@@ -37,7 +37,7 @@ class Model_User extends Model_Auth_User{
 			->find_all(); 
 	}
 	
-	public function get_finished_trainings($limit = 20)
+	public function get_finished_trainings($limit = 10)
 	{
 		return $this->training_users
 			->where('finish', 'IS NOT', NULL)

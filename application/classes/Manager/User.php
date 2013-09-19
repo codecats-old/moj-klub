@@ -406,7 +406,7 @@ class Manager_User extends Manager_Data{
 			else
 			{
 				//user putted not required data format, let's tell him what's wrong
-				$this->error=$validator->errors('User/Change/Password');
+				$this->error = $validator->errors('User/Change/Password');
 			}
 		}
 		$this->set_change_password_result();
@@ -456,23 +456,150 @@ class Manager_User extends Manager_Data{
 
 		return $this;
 	}
-
+/**
+ *   'timer' => string '01:41' (length=2)
+  'type' => string '' (length=0)
+  'description' => string '' (length=0)
+  'start_date' => string '' (length=0)
+  'start_time' => string '' (length=0)
+  'duration' => string '' (length=0)
+  'submit' => string 'send' (length=4)
+ * @param array $post
+ */
 	public function train($post)
 	{
 		$user = $this->object;
-		$last_training = $user->get_finished_trainings(1);
-		
-		$this->set_train_result($last_training);
+		$training = NULL;
+
+		if ( ! empty($post))
+		{
+			$training = ORM::factory('Training_User');
+			$validator = $training->validate_add($post);
+			if ($validator->check())
+			{
+				$training->type = $post['type'];
+				$training->description = $post['description'];
+				$training->start = $post['start_date'].' '.$post['start_time'];
+				
+				/**
+				 * Check if timer data have to be save
+				 * OR
+				 * Data from duration
+				 */
+				if (isset($post['timer']) AND $post['timer'] > 0)
+				{
+					$time = explode(':', $post['timer']);
+					$size = sizeof($time);
+					
+					switch($size)
+					{
+						case 1 :
+							$sec = $time[0];
+							$time = $sec;
+							break;
+					
+						case 2 :
+							$sec = $time[1];
+							$min = $time[0] * 60;
+							$time = $sec + $min;
+							break;
+					
+						case 3 :
+							$sec = $time[2];
+							$min = $time[1] * 60;
+							$hour = $time[0] * 3600;
+							$time = $sec + $min + $hour;
+							break;
+					}
+					
+					$time += strtotime($training->start);
+					$training->finish = date(Date::$timestamp_format, $time);
+					$this->success = TRUE;
+				}
+				elseif (isset($post['duration']) AND $post['duration'] > 0)
+				{
+					$duration = $post['duration'] * 60;//minutes * secounds
+					$time = strtotime($training->start) + $duration;			
+					$training->finish = date(Date::$timestamp_format, $time);
+					$this->success = TRUE;
+				}
+				else 
+				{
+					$this->error = array('duration' => 'no duration time');
+					$training = $post;
+				}
+
+				if ($this->success === TRUE)
+				{
+					try
+					{
+						$training->user = $user;
+						$training->save();
+					}
+					catch(Database_Exception $dbex)
+					{
+						$this->success = FALSE;
+						Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
+						var_dump($dbex);
+					}
+				}
+			}
+			else
+			{
+				$this->error = $validator->errors('Training/User/Add');
+				$training = $post;
+			}
+			
+		}
+		else
+		{
+			$training = $user->get_finished_trainings(1);
+			$training = ($training->count() !== 0) ? $training->current()->as_array() : NULL;
+			if ($training !== NULL)
+			{
+				$duration = strtotime($training['finish']) - strtotime($training['start']);
+				$training['duration'] = floor($duration / 60);
+			}
+			else
+			{
+				$training['duration'] = NULL;
+			}
+			
+			$date = new DateTime();
+			$training['start_date'] = $date->format('Y-m-d');
+			$training['start_time'] = $date->format('H:i');
+		}
+
+		$this->set_train_result($training);
 	}
 	
-	protected function set_train_result($last_training)
+	protected function set_train_result($training)
 	{
-		$this->view_container=View::factory('Container/User/Main');
+		$this->view_container = View::factory('Container/User/Main');
+		if ($this->success === FALSE)
+		{
+			
+			
+			$this->view_content = $user_form = View::factory('Component/Form/Train/Train');
+			$user_form->training = $training;
+			$user_form->error = $this->error;
+			$this->view_container->user_form = $user_form;
+		}
+		else
+		{
+			//change success
+			Message::instance()->set(Message::SUCCESS);
+			
+			//tell about success to user
+			$view_success = Message::instance()->get_view('Component/Info/Success');
+			//content of action now is success, so it's the answer
+			$this->view_content = $view_success;
+			//set to main view success information in the same place where was the form
+			$this->view_container->set('user_form', $view_success);
+		}
 		$this->set_view_details($this->view_container);
 		
-		$this->view_content = $user_form = View::factory('Component/Form/Train/Train');
-		$user_form->last_training = $last_training;
-		$this->view_container->user_form = $user_form;
+		return $this;
 	}
 	/**
 	 * (non-PHPdoc)

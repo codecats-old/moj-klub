@@ -10,5 +10,6 @@ return array(
 		'moments ago' 										=> 'przed chwilą',
 		'a few minutes ago' 								=> 'kilka minut temu',
 		'a couple of hours ago' 							=> 'kilka godzin temu',
-		'less than a day ago' 								=> 'wczoraj'
+		'less than a day ago' 								=> 'mniej niż dzień temu',
+		'about a day ago' 									=> 'około dzień temu'
 );

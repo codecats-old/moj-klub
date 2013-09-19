@@ -1,12 +1,13 @@
 <?php defined('SYSPATH') OR die('No direct script access');?>
 <div class="well">
-
+	<h5>
+	<label class="muted pull-left"><small>type:</small></label>
 <?php if ( ! empty($training->type)):?>
-	<h4>
 	<?php echo $training->type;?>
-	</h4>
+<?php else:?>
+	Training
 <?php endif;?>
-
+	</h5>
 <?php if ( ! empty($training->description)):?>
 	<p>
 		<small>
@@ -31,7 +32,7 @@
 	if ($duration['hours'] > 0) echo $duration['hours'].' hours, '.$duration['minutes'].' minutes.';
 	elseif ($duration['hours'] === 0 AND $duration['minutes'] > $limes) echo $duration['minutes'].' minutes.';
 	
-	if ($duration['hours'] === 0 AND $duration['minutes'] <= $limes) echo 'less than '.($limes+1).' minutes'
+	if ($duration['hours'] === 0 AND $duration['minutes'] <= $limes) echo 'less than '.($limes + 1).' minutes'
 ?>
 			</p>
 		</div>

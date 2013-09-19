@@ -6,4 +6,10 @@ class Model_Training_User extends ORM{
 					'model' => 'User'
 			)
 	);
+	
+	public function validate_add($post)
+	{
+		$validation = new Validation_Training_User($post);
+		return $validation->add();
+	}
 }
