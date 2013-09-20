@@ -59,22 +59,49 @@ class Validation_Training_User extends Validation_General{
 		),
 		
 		'last_training' => array(
+		),
+		
+		'choose_input' 	=> array(
+			array('Validation_Training_User::is_input_to_choose', array(':timer', ':duration'))
 		)
 	);
 	
 	public static function timer_range($timer, $from, $to)
 	{
+		if ($timer === '00') return TRUE;
 		$manager = Manager::factory('Training', NULL);
 		$time = $manager->timer_to_timestamp($timer);
 		$time = $manager->timestamp_to_duration($time);
 		
-		var_dump($time);
 		return Valid::range($time, $from, $to);
+	}
+	
+	public static function is_input_to_choose($timer, $duration)
+	{
+		if (isset($timer) AND $timer > 0)
+		{
+			return TRUE;
+		}
+		elseif (isset($duration) AND $duration > 0)
+		{
+			return TRUE;
+		}	
+		else 
+		{
+			return FALSE;
+		}
 	}
 	
 	public function add()
 	{
 		$arr = $this->data();
+		/**
+		 * empty (not used) field to run the rule from difference scope.
+		 */
+		$arr['choose_input'] = array(
+				'timer' 		=> $arr['timer'],
+				'description' 	=> $arr['description']
+		);
 		$object = Validation::factory($arr);
 		
 		$object
@@ -90,6 +117,7 @@ class Validation_Training_User extends Validation_General{
 			->rules('start_time', 		$this->rules_add['start_time'])
 			->rules('duration', 		$this->rules_add['duration'])
 			->rules('last_training', 	$this->rules_add['last_training'])
+			->rules('choose_input', 	$this->rules_add['choose_input'])
 		;
 		
 		return $object;

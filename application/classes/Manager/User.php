@@ -456,99 +456,20 @@ class Manager_User extends Manager_Data{
 
 		return $this;
 	}
-/**
- *   'timer' => string '01:41' (length=2)
-  'type' => string '' (length=0)
-  'description' => string '' (length=0)
-  'start_date' => string '' (length=0)
-  'start_time' => string '' (length=0)
-  'duration' => string '' (length=0)
-  'submit' => string 'send' (length=4)
- * @param array $post
- */
 	public function train($post)
 	{
 		$user = $this->object;
-		$training = NULL;
-		$last_training = $user->get_finished_trainings(1);
-		$last_training = ($last_training->count() !== 0) ? $last_training->current()->as_array() : NULL;
 		
 		$manager_training = Manager::factory('Training', $user);
-		
-		if ( ! empty($post))
-		{
-			$training = ORM::factory('Training_User');
-			$validator = $training->validate_add($post, $last_training);
-			if ($validator->check())
-			{
-				$training->type = $post['type'];
-				$training->description = $post['description'];
-				$training->start = $post['start_date'].' '.$post['start_time'];
-				
-				/**
-				 * Check if timer data have to be save
-				 * OR
-				 * Data from duration
-				 */
-				if (isset($post['timer']) AND $post['timer'] > 0)
-				{
-					$time = $manager_training->timer_to_timestamp($post['timer']);
-					$training->finish = $manager_training->timestamp_to_finish($time, $training->start);
-					$this->success = TRUE;
-				}
-				elseif (isset($post['duration']) AND $post['duration'] > 0)
-				{
-					$time = $manager_training->duration_to_timestamp($post['duration']);//minutes * secounds
-					$training->finish = $manager_training->timestamp_to_finish($time, $training->start);
-
-					$this->success = TRUE;
-				}
-				else 
-				{
-					$this->error = array('duration' => 'no duration time');
-					$training = $post;
-				}
-
-				if ($this->success === TRUE)
-				{
-					try
-					{
-						$training->user = $user;
-					//	$training->save();
-					}
-					catch(Database_Exception $dbex)
-					{
-						$this->success = FALSE;
-						Message::instance()->set(Message::ERROR, 'Probably database is busy. Try again in a while');
-						var_dump($dbex);
-					}
-				}
-			}
-			else
-			{
-				$this->error = $validator->errors('Training/User/Add');
-				$training = $post;
-			}
-			
-		}
-		else
-		{
-			$training = $last_training;
-			if ($training !== NULL)
-			{
-				$duration = strtotime($training['finish']) - strtotime($training['start']);
-				$training['duration'] = floor($duration / 60);
-			}
-			else
-			{
-				$training['duration'] = NULL;
-			}
-			
-			$date = new DateTime();
-			$training['start_date'] = $date->format('Y-m-d');
-			$training['start_time'] = $date->format('H:i');
-		}
-
+		$manager_training->set_data(
+			array(
+				'post' 				=> $post,
+				'last_training' 	=> $user->get_finished_trainings(1)
+			)
+		);
+		$this->success = $manager_training->save();
+		$training = $manager_training->get_training();
+		$this->error = $manager_training->get_error();
 		$this->set_train_result($training);
 	}
 	

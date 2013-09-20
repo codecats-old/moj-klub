@@ -2,6 +2,7 @@
 <!-- RUNNER -->
 <?php if ( ! empty($error)):?>
 <label class="label label-warning">some errors while adding the training.</label>
+<label class="text text-error"><?php echo Arr::get($error, 'choose_input');?></label>
 <?php endif;?>
 <div class="well text-center runner borders">
 	<h6>Live Training</h6>
