@@ -3,10 +3,6 @@
 class Validation_Training_User extends Validation_General{
 	
 	/**
-	 * TODO: Validation timer
-	 * @var unknown
-	 */
-	/**
 	 * TODO: TRAININGS IN SHORT INTERVALS ARE DISALLOWED
 	 * @var unknown
 	 */
@@ -15,19 +11,27 @@ class Validation_Training_User extends Validation_General{
 			//07:59:59 or 59:59 or 59
 			//array('regex', array(':value', '/^(([0][0-7]:)?[0-5][0-9]:)?[0-5][0-9]$/'))
 			//07:59:59 or 59:59 or 10:00
-			array('regex', array(':value', '/^(([0][0-7]:)?[0-5][0-9]:)?[0-5][0-9]$/'))
+			array('regex', array(':value', '/^(([0][0-7]:)?[0-5][0-9]:)?[0-5][0-9]$/')),
+			array(
+				'Validation_Training_User::timer_range', 
+				array(
+					':value',
+					Manager_Training::TIME_LIMIT_MIN,
+					Manager_Training::TIME_LIMIT_MAX
+				)
+			)
 		),
 			
 		'type' 			=> array(
 			array('regex', array(':value', '/^[\pL\pN\pZ\p{Pc}\p{Pd}\p{Po}\s]++$/uD')),
 			array('min_length', array(':value', 3)),
-			array('max_length', array(':value', 25)),
+			array('max_length', array(':value', 25))
 		),
 			
 		'description' 	=> array(
 			array('regex', array(':value', '/^[\pL\pN\pZ\p{Pc}\p{Pd}\p{Po}\s]++$/uD')),
 			array('min_length', array(':value', 3)),
-			array('max_length', array(':value', 150)),
+			array('max_length', array(':value', 150))
 		),
 			
 		'start_date' 	=> array(
@@ -44,21 +48,48 @@ class Validation_Training_User extends Validation_General{
 		'duration' 		=> array(
 			array('digit'),
 			//7*60 [h]*[m] => 8 hours
-			array('range', array(':value', 10, 420))
+			array(
+				'range', 
+				array(
+					':value', 
+					Manager_Training::TIME_LIMIT_MIN, 
+					Manager_Training::TIME_LIMIT_MAX
+				)
+			)
+		),
+		
+		'last_training' => array(
 		)
 	);
 	
+	public static function timer_range($timer, $from, $to)
+	{
+		$manager = Manager::factory('Training', NULL);
+		$time = $manager->timer_to_timestamp($timer);
+		$time = $manager->timestamp_to_duration($time);
+		
+		var_dump($time);
+		return Valid::range($time, $from, $to);
+	}
+	
 	public function add()
 	{
-		$object = Validation::factory($this->data());
+		$arr = $this->data();
+		$object = Validation::factory($arr);
 		
 		$object
-			->rules('timer', 		$this->rules_add['timer'])
-			->rules('type', 		$this->rules_add['type'])
-			->rules('description', 	$this->rules_add['description'])
-			->rules('start_date', 	$this->rules_add['start_date'])
-			->rules('start_time', 	$this->rules_add['start_time'])
-			->rules('duration', 	$this->rules_add['duration'])
+			->bind(':timer', 	$arr['timer'])
+			->bind(':duration', $arr['duration'])
+		;
+		
+		$object
+			->rules('timer', 			$this->rules_add['timer'])
+			->rules('type', 			$this->rules_add['type'])
+			->rules('description', 		$this->rules_add['description'])
+			->rules('start_date', 		$this->rules_add['start_date'])
+			->rules('start_time', 		$this->rules_add['start_time'])
+			->rules('duration', 		$this->rules_add['duration'])
+			->rules('last_training', 	$this->rules_add['last_training'])
 		;
 		
 		return $object;

@@ -470,11 +470,15 @@ class Manager_User extends Manager_Data{
 	{
 		$user = $this->object;
 		$training = NULL;
-
+		$last_training = $user->get_finished_trainings(1);
+		$last_training = ($last_training->count() !== 0) ? $last_training->current()->as_array() : NULL;
+		
+		$manager_training = Manager::factory('Training', $user);
+		
 		if ( ! empty($post))
 		{
 			$training = ORM::factory('Training_User');
-			$validator = $training->validate_add($post);
+			$validator = $training->validate_add($post, $last_training);
 			if ($validator->check())
 			{
 				$training->type = $post['type'];
@@ -488,39 +492,15 @@ class Manager_User extends Manager_Data{
 				 */
 				if (isset($post['timer']) AND $post['timer'] > 0)
 				{
-					$time = explode(':', $post['timer']);
-					$size = sizeof($time);
-					
-					switch($size)
-					{
-						case 1 :
-							$sec = $time[0];
-							$time = $sec;
-							break;
-					
-						case 2 :
-							$sec = $time[1];
-							$min = $time[0] * 60;
-							$time = $sec + $min;
-							break;
-					
-						case 3 :
-							$sec = $time[2];
-							$min = $time[1] * 60;
-							$hour = $time[0] * 3600;
-							$time = $sec + $min + $hour;
-							break;
-					}
-					
-					$time += strtotime($training->start);
-					$training->finish = date(Date::$timestamp_format, $time);
+					$time = $manager_training->timer_to_timestamp($post['timer']);
+					$training->finish = $manager_training->timestamp_to_finish($time, $training->start);
 					$this->success = TRUE;
 				}
 				elseif (isset($post['duration']) AND $post['duration'] > 0)
 				{
-					$duration = $post['duration'] * 60;//minutes * secounds
-					$time = strtotime($training->start) + $duration;			
-					$training->finish = date(Date::$timestamp_format, $time);
+					$time = $manager_training->duration_to_timestamp($post['duration']);//minutes * secounds
+					$training->finish = $manager_training->timestamp_to_finish($time, $training->start);
+
 					$this->success = TRUE;
 				}
 				else 
@@ -534,7 +514,7 @@ class Manager_User extends Manager_Data{
 					try
 					{
 						$training->user = $user;
-						$training->save();
+					//	$training->save();
 					}
 					catch(Database_Exception $dbex)
 					{
@@ -553,8 +533,7 @@ class Manager_User extends Manager_Data{
 		}
 		else
 		{
-			$training = $user->get_finished_trainings(1);
-			$training = ($training->count() !== 0) ? $training->current()->as_array() : NULL;
+			$training = $last_training;
 			if ($training !== NULL)
 			{
 				$duration = strtotime($training['finish']) - strtotime($training['start']);
@@ -578,8 +557,6 @@ class Manager_User extends Manager_Data{
 		$this->view_container = View::factory('Container/User/Main');
 		if ($this->success === FALSE)
 		{
-			
-			
 			$this->view_content = $user_form = View::factory('Component/Form/Train/Train');
 			$user_form->training = $training;
 			$user_form->error = $this->error;
