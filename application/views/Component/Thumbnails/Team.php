@@ -9,12 +9,13 @@ foreach ($teams as $team):
 	
 endforeach;
 ?>
-
-<?php //empty thumbnails ?>
 <?php 
+//empty thumbnails
 if (empty($teams)):
 	for ($i = 0; $i < 3; $i++):
-		echo View::factory('Component/Thumbnails/Thumbnail/Team')->set('id', $i);
+		echo View::factory('Component/Thumbnails/Thumbnail/Team')
+			->set('id', $i)
+			->set('team', array('id' => $i));
 	endfor;
 endif;
 ?>
