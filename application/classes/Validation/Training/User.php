@@ -2,10 +2,6 @@
 
 class Validation_Training_User extends Validation_General{
 	
-	/**
-	 * TODO: TRAININGS IN SHORT INTERVALS ARE DISALLOWED
-	 * @var unknown
-	 */
 	protected $rules_add = array(
 		'timer' 		=> array(
 			//07:59:59 or 59:59 or 59
@@ -59,12 +55,20 @@ class Validation_Training_User extends Validation_General{
 		),
 		
 		'last_training' => array(
+				array('Validation_Training_User::allowed_interval')
 		),
 		
 		'choose_input' 	=> array(
 			array('Validation_Training_User::is_input_to_choose', array(':timer', ':duration'))
 		)
 	);
+	
+	public static function allowed_interval($last_training)
+	{
+		if ($last_training === NULL OR is_array($last_training) === FALSE) return TRUE;
+		
+		return FALSE;
+	}
 	
 	public static function timer_range($timer, $from, $to)
 	{
@@ -97,6 +101,8 @@ class Validation_Training_User extends Validation_General{
 		$arr = $this->data();
 		/**
 		 * empty (not used) field to run the rule from difference scope.
+		 * Scope is associated with both fields: timer and description and
+		 * the validation is more readable in difference rule.
 		 */
 		$arr['choose_input'] = array(
 				'timer' 		=> $arr['timer'],
@@ -105,8 +111,10 @@ class Validation_Training_User extends Validation_General{
 		$object = Validation::factory($arr);
 		
 		$object
-			->bind(':timer', 	$arr['timer'])
-			->bind(':duration', $arr['duration'])
+			->bind(':timer', 		$arr['timer'])
+			->bind(':duration', 	$arr['duration'])
+			->bind(':start_date', 	$arr['start_date'])
+			->bind(':start_time', 	$arr['start_time'])
 		;
 		
 		$object

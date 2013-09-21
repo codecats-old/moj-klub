@@ -16,11 +16,11 @@ class Manager_Training extends Manager_Data{
 	{
 		if ($this->success === TRUE)
 		{
+			$user = $this->object;
+			$this->training->user = $user;
 			try
 			{
-				$user = $this->object;
-				$this->training->user = $user;
-				$this->training->save();
+		//		$this->training->save();
 				$this->success = TRUE;
 			}
 			catch(Database_Exception $dbex)
@@ -129,16 +129,13 @@ class Manager_Training extends Manager_Data{
 				if (isset($post['timer']) AND $post['timer'] > 0)
 				{
 					$time = $this->timer_to_timestamp($post['timer']);
-					$training->finish = $this->timestamp_to_finish($time, $training->start);
-					$this->success = TRUE;
 				}
 				else
 				{
 					$time = $this->duration_to_timestamp($post['duration']);//minutes * secounds
-					$training->finish = $this->timestamp_to_finish($time, $training->start);
-			
-					$this->success = TRUE;
 				}
+				$training->finish = $this->timestamp_to_finish($time, $training->start);
+				$this->success = TRUE;
 				$this->training = $training;
 				$this->_save();
 			}
