@@ -55,7 +55,7 @@ class Validation_Training_User extends Validation_General{
 		),
 		
 		'last_training' => array(
-				array('Validation_Training_User::allowed_interval')
+				array('Validation_Training_User::allowed_interval', array(':value', ':start_date'))
 		),
 		
 		'choose_input' 	=> array(
@@ -63,10 +63,13 @@ class Validation_Training_User extends Validation_General{
 		)
 	);
 	
-	public static function allowed_interval($last_training)
+
+	public static function allowed_interval($last_training, $start_date)
 	{
 		if ($last_training === NULL OR is_array($last_training) === FALSE) return TRUE;
 		
+		if ( strtotime($last_training['finish']) < strtotime($start_date)) return TRUE;
+
 		return FALSE;
 	}
 	

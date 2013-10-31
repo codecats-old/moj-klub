@@ -29,7 +29,15 @@
 			 	<span class="text-info pull-right">30 min/tyg</span>
 			 </div>
 			 <div>
-			 	<a href="user/train" >Ćwicz</a>
+<?php echo HTML::anchor(Route::get('default')->uri(
+				array(
+					'controller' 	=> 'user',
+					'action' 		=> 'train'
+				)
+			),
+			__('train'),
+			array('class' => 'btn')
+);?>
 			 </div>
 		</li>
 	</ul>

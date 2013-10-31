@@ -35,12 +35,6 @@ class Manager_Header extends Manager_Data{
 		$panel->display(FALSE);
 
 		$menu = Menu::factory('Header', $user);
-		
-//		echo '<pre style="background:white">';
-
-	//	echo '<br>';
-	//	echo $panel->get_status();
-	//	echo '<pre>';
 		/*
 		 * check for new notifications
 		 */	

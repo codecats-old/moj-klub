@@ -45,6 +45,35 @@ class Model_User extends Model_Auth_User{
 			->limit($limit)
 			->find_all();
 	}
+
+	public function get_training_time()
+	{
+		return $this->select(
+					'user.id',
+					array(
+							DB::expr(
+									'sec_to_time(
+										sum(
+											time_to_sec(
+												timediff( 
+													time.`finish`, time.`start`
+												)
+											)
+										)
+									)'
+							), 
+							'total'
+					)
+				)
+				->join(array('training_users', 'time'), 'LEFT')
+				->on('user_id', '=', 'user.id')
+				->where('time.finish', '>', DB::expr('NOW() - INTERVAL 90 DAY'))
+				->group_by('user.id')
+				->order_by('total', 'DESC')
+		;
+
+		
+	}
 	
 	public function validate_register($post)
 	{

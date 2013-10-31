@@ -20,7 +20,7 @@ class Manager_Training extends Manager_Data{
 			$this->training->user = $user;
 			try
 			{
-		//		$this->training->save();
+				$this->training->save();
 				$this->success = TRUE;
 			}
 			catch(Database_Exception $dbex)

@@ -1,18 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Image extends Controller_Automatic{
-	public function action_index()
-	{
-
-		echo '<hr><hr><hr>';
-		echo 'test';
-	/*	$team = Auth::instance()->get_user()->team;
-		$photo = ORM::factory('Photo');
-		$photo->address = 'www2';
-		$photo->team = $team;
-		$photo->save();*/
-		
-	}
+	public function action_index(){}
 	public function action_show_user_avatar()
 	{
 		$id = $this->request->param('id');
