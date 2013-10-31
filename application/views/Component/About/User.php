@@ -28,6 +28,9 @@
 			 	<label class="label">Poziom ćwiczeń</label>
 			 	<span class="text-info pull-right">30 min/tyg</span>
 			 </div>
+			 <div>
+			 	<a href="user/train" >Ćwicz</a>
+			 </div>
 		</li>
 	</ul>
 </div>

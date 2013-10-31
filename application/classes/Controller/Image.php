@@ -275,7 +275,7 @@ class Controller_Image extends Controller_Automatic{
 //		$avatar = ORM::factory('Avatar');
 		$user = Auth::instance()->get_user();
 		$avatar = $user->avatar;
-		
+
 		if ($post)
 		{
 			$validator = $avatar->validate_user_avatar($files);
@@ -324,6 +324,7 @@ class Controller_Image extends Controller_Automatic{
 		}
 		else
 		{			
+			
 			Message::instance()->set(Message::SUCCESS);
 			$view_success = Message::instance()->get_view('Component/Info/Success');
 			$view_success
@@ -340,10 +341,13 @@ class Controller_Image extends Controller_Automatic{
 	}
 	protected function save_image($image, $dir, $properties)
 	{
+		
 		$directory = DOCROOT.'upload/'.$dir.'/';
+		$this->make_dir_if_not_exists($dir);
 		if ($file = Upload::save($image, null, $directory))
 		{
-			$filename=$properties['name'].'.'.substr(strstr($image['type'], '/'),1);
+			
+			$filename = $properties['name'].'.'.substr(strstr($image['type'], '/'),1);
 			Image::factory($file)
 				->resize($properties['width'], $properties['height'], Image::HORIZONTAL)
 				->save($directory.$filename);
