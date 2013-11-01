@@ -59,5 +59,34 @@
 			endif;
 		?>
 	<!-- >Team scope -->
+	
+	
+	<!--Some trainings -->
+	<?php 
+		if (isset($trainings)) :
+			foreach ($trainings as $training):
+	?>
+	<div class="well well-opacity">
+		<?php 
+				echo HTML::anchor(Route::get('default')->uri(
+						array(
+							'controller' 	=> 'user',
+							'action' 		=> 'show',
+							'id' 			=> Coder::instance()->short_url($training->user_id)
+						)
+					),
+					$training->username,
+					array('class' => 'btn btn-success btn-mini')
+				);
+				$view = View::factory('Show/Training');
+				$view->training = $training;
+				echo $view;
+		?>
+	</div>
+	<?php
+			endforeach;
+		endif;
+	?>
+	<!-- >Some training -->
 	</div>
 </div>

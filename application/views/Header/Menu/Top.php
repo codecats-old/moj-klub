@@ -18,13 +18,15 @@
                         </div>
                         <!-- Collapse -->
                         <!-- Search -->
-                        <ul class="nav pull-right">
+                    <!--    
+                         <ul class="nav pull-right">
                             <li>
                                 <form class="navbar-search">
                                     <input tabindex="1" type="text" class="search-query" placeholder="Search">
                                 </form>
                             </li>  
                         </ul>
+                     -->
                         <!-- >Search -->
                     </div>
 

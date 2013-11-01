@@ -3,6 +3,7 @@
 class Controller_Statistics extends Controller_Automatic{
 	public function action_index() 
 	{
+		HTTP::redirect();
 	}
 	/**
 	 * User train ranking
@@ -15,13 +16,6 @@ class Controller_Statistics extends Controller_Automatic{
 		$view = View::factory('Container/Statistics/Main');
 		$view->users = $users;
 		$this->view_container = $view;
-		
-		/*
-		foreach ($users as $user)
-		{
-			var_dump($user->id, $user->total);
-		}
-		*/
 	}
 	/**
 	 * Team popularity and training users in it

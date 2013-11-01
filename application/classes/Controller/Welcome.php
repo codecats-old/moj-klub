@@ -23,9 +23,6 @@ class Controller_Welcome extends Controller_Automatic {
 
 		$popular_teams = ORM::factory('Team')
 			->get_biggest($bigger_team->counter, $main_team->id)->limit(3)->find_all();
-
-	//	$main_team->set('precentage_counter', $percents);
-//	echo ORM::factory('Team')->get_max_member_count()->find()->counter;
 		
 		$component_carousel =  View::factory('Component/Carousel')
 			->set('team', 	$main_team->as_array())
@@ -38,10 +35,32 @@ class Controller_Welcome extends Controller_Automatic {
 			->set('teams', $popular_teams->as_array());
 		
 		$this->view_container = $this->view_content = View::factory('Container/Welcome/Main')
+			->set('user', Auth::instance()->get_user())
 			->set('component_carousel', 		$component_carousel)
 			->set('component_thumbnails_team', 	$component_thumbnails_team);
 
+		
+		//stats
+		$users = ORM::factory('User')->get_training_time()
+			->limit(15)->find_all();
+		$biggest_teams = ORM::factory('Team')->get_biggest($bigger_team->counter)
+			->limit(10)->find_all();
+		$trainings =  ORM::factory('User')->get_last_trainings(10);
 
+		$container_statistics = View::factory('Container/Statistics/Main');
+		$container_statistics
+			->set('users', $users)
+			->set('teams', $biggest_teams)
+			->set('trainings', $trainings);
+		$this->view_container->container_statistics = $container_statistics;
+		//>stats
+		
+		
+		
+		
+
+
+		
 		if (isset($benchmark))
 		{
 			// Stop the benchmark

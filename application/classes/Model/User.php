@@ -46,6 +46,17 @@ class Model_User extends Model_Auth_User{
 			->find_all();
 	}
 
+	public function get_last_trainings($limit = 10)
+	{
+		return $this->select('training.*', 'user.username')
+			->join(array('training_users', 'training'))
+			->on('user.id', '=', 'training.user_id')
+			->where('training.finish', 'IS NOT', NULL)
+			->group_by('user.id')
+			->order_by('training.start', 'DESC')
+			->limit($limit)
+			->find_all();
+	}
 	public function get_training_time()
 	{
 		return $this->select(

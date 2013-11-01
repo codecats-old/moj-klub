@@ -2,7 +2,7 @@
 <?php $error=(isset($error)?$error:null);?>
 <?php $title=(isset($title)?$title:null);?>
 <?php $component=(isset($component)?$component:null);?>
-<button type="button" data-toggle="modal" data-target="#AccessModal">Launch modal</button>
+
 <div id="AccessModal" class="modal hide fade" tabindex="-1" 
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
