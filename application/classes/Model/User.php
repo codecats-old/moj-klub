@@ -49,7 +49,10 @@ class Model_User extends Model_Auth_User{
 	public function get_training_time()
 	{
 		return $this->select(
-					'user.id',
+					'user.*',
+					'infos.*',
+					'avatars.path',
+					array('teams.short_name', 'team_name'),
 					array(
 							DB::expr(
 									'sec_to_time(
@@ -67,7 +70,19 @@ class Model_User extends Model_Auth_User{
 				)
 				->join(array('training_users', 'time'), 'LEFT')
 				->on('user_id', '=', 'user.id')
-				->where('time.finish', '>', DB::expr('NOW() - INTERVAL 90 DAY'))
+				->join('infos', 'LEFT')
+				->on('user.id', '=', 'infos.id')
+				->join('avatars', 'LEFT')
+				->on('user.avatar_id', '=', 'avatars.id')
+				->join('teams', 'LEFT')
+				->on('user.team_id', '=', 'teams.id')
+				->where(
+						'time.finish', 
+						'>', 
+						DB::expr(
+							'NOW() - INTERVAL ' . Manager_Training::STATISTICS_INTERVAL_DAY . ' DAY'
+						)
+				)
 				->group_by('user.id')
 				->order_by('total', 'DESC')
 		;

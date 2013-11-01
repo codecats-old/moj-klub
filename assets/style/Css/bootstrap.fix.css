@@ -167,3 +167,16 @@ div.ribbon:after{
 .round-bottom-corners {
 	border-radius: 0 0 15px 15px !important;
 }
+.img-back {
+	width: 20%;
+}
+.index-up {
+	z-index: 1;
+	position: relative;
+}
+.index-down {
+	left: 0;
+	margin-left: 100px;
+	z-index: 0;
+	position: absolute;
+}

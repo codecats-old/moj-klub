@@ -9,26 +9,31 @@ class Controller_Statistics extends Controller_Automatic{
 	 */
 	public function action_ranking() 
 	{
+		$users = ORM::factory('User')->get_training_time()
+			->limit(25)->find_all();
 		
+		$view = View::factory('Container/Statistics/Main');
+		$view->users = $users;
+		$this->view_container = $view;
+		
+		/*
+		foreach ($users as $user)
+		{
+			var_dump($user->id, $user->total);
+		}
+		*/
 	}
 	/**
 	 * Team popularity and training users in it
 	 */
 	public function action_popularity() 
 	{
-		$teams = ORM::factory('Team')->get_biggest(15)->find_all();
+		$bigger_team = ORM::factory('Team')->get_biggest()->find();
+		$teams = ORM::factory('Team')->get_biggest($bigger_team->counter)
+				->limit(15)->find_all();
 		
-		
-		foreach ($teams as $team)
-		{
-			var_dump($team->full_name, $team->counter);
-		}
-		
-		$users = ORM::factory('User')->get_training_time()->find_all();
-		
-		foreach ($users as $user)
-		{
-			var_dump($user->id, $user->total);
-		}
+		$view = View::factory('Container/Statistics/Main');
+		$view->teams = $teams;
+		$this->view_container = $view;
 	}
 }

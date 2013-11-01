@@ -6,6 +6,8 @@ class Manager_Training extends Manager_Data{
 	
 	const TIME_LIMIT_MAX = 420;//7*60 [m:ss] => 7 minutes
 	
+	const STATISTICS_INTERVAL_DAY = 90;
+	
 	protected $post = NULL;
 	
 	protected $training = NULL;
