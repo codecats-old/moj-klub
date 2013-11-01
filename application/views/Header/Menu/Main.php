@@ -14,7 +14,7 @@
 		</li>
 		
 		<!-- >Popular -->
-		<!-- Ranking -->
+		<!-- Stats -->
 		<li>
 <?php echo HTML::anchor(Route::get('default')->uri(
 			array(
@@ -22,10 +22,10 @@
 				'action' 		=> 'ranking'
 			)
 		), 
-		__('Ranking')
+		__('Statistics')
 );?>
 		</li>
-		<!-- >Ranking -->
+		<!-- >Stats -->
 		<li>
 <?php echo HTML::anchor(Route::get('default')->uri(
 			array(

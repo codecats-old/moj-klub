@@ -5,16 +5,16 @@
 	<div class="ribbon rot-45">
 		<p>
 			<span>
-				<small>joined: </small>
+				<small><?php echo ucfirst(__('joined: '));?></small>
 			</span>
 			<small class="label">
 <?php
 	if (Arr::get($team, 'join_date')):
 		echo Arr::get($team, 'join_date');
 	else:
-?>
-	data unavalaible.
-<?php 
+
+	echo __('data unavalaible.');
+
 	endif;
 ?>
 			</small>
@@ -40,7 +40,7 @@
 		</div>
 <?php endif;?>
 		<div class="row-fluid">
-			<div class="span5">Popularność</div>
+			<div class="span5"><?php echo ucfirst(__('popularity'));?></div>
 				<div class="span7">
 					<div class="progress progress-danger progress-striped active">
 						<div class="bar" style="width: <?php echo Arr::get($team, 'counter_percent')?>%;"></div>
@@ -57,8 +57,8 @@
  				'action' 		=> 'show',
  				'id' 			=> Coder::instance()->short_url($team['id'])
 			)
-		), 
-		'see the club',
+		),
+		__('see the club'),
 		array(
 			'class' => 'btn btn-success'
 		)

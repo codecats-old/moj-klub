@@ -2,7 +2,7 @@
 <div class="well row-fluid span12">
 	<ul class="thumbnails">
 		<li class="thumbnail span12">
-			<h3>Dane użytkownika</h3>
+			<h3><?php echo __('About user');?></h3>
 			 <div>
 			 	<label class="label">Klub</label>
 			 	<span class="text-info pull-right">

@@ -45,6 +45,14 @@ class Controller_Automatic extends Controller_Template{
 		
 		parent::before();
 		
+		/**
+		 * set language
+		 * @var string
+		 */
+		$language = Cookie::get('lang');
+		if ($language !== NULL) I18n::$lang = $language;
+		
+		
 		if (($this->request->is_ajax() === TRUE) OR ($this->request->is_initial() === FALSE))
 		{
 			$this->auto_render = FALSE;
@@ -55,7 +63,7 @@ class Controller_Automatic extends Controller_Template{
 		/*
 		 * page title will be controler name (its bined as global)
 		*/
-		$this->page_title = $this->request->controller();
+		$this->page_title = __($this->request->controller());
 		
 		/*
 		 * user is binded as global for views

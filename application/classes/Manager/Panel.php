@@ -162,7 +162,7 @@ class Manager_Panel extends Manager_Data{
 		$component_request_menu->requests_views = array();
 		
 		$user = $this->object;
-		Message::instance()->set(Message::NOTICE, 'No elder messages');
+		Message::instance()->set(Message::NOTICE, __('No elder messages'));
 		foreach ($requests as $request)
 		{
 			Message::instance()->clear();

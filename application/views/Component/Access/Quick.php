@@ -34,7 +34,7 @@
 							)
 				),
 				ucfirst(__('train')),
-				array('class' => 'btn btn-danger btn-large span12')
+				array('class' => 'btn btn-danger btn-large span12 ')
 				
 		);?>
 		</div>

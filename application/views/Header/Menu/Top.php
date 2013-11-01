@@ -29,6 +29,28 @@
                      -->
                         <!-- >Search -->
                     </div>
+<?php 
+	echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'lang',
+				'action' 		=> 'en'
+			)
+		),
+		'en',
+		array('class' => 'btn btn-mini btn-link')
+	);
+?>	
+<?php 
+	echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'lang',
+				'action' 		=> 'pl'
+			)
+		),
+		'pl',
+		array('class' => 'btn btn-mini btn-link')
+	);
+?>	
 
                     <!-- Access -->
 <?php if (Arr::get($header_menu_access, 'access') === TRUE) echo View::factory('Header/Access');?>

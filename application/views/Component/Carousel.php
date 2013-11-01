@@ -44,7 +44,7 @@
 ?>
                                     </h1>
                                     <p>
-                                    	<label class="label">Największe sukcesy:</label>
+                                    	<label class="label"><?php echo ucfirst(__('the best success'));?></label>
 <?php echo $team['success'];?>
                                     </p>
                                 </div>

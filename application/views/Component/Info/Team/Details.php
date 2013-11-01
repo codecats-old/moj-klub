@@ -14,22 +14,22 @@
 );?>
 	</h3>
 	
-	<label class="label">Pełna nazwa</label>
+	<label class="label"><?php echo ucfirst(__('full name'));?></label>
 	<span class="text-info pull-right">
 <?php echo Arr::get($team, 'full_name');?>
 	</span>
 </div>
 <div class="well">
 	<article class="text-info">
-		<label class="label">opis</label>
+		<label class="label"><?php echo ucfirst(__('description'));?></label>
 		<p>
 <?php echo Arr::get($team, 'description');?>	
 		</p>
-		<label class="label">największe sukesy</label>
+		<label class="label"><?php echo ucfirst(__('the best success'));?></label>
 		<p>
 <?php echo Arr::get($team, 'success');?>		
 		</p>
-		<label class="label">treningi</label>
+		<label class="label"><?php echo ucfirst(__('trainings'));?></label>
 		<p>
 <?php echo Arr::get($team, 'training');?>
 		</p>

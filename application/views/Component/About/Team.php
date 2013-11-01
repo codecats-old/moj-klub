@@ -15,7 +15,7 @@
 		<!-- JOIN SECTION -->
 		<li class="well">
 			<span>
-				You not belongs to any club, ask for join this one:
+				<?php echo __('You not belongs to any club, ask for join this one:');?>
 			</span>
 	<?php if ($join_sent === FALSE):?>
 		<?php echo HTML::anchor(Route::get('default')->uri(

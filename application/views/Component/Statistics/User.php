@@ -19,7 +19,7 @@
 	<?php echo $user->total;?>
 </p>
 <p class="pull-left well">
-	<label class="muted"><?php echo _('Team');?></label>
+	<label class="muted"><?php echo __('Team');?></label>
 	
 	<?php 
 		if ($user->team_id !== NULL) :

@@ -1,7 +1,33 @@
 <?php defined('SYSPATH') or die('No direct script access');?>
 <footer>
 	<nav class="navbar navbar-inverse">
-		<div class="navbar-inner">2013 &COPY; by CodeCats</div>
+		<div class="navbar-inner">
+<?php 
+	echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'lang',
+				'action' 		=> 'en'
+			)
+		),
+		'english',
+		array('class' => 'btn btn-large btn-link')
+	);
+?>	
+<?php 
+	echo HTML::anchor(Route::get('default')->uri(
+			array(
+				'controller' 	=> 'lang',
+				'action' 		=> 'pl'
+			)
+		),
+		'polski',
+		array('class' => 'btn btn-large btn-link')
+	);
+?>	
+		</div>
+		<div class="navbar-inner">
+		<p class="pull-right">2013 &COPY; by CodeCats</p>
+		</div>
 	</nav>
 </footer>
 <!-- LIBS -->
