@@ -24,7 +24,7 @@
 					'action' => 'change', 
 					'id' => 'description'
 				)), 
-				'description',
+				__('description'),
 				array('rel' => 'change_description_form_get')				
 		); 
 	?>
@@ -39,7 +39,7 @@
 					'action' => 'change', 
 					'id' => 'training'
 				)), 
-				'training',
+				__('training'),
 				array('rel' => 'change_training_form_get')				
 		); 
 	?>
@@ -54,7 +54,7 @@
 					'action' => 'change', 
 					'id' => 'success'
 				)), 
-				'success',
+				__('success'),
 				array('rel' => 'change_success_form_get')				
 		); 
 	?>
@@ -69,7 +69,7 @@
 					'action' => 'change', 
 					'id' => 'contact'
 				)), 
-				'contact',
+				__('contact'),
 				array('rel' => 'change_contact_form_get')				
 		); 
 	?>
@@ -84,7 +84,7 @@
 					'action' => 'change', 
 					'id' => 'address'
 				)), 
-				'address',
+				__('address'),
 				array('rel' => 'change_address_form_get')				
 		); 
 	?>
@@ -99,7 +99,7 @@
 					'action' => 'change', 
 					'id' => 'name'
 				)), 
-				'name',
+				__('name'),
 				array('rel' => 'change_name_form_get')				
 		); 
 	?>

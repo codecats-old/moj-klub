@@ -3,17 +3,17 @@
 <div class="tabbable">
 	<ul class="nav nav-tabs">
 		<li class="active btn-mini">
-			<a data-toggle="tab" href="#tab1">players</a>
+			<a data-toggle="tab" href="#tab1"><?php echo __('players');?></a>
 		</li>
 		
 <?php if ( ! empty($staff)):?>
  		<li class="btn-mini">
-			<a data-toggle="tab" href="#tab2">staff</a>
+			<a data-toggle="tab" href="#tab2"><?php echo __('staff');?></a>
 		</li>
 <?php endif;?>
  
 		<li class="btn-mini">
-			<a data-toggle="tab" href="#tab3">management</a>
+			<a data-toggle="tab" href="#tab3"><?php echo __('management');?></a>
 		</li>
 	</ul>
 	<ul class="tab-content">
@@ -49,7 +49,7 @@
 				'id'			=> Coder::instance()->short_url($player->id)
 			)
 		),
-		'see the profile',
+		__('see the profile'),
 		array('class' => 'btn btn-mini btn-info pull-right')
 	)?>
 					</div>
@@ -67,7 +67,7 @@
 <?php foreach($staff as $person):?>
 				<li class="well">
 	<?php echo Arr::get($person->as_array(), 'username');?>
-					<a class="btn btn-mini btn-info pull-right" href="#">go</a>
+					<a class="btn btn-mini btn-info pull-right" href="#"><?php echo __('go');?></a>
 				</li>
 <?php endforeach;?>
 			</ol>
@@ -96,7 +96,7 @@
 				'id'			=> Coder::instance()->short_url(Arr::get($manager, 'id'))
 			)
 		),
-		'see the profile',
+		__('see the profile'),
 		array('class' => 'btn btn-mini btn-info pull-right')
 	)?>
 				</li>

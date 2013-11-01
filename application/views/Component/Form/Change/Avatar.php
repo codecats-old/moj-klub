@@ -8,14 +8,14 @@
 	<div class="row-fluid">
 		<div class="span12">
 			<label for="avatar">
-				avatar:
+				<?php echo __('avatar');?>:
 			</label>
 			<input type="file" name="avatar" value="" />
 			<span class="label label-warning"><?php  echo Arr::get($error, 'avatar');?></span>              
 		</div>
 	</div>
 	<hr>
-<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success offset8'));?>
+<?php echo Form::submit('submit', __('submit'), array('class'=>'btn btn-success offset8'));?>
 
 <?php echo HTML::anchor(
 		Route::get('default')->uri(

@@ -5,8 +5,8 @@
 
 <div class="modal-body">
         <div class="well">
-                <h4>Delete photo</h4>
-                <p><small>Are you sure you want delete this photo?</small></p>
+                <h4><?php echo __('Delete photo');?></h4>
+                <p><small><?php echo __('Are you sure you want delete this photo?');?></small></p>
                 <div class="row-fluid">
                     <div class="span12">						
 						<div>

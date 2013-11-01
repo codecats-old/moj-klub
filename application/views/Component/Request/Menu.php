@@ -49,7 +49,7 @@ endif;
 					'id'			=> Coder::instance()->to_url(Arr::get($team, 'id'))
 				)
 			),
-			'team panel',
+			__('team panel'),
 			array(
 				'class'		=> 'btn btn-mini '.Arr::get($main_menu['style'], 'team'),
 				'tabindex' 	=> '-1',
@@ -71,7 +71,7 @@ endif;
 				'id'			=> Coder::instance()->to_url(Arr::get($user, 'id'))
 			)
 		),
-		'user panel',
+		__('user panel'),
 		array(
 			'class'		=> 'btn btn-mini '.Arr::get($main_menu['style'], 'user'),
 			'tabindex' 	=> '-1',
@@ -113,7 +113,7 @@ endif;
 	?>
 			<ul class="unstyled" rel="notification-messages">
 				<li class="text-center" sender="-1">
-					<i class="label label-info">no important data.</i>
+					<i class="label label-info"><?php echo __('no important data.');?></i>
 				</li>
 			</ul>
 	<?php endif;?>

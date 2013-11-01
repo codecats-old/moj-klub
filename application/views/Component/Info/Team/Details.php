@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-<h4>Dane drużyny</h4>
+<h4><?php echo __('Team data');?></h4>
 <div>
 	<h3 class="text-center">
 <?php echo HTML::anchor(
@@ -44,7 +44,7 @@
 				'id'		 => Coder::instance()->short_url($team['id'])
 			)
 		),
-		'Photos count: '.$photos_count,
+		__('Photos count: ').$photos_count,
 		array(
 			'class' => 'btn btn-info btn-block'
 		)

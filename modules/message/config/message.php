@@ -10,10 +10,10 @@
 return array(
 		'default' => array(
 			'messages' => array(
-				'Success'	=>	'Success operation',
-				'Error'		=>	'System error',
-				'Warning'	=>	'Incorrect data',
-				'Notice'	=>	'Updated',
+				'Success'	=>	__('Success operation'),
+				'Error'		=>	__('System error'),
+				'Warning'	=>	__('Incorrect data'),
+				'Notice'	=>	__('Updated'),
 			),
 			'view' => array(
 				'path' => 'Message/Basic'

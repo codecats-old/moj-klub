@@ -2,13 +2,13 @@
 <fieldset class="form-inline">
 	<legend><small><?php echo ucfirst(__('address'));?></small></legend>
 	<div class="control-group">
-		<label class="control-label" for="address">Street:</label>
+		<label class="control-label" for="address"><?php echo ucfirst(__('street'));?>:</label>
 		<div class="controls controls-row">
 			<div class="span9">
 <?php echo Form::input(
 		'street', 
 		Arr::get($address, 'street'),
-		array('class'=>'span12', 'placeholder'=>'street name'));
+		array('class'=>'span12', 'placeholder'=>__('street name')));
 ?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'street');?></span>
 			</div>
@@ -16,14 +16,14 @@
 <?php echo Form::input(
 		'street_no', 
 		Arr::get($address, 'street_no'),
-		array('class'=>'span12', 'placeholder'=>'no.', 'type'=>'text'));
+		array('class'=>'span12', 'placeholder'=>__('no.'), 'type'=>'text'));
 ?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'street_no');?></span>
 			</div>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="address">Post:</label>
+		<label class="control-label" for="address"><?php echo __('Post');?>:</label>
 		<div class="controls controls-row">
 			<div class="span4">
 				<div class="row-fluid">
@@ -53,7 +53,7 @@
 <?php echo Form::input(
 		'city', 
 		Arr::get($address, 'city'),
-		array('class'=>'span12', 'placeholder'=>'City', 'type'=>'text'));
+		array('class'=>'span12', 'placeholder'=>__('city'), 'type'=>'text'));
 ?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'city');?></span>
 			</div>
@@ -62,7 +62,7 @@
 	
 	<div class="help-block btn-mini control-group">
 		<div class="offset5 span6">
-			<p><i>for example:</i></p>
+			<p><i><?php echo __('for example');?>:</i></p>
 			<p><i>ul. Reymonta 22</i></p>
 			<p><i>30-059 Kraków</i></p>
 		</div>

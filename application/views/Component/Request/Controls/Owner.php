@@ -10,7 +10,7 @@
 			'id'			=> Coder::instance()->to_url(Arr::get($request, 'team_id') ),
 		)
 	),
-	'Cancel',
+	__('Cancel'),
 	array(
 		'class' 	=> 'btn btn-mini btn-danger', 
 		'tabindex' 	=> '-1',

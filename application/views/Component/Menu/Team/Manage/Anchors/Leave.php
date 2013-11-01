@@ -12,6 +12,6 @@
 			'confirm' 		=> 'false'
 		)
 	),
-	'leave <i class="offset6 icon-remove"></i>',
+	__('leave <i class="offset6 icon-remove"></i>'),
 	$attributes
 );?>

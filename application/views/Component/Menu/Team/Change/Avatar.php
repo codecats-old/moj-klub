@@ -2,7 +2,7 @@
 <?php if(Arr::get($options, 'avatar')):?>
 <div class="span6">
 					<button class="pull-right btn btn-mini" data-toggle="collapse" data-target=".collapse">
-						Edit					
+						<?php echo __('Edit');?>					
 					</button>
 					<div class="divider"></div>
 					<div class="pull-right collapse in">
@@ -12,7 +12,7 @@
 				'action' 		=> 'change-team-avatar'
 			)
 		),
-		'change avatar',
+		__('change avatar'),
 		array(
 			'rel' 	=> 'user_change-avatar_get'
 		)

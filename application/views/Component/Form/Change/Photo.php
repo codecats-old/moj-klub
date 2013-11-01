@@ -9,7 +9,7 @@
 	<div class="row-fluid">
 		<div class="span12 text-center">
 			<label for="photo">
-				photo:
+				<?php echo __('photo');?>:
 			</label>
 			<input type="file" name="add_photo" value="" />
 			<span class="label label-warning"><?php  echo Arr::get($error, 'photo');?></span>              
@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<hr>
-<?php echo Form::submit('submit', 'wyślij', array('class'=>'btn btn-success offset8'));?>
+<?php echo Form::submit('submit', __('submit'), array('class'=>'btn btn-success offset8'));?>
 
 <?php echo HTML::anchor(
 		Route::get('default')->uri(
@@ -26,7 +26,7 @@
 				'action'		=> lcfirst(Request::initial()->action())
 			)
 				
-			),
+		),
 		ucfirst(__('close')),
 		array('class'=>'btn btn-small', 'rel'=>'form_close'));?>
 </div>

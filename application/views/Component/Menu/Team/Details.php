@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $avatar = isset($avatar['path']) ? $avatar : array('path' => 'upload/default/avatar/team.png');?>
-<label class="label label-info">details</label>
+<label class="label label-info"><?php echo __('details');?></label>
 <div class="well row-fluid  span12">
 	<ul class="thumbnails">
        	<li class="thumbnail span12">
@@ -23,14 +23,14 @@
 		</li>
 		<li class="thumbnail span12">
 			<div class="row-fluid">
-				<label class="label">skrócona nazwa:</label>
+				<label class="label"><?php echo __('short name');?>:</label>
 				<span class="text-info pull-right">
 <?php echo Arr::get($team, 'short_name');?>
 				</span>
 			</div>
 <?php if(Arr::get($team, 'phone')):?>
 		    <div class="row-fluid">
-		    	<label class="label">tel</label>
+		    	<label class="label"><?php echo __('phone');?></label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'phone');?>
 				</span>
@@ -46,7 +46,7 @@
 <?php endif;?>
 <?php if(Arr::get($team, 'city')):?>
 		    <div class="row-fluid">
-		    	<label class="label">Miasto:</label>
+		    	<label class="label"><?php echo ucfirst(__('city'));?>:</label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'city');?>
 				</span>
@@ -54,7 +54,7 @@
 <?php endif;?>
 <?php if(Arr::get($team, 'street')):?>
 		    <div class="row-fluid">
-		    	<label class="label">ul.</label>
+		    	<label class="label"><?php echo __('street');?></label>
 		    	<span class="text-info pull-right">
 	<?php echo Arr::get($team, 'street').' '.'no.'.Arr::get($team, 'street_no');?>
 				</span>
@@ -62,19 +62,19 @@
 		    </div>
 <?php endif;?>
 		    <div class="row-fluid">
-		    	<label class="label">manager:</label>
+		    	<label class="label"><?php echo __('manager');?>:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($manager, 'username');?>
 				</span>		    	
 		    </div>
 		    <div class="row-fluid">
-		    	<label class="label">coach:</label>
+		    	<label class="label"><?php echo __('coach');?>:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($coach, 'username');?>
 				</span>				    	
 		    </div>
 		    <div class="row-fluid">
-		    	<label class="label">capitan:</label>
+		    	<label class="label"><?php echo __('capitan');?>:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($capitan, 'username');?>
 				</span>				    	

@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <?php $controller = strtolower(Request::current()->controller() );?>
-<?php $active = array($controller => 'active');?>
+<?php // $active = array($controller => 'active');?>
 
-<h3 class="label label-info">Przeglądaj</h3>
+<h3 class="label label-info"><?php echo __('Browse');?></h3>
 
 <?php if (Arr::get($menu,	'user')):?>
 <p>
@@ -12,9 +12,9 @@
 				'controller'=>'user',
 			)
 		), 
-		'My profile<label>options<label>',
+		__('My profile<label>options<label>'),
 		array(
-			'class' 	=>'btn btn-large btn-info btn-block '.Arr::get($active, 'user')
+			'class' 	=>'btn btn-large btn-info btn-block, ' //.Arr::get($active, 'user')
 		)
 	);?>
 </p>
@@ -28,9 +28,9 @@
 				'controller'=>'team',
 			)
 		), 
-		'Twój klub<label>informacje, ważniejse wydarzenia<label>',
+		__('Your club<label>informations, important events<label>'),
 		array(
-			'class' 	=> 'btn btn-large btn-info btn-block '.Arr::get($active, 'team'),
+			'class' 	=> 'btn btn-large btn-info btn-block', //.Arr::get($active, 'team'),
 			'rel' 		=> 'team_index'
 		)
 	);?>
@@ -47,9 +47,9 @@
 				'id' => Coder::instance()->short_url(Arr::get($team, 'id'))
 			)
 		), 
-		'Gallery<label>pictures from team</label>',
+		__('Gallery<label>pictures from team</label>'),
 		array(
-			'class' 	=> 'btn btn-block btn-info '.Arr::get($active, 'gallery'),
+			'class' 	=> 'btn btn-block btn-info', //.Arr::get($active, 'gallery'),
 			'rel'		=> 'gallery_index'
 		)
 	);?>

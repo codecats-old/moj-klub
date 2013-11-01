@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 	<div>
-		<small class="muted pull-right"> type: <?php echo $type;?></small>
+		<small class="muted pull-right"> <?php echo __('type');?>: <?php echo __($type);?></small>
 		<div class="well">
 			<small class="muted">
 				<strong>
@@ -15,8 +15,8 @@
 	array('class' => 'muted')
 );?>
 				</strong> 
-				was refused 
-				<?php echo Date::fuzzy_span(strtotime($request['read']), time());?></small>
+				<?php echo __('was refused');?>
+				<?php echo __(Date::fuzzy_span(strtotime($request['read']), time()));?></small>
 		</div>
 	</div>
 

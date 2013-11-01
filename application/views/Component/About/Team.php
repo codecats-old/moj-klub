@@ -48,7 +48,7 @@
 		
 <?php if ($popularity):?>
 		<li class="thumbnail span12">
-			<h4>Popularity:</h4>
+			<h4><?php echo __('Popularity');?>:</h4>
 			<div class="progress progress-danger progress-striped active">
 				<div class="bar" style="width: <?php echo $popularity;?>%;"></div>
 			</div>

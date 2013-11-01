@@ -20,7 +20,7 @@
 				this.setContentShow('header+.container-fluid');
 				this.ajaxRun();
 	
-	
+
 				this.logout=new strz_Ajax.Anchor('logout', 'header+.container-fluid', false);//'header+.container-fluid'
 				this.logout.run();
 	
@@ -62,6 +62,9 @@
 					},
 					init:true
 				});
+				
+				this.runner = new strz_Ajax.Runner();
+				this.runner.init();
 				
 				this.addCallback({
 					logout:{

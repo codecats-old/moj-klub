@@ -4,7 +4,7 @@
 		<li class="thumbnail span12">
 			<h3><?php echo __('About user');?></h3>
 			 <div>
-			 	<label class="label">Klub</label>
+			 	<label class="label"><?php echo ucfirst(__('club'));?></label>
 			 	<span class="text-info pull-right">
 	
 <?php echo HTML::anchor(Route::get('default')->uri(
@@ -20,14 +20,11 @@
 			 </div>
 <?php if(Arr::get($team, 'city')):?>
 			 <div>
-			 	<label class="label">Miejscowość</label>
+			 	<label class="label"><?php echo ucfirst(__('city'));?></label>
 			 	<span class="text-info pull-right"><?php echo Arr::get($team, 'city');?></span>
 			 </div>
 <?php endif;?>
-			 <div>
-			 	<label class="label">Poziom ćwiczeń</label>
-			 	<span class="text-info pull-right">30 min/tyg</span>
-			 </div>
+
 			 <div>
 <?php echo HTML::anchor(Route::get('default')->uri(
 				array(

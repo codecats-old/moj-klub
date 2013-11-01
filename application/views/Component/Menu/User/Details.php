@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 
-<?php $roles_view = empty($roles_view) ? '(empty)' : $roles_view;?>
-<?php $info['name'] = empty($info['name']) ? '(empty)': $info['name'];?>
-<?php $info['surname'] = empty($info['surname']) ? '(empty)': $info['surname'];?>
-<?php $info['phone'] = empty($info['phone']) ? '(empty)': $info['phone'];?>
+<?php $roles_view = empty($roles_view) ? __('(empty)') : $roles_view;?>
+<?php $info['name'] = empty($info['name']) ? __('(empty)'): $info['name'];?>
+<?php $info['surname'] = empty($info['surname']) ? __('(empty)'): $info['surname'];?>
+<?php $info['phone'] = empty($info['phone']) ? __('(empty)'): $info['phone'];?>
 <?php $team = empty($team) ? array() : $team;?>
 <?php $avatar['path'] = empty($avatar['path']) ? '/upload/default/avatar/user.jpeg' : $avatar['path'];?>
 
@@ -24,7 +24,7 @@
 		Arr::get($avatar, 'path'), 
 		array(
 			'class'=>'bg-img', 
-			'alt'=>'avatar', 
+			'alt'=>__('avatar'), 
 			'rel'=>'user_index'
 		)
 	)
@@ -58,18 +58,18 @@
 				</div>
 			</div>
 			<div>
-				<label class="label">Imie:</label>
+				<label class="label"><?php echo __('name');?>:</label>
 				<span class="text-info pull-right">
 <?php echo Arr::get($info, 'name');?>
 				</span>
 			</div>
 		    <div>
-		    	<label class="label">Nazwisko:</label>
+		    	<label class="label"><?php echo __('surname');?>:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($info, 'surname');?>
 				</span>
 			</div>
-		    <div><label class="label">Drużyna:</label>
+		    <div><label class="label"><?php echo __('team');?>:</label>
 		    	<span class="text-info pull-right">
 <?php if (Arr::get($team, 'id')):?>
 	<?php echo HTML::anchor(Route::get('default')->uri(
@@ -84,13 +84,13 @@
 <?php endif;?>
 		    	</span>
 		    </div>
-		    <div><label class="label">Rola:</label>
+		    <div><label class="label"><?php echo __('Role');?>:</label>
 		    	<span class="text-info pull-right">
 <?php echo $roles_view;?>
 		    	</span>
 		    </div>
 		    <div>
-		    	<label class="label">Tel:</label>
+		    	<label class="label"><?php echo __('phone');?>:</label>
 		    	<span class="text-info pull-right">
 <?php echo Arr::get($info, 'phone');?>
 		    	</span>

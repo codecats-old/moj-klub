@@ -6,12 +6,12 @@
 		->uri(array('controller'=>'user', 'action'=>'change-data')),
 		array('class'=>'form-horizontal'));?>
 	<div class="well">
-		<h5><?php echo __('Change your data');?></h5>
+		<h5><?php echo __('Change Data');?></h5>
 		<div class="row-fluid">
 			<div class="span12">
 				<label for="email">
 					e-mail:
-					<label class="checkbox">zawsze widoczny
+					<label class="checkbox"><?php echo __('always visible');?>
 <?php echo Form::input('show_email', Arr::get($info, 'show_email'), array(Arr::get($info, 'show_email'), 'type'=>'checkbox'));?>
 					</label>
 				</label>
@@ -21,8 +21,8 @@
 			</div>
 			<div class="span12">
 				<label for="phone">
-					phone:
-					<label class="checkbox">zawsze widoczny
+					<?php echo __('phone');?>:
+					<label class="checkbox"><?php echo __('always visible');?>
 <?php echo Form::input('show_phone', Arr::get($info, 'show_phone'), array(Arr::get($info, 'show_phone'), 'type'=>'checkbox'));?>
 					</label>
 				</label>
@@ -32,32 +32,32 @@
 			</div>
 			<div class="span12">
 				<label for="name">
-					name:
+					<?php echo __('name');?>:
 				</label>
 <?php echo Form::input('name', Arr::get($info, 'name'), 
-		array('type'=>'text','class'=>'span8', 'placeholder'=>'name'));?>
+		array('type'=>'text','class'=>'span8', 'placeholder'=>__('name')));?>
 				<span class="label label-warning"><?php  echo Arr::get($error, 'name');?></span>              
 			</div>
 			<div class="span12">
 				<label for="surname">
-					surname:
+					<?php echo __('surname');?>:
 				</label>
 <?php echo Form::input('surname', Arr::get($info, 'surname'), 
-		array('type'=>'text','class'=>'span8', 'placeholder'=>'surname'));?>
+		array('type'=>'text','class'=>'span8', 'placeholder'=>__('surname')));?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'surname');?></span>              
 			</div>
 			
 			<div class="span12 alert alert-success">
 				<label for="password">
-					password:
+					<?php echo __('password');?>:
 				</label>
 <?php echo Form::input('password', '', 
-		array('type'=>'password','class'=>'span8', 'placeholder'=>'password'));?>
+		array('type'=>'password','class'=>'span8', 'placeholder'=>__('password')));?>
 				<span class="label label-warning"><?php echo Arr::get($error, 'password');?></span>              
 			</div>
 		</div>
 		<hr>
-<?php echo Form::submit('submit', 'zapisz', array('class'=>'btn btn-success', 'rel'=>'user_change-data'));?>
+<?php echo Form::submit('submit', __('save'), array('class'=>'btn btn-success', 'rel'=>'user_change-data'));?>
 
 <?php echo HTML::anchor(Route::get('default')
 		->uri(array('controller'=>'user')),

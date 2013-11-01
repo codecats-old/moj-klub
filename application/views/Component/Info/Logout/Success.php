@@ -1,7 +1,7 @@
-<?php defined('SYSPATH') or die('No direct script access');?>
+<?php defined('SYSPATH') OR die('No direct script access');?>
 <div>
             <div class="well">
-                <h4>Dziekujemy za odwiedziny!<div><small>Zostałeś prawidłowo wylogowany.</small></div></h4>
+                <h4><?php echo __('Thank you for visit!');?><div><small><?php echo __('You have been logged out.');?></small></div></h4>
                 <div class="row-fluid">
                     <div class="span12">
 						<div></div>

@@ -10,7 +10,7 @@
 				'result' 		=> 'accept'
 		)
 	),
-	'Accept',
+	__('Accept'),
 	array(
 		'class' 	=> 'btn btn-mini btn-success', 
 		'tabindex' 	=> '-1',
@@ -27,7 +27,7 @@
 			'result' 		=> 'refuse'
 		)
 	),
-	'Refuse',
+	__('Refuse'),
 	array(
 		'class' 	=> 'btn btn-mini btn-danger', 
 		'tabindex' 	=> '-1',
@@ -44,7 +44,7 @@
 			'result' 		=> 'cancel'
 		)
 	),
-	'Cancel',
+	__('Cancel'),
 	array(
 		'class' 	=> 'btn btn-mini', 
 		'tabindex' 	=> '-1',

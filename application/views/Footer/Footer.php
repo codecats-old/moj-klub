@@ -115,6 +115,9 @@
 	<!-- QuickAccess -->
 <?php echo HTML::script('assets/script/Js/Components/QuickAccess/QuickAccess.js');?>
 	<!-- >QuickAccess -->
+	<!-- Runner -->
+<?php echo HTML::script('assets/script/Js/Components/Runner/Runner.js');?>
+	<!-- >Runner -->
 <!-- >COMPONENTS -->
 
 
@@ -123,54 +126,6 @@
 <?php echo HTML::script('assets/vendor/gallery/js/gallery.min.js');?>
 <?php echo HTML::script('assets/vendor/switchButton/jquery.switchButton.js');?>
 <?php echo HTML::script('assets/vendor/runner/jquery.runner.js');?>
-<!-- testing -->
-<script>
 
-(function() {
-    $('#timer').runner({
-        autostart: false,
-        milliseconds: false
-    });
-    
-    $('#timerStart').click(function(e) {
-        e.preventDefault();
-        $('#timer').runner('start');
-        $('#timerStart').addClass('active');
-    });
-    
-    $('#timerReset').click(function(e) {
-    	e.preventDefault();
-        $('#timer').runner('reset');
-    });
-    
-    $('#timerStop').click(function(e) {
-    	e.preventDefault();
-        $('#timer').runner('stop');
-        $('#timerStart').removeClass('active');
-    });
-})();
-
-$('button[rel=runner-fullscreen]').click(toggleFullScreen);
-function toggleFullScreen(e) {
-	e.preventDefault();
-	var elem = $('div.runner')[0];
-	if (elem.requestFullscreen) {
-		elem.requestFullscreen();
-	} else if (elem.mozRequestFullScreen) {
-		elem.mozRequestFullScreen();
-	} else if (elem.webkitRequestFullscreen) {
-		elem.webkitRequestFullscreen();
-	}
-/*
-  if (document.cancelFullScreen) {
-      document.cancelFullScreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitCancelFullScreen) {
-      document.webkitCancelFullScreen();
-    }
- */
-}
-</script>
 <!-- main -->
 <?php echo HTML::script('assets/script/Js/main.js');?>

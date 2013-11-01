@@ -15,7 +15,7 @@
 					<div class="span12">
 						<label for="email">
 							e-mail:
-							<label class="checkbox">zawsze widoczny
+							<label class="checkbox"><?php echo __('always visable');?>
 <?php echo Form::input('show_email', Arr::get($info, 'show_email'), array(Arr::get($info, 'show_email'), 'type'=>'checkbox'));?>
 							</label>
 						</label>
@@ -27,9 +27,9 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<label for="username">
-							username:
+							<?php echo __('username');?>:
 						</label>
-<?php echo Form::input('username', Arr::get($user, 'username'), 
+<?php echo Form::input('username', Arr::get($user, __('username')), 
 		array('class'=>'span8', 'placeholder'=>'username'));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'username');?></span>
 					</div>
@@ -37,7 +37,7 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<label for="pasword">
-							password:
+							<?php echo __('password');?>:
 						</label>
 <?php echo Form::input('password', '', 
 		array('type'=>'password', 'class'=>'span8', 'placeholder'=>'password'));?>
@@ -47,10 +47,10 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<label for="pasword_confirm">
-							password_confirm:
+							<?php echo __('password') . ' ' . __('confirm');?>:
 						</label>
 <?php echo Form::input('password_confirm', '', 
-		array('type'=>'password', 'class'=>'span8', 'placeholder'=>'_confirm'));?>
+		array('type'=>'password', 'class'=>'span8', 'placeholder'=>__('confirm')));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'password_confirm');?></span>
 					</div>
 				</div>
@@ -59,39 +59,39 @@
                 <div id="extra_info" class="collapse out">
 	                <div class="row-fluid">
 	                    <div class="span12">
-	                        <label for="name">imię:</label>
+	                        <label for="name"><?php echo __('name');?>:</label>
 <?php echo Form::input('name', Arr::get($info, 'name'), 
-		array('class'=>'span8', 'placeholder'=>'your name'));?>
+		array('class'=>'span8', 'placeholder'=>__('name')));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'name');?></span>
 	                    </div>
 	                </div>
 	                <div class="row-fluid">
 	                    <div class="span12">
-	                        <label for="surname">nazwisko:</label>
+	                        <label for="surname"><?php echo __('surname');?>:</label>
 <?php echo Form::input('surname', Arr::get($info, 'surname'), 
-		array('class'=>'span8', 'placeholder'=>'your surname'));?>
+		array('class'=>'span8', 'placeholder'=>__('surname')));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'surname');?></span>             
 	                    </div>
 	                </div>
 	                <div class="row-fluid">
 	                    <div class="span12">
 	                        <label for="phone">
-	                            nr telefonu:
-	                            <label class="checkbox">zawsze widoczny
+	                            <?php echo __('phone number');?>:
+	                            <label class="checkbox"><?php echo __('always visable');?>
 <?php echo Form::input('show_phone', Arr::get($info, 'show_phone'), array(Arr::get($info, 'show_phone'), 'type'=>'checkbox'));?>
 	                            </label>
 	                        </label>
 <?php echo Form::input('phone', Arr::get($info, 'phone'), 
-		array('class'=>'span8', 'placeholder'=>'your phone number'));?>
+		array('class'=>'span8', 'placeholder'=>__('phone number')));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'phone');?></span>                          
 	                    </div>
 	                </div>
                 </div><!-- collapse -->
                 <div class="row-fluid">
                 	<div class="span12">
-                		<label for="captcha">Kod z obrazka</label>
+                		<label for="captcha"><?php echo __('captcha');?></label>
                 		<div><?php echo $captcha;?></div>
-<?php echo Form::input('captcha', '', array('class'=>'span8', 'placeholder'=>'kod z obrazka'));?>
+<?php echo Form::input('captcha', '', array('class'=>'span8', 'placeholder'=>__('captcha')));?>
 						<span class="label label-warning"><?php echo Arr::get($error, 'captcha');?></span>  
                 	</div>
                 

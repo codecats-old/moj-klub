@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 	<div>
-		<small class="muted pull-right"> type: <?php echo $type;?></small>
+		<small class="muted pull-right"> <?php echo __('type');?>: <?php echo __($type);?></small>
 		<div class="well">
 			<small class="muted">
 				<strong>
@@ -14,8 +14,8 @@
 	$user['username']
 );?>
 				</strong> 
-				asked to join the club
-				<?php echo Date::fuzzy_span(strtotime($request['date']), time());?></small>
+				<?php echo __('asked to join the club');?>
+				<?php echo __(Date::fuzzy_span(strtotime($request['date']), time()));?></small>
 			<div>
 
 

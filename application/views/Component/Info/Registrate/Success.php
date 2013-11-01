@@ -2,10 +2,10 @@
 <?php $user=isset($user)?$user:array();?>
 <div>
             <div class="well">
-                <h4>Dziękujemy za rejestrację!<div><small>Teraz możesz przejść do logowania.</small></div></h4>
+                <h4><?php echo __('Thank you for registration!');?><div><small><?php echo __('You can login now.');?></small></div></h4>
                 <div class="row-fluid">
                     <div class="span12">
-						<div>Dane użyte podczas rejestracji</div>
+						<div><?php echo __('Registration data');?></div>
 
 							<div><span class="label">E-mail: </span><?php echo Arr::get($user, 'email');?></div>
 							<div><span class="label">login: </span><?php echo Arr::get($user, 'username');?></div>

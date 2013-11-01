@@ -7,32 +7,32 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<label for="new_password">
-					new password:
+					<?php echo __('new password');?>:
 				</label>
-				<input type="password" placeholder="hasło" name="new_password" />
+				<input type="password" placeholder="<?php echo __('password');?>" name="new_password" />
 				<span class="label label-warning"><?php echo Arr::get($error, 'new_password');?></span>              
 			</div>
 		</div>
 		<div class="row-fluid">
 			<div class="span12">
 				<label for="new_password_confirm">
-					confirm new password:
+					<?php echo __('confirm new password');?>:
 				</label>
-				<input type="password" placeholder="hasło potwierdź" name="new_password_confirm" />
+				<input type="password" placeholder="<?php echo __('confirm new password');?>" name="new_password_confirm" />
 				<span class="label label-warning"><?php echo Arr::get($error, 'new_password_confirm');?></span>              
 			</div>
 		</div>
 		<div class="row-fluid">
 			<div class="span12">
 				<label for="password">
-					current_password:
+					<?php echo __('current password');?>:
 				</label>
-				<input type="password" placeholder="hasło obecnie" name="password" />
+				<input type="password" placeholder="<?php echo __('current password');?>" name="password" />
 				<span class="label label-warning"><?php echo Arr::get($error, 'password');?></span>              
 			</div>
 		</div>
 		<hr>
-<?php echo Form::submit('submit', 'zapisz', array('class'=>'btn btn-success', 'rel'=>'user_change-password'));?>
+<?php echo Form::submit('submit', __('save'), array('class'=>'btn btn-success', 'rel'=>'user_change-password'));?>
 
 <?php echo HTML::anchor(Route::get('default')
 		->uri(array('controller'=>'user')),

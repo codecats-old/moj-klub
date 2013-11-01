@@ -29,7 +29,7 @@
 				'action' 		=> Request::initial()->action()
 			)
 		), 
-		'close'
+		__('close')
 	);
 ?>
 </div>

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 <div class="well">
-	<h4>Choose option</h4>
+	<h4><?php echo __('Choose option');?></h4>
 	<div class="row-fluid">
 	
 <?php if (Arr::get($options, 'players')): ?>

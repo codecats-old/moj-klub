@@ -8,7 +8,7 @@
 	<?php echo Arr::get($object, 'city')?><br>
 	
 	<?php if (Arr::get($object, 'phone')):?>	
-		<abbr title="Phone"><span class="label label-info">P:</span>
+		<abbr title="Phone"><span class="label label-info"><?php echo __('P:');?></span>
 	<?php echo preg_replace('/^(\d{3})(\d{3})(\d{3})$/', '$1 $2 $3', Arr::get($object, 'phone'));?>
 		</abbr>
 		<br>
