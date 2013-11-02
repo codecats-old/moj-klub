@@ -103,7 +103,7 @@ return array(
 'Are you sure you want delete this photo?' 			=> 'Czy na pewno usunąć to zdjęcie?',
 'Welcome back!' 									=> 'Witaj ponownie!',
 'You can go to panel.' 								=> 'Możesz przejść do panelu.',
-'Thank you for visit' 								=> 'Dziekujemy za odwiedziny!',
+'Thank you for visit!' 								=> 'Dziekujemy za odwiedziny!',
 'You have been logged out.' 						=> 'Zostałeś prawidłowo wylogowany.',
 'Thank you for registration!' 						=> 'Dziękujemy za rejestrację!',
 'You can login now.' 								=> 'Teraz możesz przejść do logowania.',
@@ -168,6 +168,11 @@ return array(
 'change password' 									=> 'zmień hasło',
 ' minutes.' 										=> ' minut.',
 ' hours, ' 											=> ' godzin, ',
-'less than ' 										=> 'mniej niż '
+'less than ' 										=> 'mniej niż ',
+':field must be an email address' 					=> ':field musi być adresem email',
+':field is incorrect' 								=> ':field jest błędne',
+':field does not match the required format' 		=> ':field nie spełnia porządanego formatu',
+'edit club' 										=> 'edytuj klub',
+'Just take a tour :)' 								=> 'Tylko się rozejrzę :)'
 		
 		);

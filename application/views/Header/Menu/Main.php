@@ -46,5 +46,19 @@
 		__('Club')
 );?>
 		</li>
+		<li>
+<?php 
+//just for show demo site
+if (! isset($user)) : 
+	echo HTML::anchor(Route::get('default')->uri(
+				array(
+					'controller' 	=> 'presentation'
+				)
+			), 
+			__('Just take a tour :)')
+	);
+endif;
+?>
+		</li>
 	</ul>
 </div>

@@ -52,14 +52,9 @@ class Controller_Welcome extends Controller_Automatic {
 			->set('users', $users)
 			->set('teams', $biggest_teams)
 			->set('trainings', $trainings);
+
 		$this->view_container->container_statistics = $container_statistics;
 		//>stats
-		
-		
-		
-		
-
-
 		
 		if (isset($benchmark))
 		{

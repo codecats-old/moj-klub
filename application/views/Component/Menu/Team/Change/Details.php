@@ -7,7 +7,7 @@
 
 <?php echo HTML::anchor(
 		Route::get('default')->uri(array('controller'=>'team', 'action'=>'change')),
-		'edit club',
+		__('edit club'),
 		array('class'=>'btn btn-inverse btn-mini', 'rel' => 'change_form_get')
 );?>
 <!-- 	<a href="#" class="btn btn-inverse btn-mini">edit club</a> -->
