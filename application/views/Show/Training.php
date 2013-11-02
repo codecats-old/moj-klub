@@ -24,15 +24,15 @@
 		</div>
 		
 		<div class="span6">
-			<label class="label label-success">duration:</label>
+			<label class="label label-success"><?php echo __('duration: ')?></label>
 			<p>
 <?php
 	$limes = 9;
 	$duration = Date::span(strtotime($training->start), strtotime($training->finish));
-	if ($duration['hours'] > 0) echo $duration['hours'].' hours, '.$duration['minutes'].' minutes.';
-	elseif ($duration['hours'] === 0 AND $duration['minutes'] > $limes) echo $duration['minutes'].' minutes.';
+	if ($duration['hours'] > 0) echo $duration['hours'].__(' hours, ').$duration['minutes'].__(' minutes.');
+	elseif ($duration['hours'] === 0 AND $duration['minutes'] > $limes) echo $duration['minutes'].__(' minutes.');
 	
-	if ($duration['hours'] === 0 AND $duration['minutes'] <= $limes) echo 'less than '.($limes + 1).' minutes'
+	if ($duration['hours'] === 0 AND $duration['minutes'] <= $limes) echo __('less than ').($limes + 1).__(' minutes.');
 ?>
 			</p>
 		</div>

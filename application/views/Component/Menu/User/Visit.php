@@ -14,7 +14,7 @@
 		), 
 		__('My profile<label>options<label>'),
 		array(
-			'class' 	=>'btn btn-large btn-info btn-block, ' //.Arr::get($active, 'user')
+			'class' 	=>'btn btn-large btn-info btn-block' //.Arr::get($active, 'user')
 		)
 	);?>
 </p>

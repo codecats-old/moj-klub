@@ -41,6 +41,7 @@ return array(
 'data unavalaible.' 								=> 'dane niedostępne.',
 'No elder messages' 								=> 'Brak starszych wiadomości',
 'duration: ' 										=> 'przez: ',
+'duration' 											=> 'czas trwania',
 'about a month ago' 								=> 'około miesiąc temu',
 'You not belongs to any club, ask for join this one:' => 'Nie należysz do żadnego klubu, dołącz do tego:',
 'About user' 										=> 'Dane użytkownika',
@@ -148,5 +149,25 @@ return array(
 'Refuse' 											=> 'Odrzuć',
 'team panel' 									 	=> 'panel klubu',
 'user panel' 										=> 'panel użytkownika',
-'no important data.' 								=> 'brak ważnych danych.'
+'no important data.' 								=> 'brak ważnych danych.',
+//errors
+'Incorrect time interval' 							=> 'Błędny przedział czasowy',
+'incorrect code' 									=> 'błędny kod',
+'forget login or password?' 						=> 'zapomniałeś loginu lub hasła',
+':field must not be empty' 							=> ':field nie może być puste',
+':field must be at least :param2 characters long'	=> ':field musi zawierać co najmniej znaków: :param2',
+':field must not exceed :param2 characters long' 	=> ':field nie może przekroczyć :param2 znaków',
+'login identificator'  								=> 'login',
+':field must be a phone number' 					=> ':field musi zostać poprawnie wprowadzony',
+'Incorrect time range' 								=> 'Błędny przedział czasowy',
+'access window' 									=> 'okno dostępu',
+'Trainings' 										=> 'Treningi użytkownika',
+':field must be a digit' 							=> ':field musi być liczbą dziesiętną',
+'Incorrect data input' 								=> 'Niepoprawne wejście danych',
+'Edit your data' 									=> 'Edytuj dane',
+'change password' 									=> 'zmień hasło',
+' minutes.' 										=> ' minut.',
+' hours, ' 											=> ' godzin, ',
+'less than ' 										=> 'mniej niż '
+		
 		);
