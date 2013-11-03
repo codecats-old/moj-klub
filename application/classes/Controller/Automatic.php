@@ -60,12 +60,12 @@ class Controller_Automatic extends Controller_Template{
 
 		View::bind_global('page_title', $this->page_title);
 
-		/*
+		/**
 		 * page title will be controler name (its bined as global)
 		*/
 		$this->page_title = __($this->request->controller());
 		
-		/*
+		/**
 		 * user is binded as global for views
 		 */
 		if (Auth::instance()->logged_in() === TRUE)
@@ -82,7 +82,7 @@ class Controller_Automatic extends Controller_Template{
 	 */
 	public function after()
 	{
-		/*
+		/**
 		 * Decision if show to all container site or just a content
 		 */
 		if ($this->auto_render === FALSE)
@@ -147,7 +147,9 @@ class Controller_Automatic extends Controller_Template{
 
 	/**
 	 * Redirect user depends on logged in status
-	 * @param string $logged_in
+	 * 
+	 * @param boolean $logged_in
+	 * @param array controller action and param for defaut route
 	 * @return Controller_Automatic
 	 */
 	public function redirect_user($logged_in = TRUE, $redirect = array())
