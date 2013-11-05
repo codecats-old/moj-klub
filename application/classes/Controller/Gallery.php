@@ -33,7 +33,7 @@ class Controller_Gallery extends Controller_Automatic{
 		 * - session changed key
 		 * - user logged out when he watched gallery
 		 */
-		if (is_numeric(Coder::instance()->short_url($id)) !== TRUE)
+		if (is_numeric(Coder::instance()->short_url($id, TRUE)) !== TRUE)
 		{
 			HTTP::redirect(Route::get('default')->uri());
 		}
@@ -41,7 +41,7 @@ class Controller_Gallery extends Controller_Automatic{
 		$user = Auth::instance()->get_user();
 
 		//Team by Id, all user can see team's gallery
-		$team = ORM::factory('Team', Coder::instance()->short_url($id));
+		$team = ORM::factory('Team', Coder::instance()->short_url($id, TRUE));
 		
 		$manager = Manager::factory('Gallery', $team);
 		$manager->set_user($user);

@@ -33,7 +33,7 @@
 								'action' 		=> 'train'
 							)
 				),
-				ucfirst(__('train')),
+				__('Train'),
 				array('class' => 'btn btn-danger btn-large span12 ')
 				
 		);?>

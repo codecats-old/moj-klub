@@ -569,7 +569,6 @@ class Manager_User extends Manager_Data{
 		$info_popover['show_email'] = $this->set_view_popver($info->show_email);
 
 		$avatar = $user->avatar;
-	//	echo $avatar->path;
 		$team = $user->team;
 		$roles_view = $user->get_teams_roles();
 		$roles = $this->to_array($roles_view, 'name');

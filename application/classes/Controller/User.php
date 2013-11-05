@@ -170,8 +170,8 @@ class Controller_User extends Controller_Automatic{
 	 */
 	public function action_show()
 	{
-		$id = Coder::instance()->short_url($this->request->param('id'));
-		
+		$id = Coder::instance()->short_url($this->request->param('id'), TRUE);
+
 		if (is_numeric($id) === FALSE)
 		{
 			HTTP::redirect(Route::get('default')->uri());

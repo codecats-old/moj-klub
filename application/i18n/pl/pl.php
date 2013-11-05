@@ -27,6 +27,7 @@ return array(
 'trainings' 										=> 'treningi',
 'training' 											=> 'trening',
 'train' 											=> 'ćwicz',
+'Train' 											=> 'Ćwicz',
 'your profile' 										=> 'twój profil',
 'your team' 										=> 'twój klub',
 'see the club'										=> 'zobacz klub',

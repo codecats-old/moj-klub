@@ -57,12 +57,16 @@ class Kohana_Coder implements Kohana_Interface_Coder{
 	 * if value is not a number then function converts it back to integer.
 	 * Zero is not allowed.
 	 * 
+	 * If decode is true then convert value to string
+	 * 
 	 * @param mixed $val
+	 * @param boolean $decode
 	 * @return string|number
 	 */
-	public function short_url($val)
+	public function short_url($val, $decode = false)
 	{
-		if (is_numeric($val) AND $val != 0)
+		//if decode is false the make short url
+		if (is_numeric($val) AND $val != 0 AND $decode === false)
 		{
 			return base_convert($val, 10, 36);	
 		}

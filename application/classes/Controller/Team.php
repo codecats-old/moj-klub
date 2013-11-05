@@ -32,7 +32,7 @@ class Controller_Team extends Controller_Automatic{
 		/*
 		 * Id have to be encoded
 		 */
-		$id = Coder::instance()->short_url($this->request->param('id'));
+		$id = Coder::instance()->short_url($this->request->param('id'), TRUE);
 		
 		if (is_numeric($id) === FALSE)
 		{

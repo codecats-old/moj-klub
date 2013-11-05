@@ -16,8 +16,25 @@ class Controller_Presentation extends Controller_Automatic{
 	{
 		$this->redirect_user(TRUE);
 		
-
-		/**
+		/*
+		 * Create TMP user for login
+		 */
+		$user = ORM::factory('User');
+		//unique id for user
+		$unique_id = uniqid();
+		
+		$user->username 	= 'BrunoMars' . substr($unique_id, 0, 4);
+		$user->email 		= $user->username . '@' . $_SERVER['HTTP_HOST'] . '.pl';
+		$user->password 	= $unique_id;
+		
+	
+		$user->save();
+		
+		//add role for login action
+		$manager = Manager::factory('User', $user);
+		$manager->add_role('login');
+		
+		/*
 		 * Execute the controller action (it also sends technical
 		 * 	cookies for client API)
 		 */
@@ -31,11 +48,14 @@ class Controller_Presentation extends Controller_Automatic{
 		)
 		->post(
 				array(
-						'login_identificator' 	=> 'tomek11',
-						'password' 			 	=> ''
+						'login_identificator' 	=> $user->username,
+						'password' 			 	=> $unique_id
 				)
 		)
 		->execute();
+		
+		//fake message
+		Blinker::start_blink();
 		
 		parent::before();
 	}
@@ -47,19 +67,26 @@ class Controller_Presentation extends Controller_Automatic{
 	public function after()
 	{	
 		parent::after();
+		
+		/*
+		 * Clean up for the presentation
+		 */
+		
+		//logout
 		$id = Auth::instance()->get_user()->id;
-		$id = Coder::instance()->to_url($id);
 		Request::factory(
 				Route::get('default')->uri(
 						array(
 								'controller' 	=> 'user', 
 								'action' 		=> 'logout',
-								'id' 			=> $id
+								'id' 			=> Coder::instance()->to_url($id)
 						)
 				)
 		)
 		->execute();
-		
+		//delete user
+		$user = ORM::factory('User', $id);
+		$user->delete();
 	}
 	
 	/**
