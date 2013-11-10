@@ -1,9 +1,11 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-$username = 	'myclub_client';
-$password = 	'xi@Nix';
+
+$username 	= 'myclub_client';
+$password 	= 'xi@Nix';
+$db 		= 'my_club';
+
 $hostname = 	'localhost';
-$db = 			'my_club';
 $persistent = 	FALSE;
 $caching = 		FALSE;
 $table_prefix = '';
@@ -15,10 +17,10 @@ if ($services_json)
 {
 	$mysql_config = $services_json["mysql-5.1"][0]["credentials"];
 
-	$username = $mysql_config["username"];
-	$password = $mysql_config["password"];
-	$hostname = $mysql_config["hostname"];
-	$db = 		$mysql_config["name"	];
+	$username 	= $mysql_config["username"];
+	$password 	= $mysql_config["password"];
+	$hostname 	= $mysql_config["hostname"];
+	$db 		= $mysql_config["name"	];
 	
 	/**
 	 * Turn off errors on servers with VCAP_SERVICES

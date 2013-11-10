@@ -125,6 +125,7 @@ class Controller_Image extends Controller_Automatic{
 		
 		$team = Auth::instance()->get_user()->team;
 		
+		
 		if ($post)
 		{
 			$photo = ORM::factory('Photo');

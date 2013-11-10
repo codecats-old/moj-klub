@@ -49,10 +49,13 @@
 			var roles = $.cookie('roles');
 
 			/**
-			 * if no cookies file do action asking for them
+			 * if no cookies file do action asking for them, and set tmp role
 			 */
-			if (typeof roles == 'undefined')
+			if (typeof roles == 'undefined') {
 				this.askForAccessCookie();
+				roles = '~-1';
+			}
+				
 
 			/**
 			 * read roles ids

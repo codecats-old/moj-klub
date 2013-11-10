@@ -54,6 +54,15 @@
 						<span class="label label-warning"><?php echo Arr::get($error, 'password_confirm');?></span>
 					</div>
 				</div>
+				<div class="row-fluid">
+                	<div class="span12">
+                		<label for="captcha"><?php echo __('captcha');?></label>
+                		<div><?php echo $captcha;?></div>
+<?php echo Form::input('captcha', '', array('class'=>'span8', 'placeholder'=>__('captcha')));?>
+						<span class="label label-warning"><?php echo Arr::get($error, 'captcha');?></span>  
+                	</div>
+                
+                </div>
 				<hr>
                 <h5><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#extra_info">Dane dodatkowe <b class="caret"></b></button></h5>
                 <div id="extra_info" class="collapse out">
@@ -87,15 +96,7 @@
 	                    </div>
 	                </div>
                 </div><!-- collapse -->
-                <div class="row-fluid">
-                	<div class="span12">
-                		<label for="captcha"><?php echo __('captcha');?></label>
-                		<div><?php echo $captcha;?></div>
-<?php echo Form::input('captcha', '', array('class'=>'span8', 'placeholder'=>__('captcha')));?>
-						<span class="label label-warning"><?php echo Arr::get($error, 'captcha');?></span>  
-                	</div>
                 
-                </div>
             </div>
         </div>
         <div class="modal-footer">

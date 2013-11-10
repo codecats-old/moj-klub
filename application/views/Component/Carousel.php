@@ -36,16 +36,18 @@
 			array(
 				'controller' 	=> 'team',
  				'action' 		=> 'show',
- 				'id' 			=> Coder::instance()->short_url($team['id'])
+ 				'id' 			=> isset($team['id']) ?
+									Coder::instance()->short_url($team['id']) :
+									NULL
 			)
 		), 
-		$team['short_name']
+		isset($team['short_name']) ? $team['short_name'] : ''
 	);
 ?>
                                     </h1>
                                     <p>
                                     	<label class="label"><?php echo ucfirst(__('the best success'));?></label>
-<?php echo $team['success'];?>
+<?php echo isset($team['success']) ? $team['success'] : '';?>
                                     </p>
                                 </div>
                             </div>

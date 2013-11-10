@@ -49,9 +49,11 @@ class Menu_Gallery extends Menu_General{
 	 */
 	public function deny_permissions($resource, $resource_owner)
 	{
+		
 		if ($resource_owner !== NULL)
 		{
 			$resource_owner = (int)$resource_owner->team->id;
+			$resource = (int)$resource;
 		}
 		/**
 		 * Deny only if resource_owner not equal view resource
