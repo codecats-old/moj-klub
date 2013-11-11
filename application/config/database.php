@@ -4,12 +4,13 @@
 $username 	= 'myclub_client';
 $password 	= 'xi@Nix';
 $db 		= 'my_club';
-
+//
 $hostname = 	'localhost';
 $persistent = 	FALSE;
-$caching = 		FALSE;
+$caching = 		TRUE;
 $table_prefix = '';
 $charset = 		'utf8';
+Kohana::$environment = Kohana::PRODUCTION;
 
 $services_json = json_decode(getenv("VCAP_SERVICES"), TRUE);
 

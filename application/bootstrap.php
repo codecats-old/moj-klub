@@ -78,6 +78,7 @@ I18n::lang('pl-pl');
  */
 if (isset($_SERVER['KOHANA_ENV']))
 {
+	var_dump(constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV'])));
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
 
@@ -97,10 +98,9 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-//	'base_url'  => '/moj-klub/',
 	'base_url'  => '/',
 	
-	'errors' 	=> TRUE,
+	'errors' 	=> FALSE,
 	'profile' 	=> FALSE,
 	'caching' 	=> TRUE
 ));
@@ -118,7 +118,8 @@ Kohana::$config->attach(new Config_File);
 /**
  * Salt.
  */
-Cookie::$salt='a~d@d!s*o$m%e^7salt';
+require_once APPPATH . 'config/crypt.php';
+Cookie::$salt = COOKIE_SALT;
 
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
