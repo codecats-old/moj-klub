@@ -16,8 +16,12 @@
 				var relSubmit=this.rel.replace('_get','');
 				var form=new strz_Ajax.SubmitRegistrate(relSubmit);
 	
+				/*
+				 * For YUI compressor solution
+				 */
+				var me = this;
 				this.addCallback({
-					this:{
+					me:{
 						reference:this,
 						methods:{
 							'showModal':null

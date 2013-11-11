@@ -27,9 +27,14 @@
 				this.setSendToURL(show);
 				this.ajaxRun();
 				
+				/*
+				 * For YUI compressor solution
+				 */
+				var me = this;
+				
 				//close modal window
 				this.addCallback({
-					this:{
+					me:{
 						reference:this,
 						methods:{
 							'hideModal':null

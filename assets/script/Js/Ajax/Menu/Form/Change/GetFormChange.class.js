@@ -16,8 +16,12 @@
 				var relSubmit = this.clearAction(this.rel);
 				var form=new strz_Ajax.SubmitChange(relSubmit);
 	
+				/*
+				 * For YUI compressor solution
+				 */
+				var me = this;
 				this.addCallback({
-					this:{
+					me:{
 						reference:this,
 						methods:{
 							'showModal':null

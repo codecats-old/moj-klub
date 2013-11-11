@@ -42,7 +42,8 @@
 // >LIBS -->
 
 // AJAX -->
- //echo HTML::script('assets/script/Js/Ajax/min.js');
+ echo HTML::script('assets/script/Js/Ajax/min.js');
+ /*
 // Core -->
  echo HTML::script('assets/script/Js/Ajax/Core.js');
  echo HTML::script('assets/script/Js/Ajax/Class/Node/NodeBasicAction.class.js');
@@ -93,8 +94,12 @@
  echo HTML::script('assets/script/Js/Ajax/ACL/Control.js');
  echo HTML::script('assets/script/Js/Ajax/ACL/Factory.js');
 // >AJAX -->
-
+*/
+ 
+ 
 //  COMPONENTS -->
+ echo HTML::script('assets/script/Js/Components/min.js');
+ /*
 // Component initializator -->
  echo HTML::script('assets/script/Js/Components/Initializator/Component.js');
 
@@ -123,8 +128,9 @@
 	// Runner -->
  echo HTML::script('assets/script/Js/Components/Runner/Runner.js');
 	// >Runner -->
+	 
 // >COMPONENTS -->
-
+*/
 
 // Vendor libs -->
  echo HTML::script('assets/vendor/toasts/toasts.min.js');

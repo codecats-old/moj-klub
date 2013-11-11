@@ -16,8 +16,12 @@
 				this.setSendToURL(form.action);
 				this.ajaxRun();
 				
+				/*
+				 * For YUI compressor solution
+				 */
+				var me = this;
 				this.addCallback({
-					this:{
+					me:{
 						reference:this,
 						methods:{
 							'closeForm':null

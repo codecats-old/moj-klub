@@ -20,9 +20,13 @@
 			
 				var confirm=new strz_Ajax.DoAction('a[rel=confirm_action]', 'a[sender='+this.rel+']');
 	
+				/*
+				 * For YUI compressor solution
+				 */
+				var me = this;
 				this.addCallback({
 
-						this:{
+						me:{
 							reference:this,
 							methods:{
 								'showModal':null
