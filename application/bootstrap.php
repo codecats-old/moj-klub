@@ -78,7 +78,6 @@ I18n::lang('pl-pl');
  */
 if (isset($_SERVER['KOHANA_ENV']))
 {
-	var_dump(constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV'])));
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
 
