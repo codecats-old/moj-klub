@@ -55,7 +55,7 @@ class Validation_Training_User extends Validation_General{
 		),
 		
 		'last_training' => array(
-				array('Validation_Training_User::allowed_interval', array(':value', ':start_date'))
+			array('Validation_Training_User::allowed_interval', array(':value', ':start_date'))
 		),
 		
 		'choose_input' 	=> array(
@@ -80,7 +80,7 @@ class Validation_Training_User extends Validation_General{
 		$time = $manager->timer_to_timestamp($timer);
 		$time = $manager->timestamp_to_duration($time);
 		
-		return Valid::range($time, $from, $to);
+		return Valid::range(intval($time), $from, $to);
 	}
 	
 	public static function is_input_to_choose($timer, $duration)

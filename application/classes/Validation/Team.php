@@ -10,14 +10,14 @@ class Validation_Team extends Validation_General{
 					
 					array('min_length', array(':value', 3)),
 					array('max_length', array(':value', 20)),
-					array('regex', array(':value', '/^[\w\. ]++$/iuD'))
+					array('regex', array(':value', '/^[\w\. \s\p{L}]++$/iuD'))
 			),
 			'full_name'=>array(
 					array('not_empty'),
 		
 					array('min_length', array(':value', 5)),
 					array('max_length', array(':value', 50)),
-					array('regex', array(':value', '/^[\w ]++$/iuD'))
+					array('regex', array(':value', '/^[\w\. \s\p{L}]++$/iuD'))
 			),
 			'description'=>array(
 					array('min_length', array(':value', 5)),
@@ -72,14 +72,14 @@ class Validation_Team extends Validation_General{
 					array('Validation_Team::is_unique', array(':field', ':value')),
 					array('min_length', array(':value', 3)),
 					array('max_length', array(':value', 20)),
-					array('regex', array(':value', '/^[\w\. ]++$/iuD'))
+					array('regex', array(':value', '/^[\w\. \s\p{L}]++$/iuD'))
 			),
 			'full_name'=>array(
 					array('not_empty'),
 					array('Validation_Team::is_unique', array(':field', ':value')),
 					array('min_length', array(':value', 5)),
 					array('max_length', array(':value', 50)),
-					array('regex', array(':value', '/^[\w ]++$/iuD'))
+					array('regex', array(':value', '/^[\w\. \s\p{L}]++$/iuD'))
 			),
 			'description'=>array(
 					array('min_length', array(':value', 5)),
