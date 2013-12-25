@@ -41,6 +41,9 @@ class Model_Team extends ORM{
 			->where('uploaded', '>', DB::expr('(now() - interval 14 day)'))
 			->group_by('team_id');
 
+		if(count($photos->execute()) === 0)
+			$photos = DB::select('team_id')->from('photos')->group_by('team_id');
+
 		return $this
 			->select(
 					'team.id', 'short_name', 'username', 
